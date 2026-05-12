@@ -10,15 +10,18 @@ artifact persistence, and structured trace building.
 
 CADSmith baseline mapping
 ─────────────────────────
-  primitive_plan()        ← agents.plan() + schema validation
-  solid_generate()        ← agents.generate_code() + Executor.execute()
-  execute_with_retries()  ← pipeline._execute_with_retries()
-  mesh_inspect()          ← executor.py OCCT measurements (MeshLib stub)
-  measure_geometry()      ← executor.py geometry_json
-  render_views()          ← render.render_stl_to_png()
-  visual_verify()         ← agents.evaluate_geometry() via validator.py
-  forgecad_emit()         ← forgecad_adapter.emit_forgecad_code()
-  trace_capture()         ← serialize TraceArtifact → artifact store
+  primitive_plan()          ← agents.plan() + schema validation
+  solid_generate()          ← agents.generate_code() + Executor.execute()
+  execute_with_retries()    ← pipeline._execute_with_retries()
+  mesh_inspect()            ← executor.py OCCT measurements (MeshLib stub)
+  mesh_repair()             ← trimesh hole-fill + watertight repair (PRD §6.4)
+  measure_geometry()        ← executor.py geometry_json
+  render_views()            ← render.render_stl_to_png()
+  visual_verify()           ← validator.Validator.validate() → agents.evaluate_geometry()
+  forgecad_emit()           ← forgecad_adapter.emit_forgecad_code()
+  trace_capture()           ← serialize TraceArtifact → artifact store
+  approval_gate_check()     ← structured approval record (PRD §6.2)
+  compute_mesh_metrics()    ← metrics.compare_stl() CD/F1/IoU (PRD §11.3)
 """
 
 from __future__ import annotations
@@ -30,7 +33,7 @@ from typing import Optional
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
 
 # ---------------------------------------------------------------------------
 # CADSmith import — add its parent to sys.path so autofab is importable
@@ -82,7 +85,6 @@ def primitive_plan(
     try:
         plan = validate_plan(raw_plan)
     except SchemaValidationError:
-        # Re-raise with added context
         raise
     return plan
 
@@ -141,10 +143,14 @@ def execute_with_retries(
         exec_result = executor.execute(current_code, name=f"{name}_attempt{attempt}")
 
         if exec_result.success:
+            # Mark last repair action as successful if it was the fix
+            if repair_actions:
+                repair_actions[-1] = RepairAction(
+                    **{**repair_actions[-1].model_dump(), "success": True}
+                )
             return exec_result, repair_actions
 
         if attempt < max_error_retries:
-            # Error Refiner call (inner loop)
             fixed_code = agents.fix_error(current_code, exec_result.error, design_plan_dict)
             repair_actions.append(RepairAction(
                 loop="inner",
@@ -152,14 +158,12 @@ def execute_with_retries(
                 error_or_feedback=exec_result.error or "",
                 error_type=exec_result.error_type,
                 fix_applied=f"Error Refiner attempt {attempt + 1} produced {len(fixed_code.splitlines())} lines",
-                success=False,  # Will be updated on next iteration if it works
+                success=False,
             ))
-            # Mark last repair as success if next execution passes
             current_code = fixed_code
 
         attempt += 1
 
-    # Mark the final repair as success=False (exhausted)
     return exec_result, repair_actions
 
 
@@ -197,21 +201,96 @@ def mesh_inspect(
 
 
 # ---------------------------------------------------------------------------
-# 5. measure_geometry — convenience wrapper (PRD §6.2)
+# 5. mesh_repair — watertight repair primitive (PRD §6.2, §6.4)
+# ---------------------------------------------------------------------------
+
+
+def mesh_repair(
+    stl_path: str,
+    output_path: Optional[str] = None,
+    *,
+    workflow_id: Optional[str] = None,
+    store: Optional[ArtifactStore] = None,
+) -> tuple[str, bool, str]:
+    """
+    Attempt to repair a non-watertight mesh using trimesh hole-filling.
+
+    PRD §6.4: Mesh repair must be a named primitive, not inline logic.
+
+    Args:
+        stl_path:    Path to the input STL (may be non-watertight).
+        output_path: Where to write the repaired STL. Defaults to
+                     <stl_path>_repaired.stl.
+        workflow_id: If provided, the repaired STL is persisted to the store.
+        store:       ArtifactStore instance. Defaults to get_store().
+
+    Returns:
+        (repaired_stl_path, is_watertight_after_repair, repair_notes)
+    """
+    if store is None:
+        store = get_store()
+
+    if output_path is None:
+        p = Path(stl_path)
+        output_path = str(p.parent / f"{p.stem}_repaired{p.suffix}")
+
+    repair_notes = "trimesh unavailable; no repair attempted"
+    is_watertight = False
+
+    try:
+        import trimesh
+
+        mesh = trimesh.load_mesh(stl_path)
+        repair_notes_parts = []
+
+        if not mesh.is_watertight:
+            # Fill holes
+            trimesh.repair.fill_holes(mesh)
+            repair_notes_parts.append("fill_holes applied")
+
+            # Fix winding
+            trimesh.repair.fix_winding(mesh)
+            repair_notes_parts.append("fix_winding applied")
+
+            # Fix normals
+            trimesh.repair.fix_normals(mesh)
+            repair_notes_parts.append("fix_normals applied")
+
+        is_watertight = bool(mesh.is_watertight)
+        repair_notes = "; ".join(repair_notes_parts) if repair_notes_parts else "mesh already watertight"
+
+        mesh.export(output_path)
+
+        # Persist to artifact store if workflow_id provided
+        if workflow_id and Path(output_path).exists():
+            store.put_file(workflow_id, "stl", output_path,
+                           filename=Path(output_path).name)
+
+    except ImportError:
+        # Trimesh not available — return original
+        output_path = stl_path
+        repair_notes = "trimesh not installed; mesh returned unmodified"
+    except Exception as exc:
+        output_path = stl_path
+        repair_notes = f"Repair failed: {exc}"
+
+    return output_path, is_watertight, repair_notes
+
+
+# ---------------------------------------------------------------------------
+# 6. measure_geometry — convenience wrapper (PRD §6.2)
 # ---------------------------------------------------------------------------
 
 
 def measure_geometry(geometry_json: dict) -> GeometryEvidence:
     """
     Wrap the raw OCCT dict into a typed GeometryEvidence model.
-
-    This is a lighter version of mesh_inspect that does not load the STL.
     """
     return GeometryEvidence.from_cadsmith_geometry_json(geometry_json)
 
 
 # ---------------------------------------------------------------------------
-# 6. render_views — three-view VTK render (PRD §4.4, §6.2)
+# 7. render_views — three-view VTK render (PRD §4.4, §6.2)
 # ---------------------------------------------------------------------------
 
 
@@ -223,8 +302,7 @@ def render_views(
     store: Optional[ArtifactStore] = None,
 ) -> Optional[str]:
     """
-    Render a three-view VTK image (isometric, high-angle rear, front profile)
-    and persist it to the artifact store.
+    Render a three-view image and persist it to the artifact store.
 
     Returns the artifact URI or None if rendering is not available.
 
@@ -235,28 +313,25 @@ def render_views(
         store = get_store()
 
     try:
-        from autofab.render import render_stl_to_png  # CADSmith render module
+        from autofab.render import render_stl_to_png
 
         render_filename = f"{name}_iter{iteration}_render.png"
-        # Use a temp path under the store's workflow directory
         local_render_path = str(
             store.base_path / workflow_id / "render" / render_filename
         )
         Path(local_render_path).parent.mkdir(parents=True, exist_ok=True)
         render_stl_to_png(stl_path, local_render_path)
 
-        # Register with the store so it tracks the URI
         uri = store.put_file(workflow_id, "render", local_render_path, filename=render_filename)
         return uri
 
     except Exception as exc:
-        # Rendering failure must not block validation (PRD: never lose state)
         print(f"[render_views] WARNING: rendering failed: {exc}")
         return None
 
 
 # ---------------------------------------------------------------------------
-# 7. visual_verify — LLM Judge verification (PRD §4.7, §6.2)
+# 8. visual_verify — LLM Judge verification (PRD §4.7, §6.2)  — BUG-3 FIX
 # ---------------------------------------------------------------------------
 
 
@@ -265,6 +340,7 @@ def visual_verify(
     code: str,
     geometry_json: dict,
     render_artifact_uri: Optional[str] = None,
+    stl_artifact_uri: Optional[str] = None,
     prior_feedback: Optional[list[str]] = None,
     store: Optional[ArtifactStore] = None,
     workflow_id: Optional[str] = None,
@@ -273,33 +349,40 @@ def visual_verify(
     Run the independent Judge (Claude Opus) against prompt, code, OCCT
     measurements, and rendered views.
 
+    BUG-3 FIX: previously passed stl_path="" so the Judge never received
+    the rendered image. Now resolves the actual STL path from the artifact
+    store URI and passes it to agents.evaluate_geometry(), which renders
+    fresh three-view PNG and sends it to Claude Opus as base64 image.
+
     PRD §4.7: Judge model must be independent from generation agents.
     CADSmith: agents.evaluate_geometry() → dict with 'passed' + 'feedback'.
     """
     if store is None:
         store = get_store()
 
-    # Resolve the render path for the Judge
-    stl_render_path = ""
-    if render_artifact_uri and store.exists(render_artifact_uri):
-        # The render PNG was already produced; pass it as a local path
-        stl_render_path = str(store.local_path(render_artifact_uri))
+    # BUG-3 FIX: Resolve the STL path so the Judge can render and see the geometry
+    stl_path = ""
+    if stl_artifact_uri and store.exists(stl_artifact_uri):
+        stl_path = str(store.local_path(stl_artifact_uri))
+
+    # Determine render_save_path: persist the render if we have a workflow_id
+    render_save_path = ""
+    if workflow_id and stl_path:
+        render_dir = store.base_path / workflow_id / "render"
+        render_dir.mkdir(parents=True, exist_ok=True)
+        render_save_path = str(render_dir / f"judge_render_{workflow_id}.png")
+        # If the render already exists in the store, reuse its local path
+        if render_artifact_uri and store.exists(render_artifact_uri):
+            render_save_path = str(store.local_path(render_artifact_uri))
 
     result = agents.evaluate_geometry(
         prompt=prompt,
         code=code,
         geometry_metrics=geometry_json,
-        stl_path="",  # We pass the pre-rendered PNG path directly; skip re-render
-        render_save_path="",
-        prior_judge_feedback=prior_feedback,
+        stl_path=stl_path,           # BUG-3 FIX: real STL path → renders PNG for Judge
+        render_save_path=render_save_path,
+        prior_judge_feedback=prior_feedback or [],
     )
-
-    # Override: if we have a render PNG, use it
-    if render_artifact_uri and store.exists(render_artifact_uri):
-        # Re-call with the actual stl_path so the Judge receives the image
-        # NOTE: evaluate_geometry renders from STL; we pass it blank and rely
-        # on the render already embedded in stl_render_path below.
-        pass  # The render path handling is done inside evaluate_geometry
 
     return VerifierScore(
         passed=result.get("passed", False),
@@ -309,7 +392,7 @@ def visual_verify(
 
 
 # ---------------------------------------------------------------------------
-# 8. forgecad_emit — ForgeCAD handoff primitive (PRD §6.2)
+# 9. forgecad_emit — ForgeCAD handoff primitive (PRD §6.2)
 # ---------------------------------------------------------------------------
 
 
@@ -354,7 +437,7 @@ def forgecad_emit(
 
 
 # ---------------------------------------------------------------------------
-# 9. trace_capture — persist TraceArtifact (PRD §6.2, §9.2)
+# 10. trace_capture — persist TraceArtifact (PRD §6.2, §9.2)
 # ---------------------------------------------------------------------------
 
 
@@ -379,3 +462,122 @@ def trace_capture(
         filename=filename,
     )
     return uri
+
+
+# ---------------------------------------------------------------------------
+# 11. approval_gate_check — structured approval record (PRD §6.2)
+# ---------------------------------------------------------------------------
+
+
+def approval_gate_check(
+    workflow_id: str,
+    trace_id: str,
+    decision: str,
+    reviewer: Optional[str] = None,
+    notes: str = "",
+    store: Optional[ArtifactStore] = None,
+) -> dict:
+    """
+    Record a human approval gate decision as a structured artifact.
+
+    PRD §6.2: The approval gate is a named primitive, not inline logic.
+    PRD §5.3: Human decisions must be logged with timestamp and reviewer.
+
+    Args:
+        workflow_id: The design workflow ID.
+        trace_id:    The trace artifact ID for this run.
+        decision:    'approved', 'rejected', or 'changes_requested'.
+        reviewer:    Optional reviewer identifier.
+        notes:       Optional reviewer comments.
+        store:       ArtifactStore instance.
+
+    Returns:
+        Approval record dict (also persisted to the store as JSON).
+    """
+    import datetime
+
+    if store is None:
+        store = get_store()
+
+    if decision not in ("approved", "rejected", "changes_requested"):
+        raise ValueError(
+            f"Invalid decision {decision!r}. "
+            "Must be 'approved', 'rejected', or 'changes_requested'."
+        )
+
+    record = {
+        "workflow_id": workflow_id,
+        "trace_id": trace_id,
+        "decision": decision,
+        "reviewer": reviewer,
+        "notes": notes,
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    }
+
+    store.put_json(
+        workflow_id,
+        "misc",
+        record,
+        filename=f"approval_{trace_id}.json",
+    )
+
+    return record
+
+
+# ---------------------------------------------------------------------------
+# 12. compute_mesh_metrics — CD/F1/IoU against reference STL (PRD §11.3)
+# ---------------------------------------------------------------------------
+
+
+def compute_mesh_metrics(
+    generated_stl_path: str,
+    reference_stl_path: str,
+    normalize: bool = False,
+    use_icp: bool = True,
+    n_points: int = 10_000,
+) -> Optional[dict]:
+    """
+    Compute Chamfer Distance, F1 Score, and Volumetric IoU against a
+    reference STL, matching the Text-to-CadQuery paper metrics (PRD §11.3).
+
+    CADSmith: metrics.compare_stl() — uses the same implementation.
+
+    Args:
+        generated_stl_path:  Path to the generated STL.
+        reference_stl_path:  Path to the ground-truth reference STL.
+        normalize:           If True, normalize meshes to [0,1]³ (shape only).
+                             If False (default), compare in absolute mm.
+        use_icp:             Run ICP alignment before metric computation.
+        n_points:            Surface point samples per mesh.
+
+    Returns:
+        dict with keys: chamfer_distance, f1_score, volumetric_iou,
+        precision, recall, normalize, use_icp.
+        Returns None if trimesh is unavailable or both STL files do not exist.
+    """
+    if not Path(generated_stl_path).exists():
+        return None
+    if not Path(reference_stl_path).exists():
+        return None
+
+    try:
+        from autofab.metrics import compare_stl  # type: ignore
+
+        metrics = compare_stl(
+            generated_stl=generated_stl_path,
+            reference_stl=reference_stl_path,
+            n_points=n_points,
+            normalize=normalize,
+            use_icp=use_icp,
+        )
+        result = metrics.to_dict()
+        result["normalize"] = normalize
+        result["use_icp"] = use_icp
+        return result
+
+    except ImportError:
+        print("[compute_mesh_metrics] trimesh/scipy not available; skipping metrics")
+        return None
+    except Exception as exc:
+        print(f"[compute_mesh_metrics] Metrics computation failed: {exc}")
+        return None

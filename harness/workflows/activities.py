@@ -120,6 +120,7 @@ class VerifierInput:
     cadquery_code: str
     geometry_evidence_dict: dict
     render_artifact_uri: Optional[str]
+    stl_artifact_uri: Optional[str]        # BUG-4 fix: needed by visual_verify for vision
     prior_feedback: list                   # list[str]
 
 
@@ -248,15 +249,9 @@ async def geometry_activity(inp: GeometryInput) -> GeometryOutput:
 
     # ── Code generation ──────────────────────────────────────────────────
     if inp.refiner_feedback:
-        # Outer-loop re-entry: use Refiner to produce new code
-        design_plan_dict = plan.to_cadsmith_dict()
-        code = agents.refine_geometry(
-            inp.refiner_feedback,      # passed as code param intentionally
-            inp.refiner_feedback,
-            design_plan_dict,
-            inp.prompt,
-            iteration=inp.iteration,
-        )
+        # BUG-1 FIX: refiner_activity already called agents.refine_geometry;
+        # inp.refiner_feedback IS the refined code — execute it directly.
+        code = inp.refiner_feedback
     else:
         code = solid_generate(plan, inp.prompt)
 
@@ -348,6 +343,7 @@ async def verifier_activity(inp: VerifierInput) -> VerifierOutput:
         code=inp.cadquery_code,
         geometry_json=inp.geometry_evidence_dict,
         render_artifact_uri=inp.render_artifact_uri,
+        stl_artifact_uri=inp.stl_artifact_uri,    # BUG-4 fix
         prior_feedback=inp.prior_feedback or [],
         store=store,
         workflow_id=inp.workflow_id,

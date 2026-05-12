@@ -30,6 +30,9 @@ from typing import Optional
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
+import pathlib
 from fastapi.responses import JSONResponse, PlainTextResponse
 from pydantic import BaseModel
 from temporalio.client import Client
@@ -47,6 +50,14 @@ app = FastAPI(
     ),
     version="0.1.0",
 )
+
+_STATIC = pathlib.Path(__file__).parent / "static"
+if _STATIC.exists():
+    app.mount("/ui", StaticFiles(directory=str(_STATIC), html=True), name="static")
+
+@app.get("/", include_in_schema=False)
+async def root():
+    return RedirectResponse(url="/ui/index.html")
 
 # ---------------------------------------------------------------------------
 # Temporal client (lazy singleton)
@@ -308,6 +319,13 @@ async def get_trace(workflow_id: str):
     return JSONResponse(content=store.get_json(trace_uri))
 
 
+
+
+def _short_id(length: int = 8) -> str:
+    import uuid
+    return uuid.uuid4().hex[:length]
+
+
 # ---------------------------------------------------------------------------
 # Health check
 # ---------------------------------------------------------------------------
@@ -319,10 +337,167 @@ async def health():
 
 
 # ---------------------------------------------------------------------------
-# Utilities
+# POST /api/v1/designs/{id}/export — artifact download links (GAP-5)
 # ---------------------------------------------------------------------------
 
 
-def _short_id(length: int = 8) -> str:
-    import uuid
-    return uuid.uuid4().hex[:length]
+@app.post("/api/v1/designs/{workflow_id}/export", status_code=200)
+async def export_design(workflow_id: str):
+    """
+    Return download-ready artifact links for STEP, STL, render, and ForgeCAD.
+
+    PRD §10.2: POST /api/v1/designs/:id/export
+    """
+    client = await get_temporal_client()
+    handle = client.get_workflow_handle(workflow_id)
+    try:
+        status = await handle.query(DesignWorkflow.status)
+    except Exception as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+    store = get_store()
+    artifacts = {}
+    for key in ("step_artifact_uri", "stl_artifact_uri", "render_artifact_uri",
+                "forgecad_artifact_uri", "trace_artifact_uri"):
+        uri = status.get(key)
+        if uri and store.exists(uri):
+            artifacts[key] = {
+                "uri": uri,
+                "available": True,
+                "download_path": f"/api/v1/artifacts/{workflow_id}/{key.replace('_artifact_uri', '')}",
+            }
+        else:
+            artifacts[key] = {"uri": uri, "available": False}
+
+    return JSONResponse(content={"workflow_id": workflow_id, "artifacts": artifacts})
+
+
+# ---------------------------------------------------------------------------
+# GET /api/v1/artifacts/{id}/{type} — raw artifact download
+# ---------------------------------------------------------------------------
+
+
+@app.get("/api/v1/artifacts/{workflow_id}/{artifact_type}")
+async def download_artifact(workflow_id: str, artifact_type: str):
+    """Download a specific artifact by type (step, stl, render, forgecad, trace)."""
+    from fastapi.responses import Response
+
+    type_map = {
+        "step": ("step_artifact_uri", "application/octet-stream"),
+        "stl": ("stl_artifact_uri", "application/octet-stream"),
+        "render": ("render_artifact_uri", "image/png"),
+        "forgecad": ("forgecad_artifact_uri", "text/x-python"),
+        "trace": ("trace_artifact_uri", "application/json"),
+    }
+    if artifact_type not in type_map:
+        raise HTTPException(status_code=400, detail=f"Unknown artifact type: {artifact_type}")
+
+    client = await get_temporal_client()
+    handle = client.get_workflow_handle(workflow_id)
+    try:
+        status = await handle.query(DesignWorkflow.status)
+    except Exception as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+    uri_key, media_type = type_map[artifact_type]
+    uri = status.get(uri_key)
+    if not uri:
+        raise HTTPException(status_code=202, detail=f"{artifact_type} not yet available")
+
+    store = get_store()
+    if not store.exists(uri):
+        raise HTTPException(status_code=404, detail=f"Artifact not found in store: {uri}")
+
+    content = store.get_bytes(uri)
+    return Response(content=content, media_type=media_type)
+
+
+# ---------------------------------------------------------------------------
+# POST /api/v1/designs/{id}/params — update_params signal (GAP-6)
+# ---------------------------------------------------------------------------
+
+
+class ParamsRequest(BaseModel):
+    params: dict
+
+
+@app.post("/api/v1/designs/{workflow_id}/params", status_code=200)
+async def update_params(workflow_id: str, req: ParamsRequest):
+    """
+    Send parameter updates into a running workflow.
+
+    PRD §10.2: SIGNAL /api/v1/designs/:id/params
+    """
+    client = await get_temporal_client()
+    handle = client.get_workflow_handle(workflow_id)
+    try:
+        await handle.signal(DesignWorkflow.update_params_signal, req.params)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    return {"workflow_id": workflow_id, "params_updated": req.params}
+
+
+# ---------------------------------------------------------------------------
+# WS /ws/v1/designs/{id}/stream — live stage updates (GAP-7)
+# ---------------------------------------------------------------------------
+
+from fastapi import WebSocket, WebSocketDisconnect  # noqa: E402 (after app definition)
+import asyncio  # noqa: E402
+import json as _json  # noqa: E402
+
+
+@app.websocket("/ws/v1/designs/{workflow_id}/stream")
+async def stream_design_status(websocket: WebSocket, workflow_id: str):
+    """
+    WebSocket endpoint that streams status updates every 2 seconds until
+    the workflow reaches a terminal state (DONE, FAILED, ESCALATED).
+
+    PRD §10.2: WS /ws/v1/designs/:id/stream
+    """
+    await websocket.accept()
+    client = await get_temporal_client()
+    handle = client.get_workflow_handle(workflow_id)
+
+    terminal_stages = {"DONE", "FAILED", "ESCALATED"}
+    last_stage = None
+
+    try:
+        while True:
+            try:
+                status = await handle.query(DesignWorkflow.status)
+                stage = status.get("stage", "UNKNOWN")
+
+                # Send update on every tick (client can debounce if needed)
+                await websocket.send_text(_json.dumps({
+                    "type": "status",
+                    "workflow_id": workflow_id,
+                    **status,
+                }))
+
+                if stage in terminal_stages:
+                    await websocket.send_text(_json.dumps({
+                        "type": "terminal",
+                        "workflow_id": workflow_id,
+                        "stage": stage,
+                    }))
+                    break
+
+            except WebSocketDisconnect:
+                break
+            except Exception as exc:
+                await websocket.send_text(_json.dumps({
+                    "type": "error",
+                    "detail": str(exc),
+                }))
+                break
+
+            await asyncio.sleep(2)
+
+    except WebSocketDisconnect:
+        pass
+    finally:
+        try:
+            await websocket.close()
+        except Exception:
+            pass
+

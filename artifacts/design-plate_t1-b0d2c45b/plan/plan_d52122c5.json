@@ -1,0 +1,50 @@
+{
+  "description": "Rectangular plate (60\u202fmm \u00d7 40\u202fmm \u00d7 10\u202fmm) with four M5 holes located at the corners.",
+  "components": [
+    "plate"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 10.0
+    },
+    "key_dimensions": {
+      "plate_thickness_mm": 10.0,
+      "hole_diameter_mm": 5.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 5 mm",
+      "dimensions": {
+        "diameter": 5.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Assumes each M5 hole is centered 2.5\u202fmm from the adjacent edges (i.e., at the exact plate corners). The Coder agent should model the holes as cylindrical voids with a 5\u202fmm diameter intersecting the plate thickness.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

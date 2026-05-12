@@ -55,8 +55,6 @@ Continue-As-New (PRD §9.5)
 
 from __future__ import annotations
 
-import time
-import uuid
 from dataclasses import dataclass, field
 from datetime import timedelta
 from typing import Optional
@@ -242,235 +240,235 @@ class DesignWorkflow:
     @workflow.run
     async def run(self, inp: DesignWorkflowInput) -> DesignWorkflowOutput:
         workflow_id = workflow.info().workflow_id
-        trace_id = str(uuid.uuid4())
-        self._start_time_ms = time.time() * 1000
+        trace_id = str(workflow.uuid4())          # deterministic — seeded by Temporal
+        self._start_time_ms = workflow.now().timestamp() * 1000
 
         # Configurable loop caps (PRD §4.5)
         max_error_retries = inp.max_error_retries
         max_refinements = inp.max_refinement_iterations
 
         current_prompt = inp.prompt
-        refinement_history: list[dict] = []
-        judge_feedback_history: list[str] = []
+        plan_dict: dict = {}
 
-        # ── Step 1: PLANNING ─────────────────────────────────────────────
-        self._stage = WorkflowStage.PLANNING
-        planning_out: PlanningOutput = await workflow.execute_activity(
-            planning_activity,
-            PlanningInput(
-                workflow_id=workflow_id,
-                prompt=current_prompt,
-                project_context=inp.project_context,
-            ),
-            start_to_close_timeout=timedelta(minutes=5),
-            retry_policy=RetryPolicy(maximum_attempts=2),
-        )
-        self._plan_uri = planning_out.plan_artifact_uri
-        self._total_llm_calls += 1
+        # BUG-2 FIX: outer restart loop handles iterate-signal re-entry.
+        # Each pass through this loop is one full attempt (plan → generate → verify → approve).
+        while True:
+            refinement_history: list[dict] = []
+            judge_feedback_history: list[str] = []
+            refiner_feedback: Optional[str] = None
 
-        # ── Ambiguity gate ───────────────────────────────────────────────
-        if planning_out.ambiguous:
-            self._stage = WorkflowStage.AWAITING_CLARIFICATION
-            # Block until iterate signal provides clarification
-            await workflow.wait_condition(
-                lambda: self._approval_decision is not None,
-                timeout=timedelta(hours=24),
-            )
-            if self._iterate_instructions:
-                current_prompt = f"{current_prompt}\n\nClarification: {self._iterate_instructions}"
-            self._approval_decision = None
-            self._iterate_instructions = None
-
-            # Re-plan with clarified prompt
+            # ── Step 1: PLANNING ─────────────────────────────────────────
             self._stage = WorkflowStage.PLANNING
-            planning_out = await workflow.execute_activity(
+            planning_out: PlanningOutput = await workflow.execute_activity(
                 planning_activity,
-                PlanningInput(workflow_id=workflow_id, prompt=current_prompt),
+                PlanningInput(
+                    workflow_id=workflow_id,
+                    prompt=current_prompt,
+                    project_context=inp.project_context,
+                ),
                 start_to_close_timeout=timedelta(minutes=5),
                 retry_policy=RetryPolicy(maximum_attempts=2),
             )
             self._plan_uri = planning_out.plan_artifact_uri
             self._total_llm_calls += 1
 
-        plan_dict = planning_out.plan_dict
-        refiner_feedback: Optional[str] = None
-
-        # ── Steps 2–5: GENERATING → VERIFYING outer loop ─────────────────
-        while self._outer_iteration <= max_refinements:
-            # Continue-As-New guard (PRD §9.5)
-            if workflow.info().get_current_history_length() >= 38_000:
-                workflow.logger.info("Approaching event limit — triggering Continue-As-New")
-                workflow.continue_as_new(inp)
-
-            # ── Step 2+3: GENERATING ─────────────────────────────────────
-            self._stage = WorkflowStage.GENERATING
-            part_name = f"{inp.name}_outer{self._outer_iteration}"
-
-            geo_out: GeometryOutput = await workflow.execute_activity(
-                geometry_activity,
-                GeometryInput(
-                    workflow_id=workflow_id,
-                    prompt=current_prompt,
-                    plan_dict=plan_dict,
-                    name=part_name,
-                    iteration=self._outer_iteration,
-                    max_error_retries=max_error_retries,
-                    refiner_feedback=refiner_feedback,
-                ),
-                start_to_close_timeout=timedelta(minutes=10),
-                retry_policy=RetryPolicy(maximum_attempts=1),
-            )
-            self._total_llm_calls += 1 + len(geo_out.repair_actions_dicts)
-
-            if geo_out.step_artifact_uri:
-                self._step_uri = geo_out.step_artifact_uri
-            if geo_out.stl_artifact_uri:
-                self._stl_uri = geo_out.stl_artifact_uri
-            if geo_out.render_artifact_uri:
-                self._render_uri = geo_out.render_artifact_uri
-
-            # Build iteration record
-            iter_record = IterationRecord(
-                iteration_number=self._outer_iteration,
-                iteration_type="initial" if self._outer_iteration == 0 else "outer_geometric_refinement",
-                cadquery_code_lines=len(geo_out.cadquery_code.splitlines()),
-                execution_success=geo_out.success,
-                geometry_evidence=(
-                    GeometryEvidence.model_validate(geo_out.geometry_evidence_dict)
-                    if geo_out.geometry_evidence_dict else None
-                ),
-                step_artifact_uri=geo_out.step_artifact_uri,
-                stl_artifact_uri=geo_out.stl_artifact_uri,
-                render_artifact_uri=geo_out.render_artifact_uri,
-            )
-
-            if not geo_out.success:
-                # Inner loop exhausted — human escalation required (PRD §4.5)
-                self._failure_reason = (
-                    f"Code execution failed after {max_error_retries} inner retries: "
-                    f"{geo_out.error_type}: {(geo_out.error or '')[:200]}"
+            # ── Ambiguity gate ───────────────────────────────────────────
+            if planning_out.ambiguous:
+                self._stage = WorkflowStage.AWAITING_CLARIFICATION
+                await workflow.wait_condition(
+                    lambda: self._approval_decision is not None,
+                    timeout=timedelta(hours=24),
                 )
-                iter_record.passed = False
-                self._iteration_records.append(iter_record.model_dump())
-                self._stage = WorkflowStage.ESCALATED
-                return self._terminal_output(workflow_id, trace_id, inp, converged=False)
-
-            # ── Step 4: VERIFYING ─────────────────────────────────────────
-            self._stage = WorkflowStage.VERIFYING
-            ver_out: VerifierOutput = await workflow.execute_activity(
-                verifier_activity,
-                VerifierInput(
-                    workflow_id=workflow_id,
-                    prompt=current_prompt,
-                    cadquery_code=geo_out.cadquery_code,
-                    geometry_evidence_dict=geo_out.geometry_evidence_dict or {},
-                    render_artifact_uri=geo_out.render_artifact_uri,
-                    prior_feedback=list(judge_feedback_history),
-                ),
-                start_to_close_timeout=timedelta(minutes=5),
-                retry_policy=RetryPolicy(maximum_attempts=2),
-            )
-            self._total_llm_calls += 1
-
-            self._latest_verifier_score = {
-                "passed": ver_out.passed,
-                "feedback": ver_out.feedback,
-                "failure_category": ver_out.failure_category,
-            }
-
-            verifier_score_model = VerifierScore(
-                passed=ver_out.passed,
-                feedback=ver_out.feedback,
-                render_artifact_uri=geo_out.render_artifact_uri,
-            )
-            iter_record.verifier_score = verifier_score_model
-            iter_record.passed = ver_out.passed
-            self._iteration_records.append(iter_record.model_dump())
-
-            if ver_out.passed:
-                break  # Proceed to approval gate
-
-            # Verifier failed — track feedback
-            judge_feedback_history.append(ver_out.feedback)
-            refinement_history.append({
-                "iteration": self._outer_iteration,
-                "feedback": ver_out.feedback,
-                "approach": None,
-            })
-
-            if self._outer_iteration >= max_refinements:
-                # Outer loop exhausted — escalate (PRD §4.5)
-                self._failure_reason = (
-                    f"Max refinement iterations ({max_refinements}) reached without convergence. "
-                    f"Last Judge feedback: {ver_out.feedback[:200]}"
-                )
-                self._stage = WorkflowStage.ESCALATED
-                return self._terminal_output(workflow_id, trace_id, inp, converged=False)
-
-            # ── REFINING (outer loop step) ────────────────────────────────
-            self._stage = WorkflowStage.REFINING
-            ref_out: RefinerOutput = await workflow.execute_activity(
-                refiner_activity,
-                RefinerInput(
-                    workflow_id=workflow_id,
-                    prompt=current_prompt,
-                    plan_dict=plan_dict,
-                    cadquery_code=geo_out.cadquery_code,
-                    feedback=ver_out.feedback,
-                    iteration=self._outer_iteration,
-                    history=refinement_history[:-1] if len(refinement_history) > 1 else [],
-                ),
-                start_to_close_timeout=timedelta(minutes=5),
-                retry_policy=RetryPolicy(maximum_attempts=2),
-            )
-            self._total_llm_calls += 1
-            refiner_feedback = ref_out.refined_code  # Pass to next geometry_activity
-
-            self._outer_iteration += 1
-
-        # ── Step 5: AWAITING_APPROVAL ─────────────────────────────────────
-        if inp.require_approval:
-            self._stage = WorkflowStage.AWAITING_APPROVAL
-            # Block until approve/reject/iterate signal (PRD §9.4)
-            await workflow.wait_condition(
-                lambda: self._approval_decision is not None,
-                timeout=timedelta(hours=72),
-            )
-
-            if self._approval_decision == "rejected":
-                self._failure_reason = f"Rejected by reviewer: {self._approval_notes}"
-                self._stage = WorkflowStage.FAILED
-                return self._terminal_output(workflow_id, trace_id, inp, converged=False)
-
-            if self._approval_decision == "iterate":
-                # Re-enter planning with updated instructions
                 if self._iterate_instructions:
-                    current_prompt = f"{current_prompt}\n\nIteration request: {self._iterate_instructions}"
+                    current_prompt = (
+                        f"{current_prompt}\n\nClarification: {self._iterate_instructions}"
+                    )
                 self._approval_decision = None
                 self._iterate_instructions = None
-                self._outer_iteration = 0
-                refiner_feedback = None
-                judge_feedback_history.clear()
-                refinement_history.clear()
+
+                # Re-plan with clarified prompt
                 self._stage = WorkflowStage.PLANNING
-                # Restart planning with updated prompt
                 planning_out = await workflow.execute_activity(
                     planning_activity,
                     PlanningInput(workflow_id=workflow_id, prompt=current_prompt),
                     start_to_close_timeout=timedelta(minutes=5),
                     retry_policy=RetryPolicy(maximum_attempts=2),
                 )
-                plan_dict = planning_out.plan_dict
+                self._plan_uri = planning_out.plan_artifact_uri
                 self._total_llm_calls += 1
-                # Continue loop
-                continue  # This would loop back — structured differently below
 
-        # ── Step 6: HANDOFF ───────────────────────────────────────────────
+            plan_dict = planning_out.plan_dict
+            self._outer_iteration = 0
+            geo_out: GeometryOutput = None  # type: ignore[assignment]
+
+            # ── Steps 2–4: GENERATING → VERIFYING inner-outer loop ───────
+            while self._outer_iteration <= max_refinements:
+                # Continue-As-New guard (PRD §9.5)
+                if workflow.info().get_current_history_length() >= 38_000:
+                    workflow.logger.info("Approaching event limit — triggering Continue-As-New")
+                    workflow.continue_as_new(inp)
+
+                # ── Step 2+3: GENERATING ─────────────────────────────────
+                self._stage = WorkflowStage.GENERATING
+                part_name = f"{inp.name}_outer{self._outer_iteration}"
+
+                geo_out = await workflow.execute_activity(
+                    geometry_activity,
+                    GeometryInput(
+                        workflow_id=workflow_id,
+                        prompt=current_prompt,
+                        plan_dict=plan_dict,
+                        name=part_name,
+                        iteration=self._outer_iteration,
+                        max_error_retries=max_error_retries,
+                        refiner_feedback=refiner_feedback,
+                    ),
+                    start_to_close_timeout=timedelta(minutes=10),
+                    retry_policy=RetryPolicy(maximum_attempts=1),
+                )
+                self._total_llm_calls += 1 + len(geo_out.repair_actions_dicts)
+
+                if geo_out.step_artifact_uri:
+                    self._step_uri = geo_out.step_artifact_uri
+                if geo_out.stl_artifact_uri:
+                    self._stl_uri = geo_out.stl_artifact_uri
+                if geo_out.render_artifact_uri:
+                    self._render_uri = geo_out.render_artifact_uri
+
+                # Build iteration record
+                iter_record = IterationRecord(
+                    iteration_number=self._outer_iteration,
+                    iteration_type=(
+                        "initial" if self._outer_iteration == 0
+                        else "outer_geometric_refinement"
+                    ),
+                    cadquery_code_lines=len(geo_out.cadquery_code.splitlines()),
+                    execution_success=geo_out.success,
+                    geometry_evidence=(
+                        GeometryEvidence.model_validate(geo_out.geometry_evidence_dict)
+                        if geo_out.geometry_evidence_dict else None
+                    ),
+                    step_artifact_uri=geo_out.step_artifact_uri,
+                    stl_artifact_uri=geo_out.stl_artifact_uri,
+                    render_artifact_uri=geo_out.render_artifact_uri,
+                )
+
+                if not geo_out.success:
+                    self._failure_reason = (
+                        f"Code execution failed after {max_error_retries} inner retries: "
+                        f"{geo_out.error_type}: {(geo_out.error or '')[:200]}"
+                    )
+                    iter_record.passed = False
+                    self._iteration_records.append(iter_record.model_dump())
+                    self._stage = WorkflowStage.ESCALATED
+                    return self._terminal_output(workflow_id, trace_id, inp, converged=False)
+
+                # ── Step 4: VERIFYING ─────────────────────────────────────
+                self._stage = WorkflowStage.VERIFYING
+                ver_out: VerifierOutput = await workflow.execute_activity(
+                    verifier_activity,
+                    VerifierInput(
+                        workflow_id=workflow_id,
+                        prompt=current_prompt,
+                        cadquery_code=geo_out.cadquery_code,
+                        geometry_evidence_dict=geo_out.geometry_evidence_dict or {},
+                        render_artifact_uri=geo_out.render_artifact_uri,
+                        stl_artifact_uri=geo_out.stl_artifact_uri,
+                        prior_feedback=list(judge_feedback_history),
+                    ),
+                    start_to_close_timeout=timedelta(minutes=5),
+                    retry_policy=RetryPolicy(maximum_attempts=2),
+                )
+                self._total_llm_calls += 1
+
+                self._latest_verifier_score = {
+                    "passed": ver_out.passed,
+                    "feedback": ver_out.feedback,
+                    "failure_category": ver_out.failure_category,
+                }
+
+                verifier_score_model = VerifierScore(
+                    passed=ver_out.passed,
+                    feedback=ver_out.feedback,
+                    render_artifact_uri=geo_out.render_artifact_uri,
+                )
+                iter_record.verifier_score = verifier_score_model
+                iter_record.passed = ver_out.passed
+                self._iteration_records.append(iter_record.model_dump())
+
+                if ver_out.passed:
+                    break  # Proceed to approval gate
+
+                # Verifier failed — accumulate feedback
+                judge_feedback_history.append(ver_out.feedback)
+                refinement_history.append({
+                    "iteration": self._outer_iteration,
+                    "feedback": ver_out.feedback,
+                    "approach": None,
+                })
+
+                if self._outer_iteration >= max_refinements:
+                    self._failure_reason = (
+                        f"Max refinement iterations ({max_refinements}) reached. "
+                        f"Last Judge feedback: {ver_out.feedback[:200]}"
+                    )
+                    self._stage = WorkflowStage.ESCALATED
+                    return self._terminal_output(workflow_id, trace_id, inp, converged=False)
+
+                # ── REFINING ─────────────────────────────────────────────
+                self._stage = WorkflowStage.REFINING
+                ref_out: RefinerOutput = await workflow.execute_activity(
+                    refiner_activity,
+                    RefinerInput(
+                        workflow_id=workflow_id,
+                        prompt=current_prompt,
+                        plan_dict=plan_dict,
+                        cadquery_code=geo_out.cadquery_code,
+                        feedback=ver_out.feedback,
+                        iteration=self._outer_iteration,
+                        history=refinement_history[:-1] if len(refinement_history) > 1 else [],
+                    ),
+                    start_to_close_timeout=timedelta(minutes=5),
+                    retry_policy=RetryPolicy(maximum_attempts=2),
+                )
+                self._total_llm_calls += 1
+                refiner_feedback = ref_out.refined_code
+
+                self._outer_iteration += 1
+
+            # ── Step 5: AWAITING_APPROVAL ─────────────────────────────────
+            if inp.require_approval:
+                self._stage = WorkflowStage.AWAITING_APPROVAL
+                await workflow.wait_condition(
+                    lambda: self._approval_decision is not None,
+                    timeout=timedelta(hours=72),
+                )
+
+                if self._approval_decision == "rejected":
+                    self._failure_reason = (
+                        f"Rejected by reviewer: {self._approval_notes}"
+                    )
+                    self._stage = WorkflowStage.FAILED
+                    return self._terminal_output(workflow_id, trace_id, inp, converged=False)
+
+                if self._approval_decision == "iterate":
+                    # BUG-2 FIX: properly re-enter the outer restart loop
+                    if self._iterate_instructions:
+                        current_prompt = (
+                            f"{current_prompt}"
+                            f"\n\nIteration request: {self._iterate_instructions}"
+                        )
+                    self._approval_decision = None
+                    self._iterate_instructions = None
+                    self._iteration_records.clear()  # Fresh history for new attempt
+                    continue  # Re-enter outer while True — goes back to PLANNING
+
+            # ── Step 6: HANDOFF ───────────────────────────────────────────
+            break  # Exit restart loop — proceed to handoff
+
+        # ─────────────────────────────────────────────────────────────────
         self._stage = WorkflowStage.HANDOFF
-        elapsed_ms = (time.time() * 1000) - self._start_time_ms
-
-        # Use the last successful geometry output
-        last_geo = geo_out
+        elapsed_ms = (workflow.now().timestamp() * 1000) - self._start_time_ms
         final_score_dict = self._latest_verifier_score
 
         handoff_out: HandoffOutput = await workflow.execute_activity(
@@ -480,11 +478,11 @@ class DesignWorkflow:
                 trace_id=trace_id,
                 prompt=current_prompt,
                 plan_dict=plan_dict,
-                cadquery_code=last_geo.cadquery_code,
+                cadquery_code=geo_out.cadquery_code,
                 iteration=self._outer_iteration,
-                step_artifact_uri=last_geo.step_artifact_uri,
-                stl_artifact_uri=last_geo.stl_artifact_uri,
-                render_artifact_uri=last_geo.render_artifact_uri,
+                step_artifact_uri=geo_out.step_artifact_uri,
+                stl_artifact_uri=geo_out.stl_artifact_uri,
+                render_artifact_uri=geo_out.render_artifact_uri,
                 iteration_records_dicts=list(self._iteration_records),
                 final_verifier_score_dict=final_score_dict,
                 total_llm_calls=self._total_llm_calls,
@@ -503,9 +501,9 @@ class DesignWorkflow:
             converged=True,
             trace_artifact_uri=handoff_out.trace_artifact_uri,
             forgecad_artifact_uri=handoff_out.forgecad_artifact_uri,
-            step_artifact_uri=last_geo.step_artifact_uri,
-            stl_artifact_uri=last_geo.stl_artifact_uri,
-            render_artifact_uri=last_geo.render_artifact_uri,
+            step_artifact_uri=geo_out.step_artifact_uri,
+            stl_artifact_uri=geo_out.stl_artifact_uri,
+            render_artifact_uri=geo_out.render_artifact_uri,
         )
 
     # -----------------------------------------------------------------------

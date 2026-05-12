@@ -1,0 +1,40 @@
+{
+  "description": "Standard M4 hex head screw, 20\u202fmm length",
+  "components": [
+    "hex_head",
+    "shank"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 10.0,
+      "ylen": 10.0,
+      "zlen": 20.0
+    },
+    "key_dimensions": {
+      "shank_diameter_mm": 4.0,
+      "head_height_mm": 3.0,
+      "head_diameter_mm": 6.0,
+      "total_length_mm": 20.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": 400.0,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Use a standard M4 hex head profile for the head. The shank is a solid cylinder with no threads in this basic model.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

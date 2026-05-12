@@ -123,6 +123,27 @@ class ConstraintSpec(BaseModel):
     num_holes: Optional[int] = Field(default=None, ge=0)
     hole_diameter_mm: Optional[float] = Field(default=None, gt=0)
     symmetry: SymmetryType = SymmetryType.none
+
+    @classmethod
+    def _coerce_symmetry(cls, value: Any) -> str:
+        """Map free-text LLM symmetry descriptions to a valid SymmetryType value."""
+        if value is None:
+            return "none"
+        v = str(value).lower().strip()
+        # Exact match first
+        if v in ("none", "bilateral", "rotational", "mirror"):
+            return v
+        # Fuzzy keyword mapping
+        if any(k in v for k in ("rotation", "radial", "circular", "polar")):
+            return "rotational"
+        if any(k in v for k in ("mirror", "reflect")):
+            return "mirror"
+        if any(k in v for k in ("bilateral", "symmetric", "symmetr", "rect", "both")):
+            return "bilateral"
+        if any(k in v for k in ("no ", "not ", "asym", "none", "null")):
+            return "none"
+        # Default: treat anything non-empty as bilateral (rectangular plates are bilateral)
+        return "bilateral" if v else "none"
     material: Optional[str] = Field(default=None, description="e.g. 'aluminum 6061'")
     manufacturing_process: Optional[str] = Field(
         default=None, description="e.g. 'CNC milling', 'FDM 3D printing'"
@@ -284,6 +305,14 @@ def validate_plan(raw_dict: dict) -> PrimitivePlan:
                 k: dims.get(k, 1.0)
                 for k in ("xlen", "ylen", "zlen")
             }
+
+    # ── Coerce free-text symmetry before strict Pydantic validation ──
+    # The LLM may emit values like "rectangular symmetry about the plate center"
+    # which are valid intent but not valid enum members. Coerce them gracefully.
+    constraints = enriched.get("constraints")
+    if isinstance(constraints, dict):
+        raw_symmetry = constraints.get("symmetry")
+        constraints["symmetry"] = ConstraintSpec._coerce_symmetry(raw_symmetry)
 
     try:
         return PrimitivePlan.model_validate(enriched)
