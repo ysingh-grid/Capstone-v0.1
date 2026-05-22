@@ -160,6 +160,8 @@ class DesignWorkflow:
         self._stl_uri: Optional[str] = None
         self._render_uri: Optional[str] = None
         self._forgecad_uri: Optional[str] = None
+        self._forgecad_project_dir: Optional[str] = None
+        self._studio_launch_command: Optional[str] = None
         self._trace_uri: Optional[str] = None
         self._plan_uri: Optional[str] = None
 
@@ -224,6 +226,8 @@ class DesignWorkflow:
             "stl_artifact_uri": self._stl_uri,
             "render_artifact_uri": self._render_uri,
             "forgecad_artifact_uri": self._forgecad_uri,
+            "forgecad_project_dir": self._forgecad_project_dir,
+            "studio_launch_command": self._studio_launch_command,
             "trace_artifact_uri": self._trace_uri,
             "plan_artifact_uri": self._plan_uri,
             "total_llm_calls": self._total_llm_calls,
@@ -493,6 +497,8 @@ class DesignWorkflow:
         )
 
         self._forgecad_uri = handoff_out.forgecad_artifact_uri
+        self._forgecad_project_dir = handoff_out.metadata.get("forgecad_project_dir")
+        self._studio_launch_command = handoff_out.metadata.get("studio_launch_command")
         self._trace_uri = handoff_out.trace_artifact_uri
         self._stage = WorkflowStage.DONE
 

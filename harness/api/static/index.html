@@ -66,6 +66,14 @@ input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}
 .tab-content{flex:1;overflow:hidden;display:none}
 .tab-content.active{display:flex;flex-direction:column}
 pre#code-view{flex:1;overflow:auto;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;background:var(--code-bg);color:#c9d1d9;white-space:pre-wrap;word-break:break-word}
+.forgecad-banner{background:linear-gradient(135deg,#0f2027,#1a2a3a);border:1px solid #1e3a5f;border-radius:10px;padding:14px 18px;margin:14px 20px 0;display:flex;align-items:center;gap:14px;flex-shrink:0}
+.forgecad-banner .fc-icon{font-size:22px;flex-shrink:0}
+.forgecad-banner .fc-body{flex:1;min-width:0}
+.forgecad-banner .fc-title{font-size:12px;font-weight:600;color:#60a5fa;margin-bottom:4px}
+.forgecad-banner pre.fc-cmd{font-family:'JetBrains Mono',monospace;font-size:11px;color:#86efac;background:#0a1628;border-radius:6px;padding:6px 10px;overflow-x:auto;margin:0}
+.forgecad-banner .fc-sub{font-size:11px;color:var(--muted);margin-top:5px}
+.btn-copy{padding:4px 10px;font-size:11px;border-radius:5px;border:1px solid #1e3a5f;background:#0f2027;color:#60a5fa;cursor:pointer;flex-shrink:0;transition:.15s}
+.btn-copy:hover{background:#1e3a5f}
 #evidence-view{flex:1;overflow:auto;padding:20px;font-size:13px}
 .kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .kv-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px}
@@ -140,12 +148,21 @@ input#iterate-text{flex:1;min-width:200px}
 
     <div class="panels" id="panels" style="display:none">
       <div class="tabs">
-        <div class="tab active" onclick="switchTab('code')">Code</div>
+        <div class="tab active" onclick="switchTab('code')">ForgeCAD .forge.js</div>
         <div class="tab" onclick="switchTab('evidence')">Evidence</div>
         <div class="tab" onclick="switchTab('artifacts')">Artifacts</div>
       </div>
       <div class="tab-content active" id="tab-code">
-        <pre id="code-view"><span style="color:var(--muted)">Code will appear here once generation completes…</span></pre>
+        <div class="forgecad-banner" id="forgecad-banner" style="display:none">
+          <span class="fc-icon">🔩</span>
+          <div class="fc-body">
+            <div class="fc-title">Open in ForgeCAD Studio</div>
+            <pre class="fc-cmd" id="studio-cmd">forgecad studio .</pre>
+            <div class="fc-sub">First-time setup: <code style="color:#fcd34d">npm install -g forgecad</code> · Then run the command above in the project folder.</div>
+          </div>
+          <button class="btn-copy" onclick="copyStudioCmd()" title="Copy command">⎘ Copy</button>
+        </div>
+        <pre id="code-view"><span style="color:var(--muted)">ForgeCAD .forge.js will appear here once generation completes…</span></pre>
       </div>
       <div class="tab-content" id="tab-evidence">
         <div id="evidence-view"><div class="empty-state"><div class="icon">📐</div><div>Evidence loads after verification</div></div></div>
@@ -165,7 +182,7 @@ input#iterate-text{flex:1;min-width:200px}
     <div class="empty-state" id="empty-state" style="flex:1">
       <div class="icon">🔩</div>
       <div style="font-size:15px;font-weight:500">Enter a prompt to start generating</div>
-      <div style="font-size:13px">Planner → Coder → Executor → Verifier → ForgeCAD</div>
+      <div style="font-size:13px">Planner → Coder → Verifier → ForgeCAD Studio ✦</div>
     </div>
   </div>
 </div>
@@ -275,8 +292,32 @@ function renderPipeline(currentStage) {
 async function loadCode(wfId) {
   try {
     const r = await fetch(`${API}/api/v1/designs/${wfId}/code`);
-    if (r.ok) document.getElementById('code-view').textContent = await r.text();
+    if (!r.ok) return;
+    const src = await r.text();
+    document.getElementById('code-view').textContent = src;
+    // Show ForgeCAD studio banner once code is available
+    loadForgeCADStudioCmd(wfId);
   } catch {}
+}
+
+async function loadForgeCADStudioCmd(wfId) {
+  try {
+    const r = await fetch(`${API}/api/v1/designs/${wfId}/status`);
+    if (!r.ok) return;
+    const status = await r.json();
+    const cmd = status.studio_launch_command || status.forgecad_project_dir
+      ? `forgecad studio ${status.forgecad_project_dir || '.'}`
+      : null;
+    if (cmd) {
+      document.getElementById('studio-cmd').textContent = cmd;
+      document.getElementById('forgecad-banner').style.display = 'flex';
+    }
+  } catch {}
+}
+
+function copyStudioCmd() {
+  const cmd = document.getElementById('studio-cmd').textContent;
+  navigator.clipboard.writeText(cmd).then(() => toast('⎘ Copied to clipboard'));
 }
 
 async function loadEvidence(wfId) {
@@ -307,7 +348,7 @@ async function loadArtifacts(wfId) {
     if (!r.ok) return;
     const data = await r.json();
     const list = document.getElementById('artifacts-list');
-    const types = {step:['📐','STEP File'],stl:['🧊','STL Mesh'],render:['🖼️','Render PNG'],forgecad:['📝','ForgeCAD Source'],trace:['📋','Trace JSON']};
+    const types = {step:['📐','STEP File'],stl:['🧊','STL Mesh'],render:['🖼️','Render PNG'],forgecad:['🔩','ForgeCAD .forge.js'],trace:['📋','Trace JSON']};
     list.innerHTML = '';
     Object.entries(data.artifacts||{}).forEach(([key, info]) => {
       const [icon, name] = types[key.replace('_artifact_uri','')] || ['📄', key];

@@ -399,6 +399,7 @@ def visual_verify(
 def forgecad_emit(
     plan: PrimitivePlan,
     code: str,
+    prompt: str,
     workflow_id: str,
     trace_id: str,
     iteration: int = 0,
@@ -407,33 +408,58 @@ def forgecad_emit(
     render_artifact_uri: Optional[str] = None,
     store: Optional[ArtifactStore] = None,
 ) -> tuple[str, str, dict]:
-    """
-    Generate and persist the ForgeCAD (annotated CadQuery) model code.
+    """Generate and persist the ForgeCAD .forge.js project.
+
+    Calls the ForgeCAD JS coder agent to produce a parametric `.forge.js`
+    model and writes a complete ForgeCAD project folder to the artifact store.
+    Engineers open the result with `forgecad studio <project_dir>`.
+
+    Args:
+        plan:                Validated PrimitivePlan.
+        code:                The verified CadQuery Python source (OCCT authority).
+        prompt:              Original natural-language user prompt (needed by JS coder).
+        workflow_id:         Temporal workflow ID.
+        trace_id:            Trace artifact ID.
+        iteration:           Outer refinement loop iteration number.
+        step_artifact_uri:   URI of the STEP artifact.
+        stl_artifact_uri:    URI of the STL artifact.
+        render_artifact_uri: URI of the render PNG artifact.
+        store:               ArtifactStore instance (defaults to get_store()).
 
     Returns:
-        (forgecad_artifact_uri, annotated_source, metadata)
-
-    PRD §6.2: Emit editable ForgeCAD model code and attach previews,
-    exports, and review notes.
+        (forgecad_artifact_uri, js_source, metadata)
+        ``forgecad_artifact_uri`` points to the .forge.js file in the store.
+        ``metadata`` includes ``studio_launch_command`` for display in the UI.
     """
     if store is None:
         store = get_store()
 
-    annotated_source, metadata = emit_forgecad_code(
+    output_base_dir = str(store.base_path)
+
+    project_dir, js_source, metadata = emit_forgecad_code(
         plan=plan,
         cadquery_code=code,
+        prompt=prompt,
         trace_id=trace_id,
         workflow_id=workflow_id,
+        output_base_dir=output_base_dir,
         step_artifact_uri=step_artifact_uri,
         stl_artifact_uri=stl_artifact_uri,
         render_artifact_uri=render_artifact_uri,
         iteration=iteration,
     )
 
-    filename = f"{plan.description.replace(' ', '_')[:40]}_iter{iteration}_forgecad.py"
-    uri = store.put(workflow_id, "forgecad", annotated_source.encode(), filename=filename)
+    # Persist the .forge.js file content in the artifact store so the API
+    # can serve it via GET /api/v1/designs/{id}/code
+    safe_name = (
+        plan.description.lower()
+        .replace(" ", "_")
+        .replace("-", "_")[:40]
+    )
+    js_filename = f"{safe_name}_iter{iteration}.forge.js"
+    uri = store.put(workflow_id, "forgecad", js_source.encode("utf-8"), filename=js_filename)
 
-    return uri, annotated_source, metadata
+    return uri, js_source, metadata
 
 
 # ---------------------------------------------------------------------------

@@ -170,13 +170,17 @@ async def get_status(workflow_id: str):
 # ---------------------------------------------------------------------------
 
 
-@app.get("/api/v1/designs/{workflow_id}/code", response_class=PlainTextResponse)
+@app.get("/api/v1/designs/{workflow_id}/code")
 async def get_code(workflow_id: str):
     """
-    Return the current editable ForgeCAD (annotated CadQuery) source.
+    Return the current editable ForgeCAD (.forge.js) model source.
 
     PRD §10.2: QUERY /api/v1/designs/:id/code
+    Content-Type is text/javascript — the file is a ForgeCAD .forge.js model.
+    Open with: forgecad studio <project_dir>
     """
+    from fastapi.responses import Response
+
     client = await get_temporal_client()
     handle = client.get_workflow_handle(workflow_id)
     try:
@@ -192,7 +196,11 @@ async def get_code(workflow_id: str):
     if not store.exists(forgecad_uri):
         raise HTTPException(status_code=404, detail="ForgeCAD artifact not found in store.")
 
-    return store.get_text(forgecad_uri)
+    return Response(
+        content=store.get_text(forgecad_uri),
+        media_type="text/javascript",
+    )
+
 
 
 # ---------------------------------------------------------------------------

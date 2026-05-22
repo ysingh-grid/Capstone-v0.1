@@ -421,6 +421,7 @@ async def handoff_activity(inp: HandoffInput) -> HandoffOutput:
     forgecad_uri, _, metadata = forgecad_emit(
         plan=plan,
         code=inp.cadquery_code,
+        prompt=inp.prompt,
         workflow_id=inp.workflow_id,
         trace_id=inp.trace_id,
         iteration=inp.iteration,
@@ -428,6 +429,11 @@ async def handoff_activity(inp: HandoffInput) -> HandoffOutput:
         stl_artifact_uri=inp.stl_artifact_uri,
         render_artifact_uri=inp.render_artifact_uri,
         store=store,
+    )
+
+    studio_cmd = metadata.get("studio_launch_command", "forgecad studio <project_dir>")
+    activity.logger.info(
+        f"[handoff] ForgeCAD project ready. Launch: {studio_cmd}"
     )
 
     # ── Assemble and persist TraceArtifact ──────────────────────────────

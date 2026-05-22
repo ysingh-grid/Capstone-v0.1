@@ -21,9 +21,16 @@ import asyncio
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
+import logging
 
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%H:%M:%S",
+)
+logger = logging.getLogger(__name__)
 
 import temporalio.worker as tw
 from temporalio.client import Client
