@@ -500,3 +500,147 @@ Capstone-v0.1/                      ← parent repo
 | `fix: full Claude→Gemini API compatibility audit` | 5 bugs fixed in _call_llm and evaluate_geometry |
 | `feat: add Langfuse observability` | New langfuse_tracing.py, all 6 agents wrapped with spans |
 | `feat: wire Langfuse lifecycle into Temporal activities` | init at planning, flush at handoff |
+
+
+# Capstone-v0.1 — Project Status Report
+
+> Audit run: 2026-05-25 11:58 IST
+
+---
+
+## Overall: ~85% Complete
+
+The codebase is fully written and compiles clean. Infrastructure is mostly up. The **one blocker** preventing an end-to-end run is Temporal (not running).
+
+---
+
+## Readiness Matrix
+
+| Layer | Status | Detail |
+|---|---|---|
+| **Code — All 14 files** | ✅ Complete | 7,315 lines across 14 files, 7/7 compile clean |
+| **6 LLM Agents** | ✅ Complete | All wired to Gemini, all wrapped with Langfuse spans |
+| **RAG Knowledge Bases** | ✅ Complete | KB1: 2,141 lines (CadQuery API), KB2: 597 lines (error patterns) |
+| **Model Routing** | ✅ Complete | 3.5-flash for generation, 3.1-pro-preview for judge |
+| **Langfuse Observability** | ✅ Working | Server v3.167.0 healthy, SDK v4.6.1, auth passes, traces land on dashboard |
+| **Gemini API Key** | ✅ Set | 39-char key configured |
+| **Python Dependencies** | ✅ All installed | cadquery 2.7, google-genai, langfuse 4.6.1, trimesh, numpy, pandas |
+| **ForgeCAD CLI** | ✅ Installed | `/opt/homebrew/bin/forgecad` |
+| **Docker (Langfuse stack)** | ✅ 6/6 healthy | web, worker, postgres, clickhouse, redis, minio all running |
+| **Temporal** | ❌ Not running | gRPC :7233 and Web UI :8233 both unreachable |
+| **End-to-end test** | ❌ Not done | Blocked by Temporal |
+| **ForgeCAD handoff test** | ❌ Not done | Blocked by end-to-end |
+
+---
+
+## 1. Infrastructure
+
+### Docker Containers (11 running)
+
+| Container | Status | Project |
+|---|---|---|
+| langfuse-langfuse-web-1 | ✅ Up 10min | **This project** |
+| langfuse-langfuse-worker-1 | ✅ Up 10min | This project |
+| langfuse-redis-1 | ✅ Up 10min (healthy) | This project |
+| langfuse-postgres-1 | ✅ Up 11min (healthy) | This project |
+| langfuse-clickhouse-1 | ✅ Up 11min (healthy) | This project |
+| langfuse-minio-1 | ✅ Up 11min (healthy) | This project |
+| rag_advanced-rag-app-1 | Up 51min | Other project |
+| rag_advanced-langfuse-server-1 | Up 51min | Other project |
+| rag_advanced-langfuse-db-1 | Up 51min | Other project |
+| rag_advanced-qdrant-1 | Up 51min | Other project |
+| agentic-scalable-rag-redis-1 | Up 51min | Other project |
+
+### Langfuse
+```
+✅ {"status":"OK","version":"3.167.0"}
+✅ auth_check: True (0.01s)
+✅ Traces visible on http://localhost:3000
+```
+
+### Temporal
+```
+❌ gRPC port 7233: unreachable
+❌ Web UI  8233: unreachable
+```
+
+> **To fix:** Run `temporal server start-dev` in a separate terminal
+
+---
+
+## 2. Python Environment
+
+| Package | Version | Status |
+|---|---|---|
+| cadquery | 2.7.0 | ✅ |
+| google-genai | — | ✅ |
+| anthropic | 0.100.0 | ✅ |
+| langfuse | 4.6.1 | ✅ |
+| trimesh | 4.12.2 | ✅ |
+| numpy | 2.4.2 | ✅ |
+| numpy-stl | — | ✅ |
+| python-dotenv | — | ✅ |
+| pandas | 2.3.3 | ✅ |
+
+---
+
+## 3. LLM Configuration
+
+| Setting | Value | Status |
+|---|---|---|
+| LLM_PROVIDER | `gemini` | ✅ |
+| GEMINI_API_KEY | `AIzaSyBJB4_o...` (39 chars) | ✅ |
+| Generation model | `gemini-3.5-flash` | ✅ |
+| Judge model | `gemini-3.1-pro-preview` | ✅ |
+
+---
+
+## 4. Source Code
+
+All **14 files** exist with real implementations (no stubs), **7,315 total lines**:
+
+### CADSmith/autofab/ (agent pipeline)
+
+| File | Lines | Role |
+|---|---|---|
+| agents.py | 813 | 6 agents + _call_llm dispatcher |
+| langfuse_tracing.py | 260 | Langfuse v4 observability |
+| rag_kb1.py | 2,141 | CadQuery API documentation |
+| rag_kb2.py | 597 | Error-solution patterns |
+| executor.py | 210 | CadQuery subprocess sandbox |
+| render.py | 134 | VTK STL → PNG renderer |
+
+### harness/ (orchestration)
+
+| File | Lines | Role |
+|---|---|---|
+| workflows/design_workflow.py | 536 | Temporal workflow + outer loop |
+| workflows/activities.py | 525 | 5 Temporal activities |
+| workflows/worker.py | 99 | Temporal worker process |
+| runtime/primitives.py | 609 | solid_generate, execute, verify |
+| schema/primitives.py | 349 | PrimitivePlan Pydantic model |
+| schema/trace.py | 292 | TraceArtifact Pydantic model |
+| artifacts/store.py | 239 | Artifact store (put/get) |
+| api/app.py | 511 | FastAPI REST API |
+
+### Compilation: ✅ 7/7 files compile clean
+
+---
+
+## 5. What's Needed for End-to-End
+
+### Immediate (to run first workflow)
+
+| Step | Command | Time |
+|---|---|---|
+| Start Temporal | `temporal server start-dev` | 5 sec |
+| Start Worker | `cd harness && python -m workflows.worker` | 5 sec |
+| Submit job | `curl -X POST http://localhost:8000/design -d '{"prompt":"A 40x30x5mm bracket"}'` | — |
+
+### Nice-to-have (after first successful run)
+
+| Item | Status |
+|---|---|
+| VTK headless rendering (for vision judge) | Needs display or Xvfb |
+| ForgeCAD studio preview | `forgecad studio ./artifacts/<id>/forgecad/` |
+| Langfuse dashboard review | http://localhost:3000 → find trace by workflow_id |

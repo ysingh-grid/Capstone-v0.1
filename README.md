@@ -43,9 +43,15 @@ Copy `.env.example` to `.env` and configure your LLM provider. The harness suppo
 # LLM Provider: 'gemini' or 'anthropic'
 LLM_PROVIDER=gemini
 
-# Gemini Configuration (Recommended)
+# Gemini Configuration (Two-tier model routing)
 GEMINI_API_KEY=your_gemini_api_key
-GEMINI_MODEL=gemini-2.5-flash
+GEMINI_GENERATION_MODEL=gemini-3.5-flash
+GEMINI_JUDGE_MODEL=gemini-3.1-pro-preview
+
+# Observability: Langfuse v4 (Local instance on port 3000)
+LANGFUSE_PUBLIC_KEY=pk-lf-your-public-key
+LANGFUSE_SECRET_KEY=sk-lf-your-secret-key
+LANGFUSE_HOST=http://localhost:3000
 
 # Anthropic / Local Configuration (LMStudio)
 ANTHROPIC_API_KEY=lm-studio
@@ -55,7 +61,7 @@ ANTHROPIC_BASE_URL=http://localhost:1234/v1
 MAX_ERROR_RETRIES=3
 MAX_REFINEMENT_ITERATIONS=5
 
-# Visual Verification (Requires vision-capable model)
+# Visual Verification (Requires vision-capable Judge model)
 USE_VISION=true
 ```
 
