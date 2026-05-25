@@ -71,7 +71,7 @@ USE_VISION=true
 The worker must be running in the background to execute workflow activities.
 ```bash
 source .venv/bin/activate
-harness run-worker
+python -m harness.workflows.worker
 ```
 
 ### 2. Option A: Command Line Interface (CLI)

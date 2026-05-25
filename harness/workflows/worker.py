@@ -23,6 +23,7 @@ from pathlib import Path
 
 import logging
 
+from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 logging.basicConfig(

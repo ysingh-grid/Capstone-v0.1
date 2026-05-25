@@ -644,3 +644,10 @@ All **14 files** exist with real implementations (no stubs), **7,315 total lines
 | VTK headless rendering (for vision judge) | Needs display or Xvfb |
 | ForgeCAD studio preview | `forgecad studio ./artifacts/<id>/forgecad/` |
 | Langfuse dashboard review | http://localhost:3000 → find trace by workflow_id |
+
+
+### 13. Worker Startup Fixes (Late Session)
+- **Bug**: `worker.py` failed with `NameError: name 'load_dotenv' is not defined`.
+- **Fix**: Added `from dotenv import load_dotenv` to `harness/workflows/worker.py`.
+- **Bug**: Running `python3 -m workflows.worker` failed with `ModuleNotFoundError`.
+- **Fix**: Because of absolute imports (`from harness.workflows...`), the worker must be run from the repository root with the top-level package included: `python3 -m harness.workflows.worker`.
