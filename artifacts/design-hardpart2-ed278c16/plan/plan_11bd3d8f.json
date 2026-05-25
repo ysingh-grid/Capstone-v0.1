@@ -1,0 +1,60 @@
+{
+  "description": "Solid cylinder shaft coupler with a central stepped bore, an outer flat keyway, and chamfered outer edges.",
+  "components": [
+    "Main cylinder body",
+    "Central stepped bore (two coaxial cylindrical cuts)",
+    "Flat keyway cut along the outer length",
+    "Chamfers on the outer circular edges"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 70.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 50.0,
+      "length": 70.0,
+      "bore_1_diameter": 15.0,
+      "bore_1_length": 30.0,
+      "bore_2_diameter": 20.0,
+      "bore_2_length": 40.0,
+      "keyway_width": 10.0,
+      "keyway_depth": 2.0,
+      "chamfer_distance": 1.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 20.0 mm",
+      "dimensions": {
+        "diameter": 20.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The model should be built by starting with a 50mm diameter cylinder of length 70mm aligned along the Z-axis. Create the stepped hole by subtracting two concentric cylinders (15mm diameter for Z from 0 to 30, and 20mm diameter for Z from 30 to 70). The flat keyway can be modeled as a subtractive box of width 10mm, depth 2mm, and length 70mm, cutting into the outer surface. Apply a 1mm 45-degree chamfer to both outer circular rims of the cylinder.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

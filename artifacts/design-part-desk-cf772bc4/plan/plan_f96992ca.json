@@ -1,0 +1,46 @@
+{
+  "description": "A standard study/office desk featuring a spacious tabletop, a solid side panel leg, and a 3-drawer pedestal cabinet on one side.",
+  "components": [
+    "Tabletop",
+    "Left side support panel (leg)",
+    "Drawer cabinet outer housing",
+    "Three drawer front panels with pull handles",
+    "Back stability/modesty panel"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 1200.0,
+      "ylen": 600.0,
+      "zlen": 750.0
+    },
+    "key_dimensions": {
+      "tabletop_thickness": 20.0,
+      "desk_height": 750.0,
+      "desk_width": 1200.0,
+      "desk_depth": 600.0,
+      "drawer_cabinet_width": 400.0,
+      "drawer_cabinet_height": 730.0,
+      "drawer_count": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 15.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The drawer cabinet should be positioned on one side (e.g., right side) and the simple panel leg on the opposite side. Drawers should have visible fronts and small pull handles/knobs. Ensure the back modesty panel links the support structures to give the desk structural rigidity.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,50 @@
+{
+  "description": "A manufacturable and structurally stable chair with 4 steel tubular legs, cross-bracing, a contoured seat, and a reclined backrest.",
+  "components": [
+    "seat_plate",
+    "backrest",
+    "front_legs",
+    "rear_legs",
+    "cross_bracing_bars",
+    "mounting_brackets"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 480.0,
+      "ylen": 550.0,
+      "zlen": 920.0
+    },
+    "key_dimensions": {
+      "seat_width": 480.0,
+      "seat_depth": 450.0,
+      "seat_height": 460.0,
+      "backrest_height": 460.0,
+      "backrest_recline_angle": 102.0,
+      "leg_diameter": 25.0,
+      "cross_brace_diameter": 16.0,
+      "fillet_radius": 8.0,
+      "seat_thickness": 20.0,
+      "backrest_thickness": 20.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.85,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the rear legs are angled slightly backward to prevent tipping due to the 102-degree backrest recline. Model the legs and cross-bracing as solid or thick-walled manifold bodies to guarantee watertight STL export. Ensure all joints between the steel frame and the seat/backrest are fully merged or aligned without gaps or self-intersections.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

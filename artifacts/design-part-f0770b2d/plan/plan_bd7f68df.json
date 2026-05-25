@@ -1,0 +1,54 @@
+{
+  "description": "A 200mm long hollow tube with a 50mm inner diameter, featuring a 100mm outer diameter flange on one end.",
+  "components": [
+    "Hollow tube body",
+    "End flange"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 100.0,
+      "zlen": 200.0
+    },
+    "key_dimensions": {
+      "tube_length": 200.0,
+      "inner_diameter": 50.0,
+      "flange_outer_diameter": 100.0,
+      "tube_outer_diameter": 70.0,
+      "flange_thickness": 15.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 50.0 mm",
+      "dimensions": {
+        "diameter": 50.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The tube and flange must be concentric. The 50mm inner hole must be continuous and completely through the entire 200mm length of the part. Tube wall thickness is assumed to be 10mm (70mm OD) and flange thickness is assumed to be 15mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

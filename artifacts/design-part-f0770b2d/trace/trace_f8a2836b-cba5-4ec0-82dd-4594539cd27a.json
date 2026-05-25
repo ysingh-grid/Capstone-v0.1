@@ -1,0 +1,117 @@
+{
+  "trace_id": "f8a2836b-cba5-4ec0-82dd-4594539cd27a",
+  "workflow_id": "design-part-f0770b2d",
+  "design_name": "A 200mm long hollow tube with a 50mm inner diameter, featuring a 100mm outer diameter flange on one end.",
+  "created_at": "2026-05-25T10:48:00.364794+00:00",
+  "prompt": "A hollow tube 200mm long with a 50mm inner hole. Add a wide 100mm ring (flange) on one end.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A 200mm long hollow tube with a 50mm inner diameter, featuring a 100mm outer diameter flange on one end.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 31,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 437074.07793067984,
+        "center_of_mass": [
+          -6.658786673994788e-16,
+          4.927252608364609e-15,
+          87.2843665768194
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -50.0,
+          "ymax": 50.0,
+          "ylen": 100.0,
+          "zmin": 0.0,
+          "zmax": 200.0,
+          "zlen": 200.0
+        },
+        "is_valid": true,
+        "num_faces": 6,
+        "num_edges": 9,
+        "num_vertices": 6,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": null,
+        "proximity_clearance_mm": null
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://design-part-f0770b2d/step/part_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://design-part-f0770b2d/stl/part_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 31670.9130859375,
+  "final_step_artifact_uri": "artifact://design-part-f0770b2d/step/part_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://design-part-f0770b2d/stl/part_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://design-part-f0770b2d/forgecad/a_200mm_long_hollow_tube_with_a_50mm_inn_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 437074.07793067984,
+    "center_of_mass": [
+      -6.658786673994788e-16,
+      4.927252608364609e-15,
+      87.2843665768194
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -50.0,
+      "ymax": 50.0,
+      "ylen": 100.0,
+      "zmin": 0.0,
+      "zmax": 200.0,
+      "zlen": 200.0
+    },
+    "is_valid": true,
+    "num_faces": 6,
+    "num_edges": 9,
+    "num_vertices": 6,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": null,
+    "proximity_clearance_mm": null
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

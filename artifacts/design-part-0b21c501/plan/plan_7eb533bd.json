@@ -1,0 +1,48 @@
+{
+  "description": "A split-system home air conditioner model depicting both the indoor and outdoor units mounted on opposite sides of a central dividing wall. The outdoor unit features a vertically oriented fan on its exterior face.",
+  "components": [
+    "Dividing wall section",
+    "Indoor evaporator unit (sleek, horizontal rectangular chassis with bottom air louver)",
+    "Outdoor condenser unit (larger, rugged rectangular chassis mounted on brackets)",
+    "Outdoor fan assembly (circular grill, hub, and radial fan blades on the external face)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 400.0,
+      "ylen": 300.0,
+      "zlen": 320.0
+    },
+    "key_dimensions": {
+      "wall_thickness": 100.0,
+      "wall_width": 400.0,
+      "wall_height": 300.0,
+      "indoor_unit_width": 260.0,
+      "indoor_unit_height": 80.0,
+      "indoor_unit_depth": 60.0,
+      "outdoor_unit_width": 200.0,
+      "outdoor_unit_height": 160.0,
+      "outdoor_unit_depth": 100.0,
+      "fan_diameter": 110.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.85,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Position the wall at Y=0 (extending from Y=-50 to Y=50). Place the indoor unit on the negative Y face (Y < -50) and the outdoor unit on the positive Y face (Y > 50). The fan must be modeled on the outer face of the outdoor unit (facing +Y) with a recessed circular cavity, a central hub, and at least 4 simplified fan blades.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

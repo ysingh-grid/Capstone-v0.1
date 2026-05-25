@@ -1,0 +1,40 @@
+{
+  "description": "L-bracket with equal 40mm sides, 20mm width, and 5mm thickness.",
+  "components": [
+    "horizontal_leg",
+    "vertical_leg"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 20.0,
+      "ylen": 40.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "side_length_1": 40.0,
+      "side_length_2": 40.0,
+      "width": 20.0,
+      "thickness": 5.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The L-bracket should have outer dimensions of exactly 40mm for both legs, 20mm width, and 5mm thickness. This results in a volume of 7500 mm3 (one 40x20x5 mm leg and one 35x20x5 mm leg to avoid double-counting the corner). Position the corner at the origin for clean alignment.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

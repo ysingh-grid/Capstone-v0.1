@@ -1,0 +1,117 @@
+{
+  "trace_id": "fb891d57-2a84-4ee6-b6e8-4db24d1c9c07",
+  "workflow_id": "design-part-table-test-bc6655c4",
+  "design_name": "An L-bracket with equal 40mm sides, 20mm width, and 5mm thickness.",
+  "created_at": "2026-05-25T07:32:40.190554+00:00",
+  "prompt": "An L-bracket with 40mm sides, 20mm width, and 5mm thickness",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "An L-bracket with equal 40mm sides, 20mm width, and 5mm thickness.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 28,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 7499.999999999996,
+        "center_of_mass": [
+          -8.166666666666671,
+          -1.5726679218156892e-16,
+          -8.166666666666666
+        ],
+        "bounding_box": {
+          "xmin": -20.0,
+          "xmax": 20.0,
+          "xlen": 40.0,
+          "ymin": -10.0,
+          "ymax": 10.0,
+          "ylen": 20.0,
+          "zmin": -20.0,
+          "zmax": 20.0,
+          "zlen": 40.0
+        },
+        "is_valid": true,
+        "num_faces": 8,
+        "num_edges": 18,
+        "num_vertices": 12,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": null,
+        "proximity_clearance_mm": null
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://design-part-table-test-bc6655c4/step/part-table-test_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://design-part-table-test-bc6655c4/stl/part-table-test_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 28172.451904296875,
+  "final_step_artifact_uri": "artifact://design-part-table-test-bc6655c4/step/part-table-test_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://design-part-table-test-bc6655c4/stl/part-table-test_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://design-part-table-test-bc6655c4/forgecad/an_l_bracket_with_equal_40mm_sides,_20mm_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 7499.999999999996,
+    "center_of_mass": [
+      -8.166666666666671,
+      -1.5726679218156892e-16,
+      -8.166666666666666
+    ],
+    "bounding_box": {
+      "xmin": -20.0,
+      "xmax": 20.0,
+      "xlen": 40.0,
+      "ymin": -10.0,
+      "ymax": 10.0,
+      "ylen": 20.0,
+      "zmin": -20.0,
+      "zmax": 20.0,
+      "zlen": 40.0
+    },
+    "is_valid": true,
+    "num_faces": 8,
+    "num_edges": 18,
+    "num_vertices": 12,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": null,
+    "proximity_clearance_mm": null
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

@@ -1,0 +1,43 @@
+{
+  "description": "A simple rectangular desk consisting of a flat tabletop and four square legs at the corners.",
+  "components": [
+    "tabletop",
+    "leg_front_left",
+    "leg_front_right",
+    "leg_back_left",
+    "leg_back_right"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 1200.0,
+      "ylen": 600.0,
+      "zlen": 750.0
+    },
+    "key_dimensions": {
+      "tabletop_thickness": 25.0,
+      "leg_width": 40.0,
+      "leg_height": 725.0,
+      "leg_inset": 20.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Position the origin at the bottom center (floor level, middle of the desk's footprint). Inset the four legs by 20mm from the tabletop edges. Ensure the legs sit perfectly flat on the ground (Z=0) and extend up to meet the bottom of the tabletop (Z=725).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,40 @@
+{
+  "description": "An L-bracket with equal 40mm sides, 20mm width, and 5mm thickness.",
+  "components": [
+    "Horizontal leg",
+    "Vertical leg"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 20.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "side1_length": 40.0,
+      "side2_length": 40.0,
+      "width": 20.0,
+      "thickness": 5.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The bracket can be modeled either by extruding an L-shaped profile of 40mm x 40mm outer dimensions with 5mm thickness by a distance of 20mm, or by joining two perpendicular legs (one 40x20x5mm and one 35x20x5mm) to avoid overlapping volume.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

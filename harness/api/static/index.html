@@ -189,8 +189,9 @@ input#iterate-text{flex:1;min-width:200px}
 
 <script>
 const API = '';  // same origin
-const STAGES = ['PLANNING','CODING','EXECUTING','VERIFYING','REVIEWING','DONE'];
-const STAGE_ICONS = {'PLANNING':'🧠','CODING':'⌨️','EXECUTING':'⚙️','VERIFYING':'🔍','REVIEWING':'👤','DONE':'✅','FAILED':'❌'};
+const STAGES = ['PLANNING','GENERATING','VERIFYING','AWAITING_APPROVAL','HANDOFF','DONE'];
+const STAGE_ICONS = {'PLANNING':'🧠','GENERATING':'⌨️','VERIFYING':'🔍','AWAITING_APPROVAL':'👤','HANDOFF':'📦','DONE':'✅','FAILED':'❌','ESCALATED':'🚨','REFINING':'🔁'};
+
 
 let currentWfId = null;
 let pollTimer = null;
@@ -240,25 +241,43 @@ function selectDesign(wfId) {
   startPolling(wfId);
 }
 
+let _pollErrors = 0;
 function startPolling(wfId) {
   if (pollTimer) clearInterval(pollTimer);
+  _pollErrors = 0;
   poll(wfId);
-  pollTimer = setInterval(() => poll(wfId), 4000);
+  pollTimer = setInterval(() => poll(wfId), 8000);
 }
 
 async function poll(wfId) {
   try {
     const r = await fetch(`${API}/api/v1/designs/${wfId}/status`);
-    if (!r.ok) return;
+    if (!r.ok) {
+      _pollErrors++;
+      // Back off: 8s → 16s → 32s → cap at 60s to avoid hammering Temporal
+      if (_pollErrors > 3) {
+        clearInterval(pollTimer);
+        const backoff = Math.min(60000, 8000 * Math.pow(2, _pollErrors - 3));
+        pollTimer = setInterval(() => poll(wfId), backoff);
+      }
+      return;
+    }
+    _pollErrors = 0;
     const status = await r.json();
     designs[wfId] = {...(designs[wfId]||{}), ...status};
     if (wfId === currentWfId) renderStatus(status);
     const terminal = ['DONE','FAILED','ESCALATED'];
     if (terminal.includes(status.stage)) { clearInterval(pollTimer); loadArtifacts(wfId); loadEvidence(wfId); }
-    if (status.stage === 'REVIEWING') showApprovalButtons(true);
-    else showApprovalButtons(false);
-    if (['DONE','FAILED'].includes(status.stage)) loadCode(wfId);
-  } catch {}
+    if (status.stage === 'AWAITING_APPROVAL') {
+      showApprovalButtons(true);
+      loadCode(wfId);
+      loadEvidence(wfId);
+      loadArtifacts(wfId);
+    } else {
+      showApprovalButtons(false);
+    }
+    if (['DONE','HANDOFF'].includes(status.stage)) loadCode(wfId);
+  } catch { _pollErrors++; }
 }
 
 function renderStatus(status) {

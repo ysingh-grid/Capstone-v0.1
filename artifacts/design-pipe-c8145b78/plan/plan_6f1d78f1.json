@@ -1,0 +1,54 @@
+{
+  "description": "A hollow cylinder (tube) with a length of 200mm, an inner diameter of 50mm, and a coaxial 100mm diameter flange at one end.",
+  "components": [
+    "Hollow cylindrical tube body",
+    "Coaxial end flange (wide ring)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 100.0,
+      "zlen": 200.0
+    },
+    "key_dimensions": {
+      "tube_length": 200.0,
+      "inner_diameter": 50.0,
+      "flange_outer_diameter": 100.0,
+      "tube_outer_diameter_assumed": 60.0,
+      "flange_thickness_assumed": 10.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 50.0 mm",
+      "dimensions": {
+        "diameter": 50.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Assume a tube wall thickness of 5mm (making the tube outer diameter 60mm). Assume the flange is 10mm thick, located at one end of the 200mm long tube, and shares the 50mm inner through-hole. The entire part should be aligned along the Z-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}
