@@ -65,36 +65,121 @@ MAX_REFINEMENT_ITERATIONS=5
 USE_VISION=true
 ```
 
-## 🚀 Usage
+## 🚀 Running the Full Stack
 
-### 1. Start the Temporal Worker
-The worker must be running in the background to execute workflow activities.
+Each component runs in its own terminal tab. Start them in order.
+
+---
+
+### Component 1 — Langfuse (Observability) ✅ Docker
+
 ```bash
+cd ~/langfuse && docker compose up -d
+```
+
+Dashboard → **http://localhost:3000**
+
+> Already running if Docker Desktop is open. No action needed after first boot.
+
+---
+
+### Component 2 — Temporal Server (Workflow Engine)
+
+```bash
+temporal server start-dev
+```
+
+Web UI → **http://localhost:8233** — shows live workflow execution history.
+
+---
+
+### Component 3 — Temporal Worker (Agent Pipeline) ⚡ Start this first
+
+Open a **dedicated terminal tab** and keep it running:
+
+```bash
+cd /path/to/Capstone-v0.1
 source .venv/bin/activate
 python -m harness.workflows.worker
 ```
 
-### 2. Option A: Command Line Interface (CLI)
-Submit a design directly from the terminal:
-```bash
-harness submit "A 60x40x10mm plate with four M5 corner holes" --name corner_plate --no-approval
+You should see:
 ```
-Check status: `harness status design-corner_plate-<id>`
+[worker] Connecting to Temporal at localhost:7233 namespace=default
+[worker] Worker started on queue 'design'. Press Ctrl+C to stop.
+```
 
-### 3. Option B: ForgeCAD Web UI (API)
-Start the FastAPI server to access the visual ForgeCAD dashboard.
+> This process runs all 6 agents (Planner → Coder → ErrorRefiner → VisualJudge → GeometryRefiner → Handoff). Keep it alive for the duration of your session.
+
+---
+
+### Component 4 — Harness API + Prompt UI
+
 ```bash
+cd /path/to/Capstone-v0.1
 source .venv/bin/activate
 uvicorn harness.api.app:app --reload --port 8000
 ```
-Then navigate to **http://localhost:8000** in your browser. 
-From the Web UI, you can:
-* Submit natural language prompts.
-* Watch live progress across the agent pipeline.
-* Inspect the generated CadQuery code.
-* Review evidence (IoU, Volume, Watertightness).
-* Approve/Reject designs or submit human-in-the-loop revision instructions.
-* Download `.step`, `.stl`, and `.png` render artifacts.
+
+Submit UI → **http://localhost:8000** — type your natural language prompt here.
+
+From the Web UI you can:
+* Submit natural language prompts
+* Watch the live pipeline (Planner → Coder → Verifier → ForgeCAD)
+* Inspect generated CadQuery code and ForgeCAD `.forge.js`
+* Review geometry evidence (Volume, IoU, Watertightness)
+* Approve/Reject designs or send revision instructions
+* Download `.step`, `.stl`, `.png`, and `.forge.js` artifacts
+
+---
+
+### Component 5 — ForgeCAD Studio (Post-Handoff Editor)
+
+After a workflow completes, the UI shows the studio launch command. Or run manually:
+
+```bash
+forgecad studio ./artifacts/<workflow_id>/forgecad/
+```
+
+Studio → **http://localhost:3000** (ForgeCAD's own port, separate from Langfuse)
+
+> First-time setup: `npm install -g forgecad`
+
+---
+
+## 🔁 End-to-End Flow
+
+```
+You type a prompt          →  localhost:8000  (Prompt UI)
+         │
+         ▼
+Temporal workflow runs     →  localhost:8233  (Temporal Web UI — observe)
+  Planner → Coder → Executor → Judge → Refiner → Handoff
+         │
+         ▼
+Langfuse captures traces   →  localhost:3000  (Langfuse Dashboard)
+  Per-agent latency, token cost, full prompt/response tree
+         │
+         ▼
+ForgeCAD .forge.js emitted →  ./artifacts/<id>/forgecad/
+         │
+         ▼
+Engineer opens in Studio   →  forgecad studio ./artifacts/<id>/forgecad/
+  Live sliders, 3D viewport, STEP/STL/3MF export
+```
+
+## 🩺 Quick Health Check
+
+```bash
+# Langfuse
+curl http://localhost:3000/api/public/health
+
+# Temporal Web UI
+curl -o /dev/null -w "%{http_code}" http://localhost:8233
+
+# Harness API
+curl http://localhost:8000/health
+```
 
 ## 📁 Artifact Store
 All generated outputs (Code, STEP files, STL meshes, PNG renders, and execution trace logs) are automatically saved to `./artifacts/` with deterministic IDs for traceability.
