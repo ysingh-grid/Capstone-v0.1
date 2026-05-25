@@ -9,3 +9,25 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+# Runtime logs
+worker.log
+app.log
+*.log
+
+# Persistent chat sessions (Phase 2)
+artifacts/.chat_sessions/
+artifacts/*.cache
+
+# IDE & OS artifacts
+.DS_Store
+.idea/
+*.swp
+*.swo
+*~
+.vscode/
+
+# Build outputs
+node_modules/
+.next/
+dist/
