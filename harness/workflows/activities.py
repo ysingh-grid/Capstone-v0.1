@@ -60,6 +60,18 @@ from harness.schema.trace import (
     VerifierScore,
 )
 
+# Langfuse observability — no-op if keys are absent
+try:
+    from autofab.langfuse_tracing import (
+        flush_trace,
+        init_workflow_trace,
+        update_workflow_trace,
+    )
+except ImportError:
+    def init_workflow_trace(*a, **kw): pass  # type: ignore[misc]
+    def update_workflow_trace(*a, **kw): pass  # type: ignore[misc]
+    def flush_trace(): pass  # type: ignore[misc]
+
 
 # ---------------------------------------------------------------------------
 # I/O dataclasses (serialisable to/from JSON by Temporal's codec)
@@ -192,6 +204,14 @@ async def planning_activity(inp: PlanningInput) -> PlanningOutput:
     store = get_store()
     activity.logger.info(
         f"[planning] workflow={inp.workflow_id} prompt={inp.prompt[:80]}"
+    )
+
+    # Open a top-level Langfuse trace for this workflow run.
+    # All downstream agent spans/generations will nest under this trace.
+    init_workflow_trace(
+        workflow_id=inp.workflow_id,
+        prompt=inp.prompt,
+        metadata={"project_context": inp.project_context},
     )
 
     try:
@@ -478,6 +498,21 @@ async def handoff_activity(inp: HandoffInput) -> HandoffOutput:
     )
 
     trace_uri = trace_capture(trace, store=store)
+
+    # Update Langfuse trace with final outcome and flush all buffered events.
+    update_workflow_trace(
+        output=f"converged={trace.converged} iterations={trace.total_iterations} "
+               f"first_pass={trace.first_pass_success}",
+        metadata={
+            "converged": trace.converged,
+            "total_iterations": trace.total_iterations,
+            "total_llm_calls": trace.total_llm_calls,
+            "first_pass_success": trace.first_pass_success,
+            "forgecad_uri": forgecad_uri,
+            "trace_uri": trace_uri,
+        },
+    )
+    flush_trace()
 
     activity.logger.info(
         f"[handoff] forgecad={forgecad_uri} trace={trace_uri}"
