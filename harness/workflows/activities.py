@@ -44,6 +44,7 @@ from harness.runtime.primitives import (
     execute_with_retries,
     forgecad_emit,
     mesh_inspect,
+    mesh_repair,
     primitive_plan,
     render_views,
     solid_generate,
@@ -300,8 +301,33 @@ async def geometry_activity(inp: GeometryInput) -> GeometryOutput:
             error_type=exec_result.error_type,
         )
 
-    # ── OCCT measurements + MeshLib stub ────────────────────────────────
+    # ── OCCT measurements + MeshLib Phase 2 ─────────────────────────────
     evidence = mesh_inspect(exec_result.geometry_json, stl_path=exec_result.stl_path)
+
+    # Phase 2: if MeshLib reports a non-watertight mesh, attempt repair now
+    # and re-inspect so the persisted evidence reflects the repaired state.
+    if evidence.is_watertight is False and exec_result.stl_path:
+        try:
+            repaired_stl, is_watertight, repair_notes = mesh_repair(
+                exec_result.stl_path,
+                workflow_id=inp.workflow_id,
+                store=store,
+            )
+            if is_watertight:
+                activity.logger.info(
+                    f"[geometry] MeshLib repair succeeded: {repair_notes[:120]}"
+                )
+                # Re-inspect repaired mesh to refresh evidence fields
+                evidence = mesh_inspect(
+                    exec_result.geometry_json, stl_path=repaired_stl
+                )
+                exec_result.stl_path = repaired_stl   # use repaired file downstream
+            else:
+                activity.logger.warning(
+                    f"[geometry] MeshLib repair incomplete: {repair_notes[:120]}"
+                )
+        except Exception as repair_exc:
+            activity.logger.warning(f"[geometry] mesh_repair raised: {repair_exc}")
 
     # ── Persist STEP / STL to artifact store ────────────────────────────
     step_uri = None

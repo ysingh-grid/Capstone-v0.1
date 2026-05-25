@@ -1,0 +1,43 @@
+{
+  "description": "An I-beam extrusion with a length of 300mm along the Z-axis, featuring a total height of 100mm and total width of 50mm.",
+  "components": [
+    "Top Flange",
+    "Bottom Flange",
+    "Connecting Web"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 100.0,
+      "zlen": 300.0
+    },
+    "key_dimensions": {
+      "total_height": 100.0,
+      "total_width": 50.0,
+      "flange_thickness": 6.0,
+      "web_thickness": 4.0,
+      "length": 300.0,
+      "derived_web_height": 88.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "There is a geometric contradiction in the prompt measurements: 'total_height_mm: 100', 'flange_thickness_mm: 6', and 'web_height_mm: 25'. In a standard I-beam, the total height is equal to (2 * flange_thickness) + web_height. If total height is 100mm and flange thickness is 6mm, the actual web height must be 88mm. The Coder should prioritize the total height of 100mm and flange thickness of 6mm, resulting in a web height of 88mm. The volume calculation of 285,600 mm\u00b3 is based on this standard model: (2 * 50 * 6 + 88 * 4) * 300.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

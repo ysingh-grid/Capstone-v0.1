@@ -1,0 +1,47 @@
+{
+  "description": "A sturdy wooden bed frame designed to fit a 6.5 x 6.5 ft (78 x 78 inches) square mattress, with the top of the frame standing exactly 2 feet (24 inches) above the ground.",
+  "components": [
+    "4x Corner Leg Posts",
+    "2x Side Rails",
+    "1x Head Rail",
+    "1x Foot Rail",
+    "Mattress Support Slats",
+    "Center Support Rail with Support Legs"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 2060.0,
+      "ylen": 2060.0,
+      "zlen": 610.0
+    },
+    "key_dimensions": {
+      "mattress_cavity_width": 1990.0,
+      "mattress_cavity_length": 1990.0,
+      "frame_height": 610.0,
+      "leg_cross_section": 89.0,
+      "rail_thickness": 38.0,
+      "rail_height": 140.0,
+      "slat_thickness": 19.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The mattress dimensions are 1981.2 mm x 1981.2 mm (6.5 x 6.5 ft). The frame inner cavity is designed at 1990 mm x 1990 mm to allow a 4.4 mm clearance tolerance on all sides. Outer frame thickness uses standard nominal 2-by lumber (38 mm actual thickness). The top surface of the frame is flush at 610 mm (2 ft) height.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

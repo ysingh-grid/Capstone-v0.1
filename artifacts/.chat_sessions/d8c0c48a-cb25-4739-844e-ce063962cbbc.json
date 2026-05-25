@@ -1,0 +1,18 @@
+{
+  "session_id": "d8c0c48a-cb25-4739-844e-ce063962cbbc",
+  "created_at": "2026-05-25T17:25:22.901887+00:00",
+  "updated_at": "2026-05-25T17:25:24.999569+00:00",
+  "messages": [
+    {
+      "role": "user",
+      "content": "I want to design a mounting plate"
+    },
+    {
+      "role": "assistant",
+      "content": "Okay, I can help you with that. To start, what should be the overall width of the mounting plate?\n```json\n{\n  \"resolved_params\": {},\n  \"pending_questions\": [\"What should be the overall width of the mounting plate?\"],\n  \"is_ready\": false\n}\n```"
+    }
+  ],
+  "resolved_params": {},
+  "design_context": "",
+  "is_ready": false
+}

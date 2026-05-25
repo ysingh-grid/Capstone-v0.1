@@ -1,0 +1,47 @@
+{
+  "description": "Solid cylinder shaft coupler with a stepped central bore, a flat keyway, and chamfered outer edges.",
+  "components": [
+    "Cylindrical coupler body",
+    "Stepped central through-hole",
+    "Outer flat keyway",
+    "Chamfered outer rims"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 70.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 50.0,
+      "total_length": 70.0,
+      "bore_section_1_length": 30.0,
+      "bore_section_1_diameter": 15.0,
+      "bore_section_2_length": 40.0,
+      "bore_section_2_diameter": 20.0,
+      "keyway_width": 10.0,
+      "keyway_depth": 2.0,
+      "chamfer_size": 1.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Align the main cylinder axis with the Z-axis. Place the stepped bore coaxially. The 15mm diameter bore section spans Z = 0 to 30, and the 20mm diameter section spans Z = 30 to 70. The flat keyway should run the full 70mm length parallel to the Z-axis on the outer surface (reducing the local radius by 2mm over a width of 10mm). Apply a 1mm 45-degree chamfer to both outer circular end rims.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

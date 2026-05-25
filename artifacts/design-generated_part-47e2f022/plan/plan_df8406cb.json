@@ -1,0 +1,58 @@
+{
+  "description": "Centrifugal compressor impeller with a truncated cone hub, central bore hole, and 7 aerodynamically swept and twisted blades.",
+  "components": [
+    "truncated_cone_hub",
+    "central_bore_hole",
+    "7_swept_blades"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 130.0,
+      "ylen": 130.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "hub_base_diameter": 100.0,
+      "hub_top_diameter": 30.0,
+      "hub_height": 60.0,
+      "bore_hole_diameter": 15.0,
+      "blade_thickness": 2.0,
+      "blade_protrusion_base": 15.0,
+      "blade_protrusion_top": 5.0,
+      "blade_twist_degrees": 60.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 15.0 mm",
+      "dimensions": {
+        "diameter": 15.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the central hub using a revolve operation or loft. For the 7 curved blades, construct a single blade using either 3D splines for a sweep path or a loft between multiple helical-mapped wire profiles along the conical surface. The blades must taper in protrusion height from 15mm at Z=0 to 5mm at Z=60 while twisting 60 degrees. Perform a polar array (rotation of 360/7 degrees) of the single blade, union them together with the hub, and ensure the final solid is named 'result_solid'.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

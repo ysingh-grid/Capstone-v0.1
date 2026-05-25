@@ -6,230 +6,632 @@
 <title>ForgeCAD — Geometry Agent</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ─── Reset & tokens ──────────────────────────────────────────────────────── */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0e1a;--surface:#111827;--surface2:#1a2235;--border:#1e2d45;
-  --accent:#6366f1;--accent2:#8b5cf6;--green:#10b981;--amber:#f59e0b;
-  --red:#ef4444;--text:#e2e8f0;--muted:#64748b;--code-bg:#0d1117;
+  --bg:#080c18;
+  --surface:#0f1623;
+  --surface2:#141d2e;
+  --surface3:#1a2540;
+  --border:#1e2d45;
+  --border2:#243352;
+  --accent:#6366f1;
+  --accent2:#8b5cf6;
+  --accent-glow:rgba(99,102,241,.25);
+  --green:#10b981;
+  --amber:#f59e0b;
+  --red:#ef4444;
+  --text:#e2e8f0;
+  --text2:#94a3b8;
+  --muted:#4b5e7a;
+  --code-bg:#060b14;
+  --radius:10px;
+  --transition:0.22s cubic-bezier(.4,0,.2,1);
 }
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
-header{display:flex;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--surface)}
-.logo{font-size:20px;font-weight:700;background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.api-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);margin-left:auto;transition:.3s}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column}
+
+/* ─── Header ──────────────────────────────────────────────────────────────── */
+header{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 24px;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+  flex-shrink:0;
+  position:relative;z-index:10;
+}
+.logo{font-size:19px;font-weight:700;background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.3px}
+.logo-sub{font-size:12px;color:var(--muted);margin-left:2px}
+.api-pill{
+  margin-left:auto;display:flex;align-items:center;gap:6px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:20px;padding:4px 10px;font-size:11px;color:var(--text2);
+}
+.api-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);transition:.3s}
 .api-dot.ok{background:var(--green)}
 .api-dot.err{background:var(--red)}
-.api-label{font-size:12px;color:var(--muted)}
-.main{display:grid;grid-template-columns:360px 1fr;flex:1;overflow:hidden}
-.sidebar{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+
+/* ─── Main layout ─────────────────────────────────────────────────────────── */
+.main{display:grid;grid-template-columns:340px 1fr;flex:1;overflow:hidden;min-height:0}
+
+/* ─── Sidebar ─────────────────────────────────────────────────────────────── */
+.sidebar{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:var(--surface)}
 .section{padding:16px;border-bottom:1px solid var(--border)}
-.section h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:12px}
-textarea#prompt{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;resize:vertical;min-height:80px;outline:none;transition:.2s}
+.section h3{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+
+textarea#prompt{
+  width:100%;background:var(--surface2);
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:10px 12px;color:var(--text);font-family:'Inter',sans-serif;
+  font-size:13px;resize:vertical;min-height:80px;outline:none;
+  transition:border-color var(--transition);line-height:1.5;
+}
 textarea#prompt:focus{border-color:var(--accent)}
-.row{display:flex;gap:8px;margin-top:10px}
-label{font-size:12px;color:var(--muted)}
-input[type=text]{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:7px 10px;color:var(--text);font-size:13px;outline:none}
-input[type=text]:focus{border-color:var(--accent)}
-.toggle{display:flex;align-items:center;gap:8px;font-size:13px}
-input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}
-.btn{padding:8px 16px;border-radius:7px;border:none;cursor:pointer;font-size:13px;font-weight:500;transition:.15s}
-.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
-.btn-primary:hover{opacity:.9}
-.btn-primary:disabled{opacity:.4;cursor:not-allowed}
+.form-row{display:flex;gap:8px;margin-top:8px;align-items:flex-end}
+.field{flex:1}
+label.lbl{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}
+input.txt{
+  width:100%;background:var(--surface2);border:1px solid var(--border);
+  border-radius:7px;padding:7px 10px;color:var(--text);font-size:13px;outline:none;
+  transition:border-color var(--transition);
+}
+input.txt:focus{border-color:var(--accent)}
+.toggle-row{display:flex;align-items:center;gap:8px;font-size:13px;margin-top:10px;color:var(--text2)}
+input[type=checkbox]{accent-color:var(--accent);width:15px;height:15px}
+
+.btn{padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:500;transition:var(--transition);white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;width:100%;margin-top:12px}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;filter:none}
 .btn-sm{padding:5px 12px;font-size:12px}
-.btn-green{background:#065f46;color:var(--green)}
-.btn-red{background:#7f1d1d;color:var(--red)}
-.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-green{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+.btn-red{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text2)}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-.history{flex:1;overflow-y:auto;padding:8px}
-.history-item{padding:10px 12px;border-radius:8px;cursor:pointer;border:1px solid transparent;margin-bottom:4px;transition:.15s}
+
+.history{flex:1;overflow-y:auto;padding:6px}
+.history::-webkit-scrollbar{width:4px}
+.history::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.history-item{
+  padding:10px 12px;border-radius:8px;cursor:pointer;
+  border:1px solid transparent;margin-bottom:3px;
+  transition:var(--transition);
+}
 .history-item:hover{background:var(--surface2)}
-.history-item.active{background:var(--surface2);border-color:var(--border)}
-.history-item .wf-id{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.history-item .wf-stage{font-size:12px;font-weight:500}
-.stage-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
-.content{display:flex;flex-direction:column;overflow:hidden}
-.pipeline{padding:20px 24px 16px;border-bottom:1px solid var(--border)}
-.stages{display:flex;align-items:center;gap:0;overflow-x:auto}
-.stage{display:flex;flex-direction:column;align-items:center;min-width:90px}
-.stage-icon{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;transition:.3s}
-.stage.done .stage-icon{background:#065f46;border-color:var(--green)}
-.stage.active .stage-icon{background:#312e81;border-color:var(--accent);box-shadow:0 0 12px rgba(99,102,241,.4);animation:pulse 2s infinite}
-.stage.error .stage-icon{background:#7f1d1d;border-color:var(--red)}
-@keyframes pulse{0%,100%{box-shadow:0 0 8px rgba(99,102,241,.4)}50%{box-shadow:0 0 20px rgba(99,102,241,.7)}}
-.stage-label{font-size:10px;color:var(--muted);margin-top:4px;text-align:center}
-.stage-connector{flex:1;height:2px;background:var(--border);min-width:16px}
+.history-item.active{background:var(--surface2);border-color:var(--border2)}
+.history-item .wf-id{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:3px}
+.history-item .wf-stage{font-size:12px;font-weight:500;display:flex;align-items:center;gap:6px}
+.stage-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* ─── Content area ────────────────────────────────────────────────────────── */
+.content{display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+
+.pipeline{padding:18px 22px 14px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0}
+.pipeline-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.wf-id-lbl{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.03em}
+.badge-planning{background:#1a3460;color:#93c5fd}
+.badge-generating,.badge-coding{background:#1e1b4b;color:#a5b4fc}
+.badge-executing{background:#052e16;color:#86efac}
+.badge-verifying{background:#451a03;color:#fcd34d}
+.badge-awaiting_approval,.badge-reviewing{background:#3b0764;color:#d8b4fe}
+.badge-handoff{background:#0c1a4b;color:#93c5fd}
+.badge-done{background:#052e16;color:#6ee7b7}
+.badge-failed,.badge-escalated{background:#450a0a;color:#fca5a5}
+.badge-idle{background:var(--surface2);color:var(--muted)}
+.badge-refining{background:#1a1a35;color:#a5b4fc}
+
+.stages{display:flex;align-items:center;overflow-x:auto;gap:0;padding-bottom:2px}
+.stages::-webkit-scrollbar{height:0}
+.stage{display:flex;flex-direction:column;align-items:center;min-width:80px}
+.stage-icon{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--surface2);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:var(--transition);
+}
+.stage.done .stage-icon{background:rgba(16,185,129,.15);border-color:var(--green)}
+.stage.active .stage-icon{
+  background:rgba(99,102,241,.15);border-color:var(--accent);
+  box-shadow:0 0 12px var(--accent-glow);
+  animation:pulse 2s infinite;
+}
+.stage.error .stage-icon{background:rgba(239,68,68,.15);border-color:var(--red)}
+@keyframes pulse{0%,100%{box-shadow:0 0 8px var(--accent-glow)}50%{box-shadow:0 0 22px rgba(99,102,241,.5)}}
+.stage-label{font-size:9px;color:var(--muted);margin-top:5px;text-align:center;text-transform:uppercase;letter-spacing:.05em}
+.stage-connector{flex:1;height:2px;background:var(--border);min-width:12px;transition:var(--transition)}
 .stage-connector.done{background:var(--green)}
+
+/* ─── Panels / tabs ───────────────────────────────────────────────────────── */
 .panels{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 16px}
-.tab{padding:10px 16px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);transition:.15s}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 18px;background:var(--surface);flex-shrink:0}
+.tab{padding:10px 16px;font-size:12px;cursor:pointer;border-bottom:2px solid transparent;color:var(--text2);transition:var(--transition);font-weight:500}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-content{flex:1;overflow:hidden;display:none}
 .tab-content.active{display:flex;flex-direction:column}
-pre#code-view{flex:1;overflow:auto;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;background:var(--code-bg);color:#c9d1d9;white-space:pre-wrap;word-break:break-word}
-.forgecad-banner{background:linear-gradient(135deg,#0f2027,#1a2a3a);border:1px solid #1e3a5f;border-radius:10px;padding:14px 18px;margin:14px 20px 0;display:flex;align-items:center;gap:14px;flex-shrink:0}
-.forgecad-banner .fc-icon{font-size:22px;flex-shrink:0}
-.forgecad-banner .fc-body{flex:1;min-width:0}
-.forgecad-banner .fc-title{font-size:12px;font-weight:600;color:#60a5fa;margin-bottom:4px}
-.forgecad-banner pre.fc-cmd{font-family:'JetBrains Mono',monospace;font-size:11px;color:#86efac;background:#0a1628;border-radius:6px;padding:6px 10px;overflow-x:auto;margin:0}
-.forgecad-banner .fc-sub{font-size:11px;color:var(--muted);margin-top:5px}
-.btn-copy{padding:4px 10px;font-size:11px;border-radius:5px;border:1px solid #1e3a5f;background:#0f2027;color:#60a5fa;cursor:pointer;flex-shrink:0;transition:.15s}
-.btn-copy:hover{background:#1e3a5f}
-#evidence-view{flex:1;overflow:auto;padding:20px;font-size:13px}
-.kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+
+pre#code-view{
+  flex:1;overflow:auto;padding:20px 22px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;
+  background:var(--code-bg);color:#c9d1d9;white-space:pre-wrap;word-break:break-word;
+}
+pre#code-view::-webkit-scrollbar{width:5px}
+pre#code-view::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+.forgecad-banner{
+  background:linear-gradient(135deg,#060f20,#0d1a30);
+  border:1px solid #1a3050;border-radius:var(--radius);
+  padding:14px 16px;margin:14px 18px 0;
+  display:flex;align-items:center;gap:14px;flex-shrink:0;
+}
+.fc-icon{font-size:22px;flex-shrink:0}
+.fc-body{flex:1;min-width:0}
+.fc-title{font-size:11px;font-weight:600;color:#60a5fa;margin-bottom:5px}
+pre.fc-cmd{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:#86efac;
+  background:rgba(0,0,0,.3);border-radius:6px;padding:6px 10px;
+  overflow-x:auto;margin:0;white-space:nowrap;
+}
+.fc-sub{font-size:11px;color:var(--muted);margin-top:5px}
+.btn-copy{
+  padding:5px 12px;font-size:11px;border-radius:6px;
+  border:1px solid #1a3050;background:rgba(0,0,0,.2);
+  color:#60a5fa;cursor:pointer;flex-shrink:0;transition:var(--transition);
+}
+.btn-copy:hover{background:#1a3050}
+
+#evidence-view{flex:1;overflow:auto;padding:18px 20px}
+#evidence-view::-webkit-scrollbar{width:5px}
+#evidence-view::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .kv-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px}
-.kv-label{font-size:11px;color:var(--muted);margin-bottom:4px}
+.kv-label{font-size:10px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
 .kv-value{font-size:18px;font-weight:600}
-.artifacts-list{padding:20px;display:flex;flex-direction:column;gap:10px;overflow-y:auto}
-.artifact-row{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 16px}
-.artifact-icon{font-size:20px}
-.artifact-info{flex:1}
-.artifact-name{font-size:13px;font-weight:500}
-.artifact-uri{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:300px}
-.actions{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-input#iterate-text{flex:1;min-width:200px}
-.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:500}
-.badge-planning{background:#1e3a5f;color:#60a5fa}
-.badge-coding{background:#1e1b4b;color:#a5b4fc}
-.badge-executing{background:#14532d;color:#86efac}
-.badge-verifying{background:#422006;color:#fcd34d}
-.badge-reviewing{background:#4c1d95;color:#ddd6fe}
-.badge-done{background:#065f46;color:#6ee7b7}
-.badge-failed{background:#7f1d1d;color:#fca5a5}
-.badge-idle{background:#1e293b;color:#94a3b8}
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);gap:12px}
-.empty-state .icon{font-size:48px;opacity:.3}
-.toast{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 20px;font-size:13px;z-index:100;animation:fadeIn .3s}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.kv-value.good{color:var(--green)}
+.kv-value.bad{color:var(--red)}
+.kv-value.warn{color:var(--amber)}
+.mesh-quality-row{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;
+}
+.mesh-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;
+}
+.mesh-badge.ok{background:rgba(16,185,129,.12);color:var(--green);border:1px solid rgba(16,185,129,.25)}
+.mesh-badge.fail{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.25)}
+.mesh-badge.unknown{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+
+.artifacts-list{padding:16px 18px;display:flex;flex-direction:column;gap:8px;overflow-y:auto}
+.artifact-row{
+  display:flex;align-items:center;gap:12px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;padding:11px 14px;transition:var(--transition);
+}
+.artifact-row:hover{border-color:var(--border2)}
+.artifact-icon{font-size:18px;flex-shrink:0}
+.artifact-info{flex:1;min-width:0}
+.artifact-name{font-size:13px;font-weight:500;margin-bottom:2px}
+.artifact-uri{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.actions{
+  padding:12px 18px;border-top:1px solid var(--border);
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  background:var(--surface);flex-shrink:0;
+}
+input#iterate-text{flex:1;min-width:180px}
+
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;color:var(--muted);gap:14px;user-select:none;
+}
+.empty-state .icon{font-size:52px;opacity:.2}
+.empty-state .title{font-size:15px;font-weight:500;color:var(--text2)}
+.empty-state .sub{font-size:13px;color:var(--muted)}
+
+/* ─── Toast ───────────────────────────────────────────────────────────────── */
+.toast{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:10px;padding:10px 20px;font-size:13px;
+  z-index:1000;animation:fadeUp .25s ease;pointer-events:none;
+  white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+@keyframes fadeUp{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CHATBOT PANEL — Phase 2
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Trigger FAB */
+.chat-fab{
+  position:fixed;right:28px;bottom:28px;
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;cursor:pointer;z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(99,102,241,.45);
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.chat-fab:hover{transform:scale(1.08);box-shadow:0 6px 26px rgba(99,102,241,.6)}
+.chat-fab .fab-icon{font-size:22px;transition:transform var(--transition)}
+.chat-fab.open .fab-icon{transform:rotate(90deg)}
+/* Pulse ring when chat is idle */
+.chat-fab::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid var(--accent);opacity:0;
+  animation:fabRing 3s ease-in-out infinite;
+}
+@keyframes fabRing{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.18);opacity:0}}
+
+/* Notification dot on fab */
+.fab-dot{
+  position:absolute;top:6px;right:6px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--green);border:2px solid var(--bg);
+  display:none;
+}
+.chat-fab.has-question .fab-dot{display:block}
+
+/* Panel */
+.chat-panel{
+  position:fixed;top:0;right:0;bottom:0;width:400px;
+  background:rgba(9,14,26,.97);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-left:1px solid rgba(255,255,255,.07);
+  transform:translateX(100%);
+  transition:transform 0.35s cubic-bezier(.4,0,.2,1),box-shadow 0.35s;
+  display:flex;flex-direction:column;z-index:150;
+  box-shadow:none;
+}
+.chat-panel.open{
+  transform:translateX(0);
+  box-shadow:-8px 0 40px rgba(0,0,0,.6);
+}
+
+/* Panel header */
+.chat-header{
+  padding:18px 20px 16px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;justify-content:space-between;align-items:flex-start;
+  flex-shrink:0;
+}
+.chat-header-left{display:flex;flex-direction:column;gap:4px}
+.chat-title{
+  font-size:14px;font-weight:600;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;
+}
+.chat-title-badge{
+  font-size:9px;padding:2px 6px;border-radius:10px;
+  background:rgba(99,102,241,.2);color:#a5b4fc;font-weight:500;
+  letter-spacing:.04em;text-transform:uppercase;
+}
+.chat-subtitle{font-size:11px;color:var(--muted)}
+.chat-close{
+  background:none;border:none;color:var(--muted);cursor:pointer;
+  font-size:18px;padding:2px;line-height:1;transition:color var(--transition);
+}
+.chat-close:hover{color:var(--text)}
+
+/* Resolved params strip */
+.params-strip{
+  padding:10px 16px;
+  background:rgba(16,185,129,.05);
+  border-bottom:1px solid rgba(16,185,129,.12);
+  flex-shrink:0;display:none;
+}
+.params-strip.visible{display:block}
+.params-title{font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.params-list{display:flex;flex-wrap:wrap;gap:5px}
+.param-chip{
+  font-size:11px;padding:2px 8px;border-radius:12px;
+  background:rgba(16,185,129,.1);color:var(--green);
+  border:1px solid rgba(16,185,129,.2);font-family:'JetBrains Mono',monospace;
+}
+
+/* Chat body */
+.chat-body{
+  flex:1;overflow-y:auto;padding:16px 14px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.chat-body::-webkit-scrollbar{width:4px}
+.chat-body::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* Messages */
+.msg{display:flex;flex-direction:column;gap:3px;max-width:88%}
+.msg.user{align-self:flex-end}
+.msg.assistant{align-self:flex-start}
+.msg-bubble{
+  padding:10px 14px;border-radius:14px;
+  font-size:13px;line-height:1.55;
+  word-break:break-word;
+}
+.msg.user .msg-bubble{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;border-bottom-right-radius:4px;
+}
+.msg.assistant .msg-bubble{
+  background:var(--surface2);
+  border:1px solid rgba(255,255,255,.06);
+  color:var(--text);border-bottom-left-radius:4px;
+}
+.msg-time{font-size:10px;color:var(--muted);padding:0 4px}
+.msg.user .msg-time{text-align:right}
+
+/* Typing indicator */
+.typing-indicator{align-self:flex-start;padding:10px 16px;background:var(--surface2);border:1px solid rgba(255,255,255,.06);border-radius:14px;border-bottom-left-radius:4px}
+.typing-dots{display:flex;gap:5px;align-items:center}
+.typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typingBounce 1.2s ease-in-out infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes typingBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+
+/* Ready banner inside chat */
+.ready-banner{
+  background:rgba(16,185,129,.08);
+  border:1px solid rgba(16,185,129,.2);
+  border-radius:10px;padding:12px 14px;
+  font-size:13px;color:var(--green);
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+  margin:0 2px;
+}
+.ready-banner .ready-icon{font-size:18px}
+.ready-banner .ready-text{flex:1;line-height:1.4}
+.btn-use-prompt{
+  background:var(--green);color:#000;border:none;
+  padding:6px 14px;border-radius:7px;font-size:12px;
+  font-weight:600;cursor:pointer;transition:var(--transition);white-space:nowrap;
+}
+.btn-use-prompt:hover{filter:brightness(1.1)}
+
+/* Chat input area */
+.chat-input-row{
+  padding:12px 14px 16px;
+  border-top:1px solid rgba(255,255,255,.06);
+  display:flex;gap:8px;align-items:flex-end;flex-shrink:0;
+}
+.chat-textarea{
+  flex:1;background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.1);border-radius:12px;
+  padding:10px 14px;color:var(--text);font-size:13px;
+  outline:none;resize:none;min-height:40px;max-height:100px;
+  font-family:'Inter',sans-serif;line-height:1.4;
+  transition:border-color var(--transition);
+}
+.chat-textarea:focus{border-color:rgba(99,102,241,.5)}
+.chat-send-btn{
+  width:36px;height:36px;border-radius:50%;background:var(--accent);
+  border:none;color:#fff;cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;transition:var(--transition);
+}
+.chat-send-btn:hover{background:var(--accent2)}
+.chat-send-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* Suggestion chips (quick starters) */
+.chat-suggestions{
+  padding:0 14px 10px;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;
+}
+.chip{
+  font-size:11px;padding:5px 10px;border-radius:16px;
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--text2);cursor:pointer;transition:var(--transition);
+}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
 </style>
 </head>
 <body>
+
+<!-- ═══ HEADER ══════════════════════════════════════════════════════════════ -->
 <header>
   <span style="font-size:22px">⚙️</span>
   <span class="logo">ForgeCAD</span>
-  <span style="font-size:12px;color:var(--muted);margin-left:4px">Agent Harness</span>
-  <span style="margin-left:auto;display:flex;align-items:center;gap:6px">
-    <span class="api-label" id="api-label">connecting…</span>
+  <span class="logo-sub">Agent Harness</span>
+  <div class="api-pill">
     <span class="api-dot" id="api-dot"></span>
-  </span>
+    <span id="api-label">connecting…</span>
+  </div>
 </header>
 
+<!-- ═══ MAIN ═════════════════════════════════════════════════════════════════ -->
 <div class="main">
+
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="section">
       <h3>New Design</h3>
-      <textarea id="prompt" placeholder="Describe your part… e.g. A 60×40×10mm plate with four M5 corner holes"></textarea>
-      <div class="row" style="margin-top:8px">
-        <div style="flex:1"><label>Name</label><input type="text" id="name" value="part" style="margin-top:4px"></div>
+      <textarea id="prompt" placeholder="Describe your part… e.g. A plate with four M5 corner holes"></textarea>
+      <div class="form-row">
+        <div class="field">
+          <label class="lbl">Part name</label>
+          <input type="text" class="txt" id="name" value="part">
+        </div>
       </div>
-      <div class="toggle" style="margin-top:10px">
+      <div class="toggle-row">
         <input type="checkbox" id="require-approval" checked>
         <label for="require-approval">Require human approval</label>
       </div>
-      <div class="row" style="margin-top:12px">
-        <button class="btn btn-primary" id="submit-btn" onclick="submitDesign()" style="width:100%">Generate ✦</button>
-      </div>
+      <button class="btn btn-primary" id="submit-btn" onclick="submitDesign()">Generate ✦</button>
     </div>
-    <div class="section" style="padding:12px 16px">
+    <div class="section" style="padding:10px 16px">
       <h3>Designs</h3>
     </div>
     <div class="history" id="history"></div>
   </div>
 
-  <!-- MAIN CONTENT -->
+  <!-- CONTENT -->
   <div class="content" id="content">
+    <!-- Pipeline bar -->
     <div class="pipeline" id="pipeline-bar" style="display:none">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-        <span id="wf-id-label" style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace"></span>
-        <span id="stage-badge" class="badge badge-idle">IDLE</span>
+      <div class="pipeline-top">
+        <span class="wf-id-lbl" id="wf-id-label"></span>
+        <span class="badge badge-idle" id="stage-badge">IDLE</span>
       </div>
       <div class="stages" id="stages-row"></div>
     </div>
 
+    <!-- Tabs + views -->
     <div class="panels" id="panels" style="display:none">
       <div class="tabs">
         <div class="tab active" onclick="switchTab('code')">ForgeCAD .forge.js</div>
         <div class="tab" onclick="switchTab('evidence')">Evidence</div>
         <div class="tab" onclick="switchTab('artifacts')">Artifacts</div>
       </div>
+      <!-- Code tab -->
       <div class="tab-content active" id="tab-code">
         <div class="forgecad-banner" id="forgecad-banner" style="display:none">
           <span class="fc-icon">🔩</span>
           <div class="fc-body">
             <div class="fc-title">Open in ForgeCAD Studio</div>
             <pre class="fc-cmd" id="studio-cmd">forgecad studio .</pre>
-            <div class="fc-sub">First-time setup: <code style="color:#fcd34d">npm install -g forgecad</code> · Then run the command above in the project folder.</div>
+            <div class="fc-sub">First time: <code style="color:#fcd34d">npm install -g forgecad</code> — then run the command above in the project folder</div>
           </div>
-          <button class="btn-copy" onclick="copyStudioCmd()" title="Copy command">⎘ Copy</button>
+          <button class="btn-copy" onclick="copyStudioCmd()">⎘ Copy</button>
         </div>
         <pre id="code-view"><span style="color:var(--muted)">ForgeCAD .forge.js will appear here once generation completes…</span></pre>
       </div>
+      <!-- Evidence tab -->
       <div class="tab-content" id="tab-evidence">
-        <div id="evidence-view"><div class="empty-state"><div class="icon">📐</div><div>Evidence loads after verification</div></div></div>
+        <div id="evidence-view">
+          <div class="empty-state"><div class="icon">📐</div><div class="title">Evidence loads after verification</div></div>
+        </div>
       </div>
+      <!-- Artifacts tab -->
       <div class="tab-content" id="tab-artifacts">
-        <div class="artifacts-list" id="artifacts-list"><div class="empty-state"><div class="icon">📦</div><div>Artifacts appear after completion</div></div></div>
+        <div class="artifacts-list" id="artifacts-list">
+          <div class="empty-state"><div class="icon">📦</div><div class="title">Artifacts appear after completion</div></div>
+        </div>
       </div>
     </div>
 
+    <!-- Actions -->
     <div class="actions" id="actions" style="display:none">
       <button class="btn btn-green btn-sm" id="approve-btn" onclick="sendApprove('approved')" style="display:none">✓ Approve</button>
       <button class="btn btn-red btn-sm" id="reject-btn" onclick="sendApprove('rejected')" style="display:none">✗ Reject</button>
-      <input type="text" id="iterate-text" placeholder="Revision instructions… e.g. Add 2mm chamfer to all edges">
+      <input type="text" class="txt" id="iterate-text" placeholder="Revision instructions… e.g. Add 2mm chamfer to all edges" style="flex:1;min-width:180px">
       <button class="btn btn-outline btn-sm" onclick="sendIterate()">↻ Iterate</button>
     </div>
 
+    <!-- Empty state -->
     <div class="empty-state" id="empty-state" style="flex:1">
-      <div class="icon">🔩</div>
-      <div style="font-size:15px;font-weight:500">Enter a prompt to start generating</div>
-      <div style="font-size:13px">Planner → Coder → Verifier → ForgeCAD Studio ✦</div>
+      <div class="icon">⚙️</div>
+      <div class="title">Enter a prompt to start generating</div>
+      <div class="sub">Planner → Coder → Verifier → ForgeCAD Studio ✦</div>
     </div>
   </div>
 </div>
 
-<script>
-const API = '';  // same origin
-const STAGES = ['PLANNING','GENERATING','VERIFYING','AWAITING_APPROVAL','HANDOFF','DONE'];
-const STAGE_ICONS = {'PLANNING':'🧠','GENERATING':'⌨️','VERIFYING':'🔍','AWAITING_APPROVAL':'👤','HANDOFF':'📦','DONE':'✅','FAILED':'❌','ESCALATED':'🚨','REFINING':'🔁'};
+<!-- ═══ CHAT FAB ══════════════════════════════════════════════════════════════ -->
+<button class="chat-fab" id="chat-fab" onclick="toggleChat()" title="AI Measurement Assistant">
+  <span class="fab-icon">🤖</span>
+  <span class="fab-dot" id="fab-dot"></span>
+</button>
 
+<!-- ═══ CHAT PANEL ════════════════════════════════════════════════════════════ -->
+<div class="chat-panel" id="chat-panel">
+
+  <!-- Header -->
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-title">
+        🔬 Measurement Assistant
+        <span class="chat-title-badge">Phase 2</span>
+      </div>
+      <div class="chat-subtitle">Clarifies dimensions before generation</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+
+  <!-- Resolved params strip -->
+  <div class="params-strip" id="params-strip">
+    <div class="params-title">✓ Resolved parameters</div>
+    <div class="params-list" id="params-list"></div>
+  </div>
+
+  <!-- Body -->
+  <div class="chat-body" id="chat-body">
+    <div class="msg assistant">
+      <div class="msg-bubble">
+        👋 Hi! I'm your <strong>measurement clarification agent</strong>.<br><br>
+        Tell me what part you want to design and I'll ask the right questions to pin down every dimension — so the AI generates exactly what you need.
+      </div>
+      <div class="msg-time">Just now</div>
+    </div>
+  </div>
+
+  <!-- Quick-start suggestions -->
+  <div class="chat-suggestions" id="chat-suggestions">
+    <div class="chip" onclick="chipClick('A mounting plate')">A mounting plate</div>
+    <div class="chip" onclick="chipClick('A pipe bracket')">A pipe bracket</div>
+    <div class="chip" onclick="chipClick('An enclosure box')">An enclosure box</div>
+    <div class="chip" onclick="chipClick('A gear with 24 teeth')">A gear</div>
+  </div>
+
+  <!-- Ready banner (shown when agent declares is_ready) -->
+  <div class="ready-banner" id="ready-banner" style="display:none">
+    <span class="ready-icon">✅</span>
+    <span class="ready-text">All measurements captured! Ready to generate.</span>
+    <button class="btn-use-prompt" onclick="finalizeAndUsePrompt()">Use Prompt</button>
+  </div>
+
+  <!-- Input -->
+  <div class="chat-input-row">
+    <textarea class="chat-textarea" id="chat-input" rows="1"
+      placeholder="Describe your part or answer a question…"
+      onkeydown="handleChatKey(event)"
+      oninput="autoResize(this)"></textarea>
+    <button class="chat-send-btn" id="chat-send" onclick="sendChatMsg()">➤</button>
+  </div>
+
+</div>
+
+<!-- ═══ JAVASCRIPT ════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+const API = '';
+const STAGES = ['PLANNING','GENERATING','VERIFYING','AWAITING_APPROVAL','HANDOFF','DONE'];
+const ICONS  = {PLANNING:'🧠',GENERATING:'⌨️',VERIFYING:'🔍',AWAITING_APPROVAL:'👤',HANDOFF:'📦',DONE:'✅',FAILED:'❌',ESCALATED:'🚨',REFINING:'🔁'};
+const COLORS = {PLANNING:'#60a5fa',GENERATING:'#a5b4fc',VERIFYING:'#fcd34d',AWAITING_APPROVAL:'#d8b4fe',HANDOFF:'#93c5fd',DONE:'#6ee7b7',FAILED:'#fca5a5',ESCALATED:'#fca5a5',IDLE:'#4b5e7a'};
 
 let currentWfId = null;
-let pollTimer = null;
-let ws = null;
-const designs = {};
+let pollTimer   = null;
+let pollErrors  = 0;
+const designs   = {};
 
-async function checkApi() {
-  try {
-    const r = await fetch(`${API}/health`);
+// ── API health ─────────────────────────────────────────────────────────────
+async function checkApi(){
+  try{
+    const r = await fetch('/health');
     const ok = r.ok;
-    document.getElementById('api-dot').className = 'api-dot ' + (ok ? 'ok' : 'err');
+    document.getElementById('api-dot').className  = 'api-dot '+(ok?'ok':'err');
     document.getElementById('api-label').textContent = ok ? 'API connected' : 'API error';
-  } catch { 
-    document.getElementById('api-dot').className = 'api-dot err';
+  }catch{
+    document.getElementById('api-dot').className  = 'api-dot err';
     document.getElementById('api-label').textContent = 'API offline';
   }
 }
+checkApi(); setInterval(checkApi,12000);
 
-async function submitDesign() {
+// ── Submit design ──────────────────────────────────────────────────────────
+async function submitDesign(){
   const prompt = document.getElementById('prompt').value.trim();
-  if (!prompt) return toast('Enter a prompt first');
-  const name = document.getElementById('name').value.trim() || 'part';
-  const requireApproval = document.getElementById('require-approval').checked;
+  if(!prompt) return toast('Enter a prompt first');
+  const name   = document.getElementById('name').value.trim() || 'part';
+  const reqApproval = document.getElementById('require-approval').checked;
   document.getElementById('submit-btn').disabled = true;
-  try {
-    const r = await fetch(`${API}/api/v1/designs`, {
+  try{
+    const r = await fetch('/api/v1/designs',{
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({prompt, name, require_approval: requireApproval})
+      body: JSON.stringify({prompt, name, require_approval: reqApproval})
     });
-    if (!r.ok) throw new Error(await r.text());
+    if(!r.ok) throw new Error(await r.text());
     const data = await r.json();
     selectDesign(data.workflow_id);
     toast('✦ Workflow started');
-  } catch(e) { toast('Error: ' + e.message, true); }
-  finally { document.getElementById('submit-btn').disabled = false; }
+  }catch(e){ toast('Error: '+e.message, true); }
+  finally{ document.getElementById('submit-btn').disabled = false; }
 }
 
-function selectDesign(wfId) {
+function selectDesign(wfId){
   currentWfId = wfId;
   designs[wfId] = designs[wfId] || {stage:'PLANNING'};
   renderHistory();
@@ -241,214 +643,364 @@ function selectDesign(wfId) {
   startPolling(wfId);
 }
 
-let _pollErrors = 0;
-function startPolling(wfId) {
-  if (pollTimer) clearInterval(pollTimer);
-  _pollErrors = 0;
+// ── Polling ────────────────────────────────────────────────────────────────
+function startPolling(wfId){
+  if(pollTimer) clearInterval(pollTimer);
+  pollErrors = 0;
   poll(wfId);
-  pollTimer = setInterval(() => poll(wfId), 8000);
+  pollTimer = setInterval(()=>poll(wfId), 8000);
 }
 
-async function poll(wfId) {
-  try {
-    const r = await fetch(`${API}/api/v1/designs/${wfId}/status`);
-    if (!r.ok) {
-      _pollErrors++;
-      // Back off: 8s → 16s → 32s → cap at 60s to avoid hammering Temporal
-      if (_pollErrors > 3) {
-        clearInterval(pollTimer);
-        const backoff = Math.min(60000, 8000 * Math.pow(2, _pollErrors - 3));
-        pollTimer = setInterval(() => poll(wfId), backoff);
-      }
-      return;
-    }
-    _pollErrors = 0;
+async function poll(wfId){
+  try{
+    const r = await fetch(`/api/v1/designs/${wfId}/status`);
+    if(!r.ok){ pollErrors++; if(pollErrors>3){clearInterval(pollTimer);pollTimer=setInterval(()=>poll(wfId),Math.min(60000,8000*Math.pow(2,pollErrors-3)));} return;}
+    pollErrors = 0;
     const status = await r.json();
     designs[wfId] = {...(designs[wfId]||{}), ...status};
-    if (wfId === currentWfId) renderStatus(status);
+    if(wfId===currentWfId) renderStatus(status);
     const terminal = ['DONE','FAILED','ESCALATED'];
-    if (terminal.includes(status.stage)) { clearInterval(pollTimer); loadArtifacts(wfId); loadEvidence(wfId); }
-    if (status.stage === 'AWAITING_APPROVAL') {
-      showApprovalButtons(true);
-      loadCode(wfId);
-      loadEvidence(wfId);
-      loadArtifacts(wfId);
-    } else {
-      showApprovalButtons(false);
-    }
-    if (['DONE','HANDOFF'].includes(status.stage)) loadCode(wfId);
-  } catch { _pollErrors++; }
+    if(terminal.includes(status.stage)){ clearInterval(pollTimer); loadArtifacts(wfId); loadEvidence(wfId); }
+    if(status.stage==='AWAITING_APPROVAL'){ showApprovalBtns(true); loadCode(wfId); loadEvidence(wfId); loadArtifacts(wfId); }
+    else showApprovalBtns(false);
+    if(['DONE','HANDOFF'].includes(status.stage)) loadCode(wfId);
+  }catch{ pollErrors++; }
 }
 
-function renderStatus(status) {
-  const stage = status.stage || 'PLANNING';
+// ── Status rendering ───────────────────────────────────────────────────────
+function renderStatus(status){
+  const stage = status.stage||'PLANNING';
   const badge = document.getElementById('stage-badge');
   badge.textContent = stage;
-  badge.className = 'badge badge-' + stage.toLowerCase();
+  badge.className   = 'badge badge-'+stage.toLowerCase().replace(' ','_');
   renderPipeline(stage);
 }
 
-function renderPipeline(currentStage) {
+function renderPipeline(cur){
   const row = document.getElementById('stages-row');
-  const currentIdx = STAGES.indexOf(currentStage);
   row.innerHTML = '';
-  STAGES.forEach((s, i) => {
-    const done = i < currentIdx || (currentStage === 'DONE' && s !== 'FAILED');
-    const active = s === currentStage;
-    const error = currentStage === 'FAILED' && s === currentStage;
+  const curIdx = STAGES.indexOf(cur);
+  STAGES.forEach((s,i)=>{
+    const done   = i < curIdx || (cur==='DONE');
+    const active = s === cur && cur !== 'DONE';
+    const error  = cur==='FAILED' && i===curIdx;
     const div = document.createElement('div');
-    div.className = 'stage' + (done?' done':'') + (active?' active':'') + (error?' error':'');
-    div.innerHTML = `<div class="stage-icon">${STAGE_ICONS[s]||'•'}</div><div class="stage-label">${s}</div>`;
+    div.className = 'stage'+(done?' done':'')+(active?' active':'')+(error?' error':'');
+    div.innerHTML = `<div class="stage-icon">${ICONS[s]||'•'}</div><div class="stage-label">${s}</div>`;
     row.appendChild(div);
-    if (i < STAGES.length - 1) {
-      const conn = document.createElement('div');
-      conn.className = 'stage-connector' + (done?' done':'');
-      row.appendChild(conn);
+    if(i<STAGES.length-1){
+      const c=document.createElement('div');
+      c.className='stage-connector'+(done?' done':'');
+      row.appendChild(c);
     }
   });
 }
 
-async function loadCode(wfId) {
-  try {
-    const r = await fetch(`${API}/api/v1/designs/${wfId}/code`);
-    if (!r.ok) return;
-    const src = await r.text();
-    document.getElementById('code-view').textContent = src;
-    // Show ForgeCAD studio banner once code is available
-    loadForgeCADStudioCmd(wfId);
-  } catch {}
+// ── Code / evidence / artifacts ────────────────────────────────────────────
+async function loadCode(wfId){
+  try{
+    const r=await fetch(`/api/v1/designs/${wfId}/code`);
+    if(!r.ok) return;
+    document.getElementById('code-view').textContent = await r.text();
+    loadForgeCADBanner(wfId);
+  }catch{}
 }
 
-async function loadForgeCADStudioCmd(wfId) {
-  try {
-    const r = await fetch(`${API}/api/v1/designs/${wfId}/status`);
-    if (!r.ok) return;
-    const status = await r.json();
-    const cmd = status.studio_launch_command || status.forgecad_project_dir
-      ? `forgecad studio ${status.forgecad_project_dir || '.'}`
-      : null;
-    if (cmd) {
-      document.getElementById('studio-cmd').textContent = cmd;
-      document.getElementById('forgecad-banner').style.display = 'flex';
+async function loadForgeCADBanner(wfId){
+  try{
+    const r=await fetch(`/api/v1/designs/${wfId}/status`);
+    if(!r.ok) return;
+    const s=await r.json();
+    const cmd=s.studio_launch_command||(s.forgecad_project_dir?`forgecad studio ${s.forgecad_project_dir}`:null);
+    if(cmd){
+      document.getElementById('studio-cmd').textContent=cmd;
+      document.getElementById('forgecad-banner').style.display='flex';
     }
-  } catch {}
+  }catch{}
 }
 
-function copyStudioCmd() {
-  const cmd = document.getElementById('studio-cmd').textContent;
-  navigator.clipboard.writeText(cmd).then(() => toast('⎘ Copied to clipboard'));
+function copyStudioCmd(){
+  navigator.clipboard.writeText(document.getElementById('studio-cmd').textContent)
+    .then(()=>toast('⎘ Copied to clipboard'));
 }
 
-async function loadEvidence(wfId) {
-  try {
-    const r = await fetch(`${API}/api/v1/designs/${wfId}/evidence`);
-    if (!r.ok) return;
-    const data = await r.json();
-    const ev = data.final_geometry_evidence || {};
-    const vs = data.final_verifier_score || {};
+async function loadEvidence(wfId){
+  try{
+    const r=await fetch(`/api/v1/designs/${wfId}/evidence`);
+    if(!r.ok) return;
+    const data=await r.json();
+    const ev=data.final_geometry_evidence||{};
+    const vs=data.final_verifier_score||{};
+
+    // MeshLib quality badges
+    const watertight = ev.is_watertight;
+    const defects    = ev.mesh_defect_count;
+    const drift      = ev.volume_drift_pct;
+    const normals    = ev.normals_consistent;
+    function mbadge(ok, label, icon=''){
+      const cls = ok===null||ok===undefined?'unknown':(ok?'ok':'fail');
+      return `<span class="mesh-badge ${cls}">${icon} ${label}</span>`;
+    }
+
     document.getElementById('evidence-view').innerHTML = `
-      <div class="kv-grid">
-        ${kv('Volume (mm³)', (ev.volume_mm3||0).toFixed(1))}
-        ${kv('Watertight', ev.is_watertight ? '✓ Yes' : '✗ No')}
-        ${kv('Verifier Passed', vs.passed ? '✓ Pass' : '✗ Fail')}
-        ${kv('BBox IoU', (ev.bbox_iou||0).toFixed(3))}
-      </div>
-      ${vs.feedback ? `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:13px;line-height:1.6"><b style="color:var(--muted);font-size:11px">VERIFIER FEEDBACK</b><br>${vs.feedback}</div>` : ''}`;
-  } catch {}
+      <div style="padding:0 2px 10px">
+        <div class="mesh-quality-row">
+          ${mbadge(watertight,'Watertight','💧')}
+          ${mbadge(normals,'Normals','↗')}
+          ${mbadge(defects===0,'No defects','🔧')}
+          ${mbadge(drift!==null&&drift<1.0,'Vol drift <1%','📏')}
+        </div>
+        <div class="kv-grid">
+          ${kv('Volume (mm³)',(ev.volume_mm3||0).toFixed(1))}
+          ${kv('Verifier',vs.passed?'✓ Pass':'✗ Fail',vs.passed)}
+          ${kv('Faces',ev.num_faces||'—')}
+          ${kv('Defect holes',defects!==null&&defects!==undefined?defects:'—')}
+        </div>
+        ${vs.feedback?`<div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:13px;line-height:1.6;margin-top:4px"><span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Verifier feedback</span><br><br>${vs.feedback}</div>`:''}
+      </div>`;
+  }catch{}
 }
 
-function kv(label, value) {
-  return `<div class="kv-card"><div class="kv-label">${label}</div><div class="kv-value">${value}</div></div>`;
+function kv(label,value,bool){
+  let cls='';
+  if(bool===true) cls=' good';
+  else if(bool===false) cls=' bad';
+  return `<div class="kv-card"><div class="kv-label">${label}</div><div class="kv-value${cls}">${value}</div></div>`;
 }
 
-async function loadArtifacts(wfId) {
-  try {
-    const r = await fetch(`${API}/api/v1/designs/${wfId}/export`, {method:'POST'});
-    if (!r.ok) return;
-    const data = await r.json();
-    const list = document.getElementById('artifacts-list');
-    const types = {step:['📐','STEP File'],stl:['🧊','STL Mesh'],render:['🖼️','Render PNG'],forgecad:['🔩','ForgeCAD .forge.js'],trace:['📋','Trace JSON']};
-    list.innerHTML = '';
-    Object.entries(data.artifacts||{}).forEach(([key, info]) => {
-      const [icon, name] = types[key.replace('_artifact_uri','')] || ['📄', key];
-      const avail = info.available;
-      list.innerHTML += `<div class="artifact-row">
+async function loadArtifacts(wfId){
+  try{
+    const r=await fetch(`/api/v1/designs/${wfId}/export`,{method:'POST'});
+    if(!r.ok) return;
+    const data=await r.json();
+    const list=document.getElementById('artifacts-list');
+    const types={step:['📐','STEP File'],stl:['🧊','STL Mesh'],render:['🖼️','Render PNG'],forgecad:['🔩','ForgeCAD .forge.js'],trace:['📋','Trace JSON']};
+    list.innerHTML='';
+    Object.entries(data.artifacts||{}).forEach(([k,info])=>{
+      const key=k.replace('_artifact_uri','');
+      const [icon,name]=types[key]||['📄',key];
+      list.innerHTML+=`<div class="artifact-row">
         <span class="artifact-icon">${icon}</span>
         <div class="artifact-info"><div class="artifact-name">${name}</div><div class="artifact-uri">${info.uri||'—'}</div></div>
-        ${avail ? `<a href="${API}${info.download_path}" download><button class="btn btn-outline btn-sm">↓ Download</button></a>` : '<span style="font-size:11px;color:var(--muted)">Not ready</span>'}
+        ${info.available?`<a href="/api/v1/artifacts/${wfId}/${key}" download><button class="btn btn-outline btn-sm">↓</button></a>`:'<span style="font-size:11px;color:var(--muted)">Pending</span>'}
       </div>`;
     });
-  } catch {}
+  }catch{}
 }
 
-function showApprovalButtons(show) {
-  document.getElementById('approve-btn').style.display = show ? '' : 'none';
-  document.getElementById('reject-btn').style.display = show ? '' : 'none';
+function showApprovalBtns(show){
+  document.getElementById('approve-btn').style.display=show?'':'none';
+  document.getElementById('reject-btn').style.display=show?'':'none';
 }
 
-async function sendApprove(decision) {
-  if (!currentWfId) return;
-  try {
-    await fetch(`${API}/api/v1/designs/${currentWfId}/approve`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({decision, notes:''})
-    });
-    toast(decision === 'approved' ? '✓ Approved' : '✗ Rejected');
-    showApprovalButtons(false);
-  } catch(e) { toast('Error: ' + e.message, true); }
-}
-
-async function sendIterate() {
-  if (!currentWfId) return;
-  const instructions = document.getElementById('iterate-text').value.trim();
-  if (!instructions) return toast('Enter revision instructions');
-  try {
-    await fetch(`${API}/api/v1/designs/${currentWfId}/iterate`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({instructions})
-    });
-    document.getElementById('iterate-text').value = '';
-    toast('↻ Iteration sent');
-    startPolling(currentWfId);
-  } catch(e) { toast('Error: ' + e.message, true); }
-}
-
-function switchTab(name) {
-  document.querySelectorAll('.tab').forEach((t,i) => {
-    const names = ['code','evidence','artifacts'];
-    t.classList.toggle('active', names[i] === name);
+async function sendApprove(decision){
+  if(!currentWfId) return;
+  await fetch(`/api/v1/designs/${currentWfId}/approve`,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({decision,notes:''})
   });
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
+  toast(decision==='approved'?'✓ Approved':'✗ Rejected');
+  showApprovalBtns(false);
 }
 
-function renderHistory() {
-  const el = document.getElementById('history');
-  el.innerHTML = Object.entries(designs).reverse().map(([id, d]) => `
-    <div class="history-item ${id === currentWfId ? 'active' : ''}" onclick="selectDesign('${id}')">
-      <div class="wf-stage"><span class="stage-dot" style="background:${stageColor(d.stage||'PLANNING')}"></span>${id.split('-').slice(1,3).join('-')}</div>
+async function sendIterate(){
+  if(!currentWfId) return;
+  const instructions=document.getElementById('iterate-text').value.trim();
+  if(!instructions) return toast('Enter revision instructions');
+  await fetch(`/api/v1/designs/${currentWfId}/iterate`,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({instructions})
+  });
+  document.getElementById('iterate-text').value='';
+  toast('↻ Iteration sent');
+  startPolling(currentWfId);
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('active',['code','evidence','artifacts'][i]===name);
+  });
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
+function renderHistory(){
+  document.getElementById('history').innerHTML=
+    Object.entries(designs).reverse().map(([id,d])=>`
+    <div class="history-item ${id===currentWfId?'active':''}" onclick="selectDesign('${id}')">
+      <div class="wf-stage"><span class="stage-dot" style="background:${COLORS[d.stage||'IDLE']||'#4b5e7a'}"></span>${id.split('-').slice(1,3).join('-')}</div>
       <div class="wf-id">${id}</div>
     </div>`).join('');
 }
 
-function stageColor(s) {
-  const m = {PLANNING:'#60a5fa',CODING:'#a5b4fc',EXECUTING:'#86efac',VERIFYING:'#fcd34d',REVIEWING:'#ddd6fe',DONE:'#6ee7b7',FAILED:'#fca5a5'};
-  return m[s] || '#64748b';
-}
-
-let toastTimer;
-function toast(msg, err) {
-  const el = document.createElement('div');
-  el.className = 'toast';
-  el.style.borderColor = err ? 'var(--red)' : 'var(--border)';
-  el.textContent = msg;
+// ── Toast ─────────────────────────────────────────────────────────────────
+let _toastTimer;
+function toast(msg,err){
+  document.querySelectorAll('.toast').forEach(e=>e.remove());
+  const el=document.createElement('div');
+  el.className='toast';
+  el.style.borderColor=err?'var(--red)':'var(--border2)';
+  el.textContent=msg;
   document.body.appendChild(el);
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.remove(), 3000);
+  clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>el.remove(),3200);
 }
 
-checkApi();
-setInterval(checkApi, 10000);
+// ══════════════════════════════════════════════════════════════════════════
+//  CHATBOT AGENT — Phase 2
+// ══════════════════════════════════════════════════════════════════════════
+
+let chatSessionId  = null;
+let chatIsReady    = false;
+const chatMessages = [];
+
+function toggleChat(){
+  const panel = document.getElementById('chat-panel');
+  const fab   = document.getElementById('chat-fab');
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  fab.classList.toggle('open', !isOpen);
+  if(!isOpen){
+    // Focus input when opening
+    setTimeout(()=>document.getElementById('chat-input').focus(), 350);
+    // Hide suggestion chips after first real message
+    if(chatMessages.length>1) document.getElementById('chat-suggestions').style.display='none';
+  }
+}
+
+function chipClick(text){
+  document.getElementById('chat-input').value = text;
+  document.getElementById('chat-suggestions').style.display = 'none';
+  sendChatMsg();
+}
+
+function handleChatKey(e){
+  if(e.key==='Enter' && !e.shiftKey){
+    e.preventDefault();
+    sendChatMsg();
+  }
+}
+
+function autoResize(el){
+  el.style.height='auto';
+  el.style.height=Math.min(el.scrollHeight,100)+'px';
+}
+
+function _now(){
+  return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+}
+
+function appendMsg(role, text){
+  const body = document.getElementById('chat-body');
+  const wrap = document.createElement('div');
+  wrap.className = `msg ${role}`;
+  wrap.innerHTML = `
+    <div class="msg-bubble">${_formatMsg(text)}</div>
+    <div class="msg-time">${_now()}</div>
+  `;
+  body.appendChild(wrap);
+  body.scrollTop = body.scrollHeight;
+  chatMessages.push({role, text});
+}
+
+function _formatMsg(text){
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/`([^`]+)`/g,'<code style="background:rgba(0,0,0,.2);padding:1px 5px;border-radius:4px;font-family:monospace">$1</code>')
+    .replace(/\n/g,'<br>');
+}
+
+function showTyping(){
+  const body = document.getElementById('chat-body');
+  const div = document.createElement('div');
+  div.id = 'typing-indicator';
+  div.className = 'msg assistant';
+  div.innerHTML = '<div class="typing-indicator"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+
+function hideTyping(){
+  document.getElementById('typing-indicator')?.remove();
+}
+
+function updateParams(params){
+  if(!params||!Object.keys(params).length) return;
+  const strip = document.getElementById('params-strip');
+  const list  = document.getElementById('params-list');
+  strip.classList.add('visible');
+  list.innerHTML = Object.entries(params)
+    .map(([k,v])=>`<span class="param-chip">${k.replace(/_/g,' ')}: <strong>${v}</strong></span>`)
+    .join('');
+}
+
+async function sendChatMsg(){
+  const input = document.getElementById('chat-input');
+  const msg   = input.value.trim();
+  if(!msg) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('chat-suggestions').style.display = 'none';
+  document.getElementById('chat-send').disabled = true;
+
+  appendMsg('user', msg);
+  showTyping();
+
+  // Pass the current prompt as design_context on first message
+  const designCtx = chatMessages.length === 1
+    ? document.getElementById('prompt').value.trim() || undefined
+    : undefined;
+
+  try{
+    const res = await fetch('/api/v1/assistant',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        message: msg,
+        session_id: chatSessionId || undefined,
+        design_context: designCtx,
+      })
+    });
+    hideTyping();
+    if(!res.ok){ appendMsg('assistant','⚠️ Error: '+await res.text()); return; }
+    const data = await res.json();
+    chatSessionId = data.session_id;
+    chatIsReady   = data.is_ready;
+
+    appendMsg('assistant', data.response);
+    updateParams(data.resolved_params);
+
+    if(data.is_ready){
+      document.getElementById('ready-banner').style.display='flex';
+      document.getElementById('fab-dot').style.display='block';
+    }
+  }catch(e){
+    hideTyping();
+    appendMsg('assistant','⚠️ Network error. Please try again.');
+  }finally{
+    document.getElementById('chat-send').disabled = false;
+    document.getElementById('chat-input').focus();
+  }
+}
+
+async function finalizeAndUsePrompt(){
+  if(!chatSessionId) return;
+  try{
+    const res = await fetch('/api/v1/assistant/finalize',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({session_id: chatSessionId})
+    });
+    if(!res.ok) throw new Error(await res.text());
+    const data = await res.json();
+    document.getElementById('prompt').value = data.refined_prompt;
+    toast('✦ Prompt updated from measurements!');
+    toggleChat();
+    document.getElementById('fab-dot').style.display='none';
+  }catch(e){
+    toast('Failed to finalize: '+e.message, true);
+  }
+}
 </script>
 </body>
 </html>

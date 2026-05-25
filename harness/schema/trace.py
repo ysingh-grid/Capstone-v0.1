@@ -98,11 +98,13 @@ class GeometryEvidence(BaseModel):
     num_edges: Optional[int] = None
     num_vertices: Optional[int] = None
 
-    # MeshLib-extended measurements (Phase 2; nullable in Phase 1)
+    # MeshLib-extended measurements (Phase 2)
     is_watertight: Optional[bool] = None
     has_self_intersections: Optional[bool] = None
     mesh_defect_count: Optional[int] = None
     proximity_clearance_mm: Optional[float] = None
+    normals_consistent: Optional[bool] = None
+    volume_drift_pct: Optional[float] = None
 
     @classmethod
     def from_cadsmith_geometry_json(cls, geometry_json: dict) -> "GeometryEvidence":

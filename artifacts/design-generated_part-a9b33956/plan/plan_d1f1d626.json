@@ -1,0 +1,56 @@
+{
+  "description": "An ergonomic office chair assembly featuring a 5-spoke star base, central support column, contoured seat pan, and a tilted backrest connected via a steel bracket.",
+  "components": [
+    "5-spoke star base with central cylinder",
+    "Central support column",
+    "Contoured seat pan",
+    "Vertical mounting bracket",
+    "Tilted rectangular backrest"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 600.0,
+      "ylen": 665.0,
+      "zlen": 1100.0
+    },
+    "key_dimensions": {
+      "base_cylinder_diameter": 50.0,
+      "base_footprint_diameter": 600.0,
+      "spoke_diameter": 40.0,
+      "spoke_length": 275.0,
+      "support_column_height": 400.0,
+      "support_column_diameter": 50.0,
+      "seat_pan_width": 450.0,
+      "seat_pan_length": 450.0,
+      "seat_pan_thickness": 30.0,
+      "seat_pan_contour_dip": 5.0,
+      "bracket_width": 50.0,
+      "bracket_thickness": 10.0,
+      "bracket_height": 150.0,
+      "backrest_width": 400.0,
+      "backrest_height": 500.0,
+      "backrest_thickness": 20.0,
+      "backrest_angle_deg": 15.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the 5 spokes of the base are radially distributed at 72-degree intervals. The seat contour should be a smooth, subtle subtraction from the top surface. The backrest bracket should mount flush to the rear bottom of the seat pan and tilt the backrest backward by 15 degrees from the vertical Z-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

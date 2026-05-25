@@ -1,0 +1,53 @@
+{
+  "description": "Parametric FPV 250 drone unibody bottom mainplate in X-configuration with 4mm uniform thickness, featuring motor mounting pads, flight controller mounting holes, and a secondary accessory mounting pattern.",
+  "components": [
+    "Central fuselage main body",
+    "Four symmetrical carbon fiber arms",
+    "Four circular motor mounting pads with central holes and screw patterns",
+    "Central flight controller stack holes (30.5mm x 30.5mm)",
+    "Secondary accessory stack holes (20mm x 20mm)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 204.8,
+      "ylen": 204.8,
+      "zlen": 4.0
+    },
+    "key_dimensions": {
+      "diagonal_distance_mm": 250.0,
+      "fuselage_width_mm": 40.0,
+      "fuselage_length_mm": 120.0,
+      "fuselage_thickness_mm": 4.0,
+      "arm_width_mm": 12.0,
+      "arm_thickness_mm": 4.0,
+      "motor_pad_diameter_mm": 28.0,
+      "motor_pad_center_hole_mm": 5.0,
+      "motor_pad_screw_hole_size_mm": 3.0,
+      "motor_pad_bcd_mm": 16.0,
+      "flight_controller_hole_pattern_mm": 30.5,
+      "flight_controller_hole_size_mm": 3.0,
+      "secondary_hole_pattern_mm": 20.0,
+      "secondary_hole_size_mm": 2.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 28,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The motor centers should be located at X/Y offsets calculated from the 250mm diagonal distance. Assuming a square layout, the offsets from the origin for the motor centers are approximately +/- 88.39 mm on both X and Y axes. The secondary 20x20mm hole pattern should be offset along the Y-axis (e.g., -35mm offset from origin) to place it 'directly behind' the central stack.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

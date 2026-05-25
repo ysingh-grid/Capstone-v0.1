@@ -1,0 +1,121 @@
+{
+  "trace_id": "f234855d-64e6-4c66-a065-52a64cb4d8fb",
+  "workflow_id": "design-generated_part-d4cc891f",
+  "design_name": "A sturdy wooden bed frame designed to fit a 6.5 x 6.5 ft (78 x 78 inches) square mattress, with the top of the frame standing exactly 2 feet (24 inches) above the ground.",
+  "created_at": "2026-05-25T18:33:34.510497+00:00",
+  "prompt": "Design a wooden bed frame to accommodate a mattress of 6.5 x 6.5 ft and 6 inches thick. The top surface of the bed frame should be 2 feet above the ground. Use standard wood thickness for the frame.\n\nConfirmed measurements:\n  mattress_size_ft: 6.5\n  mattress_thickness_in: 6\n  height_above_ground_ft: 2\n  material: wood",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A sturdy wooden bed frame designed to fit a 6.5 x 6.5 ft (78 x 78 inches) square mattress, with the top of the frame standing exactly 2 feet (24 inches) above the ground.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 19,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 122175134.00000001,
+        "center_of_mass": [
+          8.806887968891074e-14,
+          3.122318871878626e-14,
+          502.43223313346266
+        ],
+        "bounding_box": {
+          "xmin": -1030.0,
+          "xmax": 1030.0,
+          "xlen": 2060.0,
+          "ymin": -1030.0,
+          "ymax": 1030.0,
+          "ylen": 2060.0,
+          "zmin": 0.0,
+          "zmax": 610.0,
+          "zlen": 610.0
+        },
+        "is_valid": true,
+        "num_faces": 144,
+        "num_edges": 288,
+        "num_vertices": 192,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 1.2196558093275881e-14
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://design-generated_part-d4cc891f/step/generated_part_outer0_attempt3.step",
+      "stl_artifact_uri": "artifact://design-generated_part-d4cc891f/stl/generated_part_outer0_attempt3.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 6,
+  "total_time_ms": 195016.38891601562,
+  "final_step_artifact_uri": "artifact://design-generated_part-d4cc891f/step/generated_part_outer0_attempt3.step",
+  "final_stl_artifact_uri": "artifact://design-generated_part-d4cc891f/stl/generated_part_outer0_attempt3.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://design-generated_part-d4cc891f/forgecad/a_sturdy_wooden_bed_frame_designed_to_fi_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 122175134.00000001,
+    "center_of_mass": [
+      8.806887968891074e-14,
+      3.122318871878626e-14,
+      502.43223313346266
+    ],
+    "bounding_box": {
+      "xmin": -1030.0,
+      "xmax": 1030.0,
+      "xlen": 2060.0,
+      "ymin": -1030.0,
+      "ymax": 1030.0,
+      "ylen": 2060.0,
+      "zmin": 0.0,
+      "zmax": 610.0,
+      "zlen": 610.0
+    },
+    "is_valid": true,
+    "num_faces": 144,
+    "num_edges": 288,
+    "num_vertices": 192,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 1.2196558093275881e-14
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

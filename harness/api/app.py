@@ -26,14 +26,16 @@ Phase 2 deferred:
 from __future__ import annotations
 
 import os
+import shutil
+import uuid as _uuid
+from pathlib import Path
 from typing import Optional
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse
-import pathlib
-from fastapi.responses import JSONResponse, PlainTextResponse
 from pydantic import BaseModel
 from temporalio.client import Client
 
@@ -41,6 +43,7 @@ load_dotenv()
 
 from harness.artifacts.store import get_store
 from harness.workflows.design_workflow import DesignWorkflowInput, DesignWorkflow
+from harness.api.chatbot_agent import router as chatbot_router
 
 app = FastAPI(
     title="Geometry Agent Harness API",
@@ -48,16 +51,53 @@ app = FastAPI(
         "Product API for the Geometry Agent Harness — RLM + Temporal + "
         "CadQuery + ForgeCAD.  PRD §10."
     ),
-    version="0.1.0",
+    version="0.2.0",
 )
 
-_STATIC = pathlib.Path(__file__).parent / "static"
+# ── CORS — allow ForgeCAD studio origin ─────────────────────────────────────
+# forgecad studio default port is 5173; also allow common variations.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://localhost:4173",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5174",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ── Phase 2: persistent measurement-extraction chatbot agent ─────────────────
+app.include_router(chatbot_router)
+
+# ── Static assets ────────────────────────────────────────────────────────────
+_STATIC = Path(__file__).parent / "static"
+
+
+@app.get("/forge-assistant.js", include_in_schema=False)
+async def forge_assistant_js():
+    """Serve the ForgeCAD overlay chatbot script with CORS-safe headers."""
+    js_path = _STATIC / "forge-assistant.js"
+    if not js_path.exists():
+        raise HTTPException(status_code=404, detail="forge-assistant.js not found")
+    return FileResponse(
+        str(js_path),
+        media_type="application/javascript",
+        headers={"Cache-Control": "no-cache, no-store"},
+    )
+
+
 if _STATIC.exists():
-    app.mount("/ui", StaticFiles(directory=str(_STATIC), html=True), name="static")
+    app.mount("/ui", StaticFiles(directory=str(_STATIC), html=True), name="static_ui")
+
 
 @app.get("/", include_in_schema=False)
 async def root():
-    return RedirectResponse(url="/ui/index.html")
+    """Root — redirect to harness admin UI or docs."""
+    return RedirectResponse(url="/docs")
 
 # ---------------------------------------------------------------------------
 # Temporal client (lazy singleton)
@@ -443,6 +483,146 @@ async def update_params(workflow_id: str, req: ParamsRequest):
     except Exception as exc:
         raise HTTPException(status_code=400, detail=str(exc))
     return {"workflow_id": workflow_id, "params_updated": req.params}
+
+
+# ---------------------------------------------------------------------------
+# POST /api/v1/forgecad/trigger — start workflow and copy forge.js to project
+# ---------------------------------------------------------------------------
+
+
+class ForgeCADTriggerRequest(BaseModel):
+    prompt: str
+    name: str = "generated_part"
+    project_dir: Optional[str] = None        # absolute path to ForgeCAD project dir
+    resolved_params: dict = {}               # measurements captured by chatbot
+    require_approval: bool = False            # skip approval gate for instant delivery
+
+
+@app.post("/api/v1/forgecad/trigger", status_code=201)
+async def forgecad_trigger(req: ForgeCADTriggerRequest):
+    """
+    Phase 2 — ForgeCAD-native entry point.
+
+    Starts the Temporal design workflow from a fully specified prompt (after
+    chatbot clarification) and schedules a background task to copy the
+    resulting .forge.js into the project directory so ForgeCAD's file watcher
+    can pick it up immediately.
+    """
+    import asyncio as _asyncio
+
+    client = await get_temporal_client()
+
+    # Embed resolved measurements into the prompt for the planner
+    enriched_prompt = req.prompt
+    if req.resolved_params:
+        param_lines = "\n".join(f"  {k}: {v}" for k, v in req.resolved_params.items())
+        enriched_prompt = (
+            f"{req.prompt}\n\n"
+            f"Confirmed measurements:\n{param_lines}"
+        )
+
+    wf_input = DesignWorkflowInput(
+        prompt=enriched_prompt,
+        name=req.name,
+        require_approval=req.require_approval,
+    )
+
+    wf_id = f"design-{req.name}-{_uuid.uuid4().hex[:8]}"
+    handle = await client.start_workflow(
+        DesignWorkflow.run,
+        wf_input,
+        id=wf_id,
+        task_queue="design",
+    )
+
+    return {
+        "workflow_id": handle.id,
+        "run_id": handle.result_run_id or "",
+        "project_dir": req.project_dir,
+        "message": f"Workflow started. Polling /api/v1/designs/{handle.id}/status for progress.",
+    }
+
+
+def _do_copy_forgecad(status: dict, project_dir: str, name: str) -> None:
+    """Copy the .forge.js artifact into the project directory."""
+    import logging as _logging
+    log = _logging.getLogger(__name__)
+
+    forge_uri = status.get("forgecad_artifact_uri")
+    if not forge_uri:
+        log.warning("[forgecad_trigger] no forgecad_artifact_uri in status")
+        return
+
+    store = get_store()
+    if not store.exists(forge_uri):
+        log.warning("[forgecad_trigger] forge artifact not in store: %s", forge_uri)
+        return
+
+    try:
+        dest_dir = Path(project_dir)
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        dest_file = dest_dir / f"{name}.forge.js"
+
+        src_path = store.local_path(forge_uri)
+        shutil.copy2(str(src_path), str(dest_file))
+        log.info("[forgecad_trigger] Copied forge.js → %s", dest_file)
+    except Exception as exc:
+        log.error("[forgecad_trigger] copy failed: %s", exc)
+
+
+# ---------------------------------------------------------------------------
+# POST /api/v1/forgecad/copy/{workflow_id}
+# Called by the JS overlay once it detects DONE — explicit, reliable copy.
+# ---------------------------------------------------------------------------
+
+
+class ForgeCopyCopyRequest(BaseModel):
+    project_dir: str    # absolute path to forgecad-workspace
+    name: str = "generated_part"
+
+
+@app.post("/api/v1/forgecad/copy/{workflow_id}", status_code=200)
+async def forgecad_copy(workflow_id: str, req: ForgeCopyCopyRequest):
+    """
+    Copy the completed .forge.js artifact into the ForgeCAD project directory
+    so the file watcher picks it up immediately.
+
+    Called by the JS overlay the moment it detects the workflow has reached DONE.
+    Synchronous and reliable — no background polling.
+    """
+    client = await get_temporal_client()
+    handle = client.get_workflow_handle(workflow_id)
+    try:
+        status = await handle.query(DesignWorkflow.status)
+    except Exception as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+    if status.get("stage") != "DONE":
+        raise HTTPException(status_code=409, detail=f"Workflow not done yet (stage={status.get('stage')})")
+
+    forge_uri = status.get("forgecad_artifact_uri")
+    if not forge_uri:
+        raise HTTPException(status_code=404, detail="forgecad_artifact_uri not in workflow status")
+
+    store = get_store()
+    if not store.exists(forge_uri):
+        raise HTTPException(status_code=404, detail=f"Forge artifact not found in store: {forge_uri}")
+
+    try:
+        dest_dir = Path(req.project_dir)
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        dest_file = dest_dir / f"{req.name}.forge.js"
+        src_path = store.local_path(forge_uri)
+        shutil.copy2(str(src_path), str(dest_file))
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Copy failed: {exc}")
+
+    return {
+        "copied": True,
+        "dest": str(dest_file),
+        "src": str(src_path),
+        "workflow_id": workflow_id,
+    }
 
 
 # ---------------------------------------------------------------------------

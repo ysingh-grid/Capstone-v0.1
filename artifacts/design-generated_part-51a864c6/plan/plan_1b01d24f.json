@@ -1,0 +1,51 @@
+{
+  "description": "A detailed 3D model of a wooden dining chair with four tapered legs, a trapezoidal seat, and a backrest with three vertical slats.",
+  "components": [
+    "Front legs (2x): Vertical tapered cylinders from 40mm at the top to 20mm at the floor.",
+    "Rear legs / Backrest posts (2x): Continuous members from the floor to 900mm height, tapering from 30mm diameter at the seat to 20mm at the floor, extending upward to form the backrest frame.",
+    "Seat frame: Trapezoidal plate, 450mm front width, 400mm back width, 450mm depth, and 25mm thickness.",
+    "Backrest slats (3x): Vertical rectangular slats, 30mm wide, 10mm thick, evenly spaced with 40mm gaps, integrated into the rear leg extensions."
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 450.0,
+      "ylen": 450.0,
+      "zlen": 900.0
+    },
+    "key_dimensions": {
+      "total_height": 900.0,
+      "seat_height": 450.0,
+      "front_width": 450.0,
+      "back_width": 400.0,
+      "seat_depth": 450.0,
+      "seat_thickness": 25.0,
+      "front_leg_top_dia": 40.0,
+      "front_leg_bottom_dia": 20.0,
+      "rear_leg_seat_dia": 30.0,
+      "rear_leg_bottom_dia": 20.0,
+      "slat_width": 30.0,
+      "slat_thickness": 10.0,
+      "slat_spacing": 40.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the front legs are flush with the front corners of the trapezoidal seat, and the rear legs align with the back corners. The rear legs extend continuously past the seat to the top of the backrest at Z=900mm. Slat spacing must be exactly 40mm, centered between the rear uprights.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,57 @@
+{
+  "description": "A 1mm thick sheet metal standoff pipe bracket (U-clamp) designed to hold a 20mm outer diameter pipe with its center exactly 40mm away from the mounting surface.",
+  "components": [
+    "Left and right mounting flanges",
+    "Two parallel vertical standoff legs",
+    "Semi-circular pipe support cradle",
+    "Two mounting screw holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 62.0,
+      "ylen": 20.0,
+      "zlen": 41.0
+    },
+    "key_dimensions": {
+      "pipe_cradle_inner_radius": 10.0,
+      "standoff_height_to_pipe_center": 40.0,
+      "bracket_thickness": 1.0,
+      "bracket_width": 20.0,
+      "flange_length": 20.0,
+      "mounting_hole_diameter": 4.5
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "2 hole(s) of diameter 4.5 mm",
+      "dimensions": {
+        "diameter": 4.5
+      },
+      "position": null,
+      "count": 2,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 2,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The bracket should be modeled as a continuous 1mm thick strip. The inner radius of the semi-circular cradle must be exactly 10mm to snugly fit the 20mm OD pipe. The vertical distance from the flat mounting face of the flanges to the center of the cradle arc must be exactly 40mm. Add one 4.5mm mounting hole centered on each of the two mounting flanges.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}
