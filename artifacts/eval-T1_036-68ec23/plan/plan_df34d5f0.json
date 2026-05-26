@@ -1,0 +1,37 @@
+{
+  "description": "A flat circular disc with a diameter of 80mm and a thickness of 1mm.",
+  "components": [
+    "circular_disc"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 80.0,
+      "zlen": 1.0
+    },
+    "key_dimensions": {
+      "diameter": 80.0,
+      "thickness": 1.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a cylinder centered at the origin (0,0,0) with a radius of 40mm and height (thickness) of 1mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

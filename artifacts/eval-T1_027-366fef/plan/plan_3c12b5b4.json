@@ -1,0 +1,39 @@
+{
+  "description": "A rectangular block with rounded edges (fillets) on all sides.",
+  "components": [
+    "rounded_solid_block"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 70.0,
+      "ylen": 40.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "length": 70.0,
+      "width": 40.0,
+      "height": 25.0,
+      "fillet_radius": 5.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a base block of 70x40x25mm and apply a 5mm radius fillet to all of its 12 edges. Ensure the final overall bounding box does not exceed 70x40x25mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

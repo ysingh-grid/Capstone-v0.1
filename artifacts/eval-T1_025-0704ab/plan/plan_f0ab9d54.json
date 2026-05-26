@@ -1,0 +1,52 @@
+{
+  "description": "A large flat washer with an outer diameter of 50mm, inner diameter of 25mm, and thickness of 4mm.",
+  "components": [
+    "Outer cylinder (main body)",
+    "Inner cylinder (central hole cut-out)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 4.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 50.0,
+      "inner_diameter": 25.0,
+      "thickness": 4.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 25.0 mm",
+      "dimensions": {
+        "diameter": 25.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a cylinder of diameter 50mm and height 4mm, then subtract a concentric cylinder of diameter 25mm and height 4mm (or slightly larger for a clean cut). Center the washer on the XY plane for symmetry.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

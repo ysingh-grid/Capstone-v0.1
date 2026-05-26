@@ -1,0 +1,40 @@
+{
+  "description": "A rounded rectangular block with 3mm fillets on its four vertical edges.",
+  "components": [
+    "Main rectangular body",
+    "Vertical edge fillets"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 25.0,
+      "zlen": 15.0
+    },
+    "key_dimensions": {
+      "length": 50.0,
+      "width": 25.0,
+      "height": 15.0,
+      "fillet_radius": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure that the 3mm fillets are applied only to the 4 vertical edges (along the Z-axis). The top and bottom horizontal faces must remain completely flat.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

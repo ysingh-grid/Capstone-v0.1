@@ -1,0 +1,73 @@
+{
+  "description": "A triple gear stack on a single central hub with a keywayed bore running through its length, designed with star-polygon tooth profiles for the three gears of decreasing sizes along the Z-axis.",
+  "components": [
+    "central_cylindrical_hub",
+    "bottom_gear_24_teeth",
+    "middle_gear_18_teeth",
+    "top_gear_12_teeth",
+    "central_bore",
+    "keyway_slot"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 54.0,
+      "ylen": 54.0,
+      "zlen": 55.0
+    },
+    "key_dimensions": {
+      "hub_diameter": 14.0,
+      "hub_length": 55.0,
+      "bore_diameter": 6.0,
+      "keyway_width": 3.0,
+      "keyway_depth": 2.0,
+      "gear1_tip_diameter": 54.0,
+      "gear1_root_diameter": 44.0,
+      "gear1_face_width": 8.0,
+      "gear1_z_start": 2.0,
+      "gear1_z_end": 10.0,
+      "gear2_tip_diameter": 42.0,
+      "gear2_root_diameter": 34.0,
+      "gear2_face_width": 8.0,
+      "gear2_z_start": 18.0,
+      "gear2_z_end": 26.0,
+      "gear3_tip_diameter": 30.0,
+      "gear3_root_diameter": 24.0,
+      "gear3_face_width": 8.0,
+      "gear3_z_start": 34.0,
+      "gear3_z_end": 42.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 6.0 mm",
+      "dimensions": {
+        "diameter": 6.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the central hub cylinder first, then construct each of the three gears using star-polygon patterns (outer tip radius and inner root radius) extruded along Z for their respective intervals. Combine these, then subtract the central bore cylinder (radius 3mm) and the keyway box (spanning X from 3 to 5, Y from -1.5 to 1.5, Z from 0 to 55) to complete the part.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

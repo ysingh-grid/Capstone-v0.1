@@ -1,0 +1,70 @@
+{
+  "description": "An idler gear assembly consisting of a 16-tooth spur gear mounted on a stepped post rising from a square base plate with a central through-bore and four mounting holes.",
+  "components": [
+    "base_plate",
+    "stepped_post_lower",
+    "stepped_post_upper",
+    "spur_gear",
+    "central_bore",
+    "mounting_holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 60.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "base_plate_width": 60.0,
+      "base_plate_length": 60.0,
+      "base_plate_thickness": 5.0,
+      "post_lower_diameter": 20.0,
+      "post_lower_z_start": 5.0,
+      "post_lower_z_end": 18.0,
+      "post_upper_diameter": 14.0,
+      "post_upper_z_start": 18.0,
+      "post_upper_z_end": 40.0,
+      "gear_teeth": 16.0,
+      "gear_tip_diameter": 40.0,
+      "gear_root_diameter": 32.0,
+      "gear_z_start": 10.0,
+      "gear_z_end": 18.0,
+      "central_bore_diameter": 8.0,
+      "mounting_hole_diameter": 6.0,
+      "mounting_hole_pitch": 44.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "5 hole(s) of diameter 8.0 mm",
+      "dimensions": {
+        "diameter": 8.0
+      },
+      "position": null,
+      "count": 5,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 5,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Model the 16-tooth spur gear with a star-polygon tooth profile alternating between root radius (16mm) and tip radius (20mm). Ensure the central bore of 8mm cuts entirely through the assembly (Z=0 to Z=40). The four 6mm mounting holes must be centered at coordinates (+-22, +-22) in the XY plane and cut only through the base plate (Z=0 to Z=5).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

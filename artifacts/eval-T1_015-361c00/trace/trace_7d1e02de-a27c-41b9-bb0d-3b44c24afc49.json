@@ -1,0 +1,121 @@
+{
+  "trace_id": "7d1e02de-a27c-41b9-bb0d-3b44c24afc49",
+  "workflow_id": "eval-T1_015-361c00",
+  "design_name": "A truncated cone (frustum) with a base diameter of 40mm, a top diameter of 20mm, and a height of 30mm.",
+  "created_at": "2026-05-26T05:20:52.555475+00:00",
+  "prompt": "A truncated cone (frustum) with a base diameter of 40mm, a top diameter of 20mm, and a height of 30mm.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A truncated cone (frustum) with a base diameter of 40mm, a top diameter of 20mm, and a height of 30mm.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 23,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 21991.14857512855,
+        "center_of_mass": [
+          -1.1580046200244058e-15,
+          5.852658541813395e-16,
+          11.785714285714283
+        ],
+        "bounding_box": {
+          "xmin": -20.0,
+          "xmax": 20.0,
+          "xlen": 40.0,
+          "ymin": -20.0,
+          "ymax": 20.0,
+          "ylen": 40.0,
+          "zmin": 0.0,
+          "zmax": 30.000000000000004,
+          "zlen": 30.000000000000004
+        },
+        "is_valid": true,
+        "num_faces": 3,
+        "num_edges": 3,
+        "num_vertices": 2,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.14070067030653102
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_015-361c00/step/T1_015_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_015-361c00/stl/T1_015_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 24805.22216796875,
+  "final_step_artifact_uri": "artifact://eval-T1_015-361c00/step/T1_015_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_015-361c00/stl/T1_015_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_015-361c00/forgecad/a_truncated_cone_(frustum)_with_a_base_d_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 21991.14857512855,
+    "center_of_mass": [
+      -1.1580046200244058e-15,
+      5.852658541813395e-16,
+      11.785714285714283
+    ],
+    "bounding_box": {
+      "xmin": -20.0,
+      "xmax": 20.0,
+      "xlen": 40.0,
+      "ymin": -20.0,
+      "ymax": 20.0,
+      "ylen": 40.0,
+      "zmin": 0.0,
+      "zmax": 30.000000000000004,
+      "zlen": 30.000000000000004
+    },
+    "is_valid": true,
+    "num_faces": 3,
+    "num_edges": 3,
+    "num_vertices": 2,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.14070067030653102
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

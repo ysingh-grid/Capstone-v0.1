@@ -1,0 +1,121 @@
+{
+  "trace_id": "983e59d4-f0ec-418a-b86e-a88eb1e3c163",
+  "workflow_id": "eval-T2_022-f17bb1",
+  "design_name": "A 24x24mm square flat washer with a 3mm thickness and a 10.5mm central through-hole, centered at the origin on the XY plane.",
+  "created_at": "2026-05-26T06:12:23.759422+00:00",
+  "prompt": "A square flat washer: a square plate 24mm x 24mm (X x Y), 3mm thick (Z), with a 10.5mm diameter central through-hole. The washer lies flat on the XY plane, centered at the origin, with thickness extruded in the +Z direction.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A 24x24mm square flat washer with a 3mm thickness and a 10.5mm central through-hole, centered at the origin on the XY plane.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 21,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 1468.2295574562938,
+        "center_of_mass": [
+          2.1293591465090138e-16,
+          7.745077997983017e-17,
+          1.5000000000000002
+        ],
+        "bounding_box": {
+          "xmin": -12.0,
+          "xmax": 12.0,
+          "xlen": 24.0,
+          "ymin": -12.0,
+          "ymax": 12.0,
+          "ylen": 24.0,
+          "zmin": 0.0,
+          "zmax": 3.0,
+          "zlen": 3.0
+        },
+        "is_valid": true,
+        "num_faces": 7,
+        "num_edges": 15,
+        "num_vertices": 10,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.007331705921852359
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_022-f17bb1/step/T2_022_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_022-f17bb1/stl/T2_022_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 21898.418701171875,
+  "final_step_artifact_uri": "artifact://eval-T2_022-f17bb1/step/T2_022_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_022-f17bb1/stl/T2_022_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_022-f17bb1/forgecad/a_24x24mm_square_flat_washer_with_a_3mm__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 1468.2295574562938,
+    "center_of_mass": [
+      2.1293591465090138e-16,
+      7.745077997983017e-17,
+      1.5000000000000002
+    ],
+    "bounding_box": {
+      "xmin": -12.0,
+      "xmax": 12.0,
+      "xlen": 24.0,
+      "ymin": -12.0,
+      "ymax": 12.0,
+      "ylen": 24.0,
+      "zmin": 0.0,
+      "zmax": 3.0,
+      "zlen": 3.0
+    },
+    "is_valid": true,
+    "num_faces": 7,
+    "num_edges": 15,
+    "num_vertices": 10,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.007331705921852359
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

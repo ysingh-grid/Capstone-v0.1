@@ -1,0 +1,38 @@
+{
+  "description": "A simple rectangular bar of square cross-section (10mm x 10mm) and 200mm length.",
+  "components": [
+    "rectangular_bar_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 10.0,
+      "ylen": 200.0,
+      "zlen": 10.0
+    },
+    "key_dimensions": {
+      "width": 10.0,
+      "height": 10.0,
+      "length": 200.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Model this as a single box or an extruded 10x10 square sketch. Center it at the origin for maximum symmetry.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

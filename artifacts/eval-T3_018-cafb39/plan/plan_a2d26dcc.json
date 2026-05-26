@@ -1,0 +1,48 @@
+{
+  "description": "A quadcopter drone chassis in a plus (+) configuration with a central square hub, four extending arms, outer motor mount platforms, and pre-drilled holes for motors and a flight controller.",
+  "components": [
+    "Central square hub plate (30mm x 30mm x 3mm)",
+    "Four rectangular arms (45mm x 10mm x 3mm) extending along \u00b1X and \u00b1Y axes",
+    "Four circular motor mount platforms (18mm diameter, 3mm thick) at the tips of the arms",
+    "Four motor shaft through-holes (5mm diameter) centered at the motor mounts",
+    "Four flight controller mounting holes (3.2mm diameter, M3 clearance) in a 20mm x 20mm square pattern centered on the hub"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 138.0,
+      "ylen": 138.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "hub_size": 30.0,
+      "hub_thickness": 3.0,
+      "arm_length": 45.0,
+      "arm_width": 10.0,
+      "motor_mount_diameter": 18.0,
+      "motor_shaft_hole_diameter": 5.0,
+      "fc_hole_pattern_size": 20.0,
+      "fc_hole_diameter": 3.2,
+      "motor_mount_center_distance": 60.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the arms and central hub are merged seamlessly into a single solid before subtracting the holes. The motor mounts are centered at (\u00b160, 0, 1.5) and (0, \u00b160, 1.5). The flight controller holes should be at coordinates (\u00b110, \u00b110) on the XY plane.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

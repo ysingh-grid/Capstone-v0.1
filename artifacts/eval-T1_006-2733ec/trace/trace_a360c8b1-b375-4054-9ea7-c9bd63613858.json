@@ -1,0 +1,121 @@
+{
+  "trace_id": "a360c8b1-b375-4054-9ea7-c9bd63613858",
+  "workflow_id": "eval-T1_006-2733ec",
+  "design_name": "A simple flat rectangular plate with dimensions 100mm by 60mm and a thickness of 3mm.",
+  "created_at": "2026-05-26T05:15:23.887757+00:00",
+  "prompt": "A flat rectangular plate, 100mm by 60mm, with a thickness of 3mm.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A simple flat rectangular plate with dimensions 100mm by 60mm and a thickness of 3mm.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 15,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 18000.0,
+        "center_of_mass": [
+          -1.7594753878868025e-16,
+          1.4210854715202004e-16,
+          1.5
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -30.0,
+          "ymax": 30.0,
+          "ylen": 60.0,
+          "zmin": 0.0,
+          "zmax": 3.0,
+          "zlen": 3.0
+        },
+        "is_valid": true,
+        "num_faces": 6,
+        "num_edges": 12,
+        "num_vertices": 8,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_006-2733ec/step/T1_006_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_006-2733ec/stl/T1_006_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 19219.739013671875,
+  "final_step_artifact_uri": "artifact://eval-T1_006-2733ec/step/T1_006_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_006-2733ec/stl/T1_006_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_006-2733ec/forgecad/a_simple_flat_rectangular_plate_with_dim_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 18000.0,
+    "center_of_mass": [
+      -1.7594753878868025e-16,
+      1.4210854715202004e-16,
+      1.5
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -30.0,
+      "ymax": 30.0,
+      "ylen": 60.0,
+      "zmin": 0.0,
+      "zmax": 3.0,
+      "zlen": 3.0
+    },
+    "is_valid": true,
+    "num_faces": 6,
+    "num_edges": 12,
+    "num_vertices": 8,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

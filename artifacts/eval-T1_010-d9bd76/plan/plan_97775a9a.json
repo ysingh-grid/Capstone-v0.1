@@ -1,0 +1,37 @@
+{
+  "description": "A tall cylindrical rod with a diameter of 8mm and a length of 150mm.",
+  "components": [
+    "Cylindrical rod body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 8.0,
+      "ylen": 8.0,
+      "zlen": 150.0
+    },
+    "key_dimensions": {
+      "diameter": 8.0,
+      "length": 150.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Align the cylinder vertically along the Z-axis to represent a 'tall' rod. The base center should be positioned at (0,0,0) or the center of the cylinder at (0,0,75) for standard alignment.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

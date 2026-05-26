@@ -1,0 +1,40 @@
+{
+  "description": "A solid cylinder 20mm in diameter and 20mm tall, with 2mm fillets on both top and bottom circular edges.",
+  "components": [
+    "cylinder_body",
+    "top_fillet",
+    "bottom_fillet"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 20.0,
+      "ylen": 20.0,
+      "zlen": 20.0
+    },
+    "key_dimensions": {
+      "diameter": 20.0,
+      "height": 20.0,
+      "fillet_radius": 2.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Model a base cylinder of radius 10mm and height 20mm centered at the origin. Apply a 2mm edge fillet to both the top and bottom circular profiles. The resulting bounding box must be exactly 20x20x20mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,38 @@
+{
+  "description": "A simple rectangular block with dimensions 120mm by 45mm by 15mm.",
+  "components": [
+    "rectangular_block"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 120.0,
+      "ylen": 45.0,
+      "zlen": 15.0
+    },
+    "key_dimensions": {
+      "length": 120.0,
+      "width": 45.0,
+      "height": 15.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.99,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a basic solid box. Center the box at the coordinate origin (0, 0, 0) for ease of reference, with length along the X-axis, width along the Y-axis, and height along the Z-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,37 @@
+{
+  "description": "A cylinder with a 40mm diameter and 10mm height, resembling a hockey puck.",
+  "components": [
+    "Cylindrical body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 10.0
+    },
+    "key_dimensions": {
+      "diameter": 40.0,
+      "height": 10.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the cylinder is modeled with sufficient angular resolution (e.g., at least 64 or 128 segments) to appear smooth and round. Center the cylinder at the origin for optimal alignment.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

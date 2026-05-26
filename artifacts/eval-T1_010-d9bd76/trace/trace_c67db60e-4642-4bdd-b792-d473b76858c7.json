@@ -1,0 +1,121 @@
+{
+  "trace_id": "c67db60e-4642-4bdd-b792-d473b76858c7",
+  "workflow_id": "eval-T1_010-d9bd76",
+  "design_name": "A tall cylindrical rod with a diameter of 8mm and a length of 150mm.",
+  "created_at": "2026-05-26T05:17:01.681486+00:00",
+  "prompt": "A tall cylindrical rod, 8mm in diameter and 150mm long.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A tall cylindrical rod with a diameter of 8mm and a length of 150mm.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 15,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 7539.822368615502,
+        "center_of_mass": [
+          -6.634401468889826e-16,
+          1.7315436245536267e-16,
+          75.00000000000001
+        ],
+        "bounding_box": {
+          "xmin": -4.0,
+          "xmax": 4.0,
+          "xlen": 8.0,
+          "ymin": -4.0,
+          "ymax": 4.0,
+          "ylen": 8.0,
+          "zmin": 0.0,
+          "zmax": 150.0,
+          "zlen": 150.0
+        },
+        "is_valid": true,
+        "num_faces": 3,
+        "num_edges": 3,
+        "num_vertices": 2,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.041439959208324544
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_010-d9bd76/step/T1_010_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_010-d9bd76/stl/T1_010_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 18377.259033203125,
+  "final_step_artifact_uri": "artifact://eval-T1_010-d9bd76/step/T1_010_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_010-d9bd76/stl/T1_010_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_010-d9bd76/forgecad/a_tall_cylindrical_rod_with_a_diameter_o_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 7539.822368615502,
+    "center_of_mass": [
+      -6.634401468889826e-16,
+      1.7315436245536267e-16,
+      75.00000000000001
+    ],
+    "bounding_box": {
+      "xmin": -4.0,
+      "xmax": 4.0,
+      "xlen": 8.0,
+      "ymin": -4.0,
+      "ymax": 4.0,
+      "ylen": 8.0,
+      "zmin": 0.0,
+      "zmax": 150.0,
+      "zlen": 150.0
+    },
+    "is_valid": true,
+    "num_faces": 3,
+    "num_edges": 3,
+    "num_vertices": 2,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.041439959208324544
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

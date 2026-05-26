@@ -1,0 +1,121 @@
+{
+  "trace_id": "716afdff-9033-473a-a9ef-0111436ca44a",
+  "workflow_id": "eval-T1_011-8cddc2",
+  "design_name": "A simple rectangular bar of square cross-section (10mm x 10mm) and 200mm length.",
+  "created_at": "2026-05-26T05:17:28.547790+00:00",
+  "prompt": "A rectangular bar 10mm wide, 10mm tall, and 200mm long.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A simple rectangular bar of square cross-section (10mm x 10mm) and 200mm length.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 16,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 19999.999999999996,
+        "center_of_mass": [
+          -1.1959723118990066e-17,
+          0.0,
+          -9.094947017729284e-17
+        ],
+        "bounding_box": {
+          "xmin": -5.0,
+          "xmax": 5.0,
+          "xlen": 10.0,
+          "ymin": -100.0,
+          "ymax": 100.0,
+          "ylen": 200.0,
+          "zmin": -5.0,
+          "zmax": 5.0,
+          "zlen": 10.0
+        },
+        "is_valid": true,
+        "num_faces": 6,
+        "num_edges": 12,
+        "num_vertices": 8,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 1.8189894035458568e-14
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_011-8cddc2/step/T1_011_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_011-8cddc2/stl/T1_011_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 18773.39599609375,
+  "final_step_artifact_uri": "artifact://eval-T1_011-8cddc2/step/T1_011_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_011-8cddc2/stl/T1_011_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_011-8cddc2/forgecad/a_simple_rectangular_bar_of_square_cross_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 19999.999999999996,
+    "center_of_mass": [
+      -1.1959723118990066e-17,
+      0.0,
+      -9.094947017729284e-17
+    ],
+    "bounding_box": {
+      "xmin": -5.0,
+      "xmax": 5.0,
+      "xlen": 10.0,
+      "ymin": -100.0,
+      "ymax": 100.0,
+      "ylen": 200.0,
+      "zmin": -5.0,
+      "zmax": 5.0,
+      "zlen": 10.0
+    },
+    "is_valid": true,
+    "num_faces": 6,
+    "num_edges": 12,
+    "num_vertices": 8,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 1.8189894035458568e-14
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

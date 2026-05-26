@@ -1,0 +1,52 @@
+{
+  "description": "A flat circular washer with an outer diameter of 20mm, a central hole of 10.5mm, and a thickness of 2mm. It lies flat on the XY plane, centered at the origin, with the thickness extruded in the +Z direction.",
+  "components": [
+    "Outer cylinder (base disc)",
+    "Inner cylindrical cut (central hole)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 20.0,
+      "ylen": 20.0,
+      "zlen": 2.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 10.5,
+      "thickness": 2.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 10.5 mm",
+      "dimensions": {
+        "diameter": 10.5
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the outer cylinder with radius 10mm and height 2mm, then subtract an inner cylinder with radius 5.25mm and height 2mm (or slightly taller to ensure a clean cut). Center both cylinders at (0, 0, 0) in the XY plane, and extrude from Z=0 to Z=2.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

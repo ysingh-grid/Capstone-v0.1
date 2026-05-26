@@ -1,0 +1,41 @@
+{
+  "description": "A solid upright cylinder shaft centered at the origin with a full-length rectangular keyway cut along its +X side.",
+  "components": [
+    "main_shaft_cylinder",
+    "keyway_cutout_box"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 20.0,
+      "ylen": 20.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "shaft_diameter": 20.0,
+      "shaft_length": 60.0,
+      "keyway_width": 6.0,
+      "keyway_depth": 3.0,
+      "keyway_flat_bottom_x": 7.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The shaft is centered at the origin (X=0, Y=0, Z from -30 to 30). The keyway is a subtractive box spanning the full Z length (60mm), with Y from -3 to 3, and X from 7 to 10 (and beyond to ensure clean cut).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

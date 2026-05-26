@@ -1,0 +1,38 @@
+{
+  "description": "A square-based pyramid with 40mm base sides and a height of 50mm.",
+  "components": [
+    "Square base",
+    "Four flat triangular sloped faces meeting at a single top apex"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 50.0
+    },
+    "key_dimensions": {
+      "base_side": 40.0,
+      "height": 50.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The base should be centered at the origin (0, 0, 0) in the XY plane, with the apex located precisely at (0, 0, 50). Can be modeled using a loft from a 40x40mm sketch to a point, or using a primitive/polyhedron definition.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

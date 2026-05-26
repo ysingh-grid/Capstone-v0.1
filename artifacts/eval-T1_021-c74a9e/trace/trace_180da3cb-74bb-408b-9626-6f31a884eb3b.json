@@ -1,0 +1,121 @@
+{
+  "trace_id": "180da3cb-74bb-408b-9626-6f31a884eb3b",
+  "workflow_id": "eval-T1_021-c74a9e",
+  "design_name": "A solid wedge (triangular prism) centered at the origin, with a 60mm x 30mm base on the XY plane and a central ridge at Z=25mm.",
+  "created_at": "2026-05-26T05:23:52.387339+00:00",
+  "prompt": "A solid wedge (triangular prism) centered at the origin. The rectangular base is 60mm (X) by 30mm (Y) on the XY plane. It tapers symmetrically from both Y edges to a thin ridge line at Y=0, running along X for 60mm, at height Z=25mm.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A solid wedge (triangular prism) centered at the origin, with a 60mm x 30mm base on the XY plane and a central ridge at Z=25mm.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 28,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 22500.0,
+        "center_of_mass": [
+          0.0,
+          -2.4253192047278088e-16,
+          8.333333333333336
+        ],
+        "bounding_box": {
+          "xmin": -30.0,
+          "xmax": 30.0,
+          "xlen": 60.0,
+          "ymin": -15.0,
+          "ymax": 15.0,
+          "ylen": 30.0,
+          "zmin": -2.3502352264890793e-16,
+          "zmax": 25.0,
+          "zlen": 25.0
+        },
+        "is_valid": true,
+        "num_faces": 5,
+        "num_edges": 9,
+        "num_vertices": 6,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_021-c74a9e/step/T1_021_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_021-c74a9e/stl/T1_021_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 27248.22900390625,
+  "final_step_artifact_uri": "artifact://eval-T1_021-c74a9e/step/T1_021_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_021-c74a9e/stl/T1_021_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_021-c74a9e/forgecad/a_solid_wedge_(triangular_prism)_centere_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 22500.0,
+    "center_of_mass": [
+      0.0,
+      -2.4253192047278088e-16,
+      8.333333333333336
+    ],
+    "bounding_box": {
+      "xmin": -30.0,
+      "xmax": 30.0,
+      "xlen": 60.0,
+      "ymin": -15.0,
+      "ymax": 15.0,
+      "ylen": 30.0,
+      "zmin": -2.3502352264890793e-16,
+      "zmax": 25.0,
+      "zlen": 25.0
+    },
+    "is_valid": true,
+    "num_faces": 5,
+    "num_edges": 9,
+    "num_vertices": 6,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

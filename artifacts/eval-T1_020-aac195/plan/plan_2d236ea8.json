@@ -1,0 +1,38 @@
+{
+  "description": "A cylinder with a diameter of 36mm and a height of 60mm, centered at the origin on the XY plane.",
+  "components": [
+    "cylinder_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 36.0,
+      "ylen": 36.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "diameter": 36.0,
+      "radius": 18.0,
+      "height": 60.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the cylinder is perfectly centered at the origin (0,0,0) across all axes. The Z-coordinates should span from -30.0 to +30.0 mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

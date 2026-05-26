@@ -1,0 +1,43 @@
+{
+  "description": "A heat sink base plate with 5 parallel cooling fins, centered at the origin, with specified dimensions and spacing.",
+  "components": [
+    "Base plate",
+    "5x Cooling fins"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 18.0
+    },
+    "key_dimensions": {
+      "base_plate_length_x": 60.0,
+      "base_plate_width_y": 40.0,
+      "base_plate_thickness_z": 3.0,
+      "fin_thickness_x": 2.0,
+      "fin_width_y": 40.0,
+      "fin_height_z": 15.0,
+      "fin_spacing_x": 12.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the base plate's bottom face is exactly at Z=0. The fins must start on the top face of the base plate (Z=3) and extend to Z=18. The X coordinates of the fin centers must be exactly -24, -12, 0, 12, and 24.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

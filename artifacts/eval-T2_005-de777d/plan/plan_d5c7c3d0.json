@@ -1,0 +1,42 @@
+{
+  "description": "A structural I-beam centered at the origin, extending along the X-axis with a YZ cross-section.",
+  "components": [
+    "top_flange",
+    "bottom_flange",
+    "vertical_web"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 20.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "length": 100.0,
+      "height": 40.0,
+      "flange_width": 20.0,
+      "flange_thickness": 3.0,
+      "web_thickness": 2.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The I-beam is centered at the origin, meaning X spans from -50 to +50, Y spans from -10 to +10, and Z spans from -20 to +20. It can be modeled either by extruding a 2D I-shape sketch along the X-axis by 100mm, or by unioning three box primitives (top flange: 100x20x3 centered at Z=18.5, bottom flange: 100x20x3 centered at Z=-18.5, web: 100x2x34 centered at Z=0).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,39 @@
+{
+  "description": "A regular dodecagonal (12-sided) prism with a circumscribed circle diameter of 50mm and a height of 10mm.",
+  "components": [
+    "Dodecagonal prism base"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 10.0
+    },
+    "key_dimensions": {
+      "circumscribed_diameter": 50.0,
+      "inscribed_diameter": 48.296,
+      "height": 10.0,
+      "num_sides": 12.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construct by creating a regular 12-sided polygon sketch centered at the origin, with vertices constrained to a circumscribed circle of diameter 50mm (radius 25mm). Extrude the sketch symmetrically or directionally to a height of 10mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,121 @@
+{
+  "trace_id": "44bef7b1-11a7-48d9-86c8-58ae4d351fc9",
+  "workflow_id": "eval-T2_016-ede755",
+  "design_name": "A shoulder screw standing upright along Z, centered at the origin in XY, consisting of a threaded section, a smooth shoulder section, and a cylindrical head.",
+  "created_at": "2026-05-26T05:54:28.077423+00:00",
+  "prompt": "A shoulder screw standing upright along Z, centered at the origin in XY. From bottom to top: a threaded section (simplified as a plain cylinder) 6mm diameter (Z=0 to Z=10), then a smooth shoulder section 10mm diameter (Z=10 to Z=30), then a cylindrical head 14mm diameter (Z=30 to Z=35). Total height 35mm, with the base at Z=0.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A shoulder screw standing upright along Z, centered at the origin in XY, consisting of a threaded section, a smooth shoulder section, and a cylindrical head.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 37,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 2623.2298657474767,
+        "center_of_mass": [
+          -6.717466920051757e-16,
+          3.566439948516806e-17,
+          22.050898203592816
+        ],
+        "bounding_box": {
+          "xmin": -7.0,
+          "xmax": 7.0,
+          "xlen": 14.0,
+          "ymin": -7.0,
+          "ymax": 7.0,
+          "ylen": 14.0,
+          "zmin": 0.0,
+          "zmax": 35.0,
+          "zlen": 35.0
+        },
+        "is_valid": true,
+        "num_faces": 7,
+        "num_edges": 9,
+        "num_vertices": 6,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.041439751780673086
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_016-ede755/step/T2_016_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_016-ede755/stl/T2_016_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 23707.757080078125,
+  "final_step_artifact_uri": "artifact://eval-T2_016-ede755/step/T2_016_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_016-ede755/stl/T2_016_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_016-ede755/forgecad/a_shoulder_screw_standing_upright_along__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 2623.2298657474767,
+    "center_of_mass": [
+      -6.717466920051757e-16,
+      3.566439948516806e-17,
+      22.050898203592816
+    ],
+    "bounding_box": {
+      "xmin": -7.0,
+      "xmax": 7.0,
+      "xlen": 14.0,
+      "ymin": -7.0,
+      "ymax": 7.0,
+      "ylen": 14.0,
+      "zmin": 0.0,
+      "zmax": 35.0,
+      "zlen": 35.0
+    },
+    "is_valid": true,
+    "num_faces": 7,
+    "num_edges": 9,
+    "num_vertices": 6,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.041439751780673086
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

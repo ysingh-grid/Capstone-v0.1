@@ -1,0 +1,37 @@
+{
+  "description": "A simple solid cylinder with a diameter of 25mm and a height of 40mm.",
+  "components": [
+    "cylindrical_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 25.0,
+      "ylen": 25.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "diameter": 25.0,
+      "height": 40.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Align the cylinder such that its central axis is aligned with the Z-axis, centered at (0, 0, 0) or with its base at Z=0.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,40 @@
+{
+  "description": "A coin-shaped disc with filleted circular edges.",
+  "components": [
+    "Cylinder (disc body)",
+    "Top edge fillet",
+    "Bottom edge fillet"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 38.0,
+      "ylen": 38.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "diameter": 38.0,
+      "thickness": 3.0,
+      "fillet_radius": 0.5
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a cylinder of diameter 38mm and height 3mm centered at the origin. Apply a 0.5mm radius fillet to both the top and bottom circular edges. Ensure the final bounding box dimensions do not exceed 38x38x3mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

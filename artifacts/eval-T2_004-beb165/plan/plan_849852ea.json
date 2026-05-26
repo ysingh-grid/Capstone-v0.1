@@ -1,0 +1,57 @@
+{
+  "description": "A socket head cap screw (allen bolt) consisting of an 8mm diameter shaft, a 13mm diameter head, and a 6mm (across flats) hexagonal socket recess.",
+  "components": [
+    "Cylindrical shaft",
+    "Cylindrical head",
+    "Hexagonal socket recess (subtracted)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 13.0,
+      "ylen": 13.0,
+      "zlen": 33.0
+    },
+    "key_dimensions": {
+      "shaft_diameter": 8.0,
+      "shaft_length": 25.0,
+      "head_diameter": 13.0,
+      "head_height": 8.0,
+      "hex_socket_width_flats": 6.0,
+      "hex_socket_width_corners": 6.93,
+      "hex_socket_depth": 4.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 6.93 mm",
+      "dimensions": {
+        "diameter": 6.93
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The shaft starts at Z=0 and goes up to Z=25. The head is positioned from Z=25 to Z=33. The hexagonal socket is subtracted from the top of the head, starting at Z=33 and going down to Z=29 (depth of 4mm). The model must be centered at X=0, Y=0.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

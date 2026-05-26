@@ -1,0 +1,41 @@
+{
+  "description": "A dome-shaped part consisting of a flat circular base topped by a matching hemisphere, centered at the origin on the XY plane.",
+  "components": [
+    "Circular Base (Cylinder)",
+    "Hemisphere Top"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 23.0
+    },
+    "key_dimensions": {
+      "base_diameter": 40.0,
+      "base_thickness": 3.0,
+      "hemisphere_diameter": 40.0,
+      "hemisphere_radius": 20.0,
+      "total_height": 23.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part is centered at (0, 0, 0) on the XY plane. The base occupies Z=0 to Z=3. The hemisphere is centered at (0, 0, 3) and extends to Z=23. Ensure a seamless union between the base cylinder and the top hemisphere.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

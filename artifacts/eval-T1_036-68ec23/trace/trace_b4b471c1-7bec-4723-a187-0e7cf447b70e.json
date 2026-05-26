@@ -1,0 +1,121 @@
+{
+  "trace_id": "b4b471c1-7bec-4723-a187-0e7cf447b70e",
+  "workflow_id": "eval-T1_036-68ec23",
+  "design_name": "A flat circular disc with a diameter of 80mm and a thickness of 1mm.",
+  "created_at": "2026-05-26T05:32:45.961833+00:00",
+  "prompt": "A flat circular disc with a diameter of 80mm and a thickness of 1mm.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A flat circular disc with a diameter of 80mm and a thickness of 1mm.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 16,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 5026.548245743669,
+        "center_of_mass": [
+          2.1712586625457606e-15,
+          1.5854596182108364e-15,
+          0.5
+        ],
+        "bounding_box": {
+          "xmin": -40.0,
+          "xmax": 40.0,
+          "xlen": 80.0,
+          "ymin": -40.0,
+          "ymax": 40.0,
+          "ylen": 80.0,
+          "zmin": 0.0,
+          "zmax": 1.0,
+          "zlen": 1.0
+        },
+        "is_valid": true,
+        "num_faces": 3,
+        "num_edges": 3,
+        "num_vertices": 2,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.04143967600796313
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_036-68ec23/step/T1_036_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_036-68ec23/stl/T1_036_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 15123.787109375,
+  "final_step_artifact_uri": "artifact://eval-T1_036-68ec23/step/T1_036_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_036-68ec23/stl/T1_036_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_036-68ec23/forgecad/a_flat_circular_disc_with_a_diameter_of__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 5026.548245743669,
+    "center_of_mass": [
+      2.1712586625457606e-15,
+      1.5854596182108364e-15,
+      0.5
+    ],
+    "bounding_box": {
+      "xmin": -40.0,
+      "xmax": 40.0,
+      "xlen": 80.0,
+      "ymin": -40.0,
+      "ymax": 40.0,
+      "ylen": 80.0,
+      "zmin": 0.0,
+      "zmax": 1.0,
+      "zlen": 1.0
+    },
+    "is_valid": true,
+    "num_faces": 3,
+    "num_edges": 3,
+    "num_vertices": 2,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.04143967600796313
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

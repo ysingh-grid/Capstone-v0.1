@@ -1,0 +1,56 @@
+{
+  "description": "A rounded rectangular electronics enclosure body, open on top, with a 2mm wall thickness and four 3.2mm mounting holes in the bottom.",
+  "components": [
+    "Enclosure outer body (rounded box)",
+    "Inner cavity (shelled/pocketed region)",
+    "Four bottom mounting holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 50.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "wall_thickness": 2.0,
+      "corner_fillet_radius": 8.0,
+      "hole_diameter": 3.2,
+      "hole_pattern_x_pitch": 64.0,
+      "hole_pattern_y_pitch": 34.0,
+      "base_thickness": 2.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 3.2 mm",
+      "dimensions": {
+        "diameter": 3.2
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the part is centered on the origin in X and Y, with the bottom face resting on the Z=0 plane (Z ranges from 0 to 25). The outer vertical corners must have an 8mm fillet before or during the shelling operation so that the inner corners naturally have a 6mm radius (8mm - 2mm wall thickness).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

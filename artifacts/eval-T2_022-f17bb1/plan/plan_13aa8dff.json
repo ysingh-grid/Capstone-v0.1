@@ -1,0 +1,53 @@
+{
+  "description": "A 24x24mm square flat washer with a 3mm thickness and a 10.5mm central through-hole, centered at the origin on the XY plane.",
+  "components": [
+    "Square plate main body",
+    "Central cylindrical through-hole"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 24.0,
+      "ylen": 24.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "width": 24.0,
+      "length": 24.0,
+      "thickness": 3.0,
+      "hole_diameter": 10.5
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 10.5 mm",
+      "dimensions": {
+        "diameter": 10.5
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The model must be centered at (0,0,0) in the XY plane, with the bottom face at Z=0 and the top face at Z=3. Construct by subtracting a 10.5mm diameter cylinder from a 24x24x3mm box.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

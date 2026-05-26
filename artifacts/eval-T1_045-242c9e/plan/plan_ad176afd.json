@@ -1,0 +1,40 @@
+{
+  "description": "Semicircular half-pipe trough centered at the origin, opening upward, with an outer radius of 25mm, inner radius of 22mm, and length of 70mm along the Y-axis.",
+  "components": [
+    "Semicircular hollow profile (XZ plane)",
+    "Linear extrusion (Y-axis)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 70.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "outer_radius": 25.0,
+      "inner_radius": 22.0,
+      "wall_thickness": 3.0,
+      "length": 70.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The cross-section is a half-ring in the XZ plane. Since it opens upward and is centered at the origin, the center of the arc profile should be at (0,0,0), meaning the trough spans X from -25 to +25, Y from -35 to +35, and Z from -25 to 0.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

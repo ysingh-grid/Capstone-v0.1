@@ -1,0 +1,56 @@
+{
+  "description": "A rectangular plate with four counterbored holes located at the corners, centered at the origin.",
+  "components": [
+    "Base rectangular plate",
+    "Four counterbored holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 8.0
+    },
+    "key_dimensions": {
+      "plate_width_x": 60.0,
+      "plate_length_y": 40.0,
+      "plate_thickness_z": 8.0,
+      "hole_inset": 8.0,
+      "through_hole_diameter": 5.5,
+      "counterbore_diameter": 10.0,
+      "counterbore_depth": 3.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 5.5 mm",
+      "dimensions": {
+        "diameter": 5.5
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The plate must be centered at the origin, meaning X ranges from -30 to 30, Y ranges from -20 to 20, and Z ranges from -4 to 4. The four holes are located at X = +/-22 and Y = +/-12. The counterbores are on the top face (+Z).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

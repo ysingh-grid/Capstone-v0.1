@@ -1,0 +1,40 @@
+{
+  "description": "A stadium (oblong/slot) shaped plate, 60mm long in X, 20mm wide in Y, and 8mm thick in Z, centered on the XY origin and lying flat on the XY plane (Z from 0 to 8).",
+  "components": [
+    "Main stadium-shaped extruded body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 20.0,
+      "zlen": 8.0
+    },
+    "key_dimensions": {
+      "total_length": 60.0,
+      "width": 20.0,
+      "thickness": 8.0,
+      "semicircle_radius": 10.0,
+      "straight_section_length": 40.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To construct this shape, create a 2D sketch of a stadium/slot centered at the origin (0, 0) with a total length of 60mm and a width of 20mm (made of a 40mm x 20mm rectangle and two 10mm radius semicircles on the sides). Extrude this sketch along the Z axis from Z=0 to Z=8.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

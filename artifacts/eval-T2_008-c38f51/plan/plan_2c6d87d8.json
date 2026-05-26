@@ -1,0 +1,54 @@
+{
+  "description": "A flat rectangular mounting plate with four M4 clearance holes positioned near the corners.",
+  "components": [
+    "rectangular_base_plate",
+    "four_m4_clearance_holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 60.0,
+      "zlen": 5.0
+    },
+    "key_dimensions": {
+      "plate_width_x": 80.0,
+      "plate_length_y": 60.0,
+      "plate_thickness_z": 5.0,
+      "hole_diameter": 4.2,
+      "hole_inset": 8.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 4.2 mm",
+      "dimensions": {
+        "diameter": 4.2
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The plate should be centered at the origin. The bounding box in XY is [-40 to 40, -30 to 30]. Since the holes are inset by 8mm from each corner, their centers must be located at (+/-32, +/-22) in the XY plane, and they must be drilled completely through the Z-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

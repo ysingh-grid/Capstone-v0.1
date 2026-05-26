@@ -1,0 +1,172 @@
+{
+  "trace_id": "e29e19d8-08ce-4e47-9b41-12f2e2febde8",
+  "workflow_id": "eval-T3_014-6d0cb5",
+  "design_name": "A 180-degree U-bend (return bend) pipe fitting with a 20mm outer diameter and 16mm inner diameter, formed by sweeping a circular profile along a 35mm radius semicircular path in the XZ plane.",
+  "created_at": "2026-05-26T08:54:01.083342+00:00",
+  "prompt": "A 180-degree U-bend (return bend) pipe fitting with the bend in the XZ plane. The pipe has a 20mm outer diameter and 16mm inner diameter (2mm wall thickness). The bend centerline follows a semicircular arc of 35mm radius on the XZ plane: starting at the origin heading in the +Z direction, arcing upward through Z=35 at the apex, and returning down to (X=70, Z=0) heading in the -Z direction. The two pipe legs are parallel, 70mm apart in the X direction. The part is centered at Y=0. Created by sweeping the pipe cross-section along the arc path defined by a radiusArc from (0,0) to (70,0) with radius 35 on the XZ workplane.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A 180-degree U-bend (return bend) pipe fitting with a 20mm outer diameter and 16mm inner diameter, formed by sweeping a circular profile along a 35mm radius semicircular path in the XZ plane.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 23,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 12435.701545372594,
+        "center_of_mass": [
+          35.0,
+          2.4125096250508444e-15,
+          -23.027446623353075
+        ],
+        "bounding_box": {
+          "xmin": -10.0000001,
+          "xmax": 80.0000001,
+          "xlen": 90.00000019999999,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": -45.0000001,
+          "zmax": 1.0000000022482976e-7,
+          "zlen": 45.0000002
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.08285681984070185
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The bounding box metrics (zmin: -45, zmax: 0) and the rendered image show the U-bend curving downward into the -Z direction, with its apex at Z=-35. The prompt explicitly requires the bend to arc upward into the +Z direction, passing through Z=35 at the apex. Modify the radiusArc call to use a positive radius so the arc curves into the +Z half-space.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_014-6d0cb5/step/T3_014_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_014-6d0cb5/stl/T3_014_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 23,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 12435.701545372594,
+        "center_of_mass": [
+          35.0,
+          -2.4125096250508444e-15,
+          23.027446623353075
+        ],
+        "bounding_box": {
+          "xmin": -10.0000001,
+          "xmax": 80.0000001,
+          "xlen": 90.00000019999999,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": -1.0000000022482976e-7,
+          "zmax": 45.0000001,
+          "zlen": 45.0000002
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.08285681984070185
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_014-6d0cb5/step/T3_014_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_014-6d0cb5/stl/T3_014_outer1_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 2,
+  "total_llm_calls": 6,
+  "total_time_ms": 99415.42822265625,
+  "final_step_artifact_uri": "artifact://eval-T3_014-6d0cb5/step/T3_014_outer1_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_014-6d0cb5/stl/T3_014_outer1_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_014-6d0cb5/forgecad/a_180_degree_u_bend_(return_bend)_pipe_f_iter1.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 12435.701545372594,
+    "center_of_mass": [
+      35.0,
+      -2.4125096250508444e-15,
+      23.027446623353075
+    ],
+    "bounding_box": {
+      "xmin": -10.0000001,
+      "xmax": 80.0000001,
+      "xlen": 90.00000019999999,
+      "ymin": -10.0000001,
+      "ymax": 10.0000001,
+      "ylen": 20.0000002,
+      "zmin": -1.0000000022482976e-7,
+      "zmax": 45.0000001,
+      "zlen": 45.0000002
+    },
+    "is_valid": true,
+    "num_faces": 4,
+    "num_edges": 6,
+    "num_vertices": 4,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.08285681984070185
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

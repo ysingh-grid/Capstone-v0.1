@@ -1,0 +1,38 @@
+{
+  "description": "A solid upper hemisphere with a diameter of 50mm, flat face on the XY plane, dome rising in the +Z direction, and centered at the origin.",
+  "components": [
+    "hemisphere_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "diameter": 50.0,
+      "radius": 25.0,
+      "height": 25.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model this, you can create a sphere of radius 25mm centered at (0,0,0) and cut it at the Z=0 plane to keep the positive Z half, or sketch a quarter-circle of radius 25mm on the XZ plane (from X=0 to 25, Z=0 to 25) and revolve it 360 degrees around the Z-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

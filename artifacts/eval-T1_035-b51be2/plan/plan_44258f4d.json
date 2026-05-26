@@ -1,0 +1,38 @@
+{
+  "description": "A solid rectangular box measuring 35mm in length, 35mm in width, and 50mm in height.",
+  "components": [
+    "main_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 35.0,
+      "ylen": 35.0,
+      "zlen": 50.0
+    },
+    "key_dimensions": {
+      "length": 35.0,
+      "width": 35.0,
+      "height": 50.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a simple solid cuboid. Center the cuboid at the origin (0,0,0) for best symmetry, or align the bottom face with the XY plane (z=0 to z=50) according to standard modeling preferences.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

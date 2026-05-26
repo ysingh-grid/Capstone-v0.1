@@ -1,0 +1,38 @@
+{
+  "description": "A simple rectangular block with dimensions 50mm x 30mm x 20mm.",
+  "components": [
+    "rectangular_block"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 30.0,
+      "zlen": 20.0
+    },
+    "key_dimensions": {
+      "length": 50.0,
+      "width": 30.0,
+      "height": 20.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a solid 3D cuboid with the specified dimensions. Center the block at the origin (0,0,0) for ease of reference.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

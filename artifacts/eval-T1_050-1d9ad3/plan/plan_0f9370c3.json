@@ -1,0 +1,39 @@
+{
+  "description": "Solid rectangular block with dimensions 40mm x 20mm x 60mm and 4mm fillets on the four vertical edges.",
+  "components": [
+    "Main extruded body with rounded corners"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 20.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "width": 40.0,
+      "depth": 20.0,
+      "height": 60.0,
+      "vertical_fillet_radius": 4.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure that the 4mm fillets are strictly applied to the four vertical edges (edges parallel to the Z-axis). The top and bottom faces (XY planes) must remain flat with no rounding/fillets on their boundary edges.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

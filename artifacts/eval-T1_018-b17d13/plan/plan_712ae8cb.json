@@ -1,0 +1,39 @@
+{
+  "description": "A regular pentagonal prism with a circumscribed circle diameter of 25mm and a height of 40mm.",
+  "components": [
+    "Pentagonal prism body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 23.78,
+      "ylen": 22.61,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "circumscribed_diameter": 25.0,
+      "circumradius": 12.5,
+      "height": 40.0,
+      "pentagon_side_length": 14.69
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The base of the prism is a regular pentagon circumscribed by a circle of diameter 25mm. The vertices of the pentagon can be calculated using polar coordinates with spacing of 72 degrees. Extrude this sketch along the Z-axis by 40mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

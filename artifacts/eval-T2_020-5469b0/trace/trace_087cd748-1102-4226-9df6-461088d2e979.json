@@ -1,0 +1,172 @@
+{
+  "trace_id": "087cd748-1102-4226-9df6-461088d2e979",
+  "workflow_id": "eval-T2_020-5469b0",
+  "design_name": "A flanged L-bracket featuring a horizontal base plate with flange ears and a vertical wall, with mounting holes in both the base and the wall.",
+  "created_at": "2026-05-26T06:11:08.280673+00:00",
+  "prompt": "A flanged L-bracket. The base plate is 60mm wide (X), 40mm deep (Y), and 4mm thick (Z), starting at Z=0. The vertical wall is 40mm wide (X), 30mm tall (Z), and 4mm thick (Y), rising from the Y=0 edge of the base. The base extends 10mm past the wall on each side in X, forming flange ears. Two 6mm diameter holes are drilled through the base plate, one in each flange ear at (X=+25, Y=20) and (X=-25, Y=20). Two 5mm diameter holes are drilled through the vertical wall at (X=+12, Z=19) and (X=-12, Z=19).",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A flanged L-bracket featuring a horizontal base plate with flange ears and a vertical wall, with mounting holes in both the base and the wall.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 82,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 14055.995604431913,
+        "center_of_mass": [
+          -1.6782887168659398e-15,
+          14.008213827982635,
+          7.6628670727699415
+        ],
+        "bounding_box": {
+          "xmin": -30.0,
+          "xmax": 30.0,
+          "xlen": 60.0,
+          "ymin": 0.0,
+          "ymax": 40.0,
+          "ylen": 40.0,
+          "zmin": 0.0,
+          "zmax": 34.0,
+          "zlen": 34.0
+        },
+        "is_valid": true,
+        "num_faces": 16,
+        "num_edges": 36,
+        "num_vertices": 24,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0010140776638487405
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The generated L-bracket fails because the holes in the vertical wall do not go all the way through. In CadQuery, the 'XZ' Workplane has its normal pointing in the -Y direction. As a result, `.workplane(offset=wall_thickness/2.0)` moves the cutting cylinder's center to Y = -2. A cylinder of length 10 centered at Y = -2 only extends to Y = +3. Since the wall spans from Y = 0 to Y = 4, the cylinder only cuts 3mm deep into the back of the wall, creating blind holes rather than the requested through-holes. This is confirmed by the lack of visible holes on the front of the wall in the isometric render, and the exact volume metric being 14056 mm³ (which perfectly matches a 3mm depth cut per hole instead of the required 4mm). To fix this, either use a much longer cylinder that guarantees intersection (e.g., `cylinder(20.0, ...)`) without shifting the offset, or use a more robust topological approach by selecting the face: `bracket.faces('>Y').workplane().pushPoints([(-12, 19-4), (12, 19-4)]).hole(wall_hole_dia)`.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_020-5469b0/step/T2_020_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_020-5469b0/stl/T2_020_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 81,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 14016.725696262045,
+        "center_of_mass": [
+          -9.732958197385613e-16,
+          14.037654126736875,
+          7.631104435859619
+        ],
+        "bounding_box": {
+          "xmin": -30.0,
+          "xmax": 30.0,
+          "xlen": 60.0,
+          "ymin": 0.0,
+          "ymax": 40.0,
+          "ylen": 40.0,
+          "zmin": 0.0,
+          "zmax": 34.0,
+          "zlen": 34.0
+        },
+        "is_valid": true,
+        "num_faces": 14,
+        "num_edges": 36,
+        "num_vertices": 24,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0011329931005864891
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_020-5469b0/step/T2_020_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_020-5469b0/stl/T2_020_outer1_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 2,
+  "total_llm_calls": 6,
+  "total_time_ms": 212939.01513671875,
+  "final_step_artifact_uri": "artifact://eval-T2_020-5469b0/step/T2_020_outer1_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_020-5469b0/stl/T2_020_outer1_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_020-5469b0/forgecad/a_flanged_l_bracket_featuring_a_horizont_iter1.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 14016.725696262045,
+    "center_of_mass": [
+      -9.732958197385613e-16,
+      14.037654126736875,
+      7.631104435859619
+    ],
+    "bounding_box": {
+      "xmin": -30.0,
+      "xmax": 30.0,
+      "xlen": 60.0,
+      "ymin": 0.0,
+      "ymax": 40.0,
+      "ylen": 40.0,
+      "zmin": 0.0,
+      "zmax": 34.0,
+      "zlen": 34.0
+    },
+    "is_valid": true,
+    "num_faces": 14,
+    "num_edges": 36,
+    "num_vertices": 24,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0011329931005864891
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

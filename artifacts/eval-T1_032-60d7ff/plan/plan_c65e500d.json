@@ -1,0 +1,39 @@
+{
+  "description": "A regular dodecagonal (12-sided) prism with a circumscribed circle diameter of 35mm and a height of 20mm.",
+  "components": [
+    "dodecagonal_prism"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 35.0,
+      "ylen": 35.0,
+      "zlen": 20.0
+    },
+    "key_dimensions": {
+      "circumscribed_diameter": 35.0,
+      "circumscribed_radius": 17.5,
+      "height": 20.0,
+      "num_sides": 12.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model a regular dodecagonal prism, construct a 12-sided regular polygon (dodecagon) on the XY plane. The vertices of the polygon should lie on a circle of radius 17.5mm (diameter 35mm). Extrude this polygon along the Z-axis by 20mm. Center the prism at the origin for best symmetry.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

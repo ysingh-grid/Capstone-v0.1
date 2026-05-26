@@ -1,0 +1,40 @@
+{
+  "description": "A tapered rectangular block (rectangular frustum) with a larger bottom base and a smaller top face, centered and symmetric.",
+  "components": [
+    "tapered_rectangular_frustum"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 30.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "base_x": 50.0,
+      "base_y": 30.0,
+      "top_x": 30.0,
+      "top_y": 15.0,
+      "height": 40.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the rectangular frustum using a loft between two centered rectangles at Z=0 and Z=40, or by using a draft angle calculation. A loft is highly recommended for precision.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

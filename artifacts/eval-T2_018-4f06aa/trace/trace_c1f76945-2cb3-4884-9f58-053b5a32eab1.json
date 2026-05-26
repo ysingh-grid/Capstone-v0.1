@@ -1,0 +1,172 @@
+{
+  "trace_id": "c1f76945-2cb3-4884-9f58-053b5a32eab1",
+  "workflow_id": "eval-T2_018-4f06aa",
+  "design_name": "Simplified 16-tooth spur gear with a star-polygon profile and a 10mm center bore.",
+  "created_at": "2026-05-26T05:58:29.794821+00:00",
+  "prompt": "A simplified spur gear with 16 triangular teeth. The tooth profile is a star polygon with 32 vertices alternating between a tip circle of 40mm diameter (radius 20mm) and a root circle of 32mm diameter (radius 16mm), evenly spaced around the circumference and connected by straight lines. The gear has a 10mm diameter center bore and is 8mm thick. Axis along Z, flat on the XY plane, centered at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Simplified 16-tooth spur gear with a star-polygon profile and a 10mm center bore.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 42,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 7255.017669443216,
+        "center_of_mass": [
+          -0.25394648229168704,
+          6.390189886484576e-17,
+          4.0
+        ],
+        "bounding_box": {
+          "xmin": -20.0,
+          "xmax": 18.477590650225736,
+          "xlen": 38.477590650225736,
+          "ymin": -20.0,
+          "ymax": 20.0,
+          "ylen": 40.0,
+          "zmin": 0.0,
+          "zmax": 8.0,
+          "zlen": 8.0
+        },
+        "is_valid": true,
+        "num_faces": 34,
+        "num_edges": 96,
+        "num_vertices": 64,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0035867043469525466
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "Code analysis and kernel metrics reveal two significant issues: 1) The `polyline(points[1:])` command ignores the initial `moveTo` point, resulting in a polygon with only 31 vertices instead of the requested 32. This is confirmed by the total edge count (96 instead of 99) and the bounding box (`xmax` is 18.477 instead of 20.0), which visually manifests as a missing tooth/flat edge on the right side of the gear. 2) Because this outer profile is asymmetrical, calling `.workplane()` on the top face shifts the local coordinate origin to the center of the bounding box. This causes the 10mm center bore to be noticeably offset from the true origin (reflected in the Center of Mass X of -0.254), violating the prompt's requirement. To fix this, pass the entire list of points to `.polyline(points)` or use `.makePolygon()` without slicing the list. Additionally, to ensure the bore is perfectly centered at the origin, construct the cut using a fresh `cq.Workplane('XY')` instead of deriving it from the top face.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_018-4f06aa/step/T2_018_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_018-4f06aa/stl/T2_018_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 36,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 7362.581059062653,
+        "center_of_mass": [
+          -1.326975219468105e-16,
+          7.158119550663106e-16,
+          4.0
+        ],
+        "bounding_box": {
+          "xmin": -20.0,
+          "xmax": 20.0,
+          "xlen": 40.0,
+          "ymin": -20.0,
+          "ymax": 20.0,
+          "ylen": 40.0,
+          "zmin": 0.0,
+          "zmax": 8.0,
+          "zlen": 8.0
+        },
+        "is_valid": true,
+        "num_faces": 35,
+        "num_edges": 99,
+        "num_vertices": 66,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0035344784024756866
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_018-4f06aa/step/T2_018_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_018-4f06aa/stl/T2_018_outer1_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 2,
+  "total_llm_calls": 6,
+  "total_time_ms": 135265.17211914062,
+  "final_step_artifact_uri": "artifact://eval-T2_018-4f06aa/step/T2_018_outer1_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_018-4f06aa/stl/T2_018_outer1_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_018-4f06aa/forgecad/simplified_16_tooth_spur_gear_with_a_sta_iter1.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 7362.581059062653,
+    "center_of_mass": [
+      -1.326975219468105e-16,
+      7.158119550663106e-16,
+      4.0
+    ],
+    "bounding_box": {
+      "xmin": -20.0,
+      "xmax": 20.0,
+      "xlen": 40.0,
+      "ymin": -20.0,
+      "ymax": 20.0,
+      "ylen": 40.0,
+      "zmin": 0.0,
+      "zmax": 8.0,
+      "zlen": 8.0
+    },
+    "is_valid": true,
+    "num_faces": 35,
+    "num_edges": 99,
+    "num_vertices": 66,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0035344784024756866
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

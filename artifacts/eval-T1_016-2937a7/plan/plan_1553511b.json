@@ -1,0 +1,40 @@
+{
+  "description": "A solid elliptical cylinder with a major axis of 40mm, minor axis of 20mm, and a height of 25mm.",
+  "components": [
+    "elliptical_cylinder_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 20.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "major_axis": 40.0,
+      "minor_axis": 20.0,
+      "height": 25.0,
+      "semi_major_axis": 20.0,
+      "semi_minor_axis": 10.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The major axis (40mm) aligns with the X direction and the minor axis (20mm) aligns with the Y direction. The height of 25mm is along the Z direction. The volume calculation is based on the formula: Volume = pi * semi_major * semi_minor * height.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

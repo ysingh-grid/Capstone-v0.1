@@ -1,0 +1,15 @@
+{
+  "experiment_name": "dry_run",
+  "dataset": "dataset_v2",
+  "tiers": [
+    "T1",
+    "T2"
+  ],
+  "max_error_retries": 3,
+  "max_refinement_iterations": 5,
+  "limit_per_tier": 0,
+  "require_approval": true,
+  "dry_run": true,
+  "temporal_host": "localhost:7233",
+  "timestamp": "2026-05-26 10:37:53"
+}

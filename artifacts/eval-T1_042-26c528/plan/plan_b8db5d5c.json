@@ -1,0 +1,40 @@
+{
+  "description": "A rectangular prism with dimensions 90mm x 20mm x 8mm, featuring 2mm fillets on the four long edges.",
+  "components": [
+    "Base rectangular prism",
+    "Four longitudinal edge fillets"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 90.0,
+      "ylen": 20.0,
+      "zlen": 8.0
+    },
+    "key_dimensions": {
+      "length": 90.0,
+      "width": 20.0,
+      "height": 8.0,
+      "fillet_radius": 2.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The 'long edges' refer to the four edges parallel to the longest dimension (90mm). If alignment is along the X-axis, these are the edges parallel to X.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

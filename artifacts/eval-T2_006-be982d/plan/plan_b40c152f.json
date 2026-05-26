@@ -1,0 +1,41 @@
+{
+  "description": "An L-bracket with a 50mm tall vertical wall and a 40mm deep horizontal base, both 40mm wide and 3mm thick, with the inside corner aligned at the origin.",
+  "components": [
+    "vertical_wall",
+    "horizontal_base"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 43.0,
+      "zlen": 53.0
+    },
+    "key_dimensions": {
+      "wall_height": 50.0,
+      "wall_thickness": 3.0,
+      "base_depth": 40.0,
+      "base_thickness": 3.0,
+      "width": 40.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The inside corner of the L-bracket is at the origin (0,0,0). To ensure a solid, manifold join at the corner, the vertical wall should extend from Z = -3 to 50 (Y = -3 to 0), and the horizontal base should extend from Y = 0 to 40 (Z = -3 to 0). Center the bracket on the X-axis from X = -20 to 20.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

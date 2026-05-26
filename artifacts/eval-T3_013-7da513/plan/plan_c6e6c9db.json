@@ -1,0 +1,55 @@
+{
+  "description": "A 90-degree hollow pipe elbow with a 20mm outer diameter and 16mm inner diameter, swept along a 40mm radius quarter-circle arc in the XZ plane.",
+  "components": [
+    "Annular cross-section (outer diameter 20mm, inner diameter 16mm)",
+    "Quarter-circle sweep path (radius 40mm, from (0,0,0) to (40,0,40) in XZ plane)",
+    "Swept pipe body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 20.0,
+      "zlen": 50.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_radius": 40.0,
+      "bend_angle_deg": 90.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 16.0 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To construct this part, first sketch the annular cross-section (two concentric circles of diameter 20mm and 16mm) on the XY plane centered at the origin. Then, sketch the sweep path on the XZ plane as a 90-degree arc of radius 40mm starting at (0,0,0) and ending at (40,0,40) with the center of the arc at (40,0,0). Finally, perform a sweep of the annular profile along the arc path.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

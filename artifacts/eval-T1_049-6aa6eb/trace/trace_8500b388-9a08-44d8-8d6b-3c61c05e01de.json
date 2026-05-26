@@ -1,0 +1,121 @@
+{
+  "trace_id": "8500b388-9a08-44d8-8d6b-3c61c05e01de",
+  "workflow_id": "eval-T1_049-6aa6eb",
+  "design_name": "A cylinder with a 40mm diameter and 10mm height, resembling a hockey puck.",
+  "created_at": "2026-05-26T05:42:04.456196+00:00",
+  "prompt": "A cylinder with a 40mm diameter and 10mm height, resembling a hockey puck.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A cylinder with a 40mm diameter and 10mm height, resembling a hockey puck.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 10,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 12566.370614359172,
+        "center_of_mass": [
+          -1.4475057750305073e-15,
+          7.688136835325787e-16,
+          0.0
+        ],
+        "bounding_box": {
+          "xmin": -20.0,
+          "xmax": 20.0,
+          "xlen": 40.0,
+          "ymin": -20.0,
+          "ymax": 20.0,
+          "ylen": 40.0,
+          "zmin": -5.0,
+          "zmax": 5.0,
+          "zlen": 10.0
+        },
+        "is_valid": true,
+        "num_faces": 3,
+        "num_edges": 3,
+        "num_vertices": 2,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.041439676007937805
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_049-6aa6eb/step/T1_049_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_049-6aa6eb/stl/T1_049_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 19098.81298828125,
+  "final_step_artifact_uri": "artifact://eval-T1_049-6aa6eb/step/T1_049_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_049-6aa6eb/stl/T1_049_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_049-6aa6eb/forgecad/a_cylinder_with_a_40mm_diameter_and_10mm_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 12566.370614359172,
+    "center_of_mass": [
+      -1.4475057750305073e-15,
+      7.688136835325787e-16,
+      0.0
+    ],
+    "bounding_box": {
+      "xmin": -20.0,
+      "xmax": 20.0,
+      "xlen": 40.0,
+      "ymin": -20.0,
+      "ymax": 20.0,
+      "ylen": 40.0,
+      "zmin": -5.0,
+      "zmax": 5.0,
+      "zlen": 10.0
+    },
+    "is_valid": true,
+    "num_faces": 3,
+    "num_edges": 3,
+    "num_vertices": 2,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.041439676007937805
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

@@ -1,0 +1,55 @@
+{
+  "description": "A 180-degree U-bend (return bend) pipe fitting with a 20mm outer diameter and 16mm inner diameter, formed by sweeping a circular profile along a 35mm radius semicircular path in the XZ plane.",
+  "components": [
+    "pipe_profile",
+    "sweep_path",
+    "u_bend_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 90.0,
+      "ylen": 20.0,
+      "zlen": 45.0
+    },
+    "key_dimensions": {
+      "pipe_outer_diameter": 20.0,
+      "pipe_inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_radius": 35.0,
+      "leg_spacing": 70.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "2 hole(s) of diameter 16.0 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 2,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 2,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model this, first define the path in the XZ plane as a 180-degree arc from (0,0,0) to (70,0,0) with a radius of 35mm centered at (35,0,0). Then, define the profile in the XY plane (perpendicular to the path start) as two concentric circles with diameters 20mm and 16mm centered at (0,0,0). Sweep the profile along the path to generate the hollow U-bend.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

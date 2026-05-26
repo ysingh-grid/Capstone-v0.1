@@ -1,0 +1,56 @@
+{
+  "description": "A cylindrical shaft collar with a central bore and a single radial set screw hole through the wall.",
+  "components": [
+    "Main cylindrical collar body",
+    "Central inner bore (coaxial)",
+    "Radial set screw hole (transverse through one wall)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 25.0,
+      "ylen": 25.0,
+      "zlen": 12.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 25.0,
+      "inner_diameter": 15.0,
+      "height": 12.0,
+      "wall_thickness": 5.0,
+      "set_screw_hole_diameter": 5.0,
+      "set_screw_hole_z_height": 6.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "2 hole(s) of diameter 5.0 mm",
+      "dimensions": {
+        "diameter": 5.0
+      },
+      "position": null,
+      "count": 2,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 2,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The prompt specifies 'Centered at the origin' but also 'mid-height (Z=6mm)'. To align with standard conventions: if the collar is centered at the origin, the Z-range should be -6 to 6 mm, and the set screw hole should be at Z=0. If the base of the collar is at Z=0, then the mid-height is indeed Z=6mm. The Coder should prioritize centering the entire bounding box at the origin (X: [-12.5, 12.5], Y: [-12.5, 12.5], Z: [-6, 6]), which puts the radial hole at Z=0 along the X-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

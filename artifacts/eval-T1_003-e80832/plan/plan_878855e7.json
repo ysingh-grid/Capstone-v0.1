@@ -1,0 +1,37 @@
+{
+  "description": "A solid sphere with a radius of 15mm.",
+  "components": [
+    "sphere"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 30.0,
+      "ylen": 30.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "radius": 15.0,
+      "diameter": 30.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The sphere should be centered at the origin (0, 0, 0) with a radius of 15mm. No holes or complex features are required.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

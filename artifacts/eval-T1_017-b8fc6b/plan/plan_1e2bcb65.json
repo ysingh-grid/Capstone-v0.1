@@ -1,0 +1,37 @@
+{
+  "description": "A simple square plate with a side length of 80mm and a thickness of 5mm.",
+  "components": [
+    "square plate"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 80.0,
+      "zlen": 5.0
+    },
+    "key_dimensions": {
+      "side_length": 80.0,
+      "thickness": 5.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part should be centered at the origin (0,0,0) with the Z-axis representing the thickness. Ensure sharp edges unless standard chamfers/fillets are implied, but since none are specified, keep it a sharp solid box.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

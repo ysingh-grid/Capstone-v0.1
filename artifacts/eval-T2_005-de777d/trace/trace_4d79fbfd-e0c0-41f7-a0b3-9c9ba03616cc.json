@@ -1,0 +1,121 @@
+{
+  "trace_id": "4d79fbfd-e0c0-41f7-a0b3-9c9ba03616cc",
+  "workflow_id": "eval-T2_005-de777d",
+  "design_name": "A structural I-beam centered at the origin, extending along the X-axis with a YZ cross-section.",
+  "created_at": "2026-05-26T05:45:57.837250+00:00",
+  "prompt": "A structural I-beam: 100mm long along the X axis, 40mm total height along Z, 20mm flange width along Y. Both flanges are 3mm thick and the vertical web is 2mm thick. The I-beam cross-section is in the YZ plane, standing upright, centered at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A structural I-beam centered at the origin, extending along the X-axis with a YZ cross-section.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 34,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 18799.999999999996,
+        "center_of_mass": [
+          3.9722590777533947e-16,
+          3.5678316093485887e-16,
+          0.0
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -10.0,
+          "ymax": 10.0,
+          "ylen": 20.0,
+          "zmin": -20.0,
+          "zmax": 20.0,
+          "zlen": 40.0
+        },
+        "is_valid": true,
+        "num_faces": 14,
+        "num_edges": 36,
+        "num_vertices": 24,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 1.935095110155167e-14
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_005-de777d/step/T2_005_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_005-de777d/stl/T2_005_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 34685.73193359375,
+  "final_step_artifact_uri": "artifact://eval-T2_005-de777d/step/T2_005_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_005-de777d/stl/T2_005_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_005-de777d/forgecad/a_structural_i_beam_centered_at_the_orig_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 18799.999999999996,
+    "center_of_mass": [
+      3.9722590777533947e-16,
+      3.5678316093485887e-16,
+      0.0
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -10.0,
+      "ymax": 10.0,
+      "ylen": 20.0,
+      "zmin": -20.0,
+      "zmax": 20.0,
+      "zlen": 40.0
+    },
+    "is_valid": true,
+    "num_faces": 14,
+    "num_edges": 36,
+    "num_vertices": 24,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 1.935095110155167e-14
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

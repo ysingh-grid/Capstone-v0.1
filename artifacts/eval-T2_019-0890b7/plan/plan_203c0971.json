@@ -1,0 +1,57 @@
+{
+  "description": "A clevis bracket (fork mount) centered at the origin, consisting of a rectangular base with two parallel prongs created by a central slot, and a transverse pin hole through both prongs.",
+  "components": [
+    "base_block",
+    "clevis_slot",
+    "pin_hole"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 30.0,
+      "ylen": 20.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "block_x": 30.0,
+      "block_y": 20.0,
+      "block_z": 25.0,
+      "slot_width_x": 10.0,
+      "slot_depth_z": 15.0,
+      "pin_hole_diameter": 6.0,
+      "pin_hole_z_pos": 5.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 6.0 mm",
+      "dimensions": {
+        "diameter": 6.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The prompt contains a geometric contradiction: it specifies a slot running in the Y direction (creating prongs separated along the X axis) and a hole 'through both prongs in the Y direction, centered at X=0'. A hole along Y at X=0 would lie entirely inside the empty slot and not go through the prongs. To create a functional clevis bracket, the pin hole must be oriented along the X direction (centered at Y=0, Z=5) so that it passes through both prongs. Implement the hole along the X-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

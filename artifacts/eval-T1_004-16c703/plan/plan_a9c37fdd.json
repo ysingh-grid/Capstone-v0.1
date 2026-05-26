@@ -1,0 +1,38 @@
+{
+  "description": "A right circular cone with a base diameter of 30mm and a height of 45mm.",
+  "components": [
+    "Cone body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 30.0,
+      "ylen": 30.0,
+      "zlen": 45.0
+    },
+    "key_dimensions": {
+      "base_diameter": 30.0,
+      "base_radius": 15.0,
+      "height": 45.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The cone should be oriented vertically with its base on the XY plane (Z=0) and centered at (0,0). Can be modeled using a cone primitive or by revolving a right triangle of width 15mm and height 45mm about the Z-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

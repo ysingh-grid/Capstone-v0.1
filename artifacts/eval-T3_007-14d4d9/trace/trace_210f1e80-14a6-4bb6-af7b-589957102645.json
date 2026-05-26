@@ -1,0 +1,121 @@
+{
+  "trace_id": "210f1e80-14a6-4bb6-af7b-589957102645",
+  "workflow_id": "eval-T3_007-14d4d9",
+  "design_name": "A rectangular-to-round duct transition adapter standing upright along the Z-axis, consisting of a rectangular flange at the bottom, a lofted transition section, and a cylindrical neck at the top.",
+  "created_at": "2026-05-26T08:35:48.877663+00:00",
+  "prompt": "A rectangular-to-round duct transition adapter, standing upright along the Z axis, centered at the origin in XY. The part has three sections from bottom to top: (1) a rectangular mounting flange 70mm (X) by 50mm (Y), 3mm thick, from Z=0 to Z=3; (2) a smooth lofted transition from a 60mm x 40mm rectangle at Z=3 to a circle of 30mm diameter at Z=53; (3) a cylindrical neck 30mm in diameter extending from Z=53 to Z=63. All sections are centered at the origin in XY.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A rectangular-to-round duct transition adapter standing upright along the Z-axis, consisting of a rectangular flange at the bottom, a lofted transition section, and a cylindrical neck at the top.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 51,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 91482.45238140888,
+        "center_of_mass": [
+          3.8988101874390183e-11,
+          -5.414479817178562e-16,
+          23.420648120610142
+        ],
+        "bounding_box": {
+          "xmin": -35.0,
+          "xmax": 35.0,
+          "xlen": 70.0,
+          "ymin": -25.0,
+          "ymax": 25.0,
+          "ylen": 50.0,
+          "zmin": 0.0,
+          "zmax": 63.0,
+          "zlen": 63.0
+        },
+        "is_valid": true,
+        "num_faces": 13,
+        "num_edges": 29,
+        "num_vertices": 19,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.24098344365040147
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_007-14d4d9/step/T3_007_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_007-14d4d9/stl/T3_007_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 40887.7900390625,
+  "final_step_artifact_uri": "artifact://eval-T3_007-14d4d9/step/T3_007_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_007-14d4d9/stl/T3_007_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_007-14d4d9/forgecad/a_rectangular_to_round_duct_transition_a_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 91482.45238140888,
+    "center_of_mass": [
+      3.8988101874390183e-11,
+      -5.414479817178562e-16,
+      23.420648120610142
+    ],
+    "bounding_box": {
+      "xmin": -35.0,
+      "xmax": 35.0,
+      "xlen": 70.0,
+      "ymin": -25.0,
+      "ymax": 25.0,
+      "ylen": 50.0,
+      "zmin": 0.0,
+      "zmax": 63.0,
+      "zlen": 63.0
+    },
+    "is_valid": true,
+    "num_faces": 13,
+    "num_edges": 29,
+    "num_vertices": 19,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.24098344365040147
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

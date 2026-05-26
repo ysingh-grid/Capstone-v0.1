@@ -1,0 +1,121 @@
+{
+  "trace_id": "0ab43b33-cba2-4b9d-a28a-b215b2624a12",
+  "workflow_id": "eval-T3_003-1fb19f",
+  "design_name": "Rectangular electronics enclosure body with 4mm filleted vertical corners, open top, 2mm wall thickness (shelled inward), and four 8mm diameter internal screw bosses with 3mm through-holes.",
+  "created_at": "2026-05-26T08:28:49.980458+00:00",
+  "prompt": "A rectangular electronics enclosure body with four internal screw bosses, open on top. The outer box is 70mm (X) by 50mm (Y) by 30mm tall (Z), centered at the origin, base at Z=0. The four vertical edges are filleted with a 4mm radius. The top face (+Z) is removed and the body is shelled inward with 2mm wall thickness. Four solid cylindrical screw bosses, each 8mm in diameter, stand vertically inside the enclosure from the inner floor (Z=2) to the rim height (Z=30). They are positioned symmetrically at (±27, ±17) mm from the center in XY. A 3mm diameter through-hole runs vertically through each boss and the floor below it.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Rectangular electronics enclosure body with 4mm filleted vertical corners, open top, 2mm wall thickness (shelled inward), and four 8mm diameter internal screw bosses with 3mm through-holes.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 65,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 24457.610115284726,
+        "center_of_mass": [
+          4.164896165995739e-15,
+          -1.4874629164270497e-16,
+          11.758386286793328
+        ],
+        "bounding_box": {
+          "xmin": -35.0,
+          "xmax": 35.0,
+          "xlen": 70.0,
+          "ymin": -25.0,
+          "ymax": 25.0,
+          "ylen": 50.0,
+          "zmin": 0.0,
+          "zmax": 30.0,
+          "zlen": 30.0
+        },
+        "is_valid": true,
+        "num_faces": 31,
+        "num_edges": 72,
+        "num_vertices": 48,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.009999057882649794
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_003-1fb19f/step/T3_003_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_003-1fb19f/stl/T3_003_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 82743.46411132812,
+  "final_step_artifact_uri": "artifact://eval-T3_003-1fb19f/step/T3_003_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_003-1fb19f/stl/T3_003_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_003-1fb19f/forgecad/rectangular_electronics_enclosure_body_w_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 24457.610115284726,
+    "center_of_mass": [
+      4.164896165995739e-15,
+      -1.4874629164270497e-16,
+      11.758386286793328
+    ],
+    "bounding_box": {
+      "xmin": -35.0,
+      "xmax": 35.0,
+      "xlen": 70.0,
+      "ymin": -25.0,
+      "ymax": 25.0,
+      "ylen": 50.0,
+      "zmin": 0.0,
+      "zmax": 30.0,
+      "zlen": 30.0
+    },
+    "is_valid": true,
+    "num_faces": 31,
+    "num_edges": 72,
+    "num_vertices": 48,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.009999057882649794
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

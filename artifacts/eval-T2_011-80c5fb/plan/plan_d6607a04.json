@@ -1,0 +1,41 @@
+{
+  "description": "A solid cylindrical dowel pin centered at the origin along the Z-axis with 1mm 45-degree chamfers on both ends.",
+  "components": [
+    "Main cylindrical body",
+    "Top end chamfer",
+    "Bottom end chamfer"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 8.0,
+      "ylen": 8.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "diameter": 8.0,
+      "length": 40.0,
+      "chamfer_width": 1.0,
+      "chamfer_angle": 45.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part must be centered at the origin (0, 0, 0), meaning it spans from Z = -20mm to Z = 20mm, and X/Y span from -4mm to 4mm. Apply the chamfers precisely to the top and bottom circular rims.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

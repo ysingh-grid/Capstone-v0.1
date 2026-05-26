@@ -1,0 +1,46 @@
+{
+  "description": "A flanged L-bracket featuring a horizontal base plate with flange ears and a vertical wall, with mounting holes in both the base and the wall.",
+  "components": [
+    "Base plate (with flange ears extending in X)",
+    "Vertical wall (aligned along the Y=0 edge of the base, centered in X)",
+    "Two base plate holes (diameter 6mm)",
+    "Two vertical wall holes (diameter 5mm)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 34.0
+    },
+    "key_dimensions": {
+      "base_width_X": 60.0,
+      "base_depth_Y": 40.0,
+      "base_thickness_Z": 4.0,
+      "wall_width_X": 40.0,
+      "wall_thickness_Y": 4.0,
+      "wall_height_Z": 30.0,
+      "base_hole_diameter": 6.0,
+      "wall_hole_diameter": 5.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Coordinate assignments: Origin is at the center-front-bottom of the base plate's footprint if centered, but based on the prompt: Base is X from -30 to +30, Y from 0 to 40, Z from 0 to 4. Vertical wall is X from -20 to +20, Y from 0 to 4, Z from 4 to 34 (rising 30mm from the Z=4 surface). Base holes are at (X=25, Y=20) and (X=-25, Y=20) drilled through Z. Wall holes are at (X=12, Z=19) and (X=-12, Z=19) drilled through Y. Ensure the boolean subtraction for the holes is clean.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

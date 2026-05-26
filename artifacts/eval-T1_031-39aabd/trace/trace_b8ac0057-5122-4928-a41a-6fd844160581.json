@@ -1,0 +1,121 @@
+{
+  "trace_id": "b8ac0057-5122-4928-a41a-6fd844160581",
+  "workflow_id": "eval-T1_031-39aabd",
+  "design_name": "A tapered rectangular block (rectangular frustum) with a larger bottom base and a smaller top face, centered and symmetric.",
+  "created_at": "2026-05-26T05:30:10.348010+00:00",
+  "prompt": "A tapered rectangular block (rectangular frustum): the base is 50mm (X) by 30mm (Y) on the XY plane, the top face is 30mm (X) by 15mm (Y) centered above the base, and the height is 40mm along Z.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A tapered rectangular block (rectangular frustum) with a larger bottom base and a smaller top face, centered and symmetric.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 17,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 37000.0,
+        "center_of_mass": [
+          1.597760962574063e-16,
+          6.477097027729258e-16,
+          16.216216216216218
+        ],
+        "bounding_box": {
+          "xmin": -25.0000001,
+          "xmax": 25.0000001,
+          "xlen": 50.0000002,
+          "ymin": -15.0000001,
+          "ymax": 15.0000001,
+          "ylen": 30.0000002,
+          "zmin": -1e-7,
+          "zmax": 40.0000001,
+          "zlen": 40.0000002
+        },
+        "is_valid": true,
+        "num_faces": 6,
+        "num_edges": 12,
+        "num_vertices": 8,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_031-39aabd/step/T1_031_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_031-39aabd/stl/T1_031_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 21254.091064453125,
+  "final_step_artifact_uri": "artifact://eval-T1_031-39aabd/step/T1_031_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_031-39aabd/stl/T1_031_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_031-39aabd/forgecad/a_tapered_rectangular_block_(rectangular_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 37000.0,
+    "center_of_mass": [
+      1.597760962574063e-16,
+      6.477097027729258e-16,
+      16.216216216216218
+    ],
+    "bounding_box": {
+      "xmin": -25.0000001,
+      "xmax": 25.0000001,
+      "xlen": 50.0000002,
+      "ymin": -15.0000001,
+      "ymax": 15.0000001,
+      "ylen": 30.0000002,
+      "zmin": -1e-7,
+      "zmax": 40.0000001,
+      "zlen": 40.0000002
+    },
+    "is_valid": true,
+    "num_faces": 6,
+    "num_edges": 12,
+    "num_vertices": 8,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

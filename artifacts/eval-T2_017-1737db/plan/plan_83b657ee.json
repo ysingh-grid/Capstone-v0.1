@@ -1,0 +1,42 @@
+{
+  "description": "A T-beam extruded along the X-axis, centered at the origin, with a 3mm thick vertical web and a 30mm wide, 3mm thick horizontal flange on top.",
+  "components": [
+    "vertical_web",
+    "horizontal_flange"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 30.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "length": 80.0,
+      "total_height": 40.0,
+      "flange_width": 30.0,
+      "flange_thickness": 3.0,
+      "web_height": 37.0,
+      "web_thickness": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The T-beam should be centered at the origin. This means X extends from -40 to 40, Y extends from -15 to 15 (for the flange), and Z extends from 0 to 40. Ensure the web is centered on Y=0 (extending from Y=-1.5 to 1.5) and spans Z=0 to Z=37. The flange should span Z=37 to Z=40 and Y=-15 to 15.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

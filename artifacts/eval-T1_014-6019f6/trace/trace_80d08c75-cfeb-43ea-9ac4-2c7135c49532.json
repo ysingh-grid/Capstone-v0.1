@@ -1,0 +1,121 @@
+{
+  "trace_id": "80d08c75-cfeb-43ea-9ac4-2c7135c49532",
+  "workflow_id": "eval-T1_014-6019f6",
+  "design_name": "A regular octagonal prism with a circumscribed circle diameter of 40mm and a height of 15mm.",
+  "created_at": "2026-05-26T05:20:19.114694+00:00",
+  "prompt": "A regular octagonal prism with a circumscribed circle diameter of 40mm (i.e., all vertices lie on a 40mm diameter circle), extruded to a height of 15mm.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A regular octagonal prism with a circumscribed circle diameter of 40mm and a height of 15mm.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 14,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 16970.562748477143,
+        "center_of_mass": [
+          -8.07724662795796e-16,
+          -3.3772807087286426e-16,
+          7.5
+        ],
+        "bounding_box": {
+          "xmin": -20.0,
+          "xmax": 20.0,
+          "xlen": 40.0,
+          "ymin": -20.0,
+          "ymax": 20.0,
+          "ylen": 40.0,
+          "zmin": 0.0,
+          "zmax": 15.0,
+          "zlen": 15.0
+        },
+        "is_valid": true,
+        "num_faces": 10,
+        "num_edges": 24,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 2.55531775583986e-8
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_014-6019f6/step/T1_014_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_014-6019f6/stl/T1_014_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 22918.005859375,
+  "final_step_artifact_uri": "artifact://eval-T1_014-6019f6/step/T1_014_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_014-6019f6/stl/T1_014_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_014-6019f6/forgecad/a_regular_octagonal_prism_with_a_circums_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 16970.562748477143,
+    "center_of_mass": [
+      -8.07724662795796e-16,
+      -3.3772807087286426e-16,
+      7.5
+    ],
+    "bounding_box": {
+      "xmin": -20.0,
+      "xmax": 20.0,
+      "xlen": 40.0,
+      "ymin": -20.0,
+      "ymax": 20.0,
+      "ylen": 40.0,
+      "zmin": 0.0,
+      "zmax": 15.0,
+      "zlen": 15.0
+    },
+    "is_valid": true,
+    "num_faces": 10,
+    "num_edges": 24,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 2.55531775583986e-8
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

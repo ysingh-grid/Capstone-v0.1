@@ -1,0 +1,38 @@
+{
+  "description": "A thin rectangular fin: 80mm tall, 60mm long, and 2mm thick.",
+  "components": [
+    "Rectangular fin plate"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 2.0,
+      "zlen": 80.0
+    },
+    "key_dimensions": {
+      "length": 60.0,
+      "thickness": 2.0,
+      "height": 80.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Align the fin so that its height (80mm) is along the Z-axis, its length (60mm) is along the X-axis, and its thickness (2mm) is along the Y-axis. Center the component on the origin for optimal symmetry.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

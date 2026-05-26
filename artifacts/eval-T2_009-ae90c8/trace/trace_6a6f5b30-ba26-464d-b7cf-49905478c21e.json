@@ -1,0 +1,121 @@
+{
+  "trace_id": "6a6f5b30-ba26-464d-b7cf-49905478c21e",
+  "workflow_id": "eval-T2_009-ae90c8",
+  "design_name": "Flanged bushing standing upright along Z, centered at the origin in XY. The bottom flange is 30mm in diameter and 3mm thick. The cylindrical body extends from Z=3 to Z=33 with a 20mm diameter. A 10mm diameter central bore runs through the entire 33mm length.",
+  "created_at": "2026-05-26T05:48:41.462953+00:00",
+  "prompt": "A flanged bushing standing upright along Z, centered at the origin in XY. The flange is at the bottom: 30mm outer diameter, 3mm thick (Z=0 to Z=3). The cylindrical body extends upward from the flange: 20mm outer diameter, 30mm long (Z=3 to Z=33). A 10mm diameter bore runs through the entire length of the part.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Flanged bushing standing upright along Z, centered at the origin in XY. The bottom flange is 30mm in diameter and 3mm thick. The cylindrical body extends from Z=3 to Z=33 with a 20mm diameter. A 10mm diameter central bore runs through the entire 33mm length.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 30,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 8953.539062730912,
+        "center_of_mass": [
+          1.5236902895057968e-15,
+          -4.1405529626254755e-16,
+          14.526315789473683
+        ],
+        "bounding_box": {
+          "xmin": -15.0,
+          "xmax": 15.0,
+          "xlen": 30.0,
+          "ymin": -15.0,
+          "ymax": 15.0,
+          "ylen": 30.0,
+          "zmin": 0.0,
+          "zmax": 33.0,
+          "zlen": 33.0
+        },
+        "is_valid": true,
+        "num_faces": 6,
+        "num_edges": 9,
+        "num_vertices": 6,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.04143963933927354
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_009-ae90c8/step/T2_009_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_009-ae90c8/stl/T2_009_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 24510.80029296875,
+  "final_step_artifact_uri": "artifact://eval-T2_009-ae90c8/step/T2_009_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_009-ae90c8/stl/T2_009_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_009-ae90c8/forgecad/flanged_bushing_standing_upright_along_z_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 8953.539062730912,
+    "center_of_mass": [
+      1.5236902895057968e-15,
+      -4.1405529626254755e-16,
+      14.526315789473683
+    ],
+    "bounding_box": {
+      "xmin": -15.0,
+      "xmax": 15.0,
+      "xlen": 30.0,
+      "ymin": -15.0,
+      "ymax": 15.0,
+      "ylen": 30.0,
+      "zmin": 0.0,
+      "zmax": 33.0,
+      "zlen": 33.0
+    },
+    "is_valid": true,
+    "num_faces": 6,
+    "num_edges": 9,
+    "num_vertices": 6,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.04143963933927354
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

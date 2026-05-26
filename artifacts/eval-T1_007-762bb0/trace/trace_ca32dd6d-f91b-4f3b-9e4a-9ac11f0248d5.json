@@ -1,0 +1,121 @@
+{
+  "trace_id": "ca32dd6d-f91b-4f3b-9e4a-9ac11f0248d5",
+  "workflow_id": "eval-T1_007-762bb0",
+  "design_name": "A regular hexagonal prism with a circumscribed circle diameter of 20mm and a height of 35mm.",
+  "created_at": "2026-05-26T05:15:50.845595+00:00",
+  "prompt": "A hexagonal prism with a circumscribed circle diameter of 20mm and a height of 35mm.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A regular hexagonal prism with a circumscribed circle diameter of 20mm and a height of 35mm.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 10,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 9093.266739736606,
+        "center_of_mass": [
+          -1.1422205769283237e-15,
+          -2.980574540152985e-16,
+          17.5
+        ],
+        "bounding_box": {
+          "xmin": -10.0,
+          "xmax": 10.0,
+          "xlen": 20.0,
+          "ymin": -8.66025403784439,
+          "ymax": 8.660254037844387,
+          "ylen": 17.320508075688778,
+          "zmin": 0.0,
+          "zmax": 35.0,
+          "zlen": 35.0
+        },
+        "is_valid": true,
+        "num_faces": 8,
+        "num_edges": 18,
+        "num_vertices": 12,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 5.087728390285609e-6
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_007-762bb0/step/T1_007_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_007-762bb0/stl/T1_007_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 18555.81298828125,
+  "final_step_artifact_uri": "artifact://eval-T1_007-762bb0/step/T1_007_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_007-762bb0/stl/T1_007_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_007-762bb0/forgecad/a_regular_hexagonal_prism_with_a_circums_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 9093.266739736606,
+    "center_of_mass": [
+      -1.1422205769283237e-15,
+      -2.980574540152985e-16,
+      17.5
+    ],
+    "bounding_box": {
+      "xmin": -10.0,
+      "xmax": 10.0,
+      "xlen": 20.0,
+      "ymin": -8.66025403784439,
+      "ymax": 8.660254037844387,
+      "ylen": 17.320508075688778,
+      "zmin": 0.0,
+      "zmax": 35.0,
+      "zlen": 35.0
+    },
+    "is_valid": true,
+    "num_faces": 8,
+    "num_edges": 18,
+    "num_vertices": 12,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 5.087728390285609e-6
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

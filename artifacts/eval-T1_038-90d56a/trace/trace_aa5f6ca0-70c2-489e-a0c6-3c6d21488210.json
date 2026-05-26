@@ -1,0 +1,121 @@
+{
+  "trace_id": "aa5f6ca0-70c2-489e-a0c6-3c6d21488210",
+  "workflow_id": "eval-T1_038-90d56a",
+  "design_name": "A regular hexagonal bar with a 15mm circumscribed circle diameter and 120mm length.",
+  "created_at": "2026-05-26T05:34:17.509822+00:00",
+  "prompt": "A hexagonal bar: hexagonal cross-section with a 15mm circumscribed circle diameter, 120mm long.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A regular hexagonal bar with a 15mm circumscribed circle diameter and 120mm length.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 15,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 17537.014426634883,
+        "center_of_mass": [
+          -1.2343764272664267e-16,
+          -2.1885710594041395e-16,
+          0.0
+        ],
+        "bounding_box": {
+          "xmin": -7.5,
+          "xmax": 7.5,
+          "xlen": 15.0,
+          "ymin": -6.495190528383293,
+          "ymax": 6.49519052838329,
+          "ylen": 12.990381056766584,
+          "zmin": -60.0,
+          "zmax": 60.0,
+          "zlen": 120.0
+        },
+        "is_valid": true,
+        "num_faces": 8,
+        "num_edges": 18,
+        "num_vertices": 12,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 1.417034230531138e-6
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T1_038-90d56a/step/T1_038_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T1_038-90d56a/stl/T1_038_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 21879.133056640625,
+  "final_step_artifact_uri": "artifact://eval-T1_038-90d56a/step/T1_038_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T1_038-90d56a/stl/T1_038_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T1_038-90d56a/forgecad/a_regular_hexagonal_bar_with_a_15mm_circ_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 17537.014426634883,
+    "center_of_mass": [
+      -1.2343764272664267e-16,
+      -2.1885710594041395e-16,
+      0.0
+    ],
+    "bounding_box": {
+      "xmin": -7.5,
+      "xmax": 7.5,
+      "xlen": 15.0,
+      "ymin": -6.495190528383293,
+      "ymax": 6.49519052838329,
+      "ylen": 12.990381056766584,
+      "zmin": -60.0,
+      "zmax": 60.0,
+      "zlen": 120.0
+    },
+    "is_valid": true,
+    "num_faces": 8,
+    "num_edges": 18,
+    "num_vertices": 12,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 1.417034230531138e-6
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

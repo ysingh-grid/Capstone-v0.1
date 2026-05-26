@@ -1,0 +1,38 @@
+{
+  "description": "A solid right-angle triangular prism on the XY plane with its right angle at the origin, featuring a 20mm leg along X and a 30mm leg along Y, extruded 40mm in the +Z direction.",
+  "components": [
+    "Triangular prism body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 20.0,
+      "ylen": 30.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "leg_x": 20.0,
+      "leg_y": 30.0,
+      "height_z": 40.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "none",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model this, create a 2D sketch on the XY plane defining a right-angle triangle with vertices at (0,0,0), (20,0,0), and (0,30,0). Extrude this sketch 40mm along the positive Z-axis. Ensure the orientation and origin alignment match the prompt exactly.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

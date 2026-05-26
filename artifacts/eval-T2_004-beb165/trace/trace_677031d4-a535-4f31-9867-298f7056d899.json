@@ -1,0 +1,121 @@
+{
+  "trace_id": "677031d4-a535-4f31-9867-298f7056d899",
+  "workflow_id": "eval-T2_004-beb165",
+  "design_name": "A socket head cap screw (allen bolt) consisting of an 8mm diameter shaft, a 13mm diameter head, and a 6mm (across flats) hexagonal socket recess.",
+  "created_at": "2026-05-26T05:45:13.704535+00:00",
+  "prompt": "A socket head cap screw (allen bolt): an 8mm diameter cylindrical shaft, 25mm long, topped with a cylindrical head 13mm in diameter and 8mm tall. A hexagonal socket recess is cut into the top face of the head, 6.93mm across corners (6mm across flats), 4mm deep. The screw stands upright with the shaft along Z starting at Z=0, head on top. Centered at the origin in X and Y.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A socket head cap screw (allen bolt) consisting of an 8mm diameter shaft, a 13mm diameter head, and a 6mm (across flats) hexagonal socket recess.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 23,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 2193.7230281066454,
+        "center_of_mass": [
+          -3.8958869164721994e-16,
+          8.690133356759476e-17,
+          19.43450064327913
+        ],
+        "bounding_box": {
+          "xmin": -6.5,
+          "xmax": 6.5,
+          "xlen": 13.0,
+          "ymin": -6.5,
+          "ymax": 6.5,
+          "ylen": 13.0,
+          "zmin": 0.0,
+          "zmax": 33.0,
+          "zlen": 33.0
+        },
+        "is_valid": true,
+        "num_faces": 12,
+        "num_edges": 24,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0437963525632002
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_004-beb165/step/T2_004_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_004-beb165/stl/T2_004_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 27062.495849609375,
+  "final_step_artifact_uri": "artifact://eval-T2_004-beb165/step/T2_004_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_004-beb165/stl/T2_004_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_004-beb165/forgecad/a_socket_head_cap_screw_(allen_bolt)_con_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 2193.7230281066454,
+    "center_of_mass": [
+      -3.8958869164721994e-16,
+      8.690133356759476e-17,
+      19.43450064327913
+    ],
+    "bounding_box": {
+      "xmin": -6.5,
+      "xmax": 6.5,
+      "xlen": 13.0,
+      "ymin": -6.5,
+      "ymax": 6.5,
+      "ylen": 13.0,
+      "zmin": 0.0,
+      "zmax": 33.0,
+      "zlen": 33.0
+    },
+    "is_valid": true,
+    "num_faces": 12,
+    "num_edges": 24,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0437963525632002
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

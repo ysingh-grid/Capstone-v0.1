@@ -1,0 +1,57 @@
+{
+  "description": "A 3D V-belt pulley standing upright along the Z-axis, featuring a V-groove outer profile, a central 12mm bore, and a 4mm wide keyway.",
+  "components": [
+    "Revolved Pulley Body",
+    "Central Bore",
+    "Keyway Slot"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 60.0,
+      "zlen": 20.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 60.0,
+      "bore_diameter": 12.0,
+      "pulley_width": 20.0,
+      "groove_depth": 10.0,
+      "groove_root_diameter": 40.0,
+      "keyway_width": 4.0,
+      "keyway_depth": 2.5
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 12.0 mm",
+      "dimensions": {
+        "diameter": 12.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model this part: 1. Create a 2D profile in the XZ plane with the vertices: (6,0) -> (30,0) -> (30,5) -> (20,10) -> (30,15) -> (30,20) -> (6,20). Close the profile back to (6,0). 2. Revolve this profile 360 degrees around the Z-axis. 3. Cut a keyway slot on the +X side of the bore. The slot is a box spanning X from 6.0 to 8.5, Y from -2.0 to 2.0, and Z from 0.0 to 20.0.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

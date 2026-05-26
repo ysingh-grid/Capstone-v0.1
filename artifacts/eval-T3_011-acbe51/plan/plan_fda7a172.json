@@ -1,0 +1,63 @@
+{
+  "description": "A 20-tooth spur gear with a star-polygon tooth profile, an extended cylindrical hub, a central bore, a keyway, and a radial set screw hole through the hub.",
+  "components": [
+    "gear_body",
+    "extended_hub",
+    "central_bore",
+    "keyway_slot",
+    "set_screw_hole"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 48.0,
+      "ylen": 48.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "gear_tip_diameter": 48.0,
+      "gear_root_diameter": 40.0,
+      "gear_thickness": 10.0,
+      "num_teeth": 20.0,
+      "hub_diameter": 16.0,
+      "hub_length": 30.0,
+      "bore_diameter": 10.0,
+      "keyway_width": 4.0,
+      "keyway_depth": 2.5,
+      "set_screw_hole_diameter": 4.0,
+      "set_screw_z_position": 20.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "2 hole(s) of diameter 10.0 mm",
+      "dimensions": {
+        "diameter": 10.0
+      },
+      "position": null,
+      "count": 2,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 2,
+    "hole_diameter_mm": null,
+    "symmetry": "mirror",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the gear tooth profile using a star polygon with 20 points alternating between radius 24mm (tip) and 20mm (root). Extrude the gear from Z=0 to Z=10. The hub is a cylinder of radius 8mm from Z=0 to Z=30. The central bore is a cylinder of radius 5mm from Z=0 to Z=30. The keyway slot is a box of width 4mm (Y) and depth 2.5mm (X from 5 to 7.5), running the full Z length. The set screw hole is a cylinder of radius 2mm aligned with the X-axis at Z=20, subtracted from the hub.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,41 @@
+{
+  "description": "Triangular prism with an equilateral triangle cross-section, circumscribed circle diameter of 30mm, extruded to 50mm with the cross-section centroid at the origin.",
+  "components": [
+    "Equilateral triangle sketch profile",
+    "Linear extrusion"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 25.98,
+      "ylen": 22.5,
+      "zlen": 50.0
+    },
+    "key_dimensions": {
+      "circumscribed_diameter": 30.0,
+      "circumscribed_radius": 15.0,
+      "side_length": 25.98,
+      "profile_height": 22.5,
+      "extrusion_length": 50.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To center the centroid of the equilateral triangle at the origin (0,0): if one vertex is aligned with the positive Y-axis, the three vertices of the triangle are at (0, 15), (-12.99, -7.5), and (12.99, -7.5). Extrude this profile along the Z-axis by 50mm (either from z=0 to 50 or symmetrically from z=-25 to 25).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

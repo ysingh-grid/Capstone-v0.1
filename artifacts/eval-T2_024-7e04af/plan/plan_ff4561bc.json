@@ -1,0 +1,57 @@
+{
+  "description": "A 16-tooth spur gear with a star-polygon profile, a protruding central hub, and a central through-bore, aligned along the Z-axis.",
+  "components": [
+    "Gear disc (star-polygon extrusion)",
+    "Protruding cylindrical hub",
+    "Central cylindrical bore"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 45.0,
+      "ylen": 45.0,
+      "zlen": 20.0
+    },
+    "key_dimensions": {
+      "tooth_count": 16.0,
+      "tip_diameter": 45.0,
+      "root_diameter": 33.75,
+      "gear_face_width": 8.0,
+      "hub_diameter": 16.0,
+      "hub_height": 20.0,
+      "bore_diameter": 8.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 8.0 mm",
+      "dimensions": {
+        "diameter": 8.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model the star-polygon gear profile: generate 32 vertices alternating between outer radius 22.5mm and inner radius 16.875mm, form a polygon, and extrude from Z=0 to Z=8. Create the hub as a cylinder of diameter 16mm from Z=0 to Z=20, union it with the gear, and then subtract a cylinder of diameter 8mm spanning the entire height (e.g., Z=-1 to Z=21 for a clean cut) to create the bore.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

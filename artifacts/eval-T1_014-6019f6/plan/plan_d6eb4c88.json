@@ -1,0 +1,40 @@
+{
+  "description": "A regular octagonal prism with a circumscribed circle diameter of 40mm and a height of 15mm.",
+  "components": [
+    "Regular octagonal 2D profile",
+    "Linear extrusion"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 15.0
+    },
+    "key_dimensions": {
+      "circumscribed_diameter": 40.0,
+      "circumscribed_radius": 20.0,
+      "height": 15.0,
+      "side_length": 15.307
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the octagon using 8 vertices distributed evenly on a circle of radius 20mm (angle steps of 45 degrees, starting at 0). Center the profile at (0,0) and extrude it symmetrically or from Z=0 to Z=15.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

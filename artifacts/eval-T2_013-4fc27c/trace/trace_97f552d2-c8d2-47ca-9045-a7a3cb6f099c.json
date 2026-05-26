@@ -1,0 +1,121 @@
+{
+  "trace_id": "97f552d2-c8d2-47ca-9045-a7a3cb6f099c",
+  "workflow_id": "eval-T2_013-4fc27c",
+  "design_name": "Round flange plate with a 60mm outer diameter, 8mm thickness, 20mm center bore, and six 5.5mm bolt holes arranged on a 45mm pitch circle diameter.",
+  "created_at": "2026-05-26T05:51:50.353154+00:00",
+  "prompt": "A round flange plate: a solid disc 60mm in diameter and 8mm thick, lying flat on the XY plane, centered at the origin. A 20mm diameter center bore goes through the full thickness. Six 5.5mm diameter bolt holes on a 45mm pitch circle diameter (22.5mm radius from center), at 0, 60, 120, 180, 240, and 300 degrees from the +X axis, through the full thickness.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Round flange plate with a 60mm outer diameter, 8mm thickness, 20mm center bore, and six 5.5mm bolt holes arranged on a 45mm pitch circle diameter.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 24,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 18965.794849721588,
+        "center_of_mass": [
+          4.79544732493128e-16,
+          2.9971545780820497e-15,
+          4.0
+        ],
+        "bounding_box": {
+          "xmin": -30.0,
+          "xmax": 30.0,
+          "xlen": 60.0,
+          "ymin": -30.0,
+          "ymax": 30.0,
+          "ylen": 60.0,
+          "zmin": 0.0,
+          "zmax": 8.0,
+          "zlen": 8.0
+        },
+        "is_valid": true,
+        "num_faces": 10,
+        "num_edges": 24,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.041439567105407374
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_013-4fc27c/step/T2_013_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_013-4fc27c/stl/T2_013_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 27785.907958984375,
+  "final_step_artifact_uri": "artifact://eval-T2_013-4fc27c/step/T2_013_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_013-4fc27c/stl/T2_013_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_013-4fc27c/forgecad/round_flange_plate_with_a_60mm_outer_dia_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 18965.794849721588,
+    "center_of_mass": [
+      4.79544732493128e-16,
+      2.9971545780820497e-15,
+      4.0
+    ],
+    "bounding_box": {
+      "xmin": -30.0,
+      "xmax": 30.0,
+      "xlen": 60.0,
+      "ymin": -30.0,
+      "ymax": 30.0,
+      "ylen": 60.0,
+      "zmin": 0.0,
+      "zmax": 8.0,
+      "zlen": 8.0
+    },
+    "is_valid": true,
+    "num_faces": 10,
+    "num_edges": 24,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.041439567105407374
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

@@ -1,0 +1,121 @@
+{
+  "trace_id": "8a5dd32c-f515-4a52-858a-8003907f8398",
+  "workflow_id": "eval-T3_017-ae851c",
+  "design_name": "A 4-way pipe cross fitting made of two intersecting hollow cylinders of equal dimensions, aligned along the X and Z axes, creating a continuous hollow interior.",
+  "created_at": "2026-05-26T09:00:18.449411+00:00",
+  "prompt": "A pipe cross fitting (four-way intersection). Two hollow pipes of equal size cross perpendicularly. The first pipe is 30mm outer diameter, 24mm inner diameter (3mm wall thickness), 100mm long along the X axis, centered at the origin (from X=-50 to X=50). The second pipe has the same dimensions, 100mm long along the Z axis, centered at the origin (from Z=-50 to Z=50). The two pipes intersect at the origin, creating a continuous hollow + shaped interior. The part is centered at the origin in all axes.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A 4-way pipe cross fitting made of two intersecting hollow cylinders of equal dimensions, aligned along the X and Z axes, creating a continuous hollow interior.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 52,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 42109.80098798483,
+        "center_of_mass": [
+          4.5809548875644794e-11,
+          2.752578961380595e-12,
+          3.568918776979696e-12
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -15.0,
+          "ymax": 15.0,
+          "ylen": 30.0,
+          "zmin": -50.0,
+          "zmax": 50.0,
+          "zlen": 100.0
+        },
+        "is_valid": true,
+        "num_faces": 12,
+        "num_edges": 28,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.029121627676572108
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_017-ae851c/step/T3_017_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_017-ae851c/stl/T3_017_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 33602.109130859375,
+  "final_step_artifact_uri": "artifact://eval-T3_017-ae851c/step/T3_017_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_017-ae851c/stl/T3_017_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_017-ae851c/forgecad/a_4_way_pipe_cross_fitting_made_of_two_i_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 42109.80098798483,
+    "center_of_mass": [
+      4.5809548875644794e-11,
+      2.752578961380595e-12,
+      3.568918776979696e-12
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -15.0,
+      "ymax": 15.0,
+      "ylen": 30.0,
+      "zmin": -50.0,
+      "zmax": 50.0,
+      "zlen": 100.0
+    },
+    "is_valid": true,
+    "num_faces": 12,
+    "num_edges": 28,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.029121627676572108
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

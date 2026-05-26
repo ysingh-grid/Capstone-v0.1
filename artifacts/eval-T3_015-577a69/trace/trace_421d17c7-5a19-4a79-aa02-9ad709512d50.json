@@ -1,0 +1,121 @@
+{
+  "trace_id": "421d17c7-5a19-4a79-aa02-9ad709512d50",
+  "workflow_id": "eval-T3_015-577a69",
+  "design_name": "A pipe tee fitting with a main run pipe along the X axis and a perpendicular branch pipe along the +Z axis, featuring a continuous hollow T-shaped interior.",
+  "created_at": "2026-05-26T08:55:18.873966+00:00",
+  "prompt": "A pipe tee fitting. The main (run) pipe is a hollow cylinder 30mm outer diameter, 24mm inner diameter (3mm wall thickness), 100mm long, centered at the origin along the X axis (from X=-50 to X=50). A branch pipe of the same diameter exits perpendicular to the main pipe, going in the +Z direction from the intersection at Z=0 up to Z=50. The branch intersects the main pipe at the center, creating a continuous hollow interior shaped like a T. The part is centered at the origin in X and Y.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A pipe tee fitting with a main run pipe along the X axis and a perpendicular branch pipe along the +Z axis, featuring a continuous hollow T-shaped interior.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 67,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 33777.903799501495,
+        "center_of_mass": [
+          2.480161709432285e-11,
+          3.755455608239473e-15,
+          8.374552331299027
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -15.0,
+          "ymax": 15.0,
+          "ylen": 30.0,
+          "zmin": -15.0,
+          "zmax": 50.0,
+          "zlen": 65.0
+        },
+        "is_valid": true,
+        "num_faces": 11,
+        "num_edges": 26,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0340654125863072
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_015-577a69/step/T3_015_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_015-577a69/stl/T3_015_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 66331.44604492188,
+  "final_step_artifact_uri": "artifact://eval-T3_015-577a69/step/T3_015_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_015-577a69/stl/T3_015_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_015-577a69/forgecad/a_pipe_tee_fitting_with_a_main_run_pipe__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 33777.903799501495,
+    "center_of_mass": [
+      2.480161709432285e-11,
+      3.755455608239473e-15,
+      8.374552331299027
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -15.0,
+      "ymax": 15.0,
+      "ylen": 30.0,
+      "zmin": -15.0,
+      "zmax": 50.0,
+      "zlen": 65.0
+    },
+    "is_valid": true,
+    "num_faces": 11,
+    "num_edges": 26,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0340654125863072
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

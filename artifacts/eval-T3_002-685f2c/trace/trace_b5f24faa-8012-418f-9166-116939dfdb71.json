@@ -1,0 +1,121 @@
+{
+  "trace_id": "b5f24faa-8012-418f-9166-116939dfdb71",
+  "workflow_id": "eval-T3_002-685f2c",
+  "design_name": "A rounded rectangular electronics enclosure body, open on top, with a 2mm wall thickness and four 3.2mm mounting holes in the bottom.",
+  "created_at": "2026-05-26T08:26:54.829708+00:00",
+  "prompt": "A rounded rectangular electronics enclosure body, open on top. Outer dimensions 80mm (X) by 50mm (Y) by 25mm tall (Z). The four vertical edges are rounded with an 8mm fillet radius, giving the enclosure a smooth rounded-rectangle cross-section. The top face (+Z) is removed and the body is shelled inward with 2mm wall thickness, creating a hollow tray with the outer dimensions preserved. Four 3.2mm diameter mounting holes are drilled through the bottom face, positioned in a rectangular pattern 64mm (X) by 34mm (Y) centered at the origin (each hole is 8mm inset from the nearest outer edges). The enclosure sits on the XY plane with its base at Z=0, centered at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A rounded rectangular electronics enclosure body, open on top, with a 2mm wall thickness and four 3.2mm mounting holes in the bottom.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 49,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 18864.9697110258,
+        "center_of_mass": [
+          -8.394700196823155e-15,
+          1.3740069238159937e-15,
+          8.31460601183729
+        ],
+        "bounding_box": {
+          "xmin": -40.0,
+          "xmax": 40.0,
+          "xlen": 80.0,
+          "ymin": -25.0,
+          "ymax": 25.0,
+          "ylen": 50.0,
+          "zmin": 0.0,
+          "zmax": 25.0,
+          "zlen": 25.0
+        },
+        "is_valid": true,
+        "num_faces": 23,
+        "num_edges": 60,
+        "num_vertices": 40,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0050210367664376586
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_002-685f2c/step/T3_002_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_002-685f2c/stl/T3_002_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 29552.586181640625,
+  "final_step_artifact_uri": "artifact://eval-T3_002-685f2c/step/T3_002_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_002-685f2c/stl/T3_002_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_002-685f2c/forgecad/a_rounded_rectangular_electronics_enclos_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 18864.9697110258,
+    "center_of_mass": [
+      -8.394700196823155e-15,
+      1.3740069238159937e-15,
+      8.31460601183729
+    ],
+    "bounding_box": {
+      "xmin": -40.0,
+      "xmax": 40.0,
+      "xlen": 80.0,
+      "ymin": -25.0,
+      "ymax": 25.0,
+      "ylen": 50.0,
+      "zmin": 0.0,
+      "zmax": 25.0,
+      "zlen": 25.0
+    },
+    "is_valid": true,
+    "num_faces": 23,
+    "num_edges": 60,
+    "num_vertices": 40,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0050210367664376586
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

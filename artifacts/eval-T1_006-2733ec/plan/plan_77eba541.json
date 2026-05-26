@@ -1,0 +1,38 @@
+{
+  "description": "A simple flat rectangular plate with dimensions 100mm by 60mm and a thickness of 3mm.",
+  "components": [
+    "flat_rectangular_base"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 60.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "length": 100.0,
+      "width": 60.0,
+      "thickness": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.99,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part is highly simplistic. Center the plate at the origin (0,0) on the XY plane and extrude upwards along the Z-axis by 3mm. Ensure no filleting or chamfering is applied unless specified.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

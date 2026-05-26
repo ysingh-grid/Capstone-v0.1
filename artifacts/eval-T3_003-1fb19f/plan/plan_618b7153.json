@@ -1,0 +1,58 @@
+{
+  "description": "Rectangular electronics enclosure body with 4mm filleted vertical corners, open top, 2mm wall thickness (shelled inward), and four 8mm diameter internal screw bosses with 3mm through-holes.",
+  "components": [
+    "outer_box_with_fillets",
+    "inner_cavity_shell",
+    "four_screw_bosses",
+    "four_through_holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 70.0,
+      "ylen": 50.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "outer_fillet_radius": 4.0,
+      "wall_thickness": 2.0,
+      "boss_outer_diameter": 8.0,
+      "boss_hole_diameter": 3.0,
+      "boss_pos_x": 27.0,
+      "boss_pos_y": 17.0,
+      "floor_thickness": 2.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 3.0 mm",
+      "dimensions": {
+        "diameter": 3.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the 2mm shell is applied inward from the outer filleted box. The floor thickness should end up at 2mm (Z=0 to Z=2). The four screw bosses must be modeled as cylinders starting at Z=2 and ending at Z=30. The 3mm holes must cut completely through both the bosses and the bottom floor (Z=0 to Z=30).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

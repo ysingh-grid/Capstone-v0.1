@@ -1,0 +1,223 @@
+{
+  "trace_id": "7e5e018d-d609-4934-b258-73cf25596b5b",
+  "workflow_id": "eval-T3_016-5dcf5d",
+  "design_name": "A 45-degree hollow pipe elbow with the bend in the XZ plane, featuring a 20mm outer diameter, 16mm inner diameter, and a 40mm centerline bend radius.",
+  "created_at": "2026-05-26T08:59:36.897340+00:00",
+  "prompt": "A 45-degree pipe elbow with the bend in the XZ plane. The pipe has a 20mm outer diameter and 16mm inner diameter (2mm wall thickness). The bend centerline follows a 45-degree arc of 40mm radius on the XZ plane: starting at the origin heading in the +Z direction and curving 45 degrees toward the +X direction. The arc endpoint is at approximately (X=11.72, Z=28.28). The part is centered at Y=0. Created by sweeping the pipe cross-section along the arc path defined by a radiusArc on the XZ workplane with a 40mm bend radius.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A 45-degree hollow pipe elbow with the bend in the XZ plane, featuring a 20mm outer diameter, 16mm inner diameter, and a 40mm centerline bend radius.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 34,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 2512.391111869997,
+        "center_of_mass": [
+          9.03345193217589,
+          4.2667849456924e-16,
+          13.907920019108163
+        ],
+        "bounding_box": {
+          "xmin": -10.0000001,
+          "xmax": 19.314945494718657,
+          "xlen": 29.314945594718658,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": -1.0000000010146536e-7,
+          "zmax": 35.355339159327386,
+          "zlen": 35.35533925932739
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.3564238350596261
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The generated pipe elbow is visually distorted. The sweep operation kept the circular cross-section parallel to the XY plane throughout the path, causing a slanted and skewed top face rather than a true perpendicular pipe cut (visible in the left isometric view). To create a proper elbow, pass `isFrenet=True` to the `sweep()` function so the cross-section rotates to stay normal to the path, or alternatively, use a `revolve` operation around the arc's center of curvature instead of sweeping.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_016-5dcf5d/step/T3_016_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_016-5dcf5d/stl/T3_016_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 35,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 2512.391111869997,
+        "center_of_mass": [
+          9.03345193217589,
+          4.2667849456924e-16,
+          13.907920019108163
+        ],
+        "bounding_box": {
+          "xmin": -10.0000001,
+          "xmax": 19.314945494718657,
+          "xlen": 29.314945594718658,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": -1.0000000010146536e-7,
+          "zmax": 35.355339159327386,
+          "zlen": 35.35533925932739
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.3564238350596261
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The generated pipe elbow still has a completely horizontal, highly skewed top face (clearly visible in all renders), meaning the cross-section failed to rotate and stay normal to the path during the sweep. Since `isFrenet=True` was already attempted in the previous iteration and failed to resolve the sweep distortion, we must ESCALATE to a fundamentally different approach. Abandon `sweep()` and the `radiusArc` path entirely. Instead, use a `revolve()` operation: draw the outer and inner circles on the XY plane and revolve them by 45 degrees around an axis parallel to the Y-axis that passes through the bend's center of curvature. You can do this by chaining `.revolve(45, (40, 0, 0), (40, 1, 0))` after your circle. This will guarantee a uniform pipe elbow without the inherent distortions of CadQuery planar sweeps.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_016-5dcf5d/step/T3_016_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_016-5dcf5d/stl/T3_016_outer1_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 2,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 31,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 3553.057584392167,
+        "center_of_mass": [
+          3.0645231296547273,
+          3.271652050117782e-15,
+          15.299175452414772
+        ],
+        "bounding_box": {
+          "xmin": -10.0,
+          "xmax": 18.786796564403573,
+          "xlen": 28.786796564403573,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": 0.0,
+          "zmax": 35.35533905932737,
+          "zlen": 35.35533905932737
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.08157535021298253
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_016-5dcf5d/step/T3_016_outer2_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_016-5dcf5d/stl/T3_016_outer2_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 3,
+  "total_llm_calls": 9,
+  "total_time_ms": 158109.6240234375,
+  "final_step_artifact_uri": "artifact://eval-T3_016-5dcf5d/step/T3_016_outer2_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_016-5dcf5d/stl/T3_016_outer2_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_016-5dcf5d/forgecad/a_45_degree_hollow_pipe_elbow_with_the_b_iter2.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 3553.057584392167,
+    "center_of_mass": [
+      3.0645231296547273,
+      3.271652050117782e-15,
+      15.299175452414772
+    ],
+    "bounding_box": {
+      "xmin": -10.0,
+      "xmax": 18.786796564403573,
+      "xlen": 28.786796564403573,
+      "ymin": -10.0000001,
+      "ymax": 10.0000001,
+      "ylen": 20.0000002,
+      "zmin": 0.0,
+      "zmax": 35.35533905932737,
+      "zlen": 35.35533905932737
+    },
+    "is_valid": true,
+    "num_faces": 4,
+    "num_edges": 6,
+    "num_vertices": 4,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.08157535021298253
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

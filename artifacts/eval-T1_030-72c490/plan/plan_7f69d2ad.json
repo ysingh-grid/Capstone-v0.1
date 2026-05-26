@@ -1,0 +1,40 @@
+{
+  "description": "A tall, thin cylinder with a diameter of 12mm and a height of 100mm, featuring 1mm chamfers on both the top and bottom circular edges.",
+  "components": [
+    "cylinder_body",
+    "top_chamfer",
+    "bottom_chamfer"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 12.0,
+      "ylen": 12.0,
+      "zlen": 100.0
+    },
+    "key_dimensions": {
+      "diameter": 12.0,
+      "height": 100.0,
+      "chamfer_size": 1.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a cylinder of radius 6mm and height 100mm centered on the Z-axis (from Z=0 to Z=100 or centered at origin). Apply a 1mm x 1mm (or 45-degree 1mm) chamfer on both of the circular end-cap edges. Ensure the final bounding box is exactly 12x12x100mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,121 @@
+{
+  "trace_id": "341c4817-39b4-4bdc-a181-64b2cafb8311",
+  "workflow_id": "eval-T2_001-b317db",
+  "design_name": "A flat circular washer with an outer diameter of 20mm, a central hole of 10.5mm, and a thickness of 2mm. It lies flat on the XY plane, centered at the origin, with the thickness extruded in the +Z direction.",
+  "created_at": "2026-05-26T05:43:01.715853+00:00",
+  "prompt": "A flat washer: outer diameter 20mm, inner diameter 10.5mm, thickness 2mm. The washer lies flat on the XY plane, centered at the origin, with thickness extruded in the +Z direction.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A flat circular washer with an outer diameter of 20mm, a central hole of 10.5mm, and a thickness of 2mm. It lies flat on the XY plane, centered at the origin, with the thickness extruded in the +Z direction.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 23,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 455.13823568882117,
+        "center_of_mass": [
+          -3.434547783722084e-16,
+          1.8805232354871595e-16,
+          1.0000000000000002
+        ],
+        "bounding_box": {
+          "xmin": -10.0,
+          "xmax": 10.0,
+          "xlen": 20.0,
+          "ymin": -10.0,
+          "ymax": 10.0,
+          "ylen": 20.0,
+          "zmin": 0.0,
+          "zmax": 2.0,
+          "zlen": 2.0
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.041439933270064004
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_001-b317db/step/T2_001_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_001-b317db/stl/T2_001_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 21513.787841796875,
+  "final_step_artifact_uri": "artifact://eval-T2_001-b317db/step/T2_001_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_001-b317db/stl/T2_001_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_001-b317db/forgecad/a_flat_circular_washer_with_an_outer_dia_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 455.13823568882117,
+    "center_of_mass": [
+      -3.434547783722084e-16,
+      1.8805232354871595e-16,
+      1.0000000000000002
+    ],
+    "bounding_box": {
+      "xmin": -10.0,
+      "xmax": 10.0,
+      "xlen": 20.0,
+      "ymin": -10.0,
+      "ymax": 10.0,
+      "ylen": 20.0,
+      "zmin": 0.0,
+      "zmax": 2.0,
+      "zlen": 2.0
+    },
+    "is_valid": true,
+    "num_faces": 4,
+    "num_edges": 6,
+    "num_vertices": 4,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.041439933270064004
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

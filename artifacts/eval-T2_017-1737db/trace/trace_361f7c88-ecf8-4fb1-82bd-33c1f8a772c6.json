@@ -1,0 +1,121 @@
+{
+  "trace_id": "361f7c88-ecf8-4fb1-82bd-33c1f8a772c6",
+  "workflow_id": "eval-T2_017-1737db",
+  "design_name": "A T-beam extruded along the X-axis, centered at the origin, with a 3mm thick vertical web and a 30mm wide, 3mm thick horizontal flange on top.",
+  "created_at": "2026-05-26T05:55:10.190936+00:00",
+  "prompt": "A T-beam: 80mm long along X, 40mm total height along Z, flange 30mm wide along Y. The vertical web is 3mm thick (Y) and 37mm tall, rising from Z=0 to Z=37. The horizontal flange is 30mm wide (Y) and 3mm thick, sitting on top of the web from Z=37 to Z=40. The T cross-section is in the YZ plane, extruded along X, centered at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A T-beam extruded along the X-axis, centered at the origin, with a 3mm thick vertical web and a 30mm wide, 3mm thick horizontal flange on top.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 36,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 16079.999999999995,
+        "center_of_mass": [
+          -2.450998113094826e-16,
+          -1.3097317591995882e-15,
+          27.45522388059701
+        ],
+        "bounding_box": {
+          "xmin": -40.0,
+          "xmax": 40.0,
+          "xlen": 80.0,
+          "ymin": -15.0,
+          "ymax": 15.0,
+          "ylen": 30.0,
+          "zmin": 0.0,
+          "zmax": 40.0,
+          "zlen": 40.0
+        },
+        "is_valid": true,
+        "num_faces": 10,
+        "num_edges": 24,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 3.393636946913912e-14
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_017-1737db/step/T2_017_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_017-1737db/stl/T2_017_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 32461.7890625,
+  "final_step_artifact_uri": "artifact://eval-T2_017-1737db/step/T2_017_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_017-1737db/stl/T2_017_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_017-1737db/forgecad/a_t_beam_extruded_along_the_x_axis,_cent_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 16079.999999999995,
+    "center_of_mass": [
+      -2.450998113094826e-16,
+      -1.3097317591995882e-15,
+      27.45522388059701
+    ],
+    "bounding_box": {
+      "xmin": -40.0,
+      "xmax": 40.0,
+      "xlen": 80.0,
+      "ymin": -15.0,
+      "ymax": 15.0,
+      "ylen": 30.0,
+      "zmin": 0.0,
+      "zmax": 40.0,
+      "zlen": 40.0
+    },
+    "is_valid": true,
+    "num_faces": 10,
+    "num_edges": 24,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 3.393636946913912e-14
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

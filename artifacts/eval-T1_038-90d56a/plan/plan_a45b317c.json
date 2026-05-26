@@ -1,0 +1,39 @@
+{
+  "description": "A regular hexagonal bar with a 15mm circumscribed circle diameter and 120mm length.",
+  "components": [
+    "hexagonal_bar_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 15.0,
+      "ylen": 12.99,
+      "zlen": 120.0
+    },
+    "key_dimensions": {
+      "circumscribed_diameter": 15.0,
+      "flat_to_flat_width": 12.99,
+      "side_length": 7.5,
+      "length": 120.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The hexagonal cross-section has a circumscribed circle diameter of 15mm (vertices are 7.5mm from the center). The flat-to-flat distance is approximately 12.99mm. Extrude the profile to a length of 120mm. The CAD model should ideally be centered at the origin.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

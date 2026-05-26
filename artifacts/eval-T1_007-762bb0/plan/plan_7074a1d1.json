@@ -1,0 +1,40 @@
+{
+  "description": "A regular hexagonal prism with a circumscribed circle diameter of 20mm and a height of 35mm.",
+  "components": [
+    "Hexagonal profile",
+    "Solid extrusion"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 20.0,
+      "ylen": 17.32,
+      "zlen": 35.0
+    },
+    "key_dimensions": {
+      "circumscribed_diameter": 20.0,
+      "inscribed_diameter": 17.32,
+      "side_length": 10.0,
+      "height": 35.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The hexagon should be centered on the origin. A regular hexagon has a vertex-to-center distance equal to its side length (10mm, since the circumscribed diameter is 20mm). The flat-to-flat distance (inscribed diameter) is exactly 10 * sqrt(3) \u2248 17.32mm. Extrude the sketch symmetrically or from the base plane to a height of 35mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

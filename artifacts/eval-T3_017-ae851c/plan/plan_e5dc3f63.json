@@ -1,0 +1,55 @@
+{
+  "description": "A 4-way pipe cross fitting made of two intersecting hollow cylinders of equal dimensions, aligned along the X and Z axes, creating a continuous hollow interior.",
+  "components": [
+    "X-axis hollow cylinder (main pipe 1)",
+    "Z-axis hollow cylinder (main pipe 2)",
+    "Hollow perpendicular intersection at origin"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 30.0,
+      "zlen": 100.0
+    },
+    "key_dimensions": {
+      "pipe_outer_diameter": 30.0,
+      "pipe_inner_diameter": 24.0,
+      "pipe_wall_thickness": 3.0,
+      "pipe_x_length": 100.0,
+      "pipe_z_length": 100.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 24.0 mm",
+      "dimensions": {
+        "diameter": 24.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the intersection is fully cleared to form a continuous interior passage. Create the outer shape by unioning two solid cylinders, create the inner shape by unioning two smaller cylinders, then subtract the inner union from the outer union to ensure clean internal geometry without internal walls.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

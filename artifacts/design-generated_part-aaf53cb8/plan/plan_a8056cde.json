@@ -1,0 +1,76 @@
+{
+  "description": "Parametric hardtail mountain bike frame assembly with hollow tubes, rear dropouts, and standard frame geometry.",
+  "components": [
+    "Head Tube (hollow cylinder)",
+    "Bottom Bracket (hollow cylinder)",
+    "Seat Tube (hollow cylinder)",
+    "Top Tube (tapered oval extrusion)",
+    "Down Tube (cylindrical tube)",
+    "Rear Dropouts (symmetric plates with thru-axle holes)",
+    "Chain Stays (left/right tapered tubes)",
+    "Seat Stays (left/right tapered tubes)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 1250.0,
+      "ylen": 180.0,
+      "zlen": 700.0
+    },
+    "key_dimensions": {
+      "head_tube_outer_diameter_mm": 50.0,
+      "head_tube_inner_diameter_mm": 44.0,
+      "head_tube_length_mm": 110.0,
+      "head_tube_angle_deg": 66.0,
+      "bottom_bracket_outer_diameter_mm": 45.0,
+      "bottom_bracket_inner_diameter_mm": 38.0,
+      "bottom_bracket_length_mm": 73.0,
+      "bottom_bracket_vertical_offset_mm": 300.0,
+      "bottom_bracket_horizontal_offset_mm": 450.0,
+      "seat_tube_outer_diameter_mm": 34.9,
+      "seat_tube_inner_diameter_mm": 31.6,
+      "seat_tube_length_mm": 430.0,
+      "seat_tube_angle_deg": 75.0,
+      "top_tube_start_diameter_mm": 40.0,
+      "top_tube_end_diameter_mm": 35.0,
+      "down_tube_diameter_mm": 50.0,
+      "rear_dropout_thickness_mm": 12.0,
+      "rear_dropout_horizontal_offset_mm": 435.0,
+      "rear_axle_diameter_mm": 12.0,
+      "chain_stay_diameter_at_dropout_mm": 20.0,
+      "seat_stay_diameter_at_dropout_mm": 16.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "5 hole(s) of diameter 12.0 mm",
+      "dimensions": {
+        "diameter": 12.0
+      },
+      "position": null,
+      "count": 5,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 5,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.85,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Note on Bottom Bracket dimensions: The prompt specifies 'outer diameter 45mm, inner diameter 73mm, length 73mm'. An inner diameter larger than the outer diameter is physically impossible. Assume Bottom Bracket Outer Diameter = 45mm, Inner Diameter = 38mm, and Length = 73mm. Align the rear axle at the coordinate origin, and position the Bottom Bracket center at (-435, 0, -300) relative to the axle to satisfy both the 435mm rear-dropout spacing and 300mm vertical drop.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

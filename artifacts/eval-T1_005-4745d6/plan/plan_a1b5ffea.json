@@ -1,0 +1,36 @@
+{
+  "description": "A simple solid cube with 40mm sides.",
+  "components": [
+    "cube_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "side_length": 40.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a basic 3D box utility. Centering the cube at (0, 0, 0) is recommended for optimal alignment and symmetry.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

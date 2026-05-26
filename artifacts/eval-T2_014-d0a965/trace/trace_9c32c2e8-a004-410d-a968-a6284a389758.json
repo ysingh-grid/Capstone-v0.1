@@ -1,0 +1,121 @@
+{
+  "trace_id": "9c32c2e8-a004-410d-a968-a6284a389758",
+  "workflow_id": "eval-T2_014-d0a965",
+  "design_name": "A hollow rectangular tube centered at the origin, with a YZ cross-section extruded along the X-axis.",
+  "created_at": "2026-05-26T05:52:30.965695+00:00",
+  "prompt": "A hollow rectangular tube: 80mm long (X), outer cross-section 30mm wide (Y) by 40mm tall (Z), wall thickness 2mm on all four sides. Open on both ends along X. The rectangular cross-section is in the YZ plane, extruded along X, centered at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A hollow rectangular tube centered at the origin, with a YZ cross-section extruded along the X-axis.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 23,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 21120.0,
+        "center_of_mass": [
+          2.7560445508270553e-15,
+          -3.5577601470942517e-16,
+          -3.783408318782624e-16
+        ],
+        "bounding_box": {
+          "xmin": -40.0,
+          "xmax": 40.0,
+          "xlen": 80.0,
+          "ymin": -15.0,
+          "ymax": 15.0,
+          "ylen": 30.0,
+          "zmin": -20.0,
+          "zmax": 20.0,
+          "zlen": 40.0
+        },
+        "is_valid": true,
+        "num_faces": 10,
+        "num_edges": 24,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_014-d0a965/step/T2_014_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_014-d0a965/stl/T2_014_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 28713.357177734375,
+  "final_step_artifact_uri": "artifact://eval-T2_014-d0a965/step/T2_014_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_014-d0a965/stl/T2_014_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_014-d0a965/forgecad/a_hollow_rectangular_tube_centered_at_th_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 21120.0,
+    "center_of_mass": [
+      2.7560445508270553e-15,
+      -3.5577601470942517e-16,
+      -3.783408318782624e-16
+    ],
+    "bounding_box": {
+      "xmin": -40.0,
+      "xmax": 40.0,
+      "xlen": 80.0,
+      "ymin": -15.0,
+      "ymax": 15.0,
+      "ylen": 30.0,
+      "zmin": -20.0,
+      "zmax": 20.0,
+      "zlen": 40.0
+    },
+    "is_valid": true,
+    "num_faces": 10,
+    "num_edges": 24,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

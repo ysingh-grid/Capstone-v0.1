@@ -1,0 +1,39 @@
+{
+  "description": "A U-channel extruded along the X-axis, centered at the origin, with defined wall and base thicknesses.",
+  "components": [
+    "U-channel body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 40.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "wall_thickness": 3.0,
+      "base_thickness": 3.0,
+      "inner_width": 34.0,
+      "inner_height": 27.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The U-channel should be modeled with the cross-section in the YZ plane and extruded along the X-axis. Centering at the origin means the X-bounds are [-40, 40], Y-bounds are [-20, 20], and Z-bounds are [-15, 15]. The base is at Z=-15 to Z=-12, and the walls extend up to Z=15 on the sides Y=[-20, -17] and Y=[17, 20].",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

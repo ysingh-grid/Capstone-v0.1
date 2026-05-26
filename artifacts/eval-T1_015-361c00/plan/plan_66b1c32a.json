@@ -1,0 +1,38 @@
+{
+  "description": "A truncated cone (frustum) with a base diameter of 40mm, a top diameter of 20mm, and a height of 30mm.",
+  "components": [
+    "Frustum body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "base_diameter": 40.0,
+      "top_diameter": 20.0,
+      "height": 30.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Align the center of the base with the origin (0, 0, 0). This shape can be easily generated using a revolve operation of a right trapezoid about the Z-axis, or by lofting between two circular sketches of diameter 40mm and 20mm spaced 30mm apart along the Z-axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

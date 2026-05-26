@@ -1,0 +1,55 @@
+{
+  "description": "Round flange plate with a 60mm outer diameter, 8mm thickness, 20mm center bore, and six 5.5mm bolt holes arranged on a 45mm pitch circle diameter.",
+  "components": [
+    "Main flange disc",
+    "Center bore cut-out",
+    "Six bolt hole cut-outs"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 60.0,
+      "zlen": 8.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 60.0,
+      "thickness": 8.0,
+      "center_bore_diameter": 20.0,
+      "pitch_circle_diameter": 45.0,
+      "bolt_hole_diameter": 5.5
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "7 hole(s) of diameter 5.5 mm",
+      "dimensions": {
+        "diameter": 5.5
+      },
+      "position": null,
+      "count": 7,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 7,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The flange must be centered at (0,0) on the XY plane. The 6 bolt holes are located at a radius of 22.5mm from the center, at angles of 0, 60, 120, 180, 240, and 300 degrees relative to the positive X-axis. All holes must be through-holes spanning the entire 8mm thickness of the plate.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

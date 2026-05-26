@@ -1,0 +1,41 @@
+{
+  "description": "An open-top rectangular container with rounded vertical corners, shelled inward to form a 2mm wall thickness. Centered at the origin and resting on the XY plane.",
+  "components": [
+    "outer_rounded_box",
+    "inner_cavity_subtraction"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "wall_thickness": 2.0,
+      "outer_corner_radius": 5.0,
+      "inner_corner_radius": 3.0,
+      "floor_thickness": 2.0,
+      "cavity_depth": 28.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To maintain a uniform 2mm wall thickness, the inner cavity must have a corner fillet radius of 3mm (outer radius 5mm minus 2mm wall thickness). The outer bounding box must be exactly 60x40x30mm, centered on (0,0) in X and Y, with the bottom at Z=0.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

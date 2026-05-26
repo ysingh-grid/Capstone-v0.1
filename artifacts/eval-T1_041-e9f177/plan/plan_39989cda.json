@@ -1,0 +1,52 @@
+{
+  "description": "A solid concentric ring with an outer diameter of 40mm, inner diameter of 30mm, and a height of 12mm.",
+  "components": [
+    "main_ring_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 12.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 40.0,
+      "inner_diameter": 30.0,
+      "height": 12.0,
+      "wall_thickness": 5.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 30.0 mm",
+      "dimensions": {
+        "diameter": 30.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part should be modeled as a subtraction of an inner cylinder (diameter 30mm) from an outer cylinder (diameter 40mm), both centered at the origin. Ensure high mesh resolution (e.g., fn=100 in OpenSCAD or equivalent) to maintain roundness.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

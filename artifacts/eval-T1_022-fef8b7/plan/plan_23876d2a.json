@@ -1,0 +1,36 @@
+{
+  "description": "A small solid cube with 10mm sides.",
+  "components": [
+    "main_cube_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 10.0,
+      "ylen": 10.0,
+      "zlen": 10.0
+    },
+    "key_dimensions": {
+      "side_length": 10.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.99,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part is a basic 10x10x10 mm cube. Ensure it is centered at the origin (0,0,0) or positioned with one corner at the origin depending on standard CAD practices, but centering is preferred.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

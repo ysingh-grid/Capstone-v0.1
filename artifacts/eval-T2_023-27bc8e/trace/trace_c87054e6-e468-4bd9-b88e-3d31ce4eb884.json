@@ -1,0 +1,121 @@
+{
+  "trace_id": "c87054e6-e468-4bd9-b88e-3d31ce4eb884",
+  "workflow_id": "eval-T2_023-27bc8e",
+  "design_name": "Z-bracket (offset mounting bracket) modeled in the XZ plane with a bottom plate, a vertical web, and a top plate.",
+  "created_at": "2026-05-26T06:13:19.356464+00:00",
+  "prompt": "A Z-bracket (offset mounting bracket): viewed from the side in the XZ plane, the bracket forms a Z shape. The bottom plate extends from X=0 to X=30, 25mm deep (Y, centered), 3mm thick (Z=0 to Z=3). A vertical web 3mm thick (X, centered at X=0) spans the full height Z=0 to Z=26. The top plate extends from X=-30 to X=0, 25mm deep (Y, centered), 3mm thick (Z=23 to Z=26). Centered in Y at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Z-bracket (offset mounting bracket) modeled in the XZ plane with a bottom plate, a vertical web, and a top plate.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 34,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 6225.0,
+        "center_of_mass": [
+          -5.84414266199472e-16,
+          3.2459532607514616e-16,
+          13.000000000000005
+        ],
+        "bounding_box": {
+          "xmin": -30.0,
+          "xmax": 30.0,
+          "xlen": 60.0,
+          "ymin": -12.5,
+          "ymax": 12.5,
+          "ylen": 25.0,
+          "zmin": 0.0,
+          "zmax": 26.0,
+          "zlen": 26.0
+        },
+        "is_valid": true,
+        "num_faces": 10,
+        "num_edges": 24,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.0
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_023-27bc8e/step/T2_023_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_023-27bc8e/stl/T2_023_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 46564.375244140625,
+  "final_step_artifact_uri": "artifact://eval-T2_023-27bc8e/step/T2_023_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_023-27bc8e/stl/T2_023_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_023-27bc8e/forgecad/z_bracket_(offset_mounting_bracket)_mode_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 6225.0,
+    "center_of_mass": [
+      -5.84414266199472e-16,
+      3.2459532607514616e-16,
+      13.000000000000005
+    ],
+    "bounding_box": {
+      "xmin": -30.0,
+      "xmax": 30.0,
+      "xlen": 60.0,
+      "ymin": -12.5,
+      "ymax": 12.5,
+      "ylen": 25.0,
+      "zmin": 0.0,
+      "zmax": 26.0,
+      "zlen": 26.0
+    },
+    "is_valid": true,
+    "num_faces": 10,
+    "num_edges": 24,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.0
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

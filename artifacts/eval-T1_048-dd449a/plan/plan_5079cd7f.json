@@ -1,0 +1,38 @@
+{
+  "description": "A solid rectangular block with specified dimensions of 150mm x 50mm x 30mm.",
+  "components": [
+    "solid_rectangular_block"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 150.0,
+      "ylen": 50.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "length": 150.0,
+      "width": 50.0,
+      "height": 30.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Align the center of the block at the origin (0, 0, 0) for ease of symmetry and further downstream operations if needed.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

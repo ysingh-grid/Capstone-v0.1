@@ -1,0 +1,53 @@
+{
+  "description": "A hollow cylindrical tube with a specified outer diameter, inner diameter, and length.",
+  "components": [
+    "outer_cylinder",
+    "inner_subtraction_cylinder"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 30.0,
+      "ylen": 30.0,
+      "zlen": 80.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 30.0,
+      "inner_diameter": 24.0,
+      "wall_thickness": 3.0,
+      "length": 80.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 24.0 mm",
+      "dimensions": {
+        "diameter": 24.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the tube aligned along the Z-axis. Solid is created by extruding a ring (concentric circles of diameter 30mm and 24mm) by 80mm, or by subtracting an inner cylinder of diameter 24mm from an outer cylinder of diameter 30mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

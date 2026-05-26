@@ -1,0 +1,56 @@
+{
+  "description": "Flanged shaft standing upright along Z, centered at the origin, featuring a 40mm diameter base flange and a 20mm diameter, 50mm long shaft, with four 6mm bolt holes on a 30mm bolt circle.",
+  "components": [
+    "Base flange (cylindrical disc)",
+    "Vertical shaft (cylinder)",
+    "Four bolt holes (cylindrical cuts)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 55.0
+    },
+    "key_dimensions": {
+      "flange_diameter": 40.0,
+      "flange_thickness": 5.0,
+      "shaft_diameter": 20.0,
+      "shaft_length": 50.0,
+      "bolt_circle_diameter": 30.0,
+      "bolt_hole_diameter": 6.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 6.0 mm",
+      "dimensions": {
+        "diameter": 6.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model this, first construct the flange cylinder from Z=0 to Z=5 with radius 20. Next, construct the shaft cylinder from Z=5 to Z=55 with radius 10. Perform a union of these two bodies. Then, generate four cutting cylinders of radius 3, extending at least from Z=-1 to Z=6 to ensure clean through-cuts. Position these cutting cylinders at (15, 0), (0, 15), (-15, 0), and (0, -15) in the XY plane. Subtract the four cylinders from the combined body.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

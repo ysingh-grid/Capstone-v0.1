@@ -1,0 +1,43 @@
+{
+  "description": "Z-bracket (offset mounting bracket) modeled in the XZ plane with a bottom plate, a vertical web, and a top plate.",
+  "components": [
+    "Bottom plate",
+    "Vertical web",
+    "Top plate"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 25.0,
+      "zlen": 26.0
+    },
+    "key_dimensions": {
+      "bottom_plate_length": 30.0,
+      "top_plate_length": 30.0,
+      "plate_thickness": 3.0,
+      "web_thickness": 3.0,
+      "bracket_depth": 25.0,
+      "overall_height": 26.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure proper union of the three components. The vertical web is centered at X=0 (ranging from X=-1.5 to X=1.5) and spans Z=0 to Z=26. The bottom plate extends from X=0 to 30 (Z=0 to 3). The top plate extends from X=-30 to 0 (Z=23 to 26). All components are centered in Y (ranging from Y=-12.5 to 12.5).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

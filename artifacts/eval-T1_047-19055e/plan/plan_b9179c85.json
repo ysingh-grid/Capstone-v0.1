@@ -1,0 +1,40 @@
+{
+  "description": "A solid truncated cone (frustum) with circular base and top faces, centered on the Z-axis.",
+  "components": [
+    "truncated_cone_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 60.0,
+      "zlen": 35.0
+    },
+    "key_dimensions": {
+      "base_diameter": 60.0,
+      "top_diameter": 40.0,
+      "height": 35.0,
+      "base_radius": 30.0,
+      "top_radius": 20.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 2.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The coder should create a solid frustum. In OpenCASCADE, this can be achieved using gp_Cone and cutting/limiting it, or creating a cylinder/cone-like shape, or using BRepPrimAPI_MakeCone with two radii (r1 = 30, r2 = 20, height = 35).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

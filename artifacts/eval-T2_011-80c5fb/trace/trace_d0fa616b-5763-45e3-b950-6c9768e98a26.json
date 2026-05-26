@@ -1,0 +1,121 @@
+{
+  "trace_id": "d0fa616b-5763-45e3-b950-6c9768e98a26",
+  "workflow_id": "eval-T2_011-80c5fb",
+  "design_name": "A solid cylindrical dowel pin centered at the origin along the Z-axis with 1mm 45-degree chamfers on both ends.",
+  "created_at": "2026-05-26T05:50:36.185088+00:00",
+  "prompt": "A dowel pin: solid cylinder 8mm in diameter and 40mm long, standing upright along the Z axis, centered at the origin. Both circular ends have a 1mm 45-degree chamfer.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A solid cylindrical dowel pin centered at the origin along the Z-axis with 1mm 45-degree chamfers on both ends.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 19,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 1987.5809521711426,
+        "center_of_mass": [
+          4.003901643261413e-16,
+          1.8905583844624866e-16,
+          6.863831388448136e-16
+        ],
+        "bounding_box": {
+          "xmin": -4.0,
+          "xmax": 4.0,
+          "xlen": 8.0,
+          "ymin": -4.0,
+          "ymax": 4.0,
+          "ylen": 8.0,
+          "zmin": -20.0,
+          "zmax": 20.0,
+          "zlen": 40.0
+        },
+        "is_valid": true,
+        "num_faces": 5,
+        "num_edges": 7,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.04411675755972804
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_011-80c5fb/step/T2_011_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_011-80c5fb/stl/T2_011_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 25878.713134765625,
+  "final_step_artifact_uri": "artifact://eval-T2_011-80c5fb/step/T2_011_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_011-80c5fb/stl/T2_011_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_011-80c5fb/forgecad/a_solid_cylindrical_dowel_pin_centered_a_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 1987.5809521711426,
+    "center_of_mass": [
+      4.003901643261413e-16,
+      1.8905583844624866e-16,
+      6.863831388448136e-16
+    ],
+    "bounding_box": {
+      "xmin": -4.0,
+      "xmax": 4.0,
+      "xlen": 8.0,
+      "ymin": -4.0,
+      "ymax": 4.0,
+      "ylen": 8.0,
+      "zmin": -20.0,
+      "zmax": 20.0,
+      "zlen": 40.0
+    },
+    "is_valid": true,
+    "num_faces": 5,
+    "num_edges": 7,
+    "num_vertices": 4,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.04411675755972804
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

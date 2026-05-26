@@ -1,0 +1,40 @@
+{
+  "description": "Rectangular block 25mm by 15mm by 10mm with 1mm chamfers on all 12 edges.",
+  "components": [
+    "main_rectangular_block",
+    "edge_chamfers"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 25.0,
+      "ylen": 15.0,
+      "zlen": 10.0
+    },
+    "key_dimensions": {
+      "block_length": 25.0,
+      "block_width": 15.0,
+      "block_height": 10.0,
+      "chamfer_distance": 1.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 3.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The 1mm chamfer must be applied to all 12 edges of the block. The overall bounding box must remain exactly 25mm x 15mm x 10mm. If using CadQuery or standard CAD kernels, a global chamfer operation on the solid's edges is the most efficient approach.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,41 @@
+{
+  "description": "A capsule-shaped part consisting of a central cylinder capped with hemispheres on both ends.",
+  "components": [
+    "central_cylinder",
+    "top_hemisphere_cap",
+    "bottom_hemisphere_cap"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 30.0,
+      "ylen": 30.0,
+      "zlen": 80.0
+    },
+    "key_dimensions": {
+      "cylinder_diameter": 30.0,
+      "cylinder_height": 50.0,
+      "cap_radius": 15.0,
+      "total_height": 80.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the hemispheres are perfectly tangent to the cylinder ends. The cylinder height is 50mm, and each hemispherical cap adds 15mm to the height, resulting in a total height of 80mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

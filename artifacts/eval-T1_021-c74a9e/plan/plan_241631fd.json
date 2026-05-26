@@ -1,0 +1,39 @@
+{
+  "description": "A solid wedge (triangular prism) centered at the origin, with a 60mm x 30mm base on the XY plane and a central ridge at Z=25mm.",
+  "components": [
+    "Triangular prism / wedge main body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 30.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "base_length_x": 60.0,
+      "base_width_y": 30.0,
+      "height_z": 25.0,
+      "ridge_length_x": 60.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The wedge is a triangular prism. In the YZ plane, the cross-section is an isosceles triangle with a base of 30mm (from Y=-15 to Y=15 at Z=0) and an apex at Y=0, Z=25. This cross-section is extruded along the X-axis from X=-30 to X=30.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

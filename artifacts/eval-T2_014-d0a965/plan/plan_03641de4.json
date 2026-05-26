@@ -1,0 +1,42 @@
+{
+  "description": "A hollow rectangular tube centered at the origin, with a YZ cross-section extruded along the X-axis.",
+  "components": [
+    "Outer rectangular box",
+    "Inner rectangular box (subtracted to form hollow core)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 30.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "length_x": 80.0,
+      "outer_width_y": 30.0,
+      "outer_height_z": 40.0,
+      "wall_thickness": 2.0,
+      "inner_width_y": 26.0,
+      "inner_height_z": 36.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 1.0,
+    "bbox_iou_threshold": 0.99,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The tube must be centered at the origin, meaning X bounds are [-40, 40], Y bounds are [-15, 15], and Z bounds are [-20, 20]. This can be constructed by defining a 2D hollow profile in the YZ plane and extruding along X, or by subtracting an inner box from an outer box.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

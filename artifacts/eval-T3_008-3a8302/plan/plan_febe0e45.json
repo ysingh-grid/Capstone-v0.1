@@ -1,0 +1,65 @@
+{
+  "description": "A stepped shaft oriented along the Z-axis with an integrated 20-tooth spur gear (star-polygon profile), a central through-bore, and an internal keyway slot in the gear section.",
+  "components": [
+    "bottom_journal",
+    "gear_seat_and_gear",
+    "top_journal",
+    "central_bore",
+    "keyway_slot"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 44.0,
+      "ylen": 44.0,
+      "zlen": 55.0
+    },
+    "key_dimensions": {
+      "bottom_journal_diameter": 15.0,
+      "bottom_journal_length": 20.0,
+      "gear_seat_diameter": 20.0,
+      "gear_face_width": 15.0,
+      "top_journal_diameter": 15.0,
+      "top_journal_length": 20.0,
+      "gear_teeth_count": 20.0,
+      "gear_tip_radius": 22.0,
+      "gear_root_radius": 18.0,
+      "bore_diameter": 8.0,
+      "keyway_width": 3.0,
+      "keyway_depth": 3.0,
+      "keyway_length": 15.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 8.0 mm",
+      "dimensions": {
+        "diameter": 8.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The gear teeth have a star-polygon shape alternating between tip radius 22mm and root radius 18mm (40 vertices total). The keyway is cut from the bore surface (radius 4mm) to radius 7mm (+X side), spanning only Z=20 to Z=35. Ensure correct boolean subtraction order: define the main shaft and gear solid, then subtract the central bore and keyway.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,37 @@
+{
+  "description": "A cube with 20mm sides and 3mm fillets on all 12 edges.",
+  "components": [
+    "filleted_cube"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 20.0,
+      "ylen": 20.0,
+      "zlen": 20.0
+    },
+    "key_dimensions": {
+      "side_length": 20.0,
+      "fillet_radius": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure that the fillet operation is applied to all 12 edges of the 20mm cube. The bounding box must remain exactly 20x20x20mm as fillets should only subtract material from the corners/edges.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

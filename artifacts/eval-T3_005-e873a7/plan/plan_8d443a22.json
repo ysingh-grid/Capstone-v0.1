@@ -1,0 +1,59 @@
+{
+  "description": "Flanged pipe section standing upright along the Z axis, with bottom and top flanges, an inner bore, and four bolt holes on a 40mm bolt circle.",
+  "components": [
+    "bottom_flange_disc",
+    "pipe_wall_cylinder",
+    "top_flange_disc",
+    "center_bore_cut",
+    "bolt_holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 50.0
+    },
+    "key_dimensions": {
+      "overall_height": 50.0,
+      "flange_outer_diameter": 50.0,
+      "flange_thickness": 5.0,
+      "pipe_outer_diameter": 30.0,
+      "bore_diameter": 20.0,
+      "bolt_circle_diameter": 40.0,
+      "bolt_hole_diameter": 6.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "5 hole(s) of diameter 6.0 mm",
+      "dimensions": {
+        "diameter": 6.0
+      },
+      "position": null,
+      "count": 5,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 5,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure proper union of the three concentric cylinders (bottom flange, pipe wall, and top flange) before performing the difference operations for the bore and bolt holes. Use pushPoints or similar polar-to-cartesian coordinate generation for the 4 bolt holes at (20, 0), (0, 20), (-20, 0), and (0, -20) in XY.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

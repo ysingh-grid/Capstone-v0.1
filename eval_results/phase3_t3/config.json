@@ -1,0 +1,14 @@
+{
+  "experiment_name": "phase3_t3",
+  "dataset": "dataset_v2",
+  "tiers": [
+    "T3"
+  ],
+  "max_error_retries": 3,
+  "max_refinement_iterations": 5,
+  "limit_per_tier": 0,
+  "require_approval": false,
+  "dry_run": false,
+  "temporal_host": "localhost:7233",
+  "timestamp": "2026-05-26 13:55:08"
+}

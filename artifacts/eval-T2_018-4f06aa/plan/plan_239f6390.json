@@ -1,0 +1,54 @@
+{
+  "description": "Simplified 16-tooth spur gear with a star-polygon profile and a 10mm center bore.",
+  "components": [
+    "star_gear_body",
+    "center_bore"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 40.0,
+      "ylen": 40.0,
+      "zlen": 8.0
+    },
+    "key_dimensions": {
+      "tip_diameter": 40.0,
+      "root_diameter": 32.0,
+      "bore_diameter": 10.0,
+      "thickness": 8.0,
+      "num_teeth": 16.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 10.0 mm",
+      "dimensions": {
+        "diameter": 10.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the tooth profile as a 2D star polygon with 32 vertices. The vertices alternate between radius 20mm (at even indices: i * pi / 16) and radius 16mm (at odd indices: (i + 0.5) * pi / 16). Extrude this polygon by 8mm. Subtract a coaxial cylinder of diameter 10mm to form the center bore. Place the flat bottom of the gear on the XY plane (Z from 0 to 8) centered at (0,0).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

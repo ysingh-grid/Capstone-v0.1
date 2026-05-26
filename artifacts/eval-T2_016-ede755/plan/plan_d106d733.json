@@ -1,0 +1,43 @@
+{
+  "description": "A shoulder screw standing upright along Z, centered at the origin in XY, consisting of a threaded section, a smooth shoulder section, and a cylindrical head.",
+  "components": [
+    "Threaded section (bottom cylinder)",
+    "Shoulder section (middle cylinder)",
+    "Head section (top cylinder)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 14.0,
+      "ylen": 14.0,
+      "zlen": 35.0
+    },
+    "key_dimensions": {
+      "threaded_section_diameter": 6.0,
+      "threaded_section_length": 10.0,
+      "shoulder_section_diameter": 10.0,
+      "shoulder_section_length": 20.0,
+      "head_section_diameter": 14.0,
+      "head_section_length": 5.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Align all cylinders co-axially along the Z-axis. Base should be at Z=0, with the threaded section spanning Z=0 to Z=10, the shoulder section from Z=10 to Z=30, and the head section from Z=30 to Z=35. Centered at X=0, Y=0.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

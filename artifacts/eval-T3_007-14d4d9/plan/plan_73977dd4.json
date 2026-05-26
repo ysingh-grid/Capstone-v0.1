@@ -1,0 +1,46 @@
+{
+  "description": "A rectangular-to-round duct transition adapter standing upright along the Z-axis, consisting of a rectangular flange at the bottom, a lofted transition section, and a cylindrical neck at the top.",
+  "components": [
+    "Rectangular mounting flange (Z=0 to Z=3)",
+    "Lofted transition section (Z=3 to Z=53)",
+    "Cylindrical neck (Z=53 to Z=63)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 70.0,
+      "ylen": 50.0,
+      "zlen": 63.0
+    },
+    "key_dimensions": {
+      "flange_width_x": 70.0,
+      "flange_length_y": 50.0,
+      "flange_thickness": 3.0,
+      "loft_base_width_x": 60.0,
+      "loft_base_length_y": 40.0,
+      "loft_top_diameter": 30.0,
+      "loft_height": 50.0,
+      "neck_diameter": 30.0,
+      "neck_height": 10.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The adapter is designed as a solid. The loft section transitions from a 60x40mm rectangle at Z=3 to a 30mm diameter circle at Z=53. Ensure all sections are perfectly centered at (0, 0) in the XY plane.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

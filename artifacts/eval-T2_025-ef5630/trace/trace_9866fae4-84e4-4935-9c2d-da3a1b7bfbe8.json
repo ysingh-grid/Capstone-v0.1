@@ -1,0 +1,121 @@
+{
+  "trace_id": "9866fae4-84e4-4935-9c2d-da3a1b7bfbe8",
+  "workflow_id": "eval-T2_025-ef5630",
+  "design_name": "Flanged shaft standing upright along Z, centered at the origin, featuring a 40mm diameter base flange and a 20mm diameter, 50mm long shaft, with four 6mm bolt holes on a 30mm bolt circle.",
+  "created_at": "2026-05-26T06:16:34.644299+00:00",
+  "prompt": "A flanged shaft standing upright along Z, centered at the origin. The flange is a disc 40mm in diameter, 5mm thick, at the base (Z=0 to Z=5). A cylindrical shaft 20mm in diameter and 50mm long rises from the center of the flange (Z=5 to Z=55). Four 6mm diameter bolt holes are drilled through the flange on a 30mm bolt circle diameter (15mm radius from center), positioned at 0, 90, 180, and 270 degrees from the +X axis.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Flanged shaft standing upright along Z, centered at the origin, featuring a 40mm diameter base flange and a 20mm diameter, 50mm long shaft, with four 6mm bolt holes on a 30mm bolt circle.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 37,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 21425.66189748239,
+        "center_of_mass": [
+          -2.7591752309965677e-16,
+          5.279848906762069e-16,
+          22.661290322580637
+        ],
+        "bounding_box": {
+          "xmin": -20.0,
+          "xmax": 20.0,
+          "xlen": 40.0,
+          "ymin": -20.0,
+          "ymax": 20.0,
+          "ylen": 40.0,
+          "zmin": 0.0,
+          "zmax": 55.0,
+          "zlen": 55.0
+        },
+        "is_valid": true,
+        "num_faces": 9,
+        "num_edges": 18,
+        "num_vertices": 12,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.04143967425641455
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T2_025-ef5630/step/T2_025_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T2_025-ef5630/stl/T2_025_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 32473.677001953125,
+  "final_step_artifact_uri": "artifact://eval-T2_025-ef5630/step/T2_025_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T2_025-ef5630/stl/T2_025_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T2_025-ef5630/forgecad/flanged_shaft_standing_upright_along_z,__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 21425.66189748239,
+    "center_of_mass": [
+      -2.7591752309965677e-16,
+      5.279848906762069e-16,
+      22.661290322580637
+    ],
+    "bounding_box": {
+      "xmin": -20.0,
+      "xmax": 20.0,
+      "xlen": 40.0,
+      "ymin": -20.0,
+      "ymax": 20.0,
+      "ylen": 40.0,
+      "zmin": 0.0,
+      "zmax": 55.0,
+      "zlen": 55.0
+    },
+    "is_valid": true,
+    "num_faces": 9,
+    "num_edges": 18,
+    "num_vertices": 12,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.04143967425641455
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

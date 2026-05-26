@@ -1,0 +1,37 @@
+{
+  "description": "A thin circular disc with a diameter of 50mm and a thickness of 2mm.",
+  "components": [
+    "disc_body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 2.0
+    },
+    "key_dimensions": {
+      "diameter": 50.0,
+      "thickness": 2.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create a cylinder with a radius of 25mm and height of 2mm. Position it centered on the XY plane for optimal symmetry.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

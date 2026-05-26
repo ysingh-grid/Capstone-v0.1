@@ -46,7 +46,7 @@ if str(_CADSMITH_DIR) not in sys.path:
     sys.path.insert(0, str(_CADSMITH_DIR))
 
 from autofab import agents  # noqa: E402
-from autofab.executor import Executor, ExecutionResult  # noqa: E402
+from autofab.executor import Executor, ExecutionResult, _strip_python_fences  # noqa: E402
 from autofab.validator import Validator  # noqa: E402
 
 from harness.artifacts.store import ArtifactStore, get_store
@@ -106,6 +106,7 @@ def solid_generate(
     """
     design_plan_dict = plan.to_cadsmith_dict()
     code = agents.generate_code(design_plan_dict, prompt)
+    code = _strip_python_fences(code)
     return code
 
 
@@ -621,8 +622,8 @@ def compute_mesh_metrics(
         result["use_icp"] = use_icp
         return result
 
-    except ImportError:
-        print("[compute_mesh_metrics] trimesh/scipy not available; skipping metrics")
+    except ImportError as exc:
+        print(f"[compute_mesh_metrics] import failed ({exc}); skipping metrics")
         return None
     except Exception as exc:
         print(f"[compute_mesh_metrics] Metrics computation failed: {exc}")

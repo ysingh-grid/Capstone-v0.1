@@ -1,0 +1,56 @@
+{
+  "description": "Flanged bushing standing upright along Z, centered at the origin in XY. The bottom flange is 30mm in diameter and 3mm thick. The cylindrical body extends from Z=3 to Z=33 with a 20mm diameter. A 10mm diameter central bore runs through the entire 33mm length.",
+  "components": [
+    "bottom_flange",
+    "cylindrical_body",
+    "through_bore"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 30.0,
+      "ylen": 30.0,
+      "zlen": 33.0
+    },
+    "key_dimensions": {
+      "flange_outer_diameter": 30.0,
+      "flange_thickness": 3.0,
+      "body_outer_diameter": 20.0,
+      "body_length": 30.0,
+      "bore_diameter": 10.0,
+      "total_height": 33.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 10.0 mm",
+      "dimensions": {
+        "diameter": 10.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Position the base of the flange at Z=0, centered at (0,0) in XY. Use a boolean subtraction to create the central through-bore from Z=0 to Z=33.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}
