@@ -1,0 +1,58 @@
+{
+  "description": "A 120mm diameter flywheel with a raised 40mm hub boss, a 16mm center bore, and six 22mm lightening holes spaced on a 70mm pitch circle diameter.",
+  "components": [
+    "Main disc (cylinder, D=120mm, H=20mm, Z=0 to 20)",
+    "Raised hub boss (cylinder, D=40mm, H=10mm, Z=20 to 30)",
+    "Center bore (subtractive cylinder, D=16mm, H=30mm, Z=0 to 30)",
+    "Six lightening holes (subtractive cylinders, D=22mm, H=20mm, Z=0 to 20, spaced at 60-degree intervals on a 35mm radius)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 120.0,
+      "ylen": 120.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "disc_diameter": 120.0,
+      "disc_thickness": 20.0,
+      "hub_diameter": 40.0,
+      "hub_height": 10.0,
+      "center_bore_diameter": 16.0,
+      "lightening_hole_diameter": 22.0,
+      "pitch_circle_diameter": 70.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "7 hole(s) of diameter 22.0 mm",
+      "dimensions": {
+        "diameter": 22.0
+      },
+      "position": null,
+      "count": 7,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 7,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the center bore passes completely through both the hub boss and the main disc (Z=0 to Z=30). The 6 lightening holes must only pass through the main disc (Z=0 to Z=20) and should be positioned at angles: 0, 60, 120, 180, 240, and 300 degrees.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

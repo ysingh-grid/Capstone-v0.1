@@ -1,0 +1,121 @@
+{
+  "trace_id": "b133345c-bc63-4eb0-bf4b-df80a218cf29",
+  "workflow_id": "eval-T3_018-cafb39",
+  "design_name": "A quadcopter drone chassis in a plus (+) configuration with a central square hub, four extending arms, outer motor mount platforms, and pre-drilled holes for motors and a flight controller.",
+  "created_at": "2026-05-26T09:02:13.440930+00:00",
+  "prompt": "A quadcopter drone chassis in a plus (+) configuration, lying flat on the XY plane (Z=0 to Z=3), centered at the origin. The central hub is a 30mm x 30mm square plate, 3mm thick. Four rectangular arms extend outward from the hub edges along the ±X and ±Y axes: each arm is 45mm long and 10mm wide, running from the hub edge (15mm from center) to 60mm from center. A circular motor mount platform 18mm in diameter is at each arm tip, centered at (±60, 0) and (0, ±60) mm. A 5mm diameter motor shaft hole is drilled through each motor mount. Four M3 flight-controller mounting holes (3.2mm diameter) are drilled through the hub in a 20mm x 20mm square pattern centered at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A quadcopter drone chassis in a plus (+) configuration with a central square hub, four extending arms, outer motor mount platforms, and pre-drilled holes for motors and a flight controller.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 67,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 9799.961894488706,
+        "center_of_mass": [
+          -0.07586398729527559,
+          -0.07586398729523769,
+          1.5000000000000013
+        ],
+        "bounding_box": {
+          "xmin": -69.0,
+          "xmax": 69.0,
+          "xlen": 138.0,
+          "ymin": -69.0,
+          "ymax": 69.0,
+          "ylen": 138.0,
+          "zmin": 0.0,
+          "zmax": 3.0,
+          "zlen": 3.0
+        },
+        "is_valid": true,
+        "num_faces": 30,
+        "num_edges": 84,
+        "num_vertices": 56,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.008961745267019967
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_018-cafb39/step/T3_018_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_018-cafb39/stl/T3_018_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 71528.96875,
+  "final_step_artifact_uri": "artifact://eval-T3_018-cafb39/step/T3_018_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_018-cafb39/stl/T3_018_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_018-cafb39/forgecad/a_quadcopter_drone_chassis_in_a_plus_(+)_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 9799.961894488706,
+    "center_of_mass": [
+      -0.07586398729527559,
+      -0.07586398729523769,
+      1.5000000000000013
+    ],
+    "bounding_box": {
+      "xmin": -69.0,
+      "xmax": 69.0,
+      "xlen": 138.0,
+      "ymin": -69.0,
+      "ymax": 69.0,
+      "ylen": 138.0,
+      "zmin": 0.0,
+      "zmax": 3.0,
+      "zlen": 3.0
+    },
+    "is_valid": true,
+    "num_faces": 30,
+    "num_edges": 84,
+    "num_vertices": 56,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.008961745267019967
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

@@ -1,0 +1,121 @@
+{
+  "trace_id": "0d6836a2-3e83-4e88-8678-13a3e220ad97",
+  "workflow_id": "eval-T3_024-240a1a",
+  "design_name": "A 120mm diameter flywheel with a raised 40mm hub boss, a 16mm center bore, and six 22mm lightening holes spaced on a 70mm pitch circle diameter.",
+  "created_at": "2026-05-26T09:12:37.644458+00:00",
+  "prompt": "A flywheel with lightening holes and a raised hub boss, centered at the origin on the XY plane. The main disc is 120mm in diameter and 20mm thick (Z=0 to Z=20). A raised cylindrical hub boss 40mm in diameter and 10mm tall sits on top of the disc, centered at the origin (Z=20 to Z=30). Six circular lightening holes, each 22mm in diameter, are equally spaced on a 70mm pitch circle diameter (35mm radius from center) and pass through the full 20mm disc thickness. A 16mm diameter center bore passes through the entire part height (Z=0 to Z=30). The lightening hole centers are at 0, 60, 120, 180, 240, and 300 degrees from the +X axis.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A 120mm diameter flywheel with a raised 40mm hub boss, a 16mm center bore, and six 22mm lightening holes spaced on a 70mm pitch circle diameter.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 54,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 187113.2584478081,
+        "center_of_mass": [
+          2.768148216520731e-15,
+          2.038155318202301e-15,
+          10.846205507051714
+        ],
+        "bounding_box": {
+          "xmin": -60.0,
+          "xmax": 60.0,
+          "xlen": 120.0,
+          "ymin": -60.0,
+          "ymax": 60.0,
+          "ylen": 120.0,
+          "zmin": 0.0,
+          "zmax": 30.0,
+          "zlen": 30.0
+        },
+        "is_valid": true,
+        "num_faces": 12,
+        "num_edges": 27,
+        "num_vertices": 18,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.04143971811850372
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_024-240a1a/step/T3_024_outer0_attempt1.step",
+      "stl_artifact_uri": "artifact://eval-T3_024-240a1a/stl/T3_024_outer0_attempt1.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 4,
+  "total_time_ms": 64166.027099609375,
+  "final_step_artifact_uri": "artifact://eval-T3_024-240a1a/step/T3_024_outer0_attempt1.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_024-240a1a/stl/T3_024_outer0_attempt1.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_024-240a1a/forgecad/a_120mm_diameter_flywheel_with_a_raised__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 187113.2584478081,
+    "center_of_mass": [
+      2.768148216520731e-15,
+      2.038155318202301e-15,
+      10.846205507051714
+    ],
+    "bounding_box": {
+      "xmin": -60.0,
+      "xmax": 60.0,
+      "xlen": 120.0,
+      "ymin": -60.0,
+      "ymax": 60.0,
+      "ylen": 120.0,
+      "zmin": 0.0,
+      "zmax": 30.0,
+      "zlen": 30.0
+    },
+    "is_valid": true,
+    "num_faces": 12,
+    "num_edges": 27,
+    "num_vertices": 18,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.04143971811850372
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

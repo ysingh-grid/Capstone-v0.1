@@ -1,0 +1,65 @@
+{
+  "description": "A four-way pipe cross fitting where two identical hollow cylindrical pipes intersect perpendicularly at the origin, forming a '+' shaped hollow interior. One pipe runs along the X axis, the other along the Z axis.",
+  "components": [
+    "Horizontal pipe (X-axis): outer cylinder 30mm OD x 100mm long",
+    "Horizontal pipe (X-axis): inner bore 24mm ID x 100mm long (subtracted)",
+    "Vertical pipe (Z-axis): outer cylinder 30mm OD x 100mm long",
+    "Vertical pipe (Z-axis): inner bore 24mm ID x 100mm long (subtracted)",
+    "Boolean union of outer cylinders",
+    "Boolean union of inner bores (subtracted from outer union)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 30.0,
+      "zlen": 100.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 30.0,
+      "inner_diameter": 24.0,
+      "wall_thickness": 3.0,
+      "pipe_x_length": 100.0,
+      "pipe_z_length": 100.0,
+      "pipe_x_start": -50.0,
+      "pipe_x_end": 50.0,
+      "pipe_z_start": -50.0,
+      "pipe_z_end": 50.0,
+      "center_x": 0.0,
+      "center_y": 0.0,
+      "center_z": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 24 mm",
+      "dimensions": {
+        "diameter": 24.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction approach: (1) Create outer_x: cylinder of radius 15mm, height 100mm, oriented along X axis (rotate 90deg around Y), centered at origin. (2) Create outer_z: cylinder of radius 15mm, height 100mm, oriented along Z axis, centered at origin. (3) Union outer_x and outer_z to form the combined outer shell. (4) Create inner_x: cylinder of radius 12mm, height 100mm, oriented along X axis, centered at origin. (5) Create inner_z: cylinder of radius 12mm, height 100mm, oriented along Z axis, centered at origin. (6) Union inner_x and inner_z to form the combined bore. (7) Subtract combined bore from combined outer shell to produce the final part. Note: the inner bore union creates a continuous '+' shaped hollow interior at the intersection. Volume estimate accounts for the union overlap removal: two outer cylinders union minus two inner cylinders union. Single cylinder volume = pi*(15^2)*100 = 70686 mm3; union of two cylinders (subtract intersection) ~ 2*70686 - intersection_volume; inner single = pi*(12^2)*100 = 45239 mm3. Approximate final solid volume ~ 38956 mm3. Use CadQuery with cadquery.Workplane or direct OCCT boolean operations. The Y axis extent is determined solely by the outer diameter (30mm), so ylen=30mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,737 @@
+{
+  "communities": {
+    "0": [
+      "eval_t3_004_judge_render",
+      "eval_t3_004_outer1_iter1_render",
+      "eval_t3_004_outer2_iter2_render",
+      "eval_t3_006_outer0_iter0_render",
+      "eval_t3_012_253849_readme",
+      "judge_render_eval_t3_005_e873a7",
+      "judge_render_eval_t3_008_3a8302",
+      "judge_render_eval_t3_009_db2037",
+      "readme_eval_t3_004_b4d284",
+      "readme_eval_t3_005_e873a7",
+      "readme_eval_t3_012_253849",
+      "readme_t3_007",
+      "readme_t3_009",
+      "readme_t3_010",
+      "render_eval_t3_004_b4d284",
+      "render_eval_t3_005_e873a7",
+      "t3_008_readme",
+      "t3_009_outer0_iter0_render",
+      "t3_009_readme",
+      "t3_014_outer5_iter5_render",
+      "t3_014_readme",
+      "t3_015_outer1_iter1_render",
+      "t3_015_readme"
+    ],
+    "1": [
+      "eval_t3_014_6d0cb5_readme",
+      "judge_render_eval_t3_002_1e329e",
+      "judge_render_eval_t3_003_1fb19f",
+      "judge_render_eval_t3_004_4926da",
+      "judge_render_eval_t3_014_6d0cb5_image",
+      "judge_render_t3_016",
+      "readme_cross_fitting",
+      "readme_elbow",
+      "readme_eval_t3_003_1fb19f",
+      "readme_eval_t3_014_6d0cb5",
+      "rectangular_electronics_enclosure_body_forge_config",
+      "rectangular_electronics_enclosure_body_model",
+      "rectangular_electronics_enclosure_body_readme",
+      "render_eval_t3_003_1fb19f",
+      "rounded_rectangular_electronics_enclosur_forge_config",
+      "rounded_rectangular_electronics_enclosur_model",
+      "rounded_rectangular_electronics_enclosur_readme",
+      "t3_002_outer1_iter1_render",
+      "t3_014_outer2_iter2_render",
+      "t3_018_readme",
+      "t3_018_render"
+    ],
+    "2": [
+      "judge_render_008",
+      "judge_render_009",
+      "judge_render_010",
+      "judge_render_011",
+      "judge_render_012",
+      "judge_render_eval_t1_050_1d9ad3",
+      "readme_008",
+      "readme_009",
+      "readme_010",
+      "readme_011",
+      "readme_012",
+      "t1_008_outer0_iter0_render",
+      "t1_009_outer0_iter0_render",
+      "t1_010_outer0_iter0_render",
+      "t1_011_outer0_iter0_render",
+      "t1_012_outer0_iter0_render"
+    ],
+    "3": [
+      "eval_t1_001_7687c8_judge_render",
+      "eval_t1_001_7687c8_readme",
+      "eval_t2_016_ede755_judge_render",
+      "eval_t2_016_ede755_readme",
+      "eval_t3_013_7da513_readme",
+      "judge_render_007",
+      "judge_render_eval_t3_006_5fc6b7",
+      "judge_render_eval_t3_007_d382fd",
+      "judge_render_eval_t3_010_433614",
+      "readme_concept_008",
+      "readme_concept_009",
+      "readme_concept_010",
+      "readme_concept_011",
+      "readme_eval_t3_013_7da513",
+      "readme_md_square_plate",
+      "t2_007_render"
+    ],
+    "4": [
+      "eval_t2_001_b317db_readme",
+      "eval_t2_002_40a691_readme",
+      "eval_t2_003_a75c56_readme",
+      "eval_t2_004_beb165_readme",
+      "eval_t2_005_de777d_readme",
+      "judge_render_eval_t2_001_b317db",
+      "t2_001_outer0_iter0_render",
+      "t2_002_outer0_iter0_render",
+      "t2_003_outer0_iter0_render",
+      "t2_004_outer0_iter0_render",
+      "t2_005_outer0_iter0_render"
+    ],
+    "5": [
+      "simplified_16_tooth_spur_gear_with_a_sta_center_bore",
+      "simplified_16_tooth_spur_gear_with_a_sta_forge_config",
+      "simplified_16_tooth_spur_gear_with_a_sta_judge_render",
+      "simplified_16_tooth_spur_gear_with_a_sta_parametric_model",
+      "simplified_16_tooth_spur_gear_with_a_sta_readme",
+      "simplified_16_tooth_spur_gear_with_a_sta_render",
+      "simplified_16_tooth_spur_gear_with_a_sta_render_outer1",
+      "simplified_16_tooth_spur_gear_with_a_sta_spur_gear",
+      "simplified_16_tooth_spur_gear_with_a_sta_star_polygon",
+      "simplified_16_tooth_spur_gear_with_a_sta_star_polygon_profile"
+    ],
+    "6": [
+      "knowledge_base_langfuse",
+      "prd_geometry_agent_harness_cadquery",
+      "prd_geometry_agent_harness_cadsmith",
+      "prd_geometry_agent_harness_forgecad",
+      "prd_geometry_agent_harness_geometry_agent_harness",
+      "prd_geometry_agent_harness_meshlib",
+      "prd_geometry_agent_harness_occt",
+      "prd_geometry_agent_harness_temporal"
+    ],
+    "7": [
+      "eval_t1_020_aac195_judge_render",
+      "eval_t1_020_aac195_readme",
+      "eval_t1_029_1cb0cb_readme",
+      "eval_t1_029_1cb0cb_render",
+      "eval_t1_032_60d7ff_judge_render",
+      "eval_t1_032_60d7ff_readme"
+    ],
+    "8": [
+      "a_sturdy_wooden_bed_frame_designed_to_fi_readme",
+      "an_ergonomic_office_chair_assembly_featu_readme",
+      "an_i_beam_extrusion_with_a_length_of_300_readme",
+      "generated_part_outer0_iter0_render_png",
+      "judge_render_design_generated_part_51a864c6_png",
+      "parametric_fpv_250_drone_unibody_bottom_readme"
+    ],
+    "9": [
+      "judge_render_design_part_f0770b2d_tube",
+      "judge_render_design_pipe_c8145b78_cylinder",
+      "part_outer0_iter0_render_tube",
+      "pipe_outer0_iter0_render_cylinder",
+      "readme_hollow_cylinder",
+      "readme_hollow_tube"
+    ],
+    "10": [
+      "forge_config",
+      "forge_config_json",
+      "models_forge_js",
+      "readme_concept",
+      "t2_011_render"
+    ],
+    "11": [
+      "a_120mm_diameter_flywheel_with_a_raised_readme",
+      "a_spoked_handwheel_centered_at_the_origi_readme",
+      "judge_render_eval_t3_022_965df3_png",
+      "judge_render_eval_t3_024_240a1a_png",
+      "t3_022_outer0_iter0_render_png"
+    ],
+    "12": [
+      "knowledge_base_coder",
+      "knowledge_base_gemini",
+      "knowledge_base_planner",
+      "knowledge_base_refiner",
+      "knowledge_base_visual_judge"
+    ],
+    "13": [
+      "cadquery",
+      "cadsmith",
+      "harness_api_static_index_html",
+      "main_py",
+      "temporal"
+    ],
+    "14": [
+      "forgecad_config",
+      "forgecad_models",
+      "judge_render",
+      "octagonal_prism_concept",
+      "readme_md"
+    ],
+    "15": [
+      "t1_028_dome_shaped_part",
+      "t1_028_flat_circular_base",
+      "t1_028_hemisphere",
+      "t1_028_parametric_model",
+      "t1_028_render"
+    ],
+    "16": [
+      "a_cube_with_20mm_sides_and_3mm_fillets_o_config",
+      "a_cube_with_20mm_sides_and_3mm_fillets_o_model",
+      "a_cube_with_20mm_sides_and_3mm_fillets_o_readme",
+      "t1_046_render"
+    ],
+    "17": [
+      "design_part_f0770b2d_tube",
+      "design_part_table_test_bc6655c4_bracket",
+      "design_pipe_c8145b78_pipe",
+      "forgecad_tool"
+    ],
+    "18": [
+      "flanged_shaft_standing_upright_along_z_bolt_circle",
+      "flanged_shaft_standing_upright_along_z_bolt_holes",
+      "flanged_shaft_standing_upright_along_z_flange",
+      "flanged_shaft_standing_upright_along_z_shaft"
+    ],
+    "19": [
+      "judge_render_eval_t3_001_f33c1b",
+      "open_top_rectangular_container_with_roun_forge_config",
+      "open_top_rectangular_container_with_roun_model",
+      "open_top_rectangular_container_with_roun_readme"
+    ],
+    "20": [
+      "t3_015_render",
+      "t3_016_judge_render",
+      "t3_016_readme",
+      "t3_016_render_v2"
+    ],
+    "21": [
+      "design_seat_a612cd4d_judge_render",
+      "design_seat_a612cd4d_seat_outer0_iter0_render",
+      "design_seat_a612cd4d_seat_outer1_iter1_render"
+    ],
+    "22": [
+      "design_test_desk_ee4c0616_judge_render",
+      "design_test_desk_ee4c0616_readme",
+      "design_test_desk_ee4c0616_test_desk_outer0_iter0_render"
+    ],
+    "23": [
+      "eval_t1_030_72c490_judge_render",
+      "eval_t1_030_72c490_readme",
+      "eval_t1_030_72c490_render"
+    ],
+    "24": [
+      "eval_t1_031_39aabd_judge_render",
+      "eval_t1_031_39aabd_readme",
+      "eval_t1_031_39aabd_render"
+    ],
+    "25": [
+      "eval_t3_015_577a69_readme",
+      "judge_render_eval_t3_015_577a69_image",
+      "readme_eval_t3_015_577a69"
+    ],
+    "26": [
+      "forgecad_studio",
+      "t3_017_readme",
+      "t3_017_render"
+    ],
+    "27": [
+      "an_i_beam_extrusion_with_a_length_of_300_readme_md",
+      "generated_part_outer0_iter0_render_a6623b1f_png",
+      "judge_render_design_generated_part_a6623b1f_png"
+    ],
+    "28": [
+      "an_ergonomic_office_chair_assembly_featu_readme_md",
+      "generated_part_outer0_iter0_render_a9b33956_png",
+      "judge_render_design_generated_part_a9b33956_png"
+    ],
+    "29": [
+      "generated_part_outer0_iter0_render_ae23cae0_png",
+      "judge_render_design_generated_part_ae23cae0_png",
+      "parametric_fpv_250_drone_unibody_bottom_readme_md"
+    ],
+    "30": [
+      "judge_render_design_part_0b21c501_png",
+      "part_outer0_iter0_render_png",
+      "part_outer1_iter1_render_png"
+    ],
+    "31": [
+      "judge_render_design_part_table_test_bc6655c4_bracket",
+      "part_table_test_outer0_iter0_render_bracket",
+      "readme_l_bracket"
+    ],
+    "32": [
+      "judge_render_eval_t3_002_685f2c",
+      "readme_eval_t3_002_685f2c",
+      "render_eval_t3_002_685f2c"
+    ],
+    "33": [
+      "eval_t2_012_5f51f8_judge_render",
+      "eval_t2_012_5f51f8_readme",
+      "eval_t2_014_d0a965_readme"
+    ],
+    "34": [
+      "eval_t2_013_4fc27c_judge_render",
+      "eval_t2_013_4fc27c_readme",
+      "eval_t2_015_4f3a9e_readme"
+    ],
+    "35": [
+      "v_belt_pulley_standing_upright_along_z_a_forge_config",
+      "v_belt_pulley_standing_upright_along_z_a_model",
+      "v_belt_pulley_standing_upright_along_z_a_readme"
+    ],
+    "36": [
+      "a_regular_hexagonal_prism_with_a_circums_readme_md",
+      "judge_render_eval_t1_007_762bb0_png"
+    ],
+    "37": [
+      "a_solid_rectangular_block_with_specified_readme",
+      "t1_048_render"
+    ],
+    "38": [
+      "a_solid_truncated_cone_frustum_with_ci_readme",
+      "t1_047_render"
+    ],
+    "39": [
+      "a_sturdy_wooden_bed_frame_designed_to_fi_readme_md",
+      "generated_part_outer0_iter0_render_d4cc891f_png"
+    ],
+    "40": [
+      "design_plate_t1_5c866bea_judge_render",
+      "design_plate_t1_5c866bea_plate_t1_outer0_iter0_render"
+    ],
+    "41": [
+      "design_plate_t1_b0d2c45b_judge_render",
+      "design_plate_t1_b0d2c45b_plate_t1_outer0_iter0_render"
+    ],
+    "42": [
+      "hardpart2_outer0_iter0_render_png",
+      "judge_render_design_hardpart2_ed278c16_png"
+    ],
+    "43": [
+      "judge_render_design_m4_f62086ce_png",
+      "m4_outer0_iter0_render_png"
+    ],
+    "44": [
+      "judge_render_design_part_946c06c7_part",
+      "part_outer0_iter0_render_part"
+    ],
+    "45": [
+      "judge_render_design_part_0d365c5e_png",
+      "part_outer0_iter0_render_png_0d365c5e"
+    ],
+    "46": [
+      "judge_render_design_plate_t1_09b300a2_plate",
+      "plate_t1_outer0_iter0_render_plate"
+    ],
+    "47": [
+      "judge_render_eval_t3_001_db608d",
+      "readme_eval_t3_001_db608d"
+    ],
+    "48": [
+      "rectangular_block_25mm_by_15mm_by_10mm_w_chamfer",
+      "rectangular_block_25mm_by_15mm_by_10mm_w_rectangular_block"
+    ],
+    "49": [
+      "a_cylinder_with_a_40mm_diameter_and_10mm_readme",
+      "t1_049_render"
+    ],
+    "50": [
+      "solid_rectangular_block_with_dimensions_readme",
+      "t1_050_render"
+    ],
+    "51": [
+      "a_capsule_shaped_part_consisting_of_a_ce_readme",
+      "judge_render_eval_t1_043_b94bff"
+    ],
+    "52": [
+      "a_coin_shaped_disc_with_filleted_circula_readme",
+      "judge_render_eval_t1_040_4ab4e8"
+    ],
+    "53": [
+      "a_rectangular_prism_with_dimensions_90mm_readme",
+      "judge_render_eval_t1_042_26c528"
+    ],
+    "54": [
+      "a_simple_solid_cube_with_40mm_sides_readme_md",
+      "judge_render_eval_t1_005_4745d6_png"
+    ],
+    "55": [
+      "a_solid_concentric_ring_with_an_outer_di_readme",
+      "judge_render_eval_t1_041_e9f177"
+    ],
+    "56": [
+      "a_thin_rectangular_fin_80mm_tall_60mm_readme",
+      "judge_render_eval_t1_044_7e7034"
+    ],
+    "57": [
+      "eval_t1_018_b17d13_readme",
+      "eval_t1_018_b17d13_render"
+    ],
+    "58": [
+      "eval_t1_019_02dca8_judge_render",
+      "eval_t1_019_02dca8_readme"
+    ],
+    "59": [
+      "eval_t1_021_c74a9e_judge_render",
+      "eval_t1_021_c74a9e_readme"
+    ],
+    "60": [
+      "eval_t1_022_fef8b7_judge_render",
+      "eval_t1_022_fef8b7_readme"
+    ],
+    "61": [
+      "a_solid_sphere_with_a_radius_of_15mm_readme_md",
+      "judge_render_eval_t1_003_e80832_png"
+    ],
+    "62": [
+      "a_right_circular_cone_with_a_base_diamet_readme_md",
+      "judge_render_eval_t1_004_16c703_png"
+    ],
+    "63": [
+      "a_simple_flat_rectangular_plate_with_dim_readme_md",
+      "judge_render_eval_t1_006_2733ec_png"
+    ],
+    "64": [
+      "judge_render_eval_t1_015_361c00_png",
+      "readme_md_truncated_cone"
+    ],
+    "65": [
+      "judge_render_eval_t3_021_3c6635_png",
+      "pipe_flange_disc_lying_flat_on_the_xy_pl_readme"
+    ],
+    "66": [
+      "judge_render_eval_t3_023_c6bc37_png",
+      "rectangular_mounting_plate_centered_at_t_readme"
+    ],
+    "67": [
+      "judge_render_eval_t3_020_da644c_png",
+      "quadcopter_drone_h_frame_chassis_lying_f_readme"
+    ],
+    "68": [
+      "judge_render_eval_t1_016_2937a7_png",
+      "readme_md_elliptical_cylinder"
+    ],
+    "69": [
+      "judge_render_eval_t1_013_9631c5_png",
+      "t1_013_outer2_iter2_render_png"
+    ],
+    "70": [
+      "judge_render_eval_t3_007_14d4d9",
+      "t3_007_readme"
+    ],
+    "71": [
+      "judge_render_eval_t3_010_00540e",
+      "t3_010_readme"
+    ],
+    "72": [
+      "design_part_desk_cf772bc4_desk"
+    ],
+    "73": [
+      "design_plate_t1_09b300a2_plate"
+    ],
+    "74": [
+      "eval_t1_002_4da4ba_readme"
+    ],
+    "75": [
+      "judge_render_eval_t1_002_4da4ba_png"
+    ],
+    "76": [
+      "t1_028_forge_config_json"
+    ],
+    "77": [
+      "eval_t1_017_b8fc6b_render"
+    ],
+    "78": [
+      "eval_t1_023_af87f6_readme"
+    ],
+    "79": [
+      "eval_t1_028_b2ee4f_judge_render"
+    ],
+    "80": [
+      "eval_t1_034_2237e5_readme"
+    ],
+    "81": [
+      "t1_045_render"
+    ],
+    "82": [
+      "semicircular_half_pipe_trough_centered_a_readme"
+    ],
+    "83": [
+      "eval_t2_006_be982d_readme"
+    ],
+    "84": [
+      "eval_t2_011_80c5fb_judge_render"
+    ],
+    "85": [
+      "judge_render_eval_t2_025_ef5630"
+    ],
+    "86": [
+      "readme_eval_t3_006_f761fc"
+    ],
+    "87": [
+      "t3_011_readme"
+    ],
+    "88": [
+      "t3_019_outer0_iter0_render_png"
+    ],
+    "89": [
+      "a_flanged_shaft_coupling_standing_along_readme"
+    ],
+    "90": [
+      "t3_022_render"
+    ],
+    "91": [
+      "t3_014_outer3_iter3_render"
+    ],
+    "92": [
+      "t3_014_outer4_iter4_render"
+    ],
+    "93": [
+      "judge_render_design_generated_part_d4cc891f_png"
+    ],
+    "94": [
+      "part_desk_outer0_iter0_render_desk"
+    ],
+    "95": [
+      "t1_007_outer0_iter0_render"
+    ],
+    "96": [
+      "t1_002_outer0_iter0_render_png"
+    ],
+    "97": [
+      "eval_t2_017_1737db_readme"
+    ],
+    "98": [
+      "judge_render_eval_t3_006_f761fc"
+    ],
+    "99": [
+      "readme_t3_013"
+    ]
+  },
+  "cohesion": {
+    "0": 0.10276679841897234,
+    "1": 0.11428571428571428,
+    "2": 0.125,
+    "3": 0.13333333333333333,
+    "4": 0.18181818181818182,
+    "5": 0.2,
+    "6": 0.25,
+    "7": 0.3333333333333333,
+    "8": 0.3333333333333333,
+    "9": 0.3333333333333333,
+    "10": 0.4,
+    "11": 0.4,
+    "12": 0.5,
+    "13": 0.4,
+    "14": 0.4,
+    "15": 0.4,
+    "16": 0.5,
+    "17": 0.6666666666666666,
+    "18": 0.5,
+    "19": 0.5,
+    "20": 0.5,
+    "21": 0.6666666666666666,
+    "22": 0.6666666666666666,
+    "23": 0.6666666666666666,
+    "24": 0.6666666666666666,
+    "25": 0.6666666666666666,
+    "26": 0.6666666666666666,
+    "27": 0.6666666666666666,
+    "28": 0.6666666666666666,
+    "29": 0.6666666666666666,
+    "30": 0.6666666666666666,
+    "31": 0.6666666666666666,
+    "32": 0.6666666666666666,
+    "33": 0.6666666666666666,
+    "34": 0.6666666666666666,
+    "35": 0.6666666666666666,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0
+  },
+  "gods": [
+    {
+      "id": "t2_007_render",
+      "label": "T2_007_outer0_iter0_render.png",
+      "degree": 72
+    },
+    {
+      "id": "eval_t3_004_judge_render",
+      "label": "Judge Render T3_004",
+      "degree": 11
+    },
+    {
+      "id": "t3_002_outer1_iter1_render",
+      "label": "T3_002 Outer1 Iter1 Render",
+      "degree": 11
+    },
+    {
+      "id": "simplified_16_tooth_spur_gear_with_a_sta_spur_gear",
+      "label": "Simplified 16-tooth spur gear",
+      "degree": 10
+    },
+    {
+      "id": "judge_render_eval_t3_008_3a8302",
+      "label": "Judge Render eval-T3_008-3a8302",
+      "degree": 8
+    },
+    {
+      "id": "prd_geometry_agent_harness_geometry_agent_harness",
+      "label": "Geometry Agent Harness",
+      "degree": 6
+    },
+    {
+      "id": "t1_028_dome_shaped_part",
+      "label": "Dome-shaped Part",
+      "degree": 5
+    },
+    {
+      "id": "judge_render_eval_t1_050_1d9ad3",
+      "label": "Judge Render T1_050",
+      "degree": 5
+    },
+    {
+      "id": "judge_render_eval_t2_001_b317db",
+      "label": "Judge Render T2_001",
+      "degree": 5
+    },
+    {
+      "id": "rounded_rectangular_electronics_enclosur_readme",
+      "label": "Rounded rectangular electronics enclosure tray",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Gear Render",
+      "target": "Simplified 16-tooth spur gear",
+      "source_files": [
+        "render/T2_018_outer0_iter0_render.png",
+        "artifacts/archived_models/eval-T2_018-4f06aa/forgecad/simplified_16_tooth_spur_gear_with_a_sta/README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "semantically_similar_to",
+      "why": "crosses file types (doc \u2194 image); connects across different repos/directories; semantically similar concepts with no structural link; peripheral node `Gear Render` unexpectedly reaches hub `Simplified 16-tooth spur gear`"
+    },
+    {
+      "source": "A solid sphere with a radius of 15mm.",
+      "target": "T2_007_outer0_iter0_render.png",
+      "source_files": [
+        "artifacts/archived_models/eval-T1_003-e80832/forgecad/a_solid_sphere_with_a_radius_of_15mm./README.md",
+        "artifacts/archived_models/eval-T2_007-e883ca/render/T2_011_outer0_iter0_render.png"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); bridges separate communities; peripheral node `A solid sphere with a radius of 15mm.` unexpectedly reaches hub `T2_007_outer0_iter0_render.png`"
+    },
+    {
+      "source": "A right circular cone with a base diameter of 30mm and a height of 45mm.",
+      "target": "T2_007_outer0_iter0_render.png",
+      "source_files": [
+        "artifacts/archived_models/eval-T1_004-16c703/forgecad/a_right_circular_cone_with_a_base_diamet/README.md",
+        "artifacts/archived_models/eval-T2_007-e883ca/render/T2_011_outer0_iter0_render.png"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); bridges separate communities; peripheral node `A right circular cone with a base diameter of 30mm and a height of 45mm.` unexpectedly reaches hub `T2_007_outer0_iter0_render.png`"
+    },
+    {
+      "source": "A simple solid cube with 40mm sides.",
+      "target": "T2_007_outer0_iter0_render.png",
+      "source_files": [
+        "artifacts/archived_models/eval-T1_005-4745d6/forgecad/a_simple_solid_cube_with_40mm_sides./README.md",
+        "artifacts/archived_models/eval-T2_007-e883ca/render/T2_011_outer0_iter0_render.png"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); bridges separate communities; peripheral node `A simple solid cube with 40mm sides.` unexpectedly reaches hub `T2_007_outer0_iter0_render.png`"
+    },
+    {
+      "source": "A simple flat rectangular plate with dimensions 100mm by 60mm and a thickness of 3mm.",
+      "target": "T2_007_outer0_iter0_render.png",
+      "source_files": [
+        "artifacts/archived_models/eval-T1_006-2733ec/forgecad/a_simple_flat_rectangular_plate_with_dim/README.md",
+        "artifacts/archived_models/eval-T2_007-e883ca/render/T2_011_outer0_iter0_render.png"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); bridges separate communities; peripheral node `A simple flat rectangular plate with dimensions 100mm by 60mm and a thickness of 3mm.` unexpectedly reaches hub `T2_007_outer0_iter0_render.png`"
+    }
+  ],
+  "tokens": {
+    "input": 5400933,
+    "output": 64727
+  }
+}

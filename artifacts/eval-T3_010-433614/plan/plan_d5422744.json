@@ -1,0 +1,85 @@
+{
+  "description": "Triple spur gear stack on a single cylindrical hub, standing upright along Z axis, centered at XY origin. Three gears of decreasing size spaced along the hub with star-polygon tooth profiles. Hub has a central 6mm bore and a keyway slot running the full length.",
+  "components": [
+    "Cylindrical hub (14mm dia, 55mm long, Z=0 to Z=55)",
+    "Central bore (6mm dia, full 55mm length along Z axis)",
+    "Keyway slot (3mm wide, 2mm deep radially, full 55mm length on +X side)",
+    "Gear 1 - 24-tooth spur gear (54mm tip dia, 44mm root dia, Z=2 to Z=10)",
+    "Gear 2 - 18-tooth spur gear (42mm tip dia, 34mm root dia, Z=18 to Z=26)",
+    "Gear 3 - 12-tooth spur gear (30mm tip dia, 24mm root dia, Z=34 to Z=42)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 54.0,
+      "ylen": 54.0,
+      "zlen": 55.0
+    },
+    "key_dimensions": {
+      "hub_diameter_mm": 14.0,
+      "hub_length_mm": 55.0,
+      "bore_diameter_mm": 6.0,
+      "bore_radius_mm": 3.0,
+      "keyway_width_mm": 3.0,
+      "keyway_depth_mm": 2.0,
+      "keyway_inner_radius_mm": 3.0,
+      "keyway_outer_radius_mm": 5.0,
+      "gear1_tip_diameter_mm": 54.0,
+      "gear1_tip_radius_mm": 27.0,
+      "gear1_root_diameter_mm": 44.0,
+      "gear1_root_radius_mm": 22.0,
+      "gear1_num_teeth": 24.0,
+      "gear1_z_start_mm": 2.0,
+      "gear1_z_end_mm": 10.0,
+      "gear1_face_width_mm": 8.0,
+      "gear2_tip_diameter_mm": 42.0,
+      "gear2_tip_radius_mm": 21.0,
+      "gear2_root_diameter_mm": 34.0,
+      "gear2_root_radius_mm": 17.0,
+      "gear2_num_teeth": 18.0,
+      "gear2_z_start_mm": 18.0,
+      "gear2_z_end_mm": 26.0,
+      "gear2_face_width_mm": 8.0,
+      "gear3_tip_diameter_mm": 30.0,
+      "gear3_tip_radius_mm": 15.0,
+      "gear3_root_diameter_mm": 24.0,
+      "gear3_root_radius_mm": 12.0,
+      "gear3_num_teeth": 12.0,
+      "gear3_z_start_mm": 34.0,
+      "gear3_z_end_mm": 42.0,
+      "gear3_face_width_mm": 8.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 6 mm",
+      "dimensions": {
+        "diameter": 6.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. Each gear tooth profile should be modeled as a star-polygon (pointed teeth): for each gear, N teeth are created by sweeping a tooth profile around the Z axis. The tooth profile alternates between tip radius and root radius using triangular/pointed peaks, not involute. Use linear interpolation between root and tip radii at each tooth boundary. 2. The bore is a 6mm diameter cylinder subtracted from the full hub along Z. 3. The keyway is a rectangular slot on the +X side of the bore: 3mm wide in Y (centered on XZ plane, Y from -1.5mm to +1.5mm), extending radially from r=3mm (bore surface) outward 2mm to r=5mm, running full Z=0 to Z=55. Subtract this from hub. 4. All three gears are fused (union) with the hub as one solid body. 5. Recommend using CadQuery polygon extrusion or a polar array of tooth profiles for gear generation. For star-polygon teeth, create a 2N-point polygon alternating between (tip_radius, angle_tip) and (root_radius, angle_root) at equal angular spacing of 360/(2N) degrees. 6. Volume estimate computed as: hub cylinder (~8482 mm3) minus bore (~1555 mm3) minus keyway (~330 mm3) plus gear1 ring (~8796 mm3) plus gear2 ring (~5655 mm3) plus gear3 ring (~2827 mm3), approximate total ~24000 mm3 (star polygon gears reduce area vs full disk; estimate revised to ~24000-28000 mm3). 7. Ensure all geometry is watertight and manifold for export.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

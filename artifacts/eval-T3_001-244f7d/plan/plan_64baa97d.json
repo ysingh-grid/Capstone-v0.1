@@ -1,0 +1,46 @@
+{
+  "description": "Open-top rectangular container with 5mm filleted vertical corners, 2mm wall thickness, outer dims 60x40x30mm, base at Z=0, centered at origin",
+  "components": [
+    "Outer rounded-rectangle solid (60x40x30mm with 5mm vertical edge fillets)",
+    "Inner void (shelled inward 2mm, open at top +Z face)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "outer_x": 60.0,
+      "outer_y": 40.0,
+      "outer_z": 30.0,
+      "wall_thickness": 2.0,
+      "base_thickness": 2.0,
+      "corner_fillet_radius": 5.0,
+      "inner_x": 56.0,
+      "inner_y": 36.0,
+      "inner_z_depth": 28.0,
+      "inner_corner_fillet_radius": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction approach: (1) Create a 2D rounded-rectangle profile centered at origin with X=60, Y=40 and corner radius=5 using a 2D sketch with four arcs or CadQuery's 'rounded_rectangle'. (2) Extrude to Z=30 to form the outer solid. (3) Create a second rounded-rectangle profile for the inner cavity: X=56, Y=36, inner corner radius=3 (=5-2), centered at origin. (4) Extrude inner profile from Z=2 (base thickness) to Z=30 and subtract to form the shell \u2014 this removes material leaving 2mm walls on all four sides and a 2mm base, with the top fully open. Alternatively use CadQuery shell() on the outer solid removing the top face. Ensure the final bounding box remains exactly 60x40x30mm. The part should sit with its lowest face at Z=0.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

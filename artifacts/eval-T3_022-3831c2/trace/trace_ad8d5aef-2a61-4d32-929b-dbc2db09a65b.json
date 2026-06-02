@@ -1,0 +1,121 @@
+{
+  "trace_id": "ad8d5aef-2a61-4d32-929b-dbc2db09a65b",
+  "workflow_id": "eval-T3_022-3831c2",
+  "design_name": "Spoked handwheel lying flat on XY plane, centered at origin. Comprises a central hub cylinder with center bore, four rectangular spokes at 90-degree intervals, and an outer ring rim. All components share a common base at Z=0.",
+  "created_at": "2026-05-27T08:17:06.337590+00:00",
+  "prompt": "A spoked handwheel lying flat on the XY plane, centered at the origin. The hub is a solid cylinder 30mm in diameter and 12mm tall (Z=0 to Z=12). The outer rim is a ring 100mm outer diameter and 88mm inner diameter (6mm radial width), 8mm tall (Z=0 to Z=8). Four rectangular spokes connect the hub to the rim at 0, 90, 180, and 270 degrees from the +X axis. Each spoke is 8mm wide, 8mm tall (same height as rim), and long enough to bridge from the hub outer edge (15mm from center) to the rim inner edge (44mm from center), centered radially at 29.5mm from the origin. The spokes at 0 and 180 degrees are aligned along X; those at 90 and 270 degrees are aligned along Y. A 14mm diameter center bore passes through the full hub height.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Spoked handwheel lying flat on XY plane, centered at origin. Comprises a central hub cylinder with center bore, four rectangular spokes at 90-degree intervals, and an outer ring rim. All components share a common base at Z=0.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 86,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 28218.37529520505,
+        "center_of_mass": [
+          -9.747737103567047e-15,
+          4.89099104927894e-15,
+          4.47026404709481
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -50.0,
+          "ymax": 50.0,
+          "ylen": 100.0,
+          "zmin": 0.0,
+          "zmax": 12.0,
+          "zlen": 12.0
+        },
+        "is_valid": true,
+        "num_faces": 27,
+        "num_edges": 72,
+        "num_vertices": 45,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.03764169643978778
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. Verification details: (1) Bounding box: 100×100×12mm matches rim OD of 100mm and hub height of 12mm. (2) Hub is 30mm diameter, 12mm tall (Z=0 to Z=12) — confirmed by zmax=12. (3) Rim is 100mm OD / 88mm ID (6mm radial width), 8mm tall — visible in renders showing the outer ring with correct proportions. (4) Four spokes at 0°, 90°, 180°, 270° are clearly visible in the top-down center view, each 8mm wide × 8mm tall, bridging from hub (r=15) to rim inner edge (r=44), with spoke_length=29mm and centered at r=29.5mm. (5) The 14mm center bore passes through the full hub height — visible as a hole in both the isometric and top-down views. (6) The part is valid, watertight, with no self-intersections. (7) Volume of ~28,218 mm³ is physically plausible for this geometry. All requested features are present and correctly dimensioned.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_022-3831c2/step/T3_022_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_022-3831c2/stl/T3_022_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 58682.622802734375,
+  "final_step_artifact_uri": "artifact://eval-T3_022-3831c2/step/T3_022_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_022-3831c2/stl/T3_022_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_022-3831c2/forgecad/spoked_handwheel_lying_flat_on_xy_plane,_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 28218.37529520505,
+    "center_of_mass": [
+      -9.747737103567047e-15,
+      4.89099104927894e-15,
+      4.47026404709481
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -50.0,
+      "ymax": 50.0,
+      "ylen": 100.0,
+      "zmin": 0.0,
+      "zmax": 12.0,
+      "zlen": 12.0
+    },
+    "is_valid": true,
+    "num_faces": 27,
+    "num_edges": 72,
+    "num_vertices": 45,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.03764169643978778
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. Verification details: (1) Bounding box: 100×100×12mm matches rim OD of 100mm and hub height of 12mm. (2) Hub is 30mm diameter, 12mm tall (Z=0 to Z=12) — confirmed by zmax=12. (3) Rim is 100mm OD / 88mm ID (6mm radial width), 8mm tall — visible in renders showing the outer ring with correct proportions. (4) Four spokes at 0°, 90°, 180°, 270° are clearly visible in the top-down center view, each 8mm wide × 8mm tall, bridging from hub (r=15) to rim inner edge (r=44), with spoke_length=29mm and centered at r=29.5mm. (5) The 14mm center bore passes through the full hub height — visible as a hole in both the isometric and top-down views. (6) The part is valid, watertight, with no self-intersections. (7) Volume of ~28,218 mm³ is physically plausible for this geometry. All requested features are present and correctly dimensioned.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

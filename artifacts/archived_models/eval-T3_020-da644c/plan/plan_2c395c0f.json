@@ -1,0 +1,48 @@
+{
+  "description": "Quadcopter drone H-frame chassis lying flat on the XY plane (Z=0 to Z=3) centered at the origin, featuring two parallel side rails, a center bridging plate, four circular motor mounts at the rail ends, and eight drilled holes (four motor shaft holes and four M3 mounting holes).",
+  "components": [
+    "Two parallel side rails along X (160mm x 12mm x 3mm)",
+    "Center bridging plate (50mm x 72mm x 3mm)",
+    "Four circular motor mounts (22mm diameter, 3mm thick)",
+    "Four motor shaft holes (5mm diameter)",
+    "Four M3 mounting holes (3.2mm diameter)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 182.0,
+      "ylen": 82.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "rail_length": 160.0,
+      "rail_width": 12.0,
+      "rail_thickness": 3.0,
+      "rail_y_offset": 30.0,
+      "center_plate_length": 50.0,
+      "center_plate_width": 72.0,
+      "motor_mount_diameter": 22.0,
+      "motor_shaft_hole_diameter": 5.0,
+      "mounting_hole_diameter": 3.2
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The chassis is lying flat (Z=0 to Z=3). Side rails are centered at Y = -30 and Y = +30. The center plate is 50x72x3, centered at (0,0,1.5). The circular motor mounts are centered at (+/-80, +/-30). The 4 motor shaft holes (5mm diameter) are centered at (+/-80, +/-30). The 4 mounting holes (3.2mm diameter) are centered at (+/-10, +/-10). Ensure 3D boolean operations (unions and subtractions) are executed cleanly.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

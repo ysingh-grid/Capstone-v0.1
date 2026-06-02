@@ -1,0 +1,67 @@
+{
+  "description": "Rounded rectangular electronics enclosure tray, open on top, with 2mm walls, shelled interior, and four mounting holes through the bottom",
+  "components": [
+    "Outer rounded-rectangle prism (80x50x25mm, 8mm vertical edge fillets)",
+    "Inner hollow cavity (shell inward 2mm, open top face)",
+    "Four 3.2mm diameter through-holes in bottom face"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 50.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "outer_x": 80.0,
+      "outer_y": 50.0,
+      "outer_z": 25.0,
+      "vertical_edge_fillet_radius": 8.0,
+      "wall_thickness": 2.0,
+      "floor_thickness": 2.0,
+      "inner_cavity_x": 76.0,
+      "inner_cavity_y": 46.0,
+      "inner_cavity_z": 23.0,
+      "mounting_hole_diameter": 3.2,
+      "mounting_hole_pattern_x": 64.0,
+      "mounting_hole_pattern_y": 34.0,
+      "mounting_hole_inset_from_edge_x": 8.0,
+      "mounting_hole_inset_from_edge_y": 8.0,
+      "base_z": 0.0,
+      "centroid_x": 0.0,
+      "centroid_y": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 3.2 mm",
+      "dimensions": {
+        "diameter": 3.2
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction strategy: (1) Create a 2D rounded-rectangle profile in XY centered at origin using a rectangle with 8mm corner fillets (fillets on vertical edges only \u2014 i.e., in the XY cross-section). Extrude from Z=0 to Z=25 to form the solid outer body. (2) Shell the solid by removing the top face (+Z=25) and shelling inward 2mm to produce a hollow tray; alternatively, subtract an inner rounded-rectangle prism (76x46mm, same fillet logic scaled inward, height 23mm) starting at Z=2 up through Z=25 to simulate the shell. (3) The inner cavity fillet radius should be reduced to 6mm (8mm outer minus 2mm wall) to maintain uniform wall thickness at corners. (4) Drill four 3.2mm diameter cylindrical holes through the bottom face (Z=0 to Z=2) at positions (+32, +17, 0), (+32, -17, 0), (-32, +17, 0), (-32, -17, 0) \u2014 these are 8mm inset from the 80mm and 50mm outer edges respectively. Holes should be full through-holes penetrating the 2mm floor. (5) Part origin is at XY center, base at Z=0. (6) Use CadQuery or similar: create outer solid with .rect(80,50).fillet(8) profile extruded 25mm, then subtract inner void.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

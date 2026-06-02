@@ -1,0 +1,65 @@
+{
+  "description": "Pipe tee fitting with a main run pipe along the X axis and a perpendicular branch pipe along the +Z axis, forming a T-shaped hollow interior. All pipes share the same 30mm OD / 24mm ID cross-section.",
+  "components": [
+    "Main run pipe (horizontal, X axis, X=-50 to X=50)",
+    "Branch pipe (vertical, +Z axis, Z=0 to Z=50)",
+    "Boolean union of outer solids",
+    "Boolean subtraction of T-shaped hollow interior"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 30.0,
+      "zlen": 65.0
+    },
+    "key_dimensions": {
+      "main_pipe_outer_diameter": 30.0,
+      "main_pipe_inner_diameter": 24.0,
+      "wall_thickness": 3.0,
+      "main_pipe_length": 100.0,
+      "main_pipe_x_start": -50.0,
+      "main_pipe_x_end": 50.0,
+      "branch_pipe_outer_diameter": 30.0,
+      "branch_pipe_inner_diameter": 24.0,
+      "branch_pipe_length": 50.0,
+      "branch_pipe_z_start": 0.0,
+      "branch_pipe_z_end": 50.0,
+      "intersection_center_x": 0.0,
+      "intersection_center_y": 0.0,
+      "intersection_center_z": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "3 hole(s) of diameter 24 mm",
+      "dimensions": {
+        "diameter": 24.0
+      },
+      "position": null,
+      "count": 3,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 3,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction approach: (1) Create outer solid of main pipe as a cylinder of radius 15mm, length 100mm, oriented along X axis, centered at origin. (2) Create outer solid of branch pipe as a cylinder of radius 15mm, length 50mm, oriented along +Z axis, with base at Z=0 and top at Z=50 (center at Z=25). (3) Union the two outer cylinders. (4) Create inner hollow of main pipe as a cylinder of radius 12mm, length 100mm (or slightly longer to ensure clean boolean), oriented along X axis, centered at origin. (5) Create inner hollow of branch pipe as a cylinder of radius 12mm, length 50mm (or slightly longer), oriented along +Z axis, center at Z=25. (6) Union the two inner hollow cylinders to form the T-shaped void. (7) Subtract the T-shaped void from the outer union to produce the final part. Ensure the branch pipe inner bore fully intersects and connects with the main pipe inner bore at Z=0. The branch outer cylinder should start at Z=0 (flush with the main pipe outer surface top) rather than Z=-15, since the branch only goes in the +Z direction. The overall bounding box Z dimension is 50 (branch top) - (-15) (main pipe bottom at Y) = but since main pipe is along X, bounding box Y is 30mm (diameter), Z runs from -15 (bottom of main pipe) to +50 (top of branch), giving zlen=65mm. Coder should use CadQuery or similar CSG approach for clean boolean operations.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

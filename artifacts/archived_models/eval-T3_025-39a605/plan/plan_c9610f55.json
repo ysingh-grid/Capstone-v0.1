@@ -1,0 +1,66 @@
+{
+  "description": "A flanged shaft coupling standing along the Z axis, centered at the origin in X and Y. It consists of a bottom flange, a central hub, and a top flange, with a center bore, keyway, and six bolt holes passing through the flanges.",
+  "components": [
+    "bottom_flange_disc",
+    "central_hub_cylinder",
+    "top_flange_disc",
+    "center_bore",
+    "bolt_holes",
+    "keyway_slot"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "bottom_flange_diameter": 50.0,
+      "bottom_flange_thickness": 10.0,
+      "central_hub_diameter": 28.0,
+      "central_hub_length": 40.0,
+      "top_flange_diameter": 50.0,
+      "top_flange_thickness": 10.0,
+      "total_length": 60.0,
+      "bolt_hole_diameter": 6.5,
+      "bolt_pitch_circle_diameter": 38.0,
+      "center_bore_diameter": 14.0,
+      "keyway_width_y": 5.0,
+      "keyway_depth_x": 2.5,
+      "keyway_center_x": 5.75
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "7 hole(s) of diameter 6.5 mm",
+      "dimensions": {
+        "diameter": 6.5
+      },
+      "position": null,
+      "count": 7,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 7,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.98,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the main body by unioning the bottom flange (cylinder, r=25, h=10 at Z=0), central hub (cylinder, r=14, h=40 at Z=10), and top flange (cylinder, r=25, h=10 at Z=50). Subtract the center bore (cylinder, r=7, h=60). Subtract six bolt holes (cylinder, r=3.25, h=60) distributed at 60-degree increments on a radius of 19mm. Note that since the hub radius (14mm) is smaller than the inner edge of the bolt holes (19 - 3.25 = 15.75mm), the bolt holes will automatically only cut the top and bottom flanges. To cut the keyway, subtract a box of dimension SX=5.0, SY=5.0, SZ=60.0 centered at X=5.75, Y=0.0, Z=30.0. This aligns with the prompt's specifications and results in a keyway depth cutting 1.25mm into the 7mm radius bore wall (outermost extent at X=8.25).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

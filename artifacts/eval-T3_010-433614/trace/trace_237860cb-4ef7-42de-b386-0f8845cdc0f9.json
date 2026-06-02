@@ -1,0 +1,121 @@
+{
+  "trace_id": "237860cb-4ef7-42de-b386-0f8845cdc0f9",
+  "workflow_id": "eval-T3_010-433614",
+  "design_name": "Triple spur gear stack on a single cylindrical hub, standing upright along Z axis, centered at XY origin. Three gears of decreasing size spaced along the hub with star-polygon tooth profiles. Hub has a central 6mm bore and a keyway slot running the full length.",
+  "created_at": "2026-05-27T08:02:05.628260+00:00",
+  "prompt": "A triple gear stack on a single hub, standing upright along the Z axis, centered at the origin in XY. The cylindrical hub is 14mm in diameter and 55mm long (Z=0 to Z=55). Three spur gears of decreasing size are spaced along the hub, each with a star-polygon tooth profile: (1) a 24-tooth gear (54mm tip diameter (27mm radius), 44mm root diameter (22mm radius)) from Z=2 to Z=10 (8mm face width); (2) an 18-tooth gear (42mm tip diameter (21mm radius), 34mm root diameter (17mm radius)) from Z=18 to Z=26; (3) a 12-tooth gear (30mm tip diameter (15mm radius), 24mm root diameter (12mm radius)) from Z=34 to Z=42. A 6mm diameter bore runs through the full hub length along Z. A keyway slot 3mm wide (Y) and 2mm deep (radially, from bore surface at radius 3mm to radius 5mm) runs the full 55mm hub length on the +X side.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Triple spur gear stack on a single cylindrical hub, standing upright along Z axis, centered at XY origin. Three gears of decreasing size spaced along the hub with star-polygon tooth profiles. Hub has a central 6mm bore and a keyway slot running the full length.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 102,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 31172.54066446151,
+        "center_of_mass": [
+          -0.04234496039986998,
+          3.2192596773715986e-16,
+          17.816078662612583
+        ],
+        "bounding_box": {
+          "xmin": -27.0,
+          "xmax": 27.0,
+          "xlen": 54.0,
+          "ymin": -27.0,
+          "ymax": 27.0,
+          "ylen": 54.0,
+          "zmin": 0.0,
+          "zmax": 55.0,
+          "zlen": 55.0
+        },
+        "is_valid": true,
+        "num_faces": 126,
+        "num_edges": 353,
+        "num_vertices": 234,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.00427569367218327
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. Verification details: (1) Bounding box: 54mm x 54mm x 55mm — correct, the largest gear has 54mm tip diameter and the hub extends Z=0 to Z=55. (2) Three gears of decreasing size are clearly visible in all three rendered views, properly spaced along the Z axis with hub sections visible between them. (3) The 24-tooth gear (bottom, largest), 18-tooth gear (middle), and 12-tooth gear (top, smallest) all show star-polygon tooth profiles with alternating tip/root vertices. (4) The central bore is visible in the high-angle rear view (center image), showing a 6mm hole through the hub. (5) The keyway slot is visible in the center view as a notch on one side of the bore, running along the hub on the +X side. (6) The hub extends above and below the gear sections as expected, with plain cylindrical sections visible at top (Z=42 to Z=55) and bottom (Z=0 to Z=2) and between gears. (7) Volume of ~31,173 mm³ is plausible for three star-polygon gears on a 14mm hub with bore and keyway removed. (8) The model is valid, watertight, with consistent normals and no self-intersections. All geometric specifications from the prompt are satisfied.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_010-433614/step/T3_010_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_010-433614/stl/T3_010_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 74504.369140625,
+  "final_step_artifact_uri": "artifact://eval-T3_010-433614/step/T3_010_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_010-433614/stl/T3_010_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_010-433614/forgecad/triple_spur_gear_stack_on_a_single_cylin_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 31172.54066446151,
+    "center_of_mass": [
+      -0.04234496039986998,
+      3.2192596773715986e-16,
+      17.816078662612583
+    ],
+    "bounding_box": {
+      "xmin": -27.0,
+      "xmax": 27.0,
+      "xlen": 54.0,
+      "ymin": -27.0,
+      "ymax": 27.0,
+      "ylen": 54.0,
+      "zmin": 0.0,
+      "zmax": 55.0,
+      "zlen": 55.0
+    },
+    "is_valid": true,
+    "num_faces": 126,
+    "num_edges": 353,
+    "num_vertices": 234,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.00427569367218327
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. Verification details: (1) Bounding box: 54mm x 54mm x 55mm — correct, the largest gear has 54mm tip diameter and the hub extends Z=0 to Z=55. (2) Three gears of decreasing size are clearly visible in all three rendered views, properly spaced along the Z axis with hub sections visible between them. (3) The 24-tooth gear (bottom, largest), 18-tooth gear (middle), and 12-tooth gear (top, smallest) all show star-polygon tooth profiles with alternating tip/root vertices. (4) The central bore is visible in the high-angle rear view (center image), showing a 6mm hole through the hub. (5) The keyway slot is visible in the center view as a notch on one side of the bore, running along the hub on the +X side. (6) The hub extends above and below the gear sections as expected, with plain cylindrical sections visible at top (Z=42 to Z=55) and bottom (Z=0 to Z=2) and between gears. (7) Volume of ~31,173 mm³ is plausible for three star-polygon gears on a 14mm hub with bore and keyway removed. (8) The model is valid, watertight, with consistent normals and no self-intersections. All geometric specifications from the prompt are satisfied.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

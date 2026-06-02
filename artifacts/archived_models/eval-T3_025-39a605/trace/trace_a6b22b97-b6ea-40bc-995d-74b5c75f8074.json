@@ -1,0 +1,121 @@
+{
+  "trace_id": "a6b22b97-b6ea-40bc-995d-74b5c75f8074",
+  "workflow_id": "eval-T3_025-39a605",
+  "design_name": "A flanged shaft coupling standing along the Z axis, centered at the origin in X and Y. It consists of a bottom flange, a central hub, and a top flange, with a center bore, keyway, and six bolt holes passing through the flanges.",
+  "created_at": "2026-05-26T09:15:02.901846+00:00",
+  "prompt": "A flanged shaft coupling standing along the Z axis, centered at the origin in X and Y. The coupling consists of three coaxial cylindrical sections: a bottom flange disc 50mm in diameter and 10mm thick (Z=0 to Z=10), a central hub cylinder 28mm in diameter and 40mm long (Z=10 to Z=50), and a top flange disc 50mm in diameter and 10mm thick (Z=50 to Z=60). The total length is 60mm. Six bolt holes 6.5mm in diameter are equally spaced on a 38mm pitch circle diameter (19mm radius), computed at 0, 60, 120, 180, 240, and 300 degrees from the +X axis. The bolt holes pass through the full 60mm length but only cut the flanges since the hub is narrower. A 14mm diameter center bore runs the full 60mm length. A rectangular keyway slot 5mm wide (Y) and 2.5mm deep (radial, in X) is cut along the bore wall on the +X side, running the full 60mm length. The keyway is centered at X = (bore radius - half keyway depth) = 5.75mm from the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A flanged shaft coupling standing along the Z axis, centered at the origin in X and Y. It consists of a bottom flange, a central hub, and a top flange, with a center bore, keyway, and six bolt holes passing through the flanges.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 65,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 50261.204976927474,
+        "center_of_mass": [
+          -0.06310781847459904,
+          1.1852462151170754e-15,
+          30.000000000000004
+        ],
+        "bounding_box": {
+          "xmin": -25.0,
+          "xmax": 25.0,
+          "xlen": 50.0,
+          "ymin": -25.0,
+          "ymax": 25.0,
+          "ylen": 50.0,
+          "zmin": 0.0,
+          "zmax": 60.0,
+          "zlen": 60.0
+        },
+        "is_valid": true,
+        "num_faces": 23,
+        "num_edges": 57,
+        "num_vertices": 38,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.04274862579641657
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_025-39a605/step/T3_025_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_025-39a605/stl/T3_025_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 121149.27905273438,
+  "final_step_artifact_uri": "artifact://eval-T3_025-39a605/step/T3_025_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_025-39a605/stl/T3_025_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_025-39a605/forgecad/a_flanged_shaft_coupling_standing_along__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 50261.204976927474,
+    "center_of_mass": [
+      -0.06310781847459904,
+      1.1852462151170754e-15,
+      30.000000000000004
+    ],
+    "bounding_box": {
+      "xmin": -25.0,
+      "xmax": 25.0,
+      "xlen": 50.0,
+      "ymin": -25.0,
+      "ymax": 25.0,
+      "ylen": 50.0,
+      "zmin": 0.0,
+      "zmax": 60.0,
+      "zlen": 60.0
+    },
+    "is_valid": true,
+    "num_faces": 23,
+    "num_edges": 57,
+    "num_vertices": 38,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.04274862579641657
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

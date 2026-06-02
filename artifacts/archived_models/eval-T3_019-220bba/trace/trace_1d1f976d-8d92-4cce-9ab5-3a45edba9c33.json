@@ -1,0 +1,172 @@
+{
+  "trace_id": "1d1f976d-8d92-4cce-9ab5-3a45edba9c33",
+  "workflow_id": "eval-T3_019-220bba",
+  "design_name": "Quadcopter drone chassis in an X configuration, featuring a central disc hub, four diagonal arms, outer motor mount platforms, and necessary mounting and shaft holes.",
+  "created_at": "2026-05-26T09:06:05.509348+00:00",
+  "prompt": "A quadcopter drone chassis in an X configuration, lying flat on the XY plane (Z=0 to Z=3), centered at the origin. The central hub is a solid disc 36mm in diameter, 3mm thick. Four rectangular arms extend outward from the hub at 45, 135, 225, and 315 degrees from the +X axis. Each arm is 55mm long and 10mm wide, starting from the hub edge (18mm from center) and reaching 73mm from center. The arms are aligned along their respective diagonal directions using rotated workplanes. A circular motor mount platform 18mm in diameter sits at each arm tip, centered 73mm from the origin along each diagonal (at approximately (±51.6, ±51.6) mm). A 5mm diameter motor shaft hole is drilled through each mount. Four M3 mounting holes (3.2mm diameter) are drilled through the hub in a 20mm x 20mm square pattern centered at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Quadcopter drone chassis in an X configuration, featuring a central disc hub, four diagonal arms, outer motor mount platforms, and necessary mounting and shaft holes.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 65,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 11353.589953777964,
+        "center_of_mass": [
+          9.17217759113699e-15,
+          -1.6261589965072564e-14,
+          1.4999999999999998
+        ],
+        "bounding_box": {
+          "xmin": -60.61879502661799,
+          "xmax": 60.618795026617974,
+          "xlen": 121.23759005323596,
+          "ymin": -60.61879502661798,
+          "ymax": 60.618795026617974,
+          "ylen": 121.23759005323595,
+          "zmin": 0.0,
+          "zmax": 3.0000000000000004,
+          "zlen": 3.0000000000000004
+        },
+        "is_valid": true,
+        "num_faces": 42,
+        "num_edges": 92,
+        "num_vertices": 56,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.018536059612154168
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The model fails because the 5mm motor shaft holes are completely missing from the motor mounts (clearly visible as solid circles in all rendered views), and the central M3 mounting holes are rotated out of position (they appear in the gaps between the arms instead of overlapping them on the 45-degree diagonals). \n\nThis occurred because calling `.faces(\">Z\").workplane()` on the complex unioned chassis creates a workplane with an unpredictable, rotated local coordinate system (in this case, rotated by 45 degrees). When `pushPoints()` applied your calculated coordinates to this rotated workplane, the central holes were shifted into the gaps, and the motor holes were drilled into empty space.\n\nTo fix this, do not use `.faces(\">Z\").workplane()` on the final unioned solid. Instead, instantiate a new workplane explicitly aligned with the global axes to ensure absolute positioning, such as `cq.Workplane(\"XY\").workplane(offset=chassis_thickness)` or simply drill upwards through the entire part from `cq.Workplane(\"XY\")`.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_019-220bba/step/T3_019_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_019-220bba/stl/T3_019_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 77,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 11353.58995377796,
+        "center_of_mass": [
+          1.0333719731499318e-14,
+          -7.209571905697199e-15,
+          1.4999999999999996
+        ],
+        "bounding_box": {
+          "xmin": -60.61879502661799,
+          "xmax": 60.618795026617974,
+          "xlen": 121.23759005323596,
+          "ymin": -60.61879502661798,
+          "ymax": 60.618795026617974,
+          "ylen": 121.23759005323595,
+          "zmin": 0.0,
+          "zmax": 3.0,
+          "zlen": 3.0
+        },
+        "is_valid": true,
+        "num_faces": 42,
+        "num_edges": 92,
+        "num_vertices": 56,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.01853605961212213
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. The previous issue with the local coordinate system rotation has been successfully resolved by creating independent cutting tools on the global XY plane. The central M3 mounting holes and motor shaft holes are perfectly positioned and cleanly cut, and all bounding box metrics align exactly with the mathematical expectations for the rotated diagonal arms.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_019-220bba/step/T3_019_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_019-220bba/stl/T3_019_outer1_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 2,
+  "total_llm_calls": 6,
+  "total_time_ms": 214756.93701171875,
+  "final_step_artifact_uri": "artifact://eval-T3_019-220bba/step/T3_019_outer1_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_019-220bba/stl/T3_019_outer1_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_019-220bba/forgecad/quadcopter_drone_chassis_in_an_x_configu_iter1.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 11353.58995377796,
+    "center_of_mass": [
+      1.0333719731499318e-14,
+      -7.209571905697199e-15,
+      1.4999999999999996
+    ],
+    "bounding_box": {
+      "xmin": -60.61879502661799,
+      "xmax": 60.618795026617974,
+      "xlen": 121.23759005323596,
+      "ymin": -60.61879502661798,
+      "ymax": 60.618795026617974,
+      "ylen": 121.23759005323595,
+      "zmin": 0.0,
+      "zmax": 3.0,
+      "zlen": 3.0
+    },
+    "is_valid": true,
+    "num_faces": 42,
+    "num_edges": 92,
+    "num_vertices": 56,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.01853605961212213
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. The previous issue with the local coordinate system rotation has been successfully resolved by creating independent cutting tools on the global XY plane. The central M3 mounting holes and motor shaft holes are perfectly positioned and cleanly cut, and all bounding box metrics align exactly with the mathematical expectations for the rotated diagonal arms.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

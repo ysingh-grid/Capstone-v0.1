@@ -1,0 +1,49 @@
+{
+  "description": "Quadcopter drone chassis in an X configuration, featuring a central disc hub, four diagonal arms, outer motor mount platforms, and necessary mounting and shaft holes.",
+  "components": [
+    "Central hub disc (36mm diameter, 3mm thick)",
+    "Four diagonal arms (10mm wide, 55mm long, rotated at 45, 135, 225, 315 degrees)",
+    "Four circular motor mount platforms (18mm diameter, 3mm thick, centered at arm tips)",
+    "Four motor shaft holes (5mm diameter, through-all, centered at arm tips)",
+    "Four M3 central mounting holes (3.2mm diameter, through-all, in a 20x20mm square pattern)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 121.24,
+      "ylen": 121.24,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "hub_diameter": 36.0,
+      "chassis_thickness": 3.0,
+      "arm_length": 55.0,
+      "arm_width": 10.0,
+      "arm_angle_deg": 45.0,
+      "motor_mount_diameter": 18.0,
+      "motor_mount_distance_from_center": 73.0,
+      "motor_shaft_hole_diameter": 5.0,
+      "hub_mounting_hole_diameter": 3.2,
+      "hub_mounting_hole_spacing": 20.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Recommend using rotated workplanes or coordinate transformations (polar rotation of 45, 135, 225, 315 degrees) to define the arms and motor mounts. Ensure all solid bodies are boolean-unioned into a single manifold chassis before subtracting the 4 central mounting holes and the 4 motor shaft holes. Coordinates of motor mounts are at (\u00b151.62, \u00b151.62) on the XY plane. Center of the chassis is at (0,0,1.5) if Z ranges from 0 to 3.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

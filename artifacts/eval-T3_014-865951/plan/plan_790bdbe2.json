@@ -1,0 +1,61 @@
+{
+  "description": "180-degree U-bend (return bend) pipe fitting swept in the XZ plane, with two parallel legs 70mm apart, 20mm OD, 16mm ID, 2mm wall thickness, centerline radius 35mm",
+  "components": [
+    "Outer torus-like swept solid (semicircular sweep of outer circle)",
+    "Inner torus-like swept void (semicircular sweep of inner circle, subtracted)",
+    "Left pipe leg stub at origin pointing in +Z",
+    "Right pipe leg stub at X=70 pointing in -Z"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 90.0,
+      "ylen": 20.0,
+      "zlen": 55.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_centerline_radius": 35.0,
+      "leg_separation_x": 70.0,
+      "apex_z_height": 35.0,
+      "pipe_cross_section_outer_radius": 10.0,
+      "pipe_cross_section_inner_radius": 8.0,
+      "sweep_arc_angle_degrees": 180.0,
+      "leg_length": 10.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "2 hole(s) of diameter 16 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 2,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 2,
+    "hole_diameter_mm": null,
+    "symmetry": "mirror",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Use CadQuery to build this as a swept annular cross-section along a semicircular arc path in the XZ plane. The sweep path is a 180-degree arc (semicircle) of radius 35mm centered at (35, 0, 0) in the XZ plane, starting at (0, 0, 0) and ending at (70, 0, 0), arcing through the apex at (35, 0, 35). The cross-section is an annulus (circle OD=20mm minus circle ID=16mm). The sweep must be performed on the XZ workplane (normal is Y-axis). Use cadquery Wire.makeHelix or Edge.makeCircle arc approach: define the arc center at (35,0,0), arc in XZ plane, start angle 180deg, end angle 0deg (or equivalently use a 3-point arc through start=(0,0,0), mid=(35,0,35), end=(70,0,0)). After sweep, the bounding box in X should be ~0 to 70 (plus wall: -10 to 80), in Y should be -10 to +10, in Z should be -10 to +45 (leg stubs extend slightly below Z=0 if added, or 0 to 45 for pure bend). If leg stubs are added (10mm each), Z range becomes -10 to +45. The overall bbox xlen accounts for wall: leg centers at x=0 and x=70, so outer walls at x=-10 and x=80, giving xlen=90. The apex outer wall reaches z=35+10=45, so zlen=55 if legs extend to z=-10. Volume estimate: annular cross-section area = pi*(10^2 - 8^2) = pi*36 ~ 113.1 mm^2; semicircle path length = pi*35 ~ 109.96mm; sweep volume ~ 113.1 * 109.96 ~ 12,436 mm^3 for the bend alone; add two leg stubs of 10mm each: 2 * 113.1 * 10 = 2262 mm^3; total ~ 14,700 mm^3. Estimate rounded to ~15000 mm^3. Symmetry axis is X=35 plane.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

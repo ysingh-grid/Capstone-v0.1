@@ -1,0 +1,121 @@
+{
+  "trace_id": "20aed442-78f5-4027-b619-3f8aed29e270",
+  "workflow_id": "eval-T3_017-e9b668",
+  "design_name": "A four-way pipe cross fitting where two identical hollow cylindrical pipes intersect perpendicularly at the origin, forming a '+' shaped hollow interior. One pipe runs along the X axis, the other along the Z axis.",
+  "created_at": "2026-05-27T08:12:52.588424+00:00",
+  "prompt": "A pipe cross fitting (four-way intersection). Two hollow pipes of equal size cross perpendicularly. The first pipe is 30mm outer diameter, 24mm inner diameter (3mm wall thickness), 100mm long along the X axis, centered at the origin (from X=-50 to X=50). The second pipe has the same dimensions, 100mm long along the Z axis, centered at the origin (from Z=-50 to Z=50). The two pipes intersect at the origin, creating a continuous hollow + shaped interior. The part is centered at the origin in all axes.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A four-way pipe cross fitting where two identical hollow cylindrical pipes intersect perpendicularly at the origin, forming a '+' shaped hollow interior. One pipe runs along the X axis, the other along the Z axis.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 43,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 42109.80098806814,
+        "center_of_mass": [
+          2.450303912561702e-11,
+          -1.1856525188559615e-12,
+          -2.1444478869206353e-11
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -15.0,
+          "ymax": 15.0,
+          "ylen": 30.0,
+          "zmin": -50.0,
+          "zmax": 50.0,
+          "zlen": 100.0
+        },
+        "is_valid": true,
+        "num_faces": 12,
+        "num_edges": 30,
+        "num_vertices": 18,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.028347629795368524
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. The pipe cross fitting is correctly constructed: two perpendicular hollow pipes with 30mm outer diameter, 24mm inner diameter (3mm wall thickness), each 100mm long. The X-axis pipe spans from -50 to 50, the Z-axis pipe spans from -50 to 50. Bounding box confirms 100×30×100mm dimensions. The part is centered at the origin (center of mass essentially at origin). The rendered images clearly show the cross/+ shape with hollow interiors visible at all four pipe ends, and the continuous hollow intersection is confirmed by the center view showing the bore through the top opening. The model is valid, watertight, and has no self-intersections. Volume of ~42,110 mm³ is physically plausible for this geometry.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_017-e9b668/step/T3_017_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_017-e9b668/stl/T3_017_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 29830.0,
+  "final_step_artifact_uri": "artifact://eval-T3_017-e9b668/step/T3_017_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_017-e9b668/stl/T3_017_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_017-e9b668/forgecad/a_four_way_pipe_cross_fitting_where_two__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 42109.80098806814,
+    "center_of_mass": [
+      2.450303912561702e-11,
+      -1.1856525188559615e-12,
+      -2.1444478869206353e-11
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -15.0,
+      "ymax": 15.0,
+      "ylen": 30.0,
+      "zmin": -50.0,
+      "zmax": 50.0,
+      "zlen": 100.0
+    },
+    "is_valid": true,
+    "num_faces": 12,
+    "num_edges": 30,
+    "num_vertices": 18,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.028347629795368524
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. The pipe cross fitting is correctly constructed: two perpendicular hollow pipes with 30mm outer diameter, 24mm inner diameter (3mm wall thickness), each 100mm long. The X-axis pipe spans from -50 to 50, the Z-axis pipe spans from -50 to 50. Bounding box confirms 100×30×100mm dimensions. The part is centered at the origin (center of mass essentially at origin). The rendered images clearly show the cross/+ shape with hollow interiors visible at all four pipe ends, and the continuous hollow intersection is confirmed by the center view showing the bore through the top opening. The model is valid, watertight, and has no self-intersections. Volume of ~42,110 mm³ is physically plausible for this geometry.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

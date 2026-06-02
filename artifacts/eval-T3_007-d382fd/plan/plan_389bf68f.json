@@ -1,0 +1,54 @@
+{
+  "description": "Rectangular-to-round duct transition adapter with bottom rectangular flange, smooth lofted midsection, and top cylindrical neck, centered at XY origin, standing upright along Z axis.",
+  "components": [
+    "Rectangular mounting flange (Z=0 to Z=3)",
+    "Smooth lofted transition body (Z=3 to Z=53)",
+    "Cylindrical neck (Z=53 to Z=63)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 70.0,
+      "ylen": 50.0,
+      "zlen": 63.0
+    },
+    "key_dimensions": {
+      "flange_x": 70.0,
+      "flange_y": 50.0,
+      "flange_thickness": 3.0,
+      "transition_bottom_x": 60.0,
+      "transition_bottom_y": 40.0,
+      "transition_top_diameter": 30.0,
+      "transition_top_radius": 15.0,
+      "transition_height": 50.0,
+      "transition_z_start": 3.0,
+      "transition_z_end": 53.0,
+      "neck_diameter": 30.0,
+      "neck_radius": 15.0,
+      "neck_z_start": 53.0,
+      "neck_z_end": 63.0,
+      "neck_height": 10.0,
+      "xy_center_x": 0.0,
+      "xy_center_y": 0.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Use CadQuery loft operation between a 60x40mm rectangular wire at Z=3 and a 30mm-diameter circular wire at Z=53 for the transition section. Ensure all three sections share the same XY centroid at the origin. The flange is a solid rectangular box (70x50x3mm) from Z=0 to Z=3. The loft should be a smooth ruled/spline surface \u2014 no sharp kinks. The cylindrical neck is a simple solid cylinder of diameter 30mm from Z=53 to Z=63. Union all three solids together. No through-holes or bolt patterns are specified. Wall thickness is not specified (treat as solid geometry). Volume estimate is approximate for solid construction.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

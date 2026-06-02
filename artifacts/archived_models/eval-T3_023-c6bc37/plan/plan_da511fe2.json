@@ -1,0 +1,58 @@
+{
+  "description": "Rectangular mounting plate centered at the origin (XY plane, Z=0 to Z=15) with six standoff posts in a 3x2 array, featuring concentric thru-holes.",
+  "components": [
+    "Base plate (80mm x 50mm x 3mm)",
+    "6x Cylindrical standoff posts (8mm diameter, 12mm height)",
+    "6x Concentric pilot thru-holes (3.2mm diameter, 15mm depth)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 50.0,
+      "zlen": 15.0
+    },
+    "key_dimensions": {
+      "base_plate_length": 80.0,
+      "base_plate_width": 50.0,
+      "base_plate_thickness": 3.0,
+      "standoff_diameter": 8.0,
+      "standoff_height": 12.0,
+      "hole_diameter": 3.2,
+      "post_spacing_x": 30.0,
+      "post_spacing_y": 30.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "6 hole(s) of diameter 3.2 mm",
+      "dimensions": {
+        "diameter": 3.2
+      },
+      "position": null,
+      "count": 6,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 6,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part must lie on the XY plane with the bottom face at Z=0. The 3x2 post array is centered on the plate: X-coordinates of posts are at -30, 0, and 30; Y-coordinates are at -15 and 15. The 3.2mm holes must go entirely through the 15mm thickness (from Z=15 to Z=0).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

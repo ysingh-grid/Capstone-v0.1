@@ -1,0 +1,62 @@
+{
+  "description": "A 90-degree pipe elbow with annular cross-section swept along a quarter-circle arc in the XZ plane. Outer diameter 20mm, inner diameter 16mm, 2mm wall thickness. Bend centerline is a 40mm radius quarter-circle arc from origin heading +Z, curving to (40,0,40) heading +X.",
+  "components": [
+    "Annular cross-section (outer circle OD=20mm, inner circle ID=16mm)",
+    "Quarter-circle sweep path (radius=40mm, in XZ plane, from Z-axis to X-axis)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 20.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_centerline_radius": 40.0,
+      "arc_sweep_angle_deg": 90.0,
+      "arc_start_x": 0.0,
+      "arc_start_z": 0.0,
+      "arc_end_x": 40.0,
+      "arc_end_z": 40.0,
+      "arc_center_x": 0.0,
+      "arc_center_z": 40.0,
+      "pipe_length_along_arc": 62.83,
+      "y_center": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 16 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Sweep an annular profile (OD=20mm, ID=16mm) along a quarter-circle arc path defined in the XZ plane. Arc center is at (0, 0, 40) in XYZ space, arc starts at (0, 0, 0) tangent to +Z direction and ends at (40, 0, 40) tangent to +X direction. The cross-section normal must remain perpendicular to the arc tangent at all points (Frenet-Serret frame). In CadQuery, use 'workplane XZ' to define the sweep path, create the arc with radiusArc from (0,0) to (40,40) with radius 40, then sweep the annular face. The bounding box spans X=[0,60], Y=[-10,10], Z=[0,60] accounting for the 10mm pipe radius extending beyond the arc endpoints. Volume estimate based on: pi/4*(20^2-16^2)*pi*40/2 ~ 7540 mm^3. Ensure the sweep uses makeRigid=False or equivalent so the cross-section stays normal to path.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

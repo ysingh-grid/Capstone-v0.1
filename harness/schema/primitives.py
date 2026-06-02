@@ -306,6 +306,27 @@ def validate_plan(raw_dict: dict) -> PrimitivePlan:
                 for k in ("xlen", "ylen", "zlen")
             }
 
+    # ── Coerce key_dimensions list values → float (LLM may return angle arrays) ──
+    dims_block = enriched.get("dimensions", {})
+    if isinstance(dims_block, dict):
+        kd = dims_block.get("key_dimensions", {})
+        if isinstance(kd, dict):
+            import re as _re
+            sanitized = {}
+            for k, v in kd.items():
+                if isinstance(v, (int, float)):
+                    sanitized[k] = float(v)
+                elif isinstance(v, list):
+                    nums = [x for x in v if isinstance(x, (int, float))]
+                    if nums:
+                        sanitized[k] = float(nums[0])
+                elif isinstance(v, str):
+                    found = _re.findall(r"\d+(?:\.\d+)?", v)
+                    if found:
+                        sanitized[k] = float(found[0])
+                # else drop non-numeric value
+            dims_block["key_dimensions"] = sanitized
+
     # ── Coerce free-text symmetry before strict Pydantic validation ──
     # The LLM may emit values like "rectangular symmetry about the plate center"
     # which are valid intent but not valid enum members. Coerce them gracefully.
@@ -338,12 +359,16 @@ def _infer_features_from_cadsmith_plan(raw: dict) -> list[dict]:
     hole_diameter = constraints.get("hole_diameter")
 
     if num_holes and hole_diameter:
-        features.append({
-            "feature_id": "hole_group_1",
-            "feature_type": "hole",
-            "description": f"{num_holes} hole(s) of diameter {hole_diameter} mm",
-            "dimensions": {"diameter": float(hole_diameter)},
-            "count": int(num_holes),
-        })
+        import re as _re
+        _nums = _re.findall(r"\d+(?:\.\d+)?", str(hole_diameter))
+        _diam = float(_nums[0]) if _nums else None
+        if _diam is not None:
+            features.append({
+                "feature_id": "hole_group_1",
+                "feature_type": "hole",
+                "description": f"{num_holes} hole(s) of diameter {hole_diameter} mm",
+                "dimensions": {"diameter": _diam},
+                "count": int(num_holes),
+            })
 
     return features

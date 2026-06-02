@@ -1,0 +1,63 @@
+{
+  "description": "Hollow revolved vase/bottle shape, open at top, centered at origin, with profile defined by straight-line segments revolved 360\u00b0 around Z axis, then shelled to 2mm wall thickness",
+  "components": [
+    "Revolved solid body from polyline profile",
+    "Shell operation (2mm wall, open top face)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 56.0,
+      "ylen": 56.0,
+      "zlen": 65.0
+    },
+    "key_dimensions": {
+      "base_radius": 25.0,
+      "base_z": 0.0,
+      "wall_start_z": 5.0,
+      "belly_radius": 28.0,
+      "belly_z": 25.0,
+      "shoulder_radius": 22.0,
+      "shoulder_z": 45.0,
+      "neck_base_radius": 10.0,
+      "neck_base_z": 55.0,
+      "neck_top_radius": 10.0,
+      "neck_top_z": 65.0,
+      "wall_thickness": 2.0,
+      "total_height": 65.0,
+      "max_outer_diameter": 56.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 20 mm",
+      "dimensions": {
+        "diameter": 20.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Profile polyline vertices in order: (25,0), (25,5), (28,25), (22,45), (10,55), (10,65). Revolve this closed profile (close bottom with segment from (25,0) to (0,0) to (0,65) is NOT needed \u2014 revolve the open profile as a shell or revolve closed solid then shell). Recommended implementation: (1) Create a closed 2D wire/face by connecting profile points with a bottom closure segment at Z=0 from (25,0) to (0,0) and an axis segment from (0,0) to (0,65) and closing at (0,65) to (10,65), then revolve to get a solid. (2) Alternatively, revolve the outer profile as a solid revolution with implied axis closure. (3) Shell the resulting solid with 2mm thickness, selecting the top face at Z=65 (neck opening, circle of radius 10mm) as the face to remove/open. The inner cavity will mirror the outer profile offset inward by 2mm. Ensure the bottom remains closed (no hole at base). CadQuery implementation: use cadquery Workplane revolve with a spline or polyline wire, or use shell() after revolve. The top open face is the annular/circular face at Z=65.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

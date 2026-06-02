@@ -1,0 +1,172 @@
+{
+  "trace_id": "50e029d0-b9ef-4413-bf57-a4d8a96e8759",
+  "workflow_id": "eval-T3_015-606bab",
+  "design_name": "Pipe tee fitting with a main run pipe along the X axis and a perpendicular branch pipe along the +Z axis, forming a T-shaped hollow interior. All pipes share the same 30mm OD / 24mm ID cross-section.",
+  "created_at": "2026-05-27T08:11:15.109304+00:00",
+  "prompt": "A pipe tee fitting. The main (run) pipe is a hollow cylinder 30mm outer diameter, 24mm inner diameter (3mm wall thickness), 100mm long, centered at the origin along the X axis (from X=-50 to X=50). A branch pipe of the same diameter exits perpendicular to the main pipe, going in the +Z direction from the intersection at Z=0 up to Z=50. The branch intersects the main pipe at the center, creating a continuous hollow interior shaped like a T. The part is centered at the origin in X and Y.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Pipe tee fitting with a main run pipe along the X axis and a perpendicular branch pipe along the +Z axis, forming a T-shaped hollow interior. All pipes share the same 30mm OD / 24mm ID cross-section.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 49,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 33778.32292983314,
+        "center_of_mass": [
+          -1.3813810255346161e-10,
+          2.2899466549648815e-10,
+          8.374427897689033
+        ],
+        "bounding_box": {
+          "xmin": -15.0,
+          "xmax": 15.0,
+          "xlen": 30.0,
+          "ymin": -50.0,
+          "ymax": 50.0,
+          "ylen": 100.0,
+          "zmin": -15.0,
+          "zmax": 50.0,
+          "zlen": 65.0
+        },
+        "is_valid": true,
+        "num_faces": 11,
+        "num_edges": 26,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.03421477863636529
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The main pipe is oriented along the Y axis (ymin=-50, ymax=50) instead of the X axis as required (should be xmin=-50, xmax=50). The bounding box confirms xlen=30 and ylen=100, when it should be xlen=100 and ylen=30. The CadQuery cylinder direction parameter may not be working as intended. Fix: Create the main pipe on the 'XZ' workplane (whose normal is Y) and then rotate, or better yet, create a circle on the YZ plane and extrude symmetrically along X. For example: `cq.Workplane('YZ').circle(or_).extrude(main_len/2, both=True)` to get a cylinder along X. Similarly handle the inner bore. The branch pipe orientation (+Z) and all other dimensions appear correct. Only the main pipe axis needs to be fixed.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_015-606bab/step/T3_015_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_015-606bab/stl/T3_015_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 53,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 33778.322924275664,
+        "center_of_mass": [
+          5.3623502668882106e-11,
+          3.1108173140430474e-11,
+          8.37442789899968
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -15.0,
+          "ymax": 15.0,
+          "ylen": 30.0,
+          "zmin": -15.0,
+          "zmax": 50.0,
+          "zlen": 65.0
+        },
+        "is_valid": true,
+        "num_faces": 11,
+        "num_edges": 26,
+        "num_vertices": 16,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.03387743105882901
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. The main pipe is correctly oriented along the X axis (xmin=-50, xmax=50, xlen=100), the Y span is 30mm (matching the 30mm OD), and the branch extends from Z=0 to Z=50 in the +Z direction (zmax=50). The zmin=-15 corresponds to the bottom of the main pipe (radius 15mm), giving zlen=65mm which is correct. The rendered images confirm: (1) a proper T-shaped pipe fitting with the main run pipe horizontal and branch pipe going upward, (2) hollow interior visible at both ends of the main pipe and the top of the branch pipe, (3) wall thickness appears correct at 3mm (OD=30, ID=24). The volume of ~33,778 mm³ is physically plausible for this geometry. The part is valid, watertight, with no self-intersections. The previous iteration's axis orientation issue has been resolved.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_015-606bab/step/T3_015_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_015-606bab/stl/T3_015_outer1_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 2,
+  "total_llm_calls": 6,
+  "total_time_ms": 83034.76879882812,
+  "final_step_artifact_uri": "artifact://eval-T3_015-606bab/step/T3_015_outer1_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_015-606bab/stl/T3_015_outer1_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_015-606bab/forgecad/pipe_tee_fitting_with_a_main_run_pipe_al_iter1.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 33778.322924275664,
+    "center_of_mass": [
+      5.3623502668882106e-11,
+      3.1108173140430474e-11,
+      8.37442789899968
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -15.0,
+      "ymax": 15.0,
+      "ylen": 30.0,
+      "zmin": -15.0,
+      "zmax": 50.0,
+      "zlen": 65.0
+    },
+    "is_valid": true,
+    "num_faces": 11,
+    "num_edges": 26,
+    "num_vertices": 16,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.03387743105882901
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. The main pipe is correctly oriented along the X axis (xmin=-50, xmax=50, xlen=100), the Y span is 30mm (matching the 30mm OD), and the branch extends from Z=0 to Z=50 in the +Z direction (zmax=50). The zmin=-15 corresponds to the bottom of the main pipe (radius 15mm), giving zlen=65mm which is correct. The rendered images confirm: (1) a proper T-shaped pipe fitting with the main run pipe horizontal and branch pipe going upward, (2) hollow interior visible at both ends of the main pipe and the top of the branch pipe, (3) wall thickness appears correct at 3mm (OD=30, ID=24). The volume of ~33,778 mm³ is physically plausible for this geometry. The part is valid, watertight, with no self-intersections. The previous iteration's axis orientation issue has been resolved.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

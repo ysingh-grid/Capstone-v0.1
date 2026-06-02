@@ -1,0 +1,71 @@
+{
+  "description": "Spoked handwheel lying flat on XY plane, centered at origin. Comprises a central hub cylinder with center bore, four rectangular spokes at 90-degree intervals, and an outer ring rim. All components share a common base at Z=0.",
+  "components": [
+    "Hub: solid cylinder, 30mm OD, 12mm tall (Z=0 to Z=12)",
+    "Center bore: cylindrical hole, 14mm diameter, through full hub height (Z=0 to Z=12)",
+    "Outer rim: hollow ring, 100mm OD / 88mm ID, 8mm tall (Z=0 to Z=8)",
+    "Spoke 0deg: rectangular bar aligned along +X axis, 8mm wide (Y), 8mm tall (Z=0 to Z=8), 29mm long (X), centered at X=29.5mm, Y=0",
+    "Spoke 90deg: rectangular bar aligned along +Y axis, 8mm wide (X), 8mm tall (Z=0 to Z=8), 29mm long (Y), centered at X=0, Y=29.5mm",
+    "Spoke 180deg: rectangular bar aligned along -X axis, 8mm wide (Y), 8mm tall (Z=0 to Z=8), 29mm long (X), centered at X=-29.5mm, Y=0",
+    "Spoke 270deg: rectangular bar aligned along -Y axis, 8mm wide (X), 8mm tall (Z=0 to Z=8), 29mm long (Y), centered at X=0, Y=-29.5mm"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 100.0,
+      "zlen": 12.0
+    },
+    "key_dimensions": {
+      "hub_outer_diameter": 30.0,
+      "hub_height": 12.0,
+      "hub_radius": 15.0,
+      "bore_diameter": 14.0,
+      "bore_radius": 7.0,
+      "rim_outer_diameter": 100.0,
+      "rim_inner_diameter": 88.0,
+      "rim_outer_radius": 50.0,
+      "rim_inner_radius": 44.0,
+      "rim_radial_width": 6.0,
+      "rim_height": 8.0,
+      "spoke_width": 8.0,
+      "spoke_height": 8.0,
+      "spoke_length": 29.0,
+      "spoke_radial_start": 15.0,
+      "spoke_radial_end": 44.0,
+      "spoke_radial_center": 29.5
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 14 mm",
+      "dimensions": {
+        "diameter": 14.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction strategy: (1) Create hub cylinder radius=15, height=12, centered at origin. (2) Subtract center bore cylinder radius=7, height=12. (3) Create rim as outer cylinder radius=50 height=8 minus inner cylinder radius=44 height=8. (4) Create four spokes as rectangular boxes: for X-aligned spokes use Box(length=29, width=8, height=8) centered at (\u00b129.5, 0, 4); for Y-aligned spokes use Box(length=8, width=29, height=8) centered at (0, \u00b129.5, 4). (5) Union hub + rim + all four spokes, then subtract bore. Spoke length of 29mm exactly bridges from hub outer edge (r=15) to rim inner edge (r=44): 44-15=29mm. Spokes are centered at Z=4 (half of 8mm height) matching rim height. Hub protrudes 4mm above rim/spokes (Z=8 to Z=12). Ensure boolean union is clean with no gap between spoke ends and hub/rim surfaces.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

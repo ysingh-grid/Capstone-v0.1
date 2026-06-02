@@ -1,0 +1,60 @@
+{
+  "description": "A spoked handwheel centered at the origin on the XY plane, featuring a raised central hub with a through-bore, an outer rim, and four rectangular spokes.",
+  "components": [
+    "central_hub",
+    "center_bore",
+    "outer_rim",
+    "spokes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 100.0,
+      "zlen": 12.0
+    },
+    "key_dimensions": {
+      "hub_diameter": 30.0,
+      "hub_height": 12.0,
+      "rim_outer_diameter": 100.0,
+      "rim_inner_diameter": 88.0,
+      "rim_height": 8.0,
+      "spoke_width": 8.0,
+      "spoke_height": 8.0,
+      "spoke_length": 29.0,
+      "center_bore_diameter": 14.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 14.0 mm",
+      "dimensions": {
+        "diameter": 14.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Spokes should be modeled to bridge the gap from R=15mm to R=44mm. It is recommended to slightly overlap the spokes into the hub and rim before performing a union operation to prevent any zero-thickness or gap issues. The 14mm center bore must go entirely through the 12mm height of the hub.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}
