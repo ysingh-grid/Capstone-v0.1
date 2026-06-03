@@ -1,0 +1,70 @@
+{
+  "description": "A triple gear stack on a single central hub with an internal keyway, aligned along the Z-axis.",
+  "components": [
+    "Cylindrical hub (diameter 14mm, height 55mm)",
+    "Central bore (diameter 6mm, through-all)",
+    "Internal keyway (3mm wide, 2mm deep, +X side, through-all)",
+    "Gear 1 (24-tooth star-polygon, tip diameter 54mm, root diameter 44mm, Z=2 to Z=10)",
+    "Gear 2 (18-tooth star-polygon, tip diameter 42mm, root diameter 34mm, Z=18 to Z=26)",
+    "Gear 3 (12-tooth star-polygon, tip diameter 30mm, root diameter 24mm, Z=34 to Z=42)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 54.0,
+      "ylen": 54.0,
+      "zlen": 55.0
+    },
+    "key_dimensions": {
+      "hub_diameter": 14.0,
+      "hub_length": 55.0,
+      "bore_diameter": 6.0,
+      "keyway_width": 3.0,
+      "keyway_depth": 2.0,
+      "gear1_tip_diameter": 54.0,
+      "gear1_root_diameter": 44.0,
+      "gear1_width": 8.0,
+      "gear1_z_start": 2.0,
+      "gear2_tip_diameter": 42.0,
+      "gear2_root_diameter": 34.0,
+      "gear2_width": 8.0,
+      "gear2_z_start": 18.0,
+      "gear3_tip_diameter": 30.0,
+      "gear3_root_diameter": 24.0,
+      "gear3_width": 8.0,
+      "gear3_z_start": 34.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 6.0 mm",
+      "dimensions": {
+        "diameter": 6.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model the star-polygon gears, construct a 2D wire of 2N vertices alternating between the tip radius and root radius. Extrude each gear individually, union them with the main hub, and finally perform a single subtraction for the central bore and the keyway to ensure clean internal cuts. The keyway slot spans from X=3 to X=5, and Y=-1.5 to Y=1.5.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

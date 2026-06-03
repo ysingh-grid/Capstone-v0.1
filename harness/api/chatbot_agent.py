@@ -156,7 +156,7 @@ def _call_gemini(messages: list[dict], system: str) -> str:
 
     config = genai_types.GenerateContentConfig(
         system_instruction=system,
-        max_output_tokens=1024,
+        max_output_tokens=int(os.getenv("CHAT_MAX_TOKENS", "2048")),
         temperature=0.7,
     )
     response = client.models.generate_content(
@@ -184,7 +184,7 @@ def _call_anthropic(messages: list[dict], system: str) -> str:
     )
     resp = client.messages.create(
         model="claude-haiku-4-5-20251001",
-        max_tokens=1024,
+        max_tokens=int(os.getenv("CHAT_MAX_TOKENS", "2048")),
         system=system,
         messages=messages,
         temperature=0.7,

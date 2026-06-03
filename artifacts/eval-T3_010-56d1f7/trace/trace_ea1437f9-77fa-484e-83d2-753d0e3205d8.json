@@ -1,0 +1,121 @@
+{
+  "trace_id": "ea1437f9-77fa-484e-83d2-753d0e3205d8",
+  "workflow_id": "eval-T3_010-56d1f7",
+  "design_name": "A triple gear stack on a single central hub with an internal keyway, aligned along the Z-axis.",
+  "created_at": "2026-06-02T11:07:42.429402+00:00",
+  "prompt": "A triple gear stack on a single hub, standing upright along the Z axis, centered at the origin in XY. The cylindrical hub is 14mm in diameter and 55mm long (Z=0 to Z=55). Three spur gears of decreasing size are spaced along the hub, each with a star-polygon tooth profile: (1) a 24-tooth gear (54mm tip diameter (27mm radius), 44mm root diameter (22mm radius)) from Z=2 to Z=10 (8mm face width); (2) an 18-tooth gear (42mm tip diameter (21mm radius), 34mm root diameter (17mm radius)) from Z=18 to Z=26; (3) a 12-tooth gear (30mm tip diameter (15mm radius), 24mm root diameter (12mm radius)) from Z=34 to Z=42. A 6mm diameter bore runs through the full hub length along Z. A keyway slot 3mm wide (Y) and 2mm deep (radially, from bore surface at radius 3mm to radius 5mm) runs the full 55mm hub length on the +X side.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A triple gear stack on a single central hub with an internal keyway, aligned along the Z-axis.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 123,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 30846.61321702818,
+        "center_of_mass": [
+          -0.22991291772938088,
+          -2.0675904425303535e-16,
+          17.78593006441389
+        ],
+        "bounding_box": {
+          "xmin": -27.0,
+          "xmax": 26.079997309804845,
+          "xlen": 53.079997309804845,
+          "ymin": -27.0,
+          "ymax": 27.0,
+          "ylen": 54.0,
+          "zmin": 0.0,
+          "zmax": 55.0,
+          "zlen": 55.0
+        },
+        "is_valid": true,
+        "num_faces": 121,
+        "num_edges": 339,
+        "num_vertices": 226,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.004669075020951282
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_010-56d1f7/step/T3_010_outer0_attempt1.step",
+      "stl_artifact_uri": "artifact://eval-T3_010-56d1f7/stl/T3_010_outer0_attempt1.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 4,
+  "total_time_ms": 120226.84692382812,
+  "final_step_artifact_uri": "artifact://eval-T3_010-56d1f7/step/T3_010_outer0_attempt1.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_010-56d1f7/stl/T3_010_outer0_attempt1.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_010-56d1f7/forgecad/a_triple_gear_stack_on_a_single_central__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 30846.61321702818,
+    "center_of_mass": [
+      -0.22991291772938088,
+      -2.0675904425303535e-16,
+      17.78593006441389
+    ],
+    "bounding_box": {
+      "xmin": -27.0,
+      "xmax": 26.079997309804845,
+      "xlen": 53.079997309804845,
+      "ymin": -27.0,
+      "ymax": 27.0,
+      "ylen": 54.0,
+      "zmin": 0.0,
+      "zmax": 55.0,
+      "zlen": 55.0
+    },
+    "is_valid": true,
+    "num_faces": 121,
+    "num_edges": 339,
+    "num_vertices": 226,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.004669075020951282
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

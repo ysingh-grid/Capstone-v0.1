@@ -1,0 +1,65 @@
+{
+  "description": "Pipe tee fitting with a horizontal run pipe along the X axis and a vertical branch pipe along the +Z axis, forming a T-shaped hollow interior. All pipes share the same 30mm OD and 24mm ID (3mm wall thickness).",
+  "components": [
+    "Main run pipe (hollow cylinder along X axis, X=-50 to X=50)",
+    "Branch pipe (hollow cylinder along +Z axis, Z=0 to Z=50)",
+    "Boolean union of outer solids to merge pipe bodies",
+    "Boolean subtraction of inner hollow T-channel from merged outer solid"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 30.0,
+      "zlen": 80.0
+    },
+    "key_dimensions": {
+      "run_pipe_outer_diameter": 30.0,
+      "run_pipe_inner_diameter": 24.0,
+      "wall_thickness": 3.0,
+      "run_pipe_length": 100.0,
+      "run_pipe_x_start": -50.0,
+      "run_pipe_x_end": 50.0,
+      "branch_pipe_outer_diameter": 30.0,
+      "branch_pipe_inner_diameter": 24.0,
+      "branch_pipe_z_start": 0.0,
+      "branch_pipe_z_end": 50.0,
+      "branch_pipe_length": 50.0,
+      "intersection_center_x": 0.0,
+      "intersection_center_y": 0.0,
+      "intersection_center_z": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "3 hole(s) of diameter 24 mm",
+      "dimensions": {
+        "diameter": 24.0
+      },
+      "position": null,
+      "count": 3,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 3,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction approach: (1) Create outer solid of run pipe as a cylinder of radius 15mm along X axis from -50 to 50. (2) Create outer solid of branch pipe as a cylinder of radius 15mm along Z axis from 0 to 50. (3) Union both outer solids. (4) Create inner hollow of run pipe as a cylinder of radius 12mm along X axis from -50 to 50. (5) Create inner hollow of branch pipe as a cylinder of radius 12mm along Z axis from -15 to 50 (extend downward into the run pipe interior to ensure the T-junction is fully open). (6) Union both inner hollow cylinders. (7) Subtract the unified inner hollow from the unified outer solid. The branch inner bore must penetrate through the run pipe wall so the interior is fully connected. The branch pipe Z start for the inner bore should begin at or below Z=-12 (the inner radius of the run pipe) to ensure full T-channel connectivity. The overall bounding box in Z runs from Z=-15 (bottom of run pipe OD) to Z=50 (top of branch), giving a Z extent of 65mm for the geometry but 80mm is padded; actual zlen should be noted as 65mm (15mm below origin for run pipe radius + 50mm branch). Revise overall_bbox zlen to 65 if strict. Volume estimate accounts for wall material only (outer solid minus inner T-channel). Use CadQuery or similar CSG approach.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

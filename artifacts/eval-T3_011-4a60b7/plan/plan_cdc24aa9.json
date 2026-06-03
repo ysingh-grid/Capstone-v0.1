@@ -1,0 +1,62 @@
+{
+  "description": "A 20-tooth spur gear with a star-polygon tooth profile, an integrated extended cylindrical hub, a central through-bore with a keyway, and a radial set screw through-hole.",
+  "components": [
+    "Gear body (star polygon extrusion along Z)",
+    "Cylindrical hub (extension along Z)",
+    "Central cylindrical bore (subtraction)",
+    "Keyway slot (subtraction)",
+    "Set screw radial hole (subtraction)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 48.0,
+      "ylen": 48.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "gear_tip_diameter": 48.0,
+      "gear_root_diameter": 40.0,
+      "gear_thickness": 10.0,
+      "hub_diameter": 16.0,
+      "hub_total_height": 30.0,
+      "bore_diameter": 10.0,
+      "keyway_width": 4.0,
+      "keyway_depth": 2.5,
+      "set_screw_diameter": 4.0,
+      "set_screw_z_position": 20.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "2 hole(s) of diameter 4.0 mm",
+      "dimensions": {
+        "diameter": 4.0
+      },
+      "position": null,
+      "count": 2,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 2,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the star-polygon gear profile is generated using alternating polar coordinates for the 20 tips (r=24) and 20 roots (r=20) to form 20 distinct teeth. The set screw hole is a single through-cylinder along the X-axis at Z=20 that cuts through the entire hub outer diameter of 16mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

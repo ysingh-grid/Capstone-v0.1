@@ -1,0 +1,83 @@
+{
+  "description": "Idler gear assembly: spur gear on a stepped cylindrical post rising from a square base plate, centered at XY origin, with central bore and mounting holes",
+  "components": [
+    "Square base plate",
+    "Lower cylindrical post (larger diameter)",
+    "Upper retaining shoulder (narrower diameter)",
+    "16-tooth spur gear with star-polygon tooth profile",
+    "Central 8mm bore (through entire assembly)",
+    "Four 6mm mounting holes through base plate"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 60.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "base_plate_x": 60.0,
+      "base_plate_y": 60.0,
+      "base_plate_thickness_z": 5.0,
+      "base_plate_z_bottom": 0.0,
+      "base_plate_z_top": 5.0,
+      "lower_post_diameter": 20.0,
+      "lower_post_radius": 10.0,
+      "lower_post_z_bottom": 5.0,
+      "lower_post_z_top": 18.0,
+      "lower_post_height": 13.0,
+      "retaining_shoulder_diameter": 14.0,
+      "retaining_shoulder_radius": 7.0,
+      "retaining_shoulder_z_bottom": 18.0,
+      "retaining_shoulder_z_top": 40.0,
+      "retaining_shoulder_height": 22.0,
+      "gear_tip_diameter": 40.0,
+      "gear_tip_radius": 20.0,
+      "gear_root_diameter": 32.0,
+      "gear_root_radius": 16.0,
+      "gear_tooth_height": 4.0,
+      "gear_num_teeth": 16.0,
+      "gear_face_width": 8.0,
+      "gear_z_bottom": 10.0,
+      "gear_z_top": 18.0,
+      "central_bore_diameter": 8.0,
+      "central_bore_radius": 4.0,
+      "mounting_hole_diameter": 6.0,
+      "mounting_hole_radius": 3.0,
+      "mounting_hole_x_offset": 22.0,
+      "mounting_hole_y_offset": 22.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "5 hole(s) of diameter 8mm central bore; 6mm x4 mounting holes mm",
+      "dimensions": {
+        "diameter": 8.0
+      },
+      "position": null,
+      "count": 5,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 5,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. Base plate: box from (-30,-30,0) to (30,30,5). 2. Lower post: cylinder radius=10, from Z=5 to Z=18, centered at (0,0). 3. Retaining shoulder: cylinder radius=7, from Z=18 to Z=40, centered at (0,0). 4. Gear: modeled as an extruded star-polygon profile from Z=10 to Z=18; outer radius=20mm (tip), inner radius=16mm (root), 16 teeth \u2014 implement as a union of the root cylinder (r=16) extruded 8mm with 16 rectangular/trapezoidal tooth profiles evenly spaced around the circumference, OR use a polygon approximation alternating between tip radius 20mm and root radius 16mm at 16 tooth intervals (32 vertices total, alternating r=20 and r=16 at angular steps of 360/32=11.25 degrees). 5. Central bore: subtract cylinder radius=4 from Z=0 to Z=40 through entire assembly. 6. Four mounting holes: subtract cylinders radius=3 from Z=0 to Z=5 at (\u00b122, \u00b122). 7. The gear bore matches the lower post from Z=10 to Z=18 \u2014 the gear sits around the lower post, so the gear's inner hole should be radius=10 to fit on the post (the 8mm central bore passes through the post itself). 8. Gear inner bore should be 20mm diameter (radius=10) to fit over the lower post, not 8mm \u2014 the 8mm bore is the axle bore through the post center. 9. Volume estimate is approximate; exact value depends on gear tooth geometry implementation.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

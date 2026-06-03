@@ -1,0 +1,67 @@
+{
+  "description": "An idler gear assembly consisting of a square base plate, a central stepped post with a retaining shoulder, an integrated 16-tooth spur gear, a central through-bore, and four mounting holes.",
+  "components": [
+    "Square base plate",
+    "Stepped central post (lower section and upper retaining shoulder)",
+    "16-tooth spur gear with star-polygon profile",
+    "Central vertical through-bore",
+    "Four symmetrical mounting holes in the base plate"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 60.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "base_plate_width": 60.0,
+      "base_plate_thickness": 5.0,
+      "lower_post_diameter": 20.0,
+      "lower_post_height": 13.0,
+      "upper_shoulder_diameter": 14.0,
+      "upper_shoulder_height": 22.0,
+      "gear_teeth_count": 16.0,
+      "gear_tip_diameter": 40.0,
+      "gear_root_diameter": 32.0,
+      "gear_face_width": 8.0,
+      "gear_z_start": 10.0,
+      "gear_z_end": 18.0,
+      "central_bore_diameter": 8.0,
+      "mounting_hole_diameter": 6.0,
+      "mounting_hole_offset": 22.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "5 hole(s) of diameter 6.0 mm",
+      "dimensions": {
+        "diameter": 6.0
+      },
+      "position": null,
+      "count": 5,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 5,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the spur gear is modeled co-axially with the stepped post. The gear profile should be generated using a 16-point star polygon (or equivalent 16-tooth simplified profile) alternating between the root radius (16mm) and tip radius (20mm). The central 8mm bore must go cleanly through the entire 40mm height of the assembly.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,54 @@
+{
+  "description": "Rectangular-to-round duct transition adapter centered at XY origin, standing upright along Z axis. Comprises a rectangular mounting flange at the base, a smooth lofted transition body, and a cylindrical neck at the top.",
+  "components": [
+    "rectangular_mounting_flange",
+    "lofted_transition_body",
+    "cylindrical_neck"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 70.0,
+      "ylen": 50.0,
+      "zlen": 63.0
+    },
+    "key_dimensions": {
+      "flange_x": 70.0,
+      "flange_y": 50.0,
+      "flange_thickness_z": 3.0,
+      "flange_z_bottom": 0.0,
+      "flange_z_top": 3.0,
+      "transition_rect_x": 60.0,
+      "transition_rect_y": 40.0,
+      "transition_rect_z": 3.0,
+      "transition_circle_diameter": 30.0,
+      "transition_circle_radius": 15.0,
+      "transition_z_top": 53.0,
+      "transition_height": 50.0,
+      "neck_diameter": 30.0,
+      "neck_radius": 15.0,
+      "neck_z_bottom": 53.0,
+      "neck_z_top": 63.0,
+      "neck_height": 10.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1) The mounting flange (Z=0 to Z=3) is a full solid rectangular box 70x50x3mm centered at origin. 2) The lofted transition (Z=3 to Z=53) must loft smoothly from a 60mm x 40mm centered rectangle at Z=3 to a 30mm diameter circle at Z=53; use CadQuery loft() with a wire profile at each end \u2014 the rectangular wire should have rounded or sharp corners per default CadQuery rectangle, and the circular wire is a standard circle. Ensure both wires are coplanar workplane faces at their respective Z heights. 3) The cylindrical neck (Z=53 to Z=63) is a solid cylinder of radius 15mm extruded 10mm upward from Z=53. 4) All three components should be unioned into a single solid. 5) The transition body and neck share the same circular cross-section at Z=53 so the union should be seamless there. 6) The flange footprint (70x50) is larger than the transition base (60x40), creating a 5mm ledge on X sides and 5mm ledge on Y sides \u2014 this is intentional for mounting purposes. 7) Use CadQuery; loft between a rectangular wire and circular wire at specified Z planes. Confirm final bounding box is exactly 70 x 50 x 63 mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

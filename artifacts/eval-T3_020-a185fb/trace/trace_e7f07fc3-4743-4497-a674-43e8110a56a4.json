@@ -1,0 +1,121 @@
+{
+  "trace_id": "e7f07fc3-4743-4497-a674-43e8110a56a4",
+  "workflow_id": "eval-T3_020-a185fb",
+  "design_name": "Quadcopter drone chassis in H-frame configuration, lying flat on XY plane. Comprises two parallel longitudinal side rails, a central bridging plate, four circular motor mount platforms at rail ends, with motor shaft holes and M3 mounting holes drilled through.",
+  "created_at": "2026-06-02T09:42:53.393879+00:00",
+  "prompt": "A quadcopter drone chassis in an H-frame configuration, lying flat on the XY plane (Z=0 to Z=3), centered at the origin. The frame has two parallel side rails running along X, a center plate, four circular motor mounts, and eight drilled holes. Side rails: each rail is 160mm long (X), 12mm wide (Y), 3mm thick (Z). The left rail is centered at Y=-30mm, the right rail at Y=+30mm. Center plate: 50mm long (X), 72mm wide (Y), 3mm thick, centered at the origin, bridging the two rails. Motor mounts: four circular platforms 22mm in diameter, 3mm thick, at the ends of each rail at positions (+80,+30), (+80,-30), (-80,+30), (-80,-30) mm. Holes: one 5mm diameter motor shaft hole drilled through each of the four motor mounts (4 holes total). Four M3 mounting holes (3.2mm diameter) drilled through the center plate at positions (+10,+10), (+10,-10), (-10,+10), (-10,-10) mm.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Quadcopter drone chassis in H-frame configuration, lying flat on XY plane. Comprises two parallel longitudinal side rails, a central bridging plate, four circular motor mount platforms at rail ends, with motor shaft holes and M3 mounting holes drilled through.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 124,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 21447.95184346647,
+        "center_of_mass": [
+          -1.3601318565181847e-14,
+          1.5168087817739138e-15,
+          1.5
+        ],
+        "bounding_box": {
+          "xmin": -91.0,
+          "xmax": 91.0,
+          "xlen": 182.0,
+          "ymin": -41.0,
+          "ymax": 41.0,
+          "ylen": 82.0,
+          "zmin": 0.0,
+          "zmax": 3.0,
+          "zlen": 3.0
+        },
+        "is_valid": true,
+        "num_faces": 22,
+        "num_edges": 60,
+        "num_vertices": 40,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.006533609396902883
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. The H-frame quadcopter chassis is correctly constructed with all specified features:\n\n1. **Side rails**: Bounding box xlen=182mm confirms 160mm rails + 22mm motor mount diameter overhang (80+11=91 each side). ylen=82mm confirms rails at Y=±30mm with 12mm width (30+11=41 each side, accounting for motor mount radius). Z spans 0 to 3mm as required.\n\n2. **Center plate**: Visible in all three views, bridging the two rails. 50mm×72mm×3mm centered at origin. The 72mm width correctly spans from Y=-36 to Y=+36, overlapping with both rails at Y=±30.\n\n3. **Motor mounts**: Four circular platforms 22mm diameter at positions (±80, ±30) are clearly visible at the ends of the rails in all views.\n\n4. **Motor shaft holes**: Four 5mm diameter holes visible through each motor mount in the center/top-down view.\n\n5. **M3 mounting holes**: Four 3.2mm diameter holes visible in the center plate at (±10, ±10) positions in the top-down view.\n\n6. **Total hole count**: 8 holes (4 motor shaft + 4 M3) confirmed both in code and visually in the rendered views.\n\n7. **Volume**: ~21,448 mm³ is plausible. Expected: 2 rails (160×12×3=5760 each) + center plate (50×72×3=10800) + 4 mounts (π×11²×3≈1140.4 each) - overlaps - holes ≈ ~21,400-21,600 mm³. This matches well.\n\n8. **Geometry validity**: Watertight, no self-intersections, consistent normals. The part is correctly centered at the origin with Z from 0 to 3mm.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_020-a185fb/step/T3_020_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_020-a185fb/stl/T3_020_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 73204.77880859375,
+  "final_step_artifact_uri": "artifact://eval-T3_020-a185fb/step/T3_020_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_020-a185fb/stl/T3_020_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_020-a185fb/forgecad/quadcopter_drone_chassis_in_h_frame_conf_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 21447.95184346647,
+    "center_of_mass": [
+      -1.3601318565181847e-14,
+      1.5168087817739138e-15,
+      1.5
+    ],
+    "bounding_box": {
+      "xmin": -91.0,
+      "xmax": 91.0,
+      "xlen": 182.0,
+      "ymin": -41.0,
+      "ymax": 41.0,
+      "ylen": 82.0,
+      "zmin": 0.0,
+      "zmax": 3.0,
+      "zlen": 3.0
+    },
+    "is_valid": true,
+    "num_faces": 22,
+    "num_edges": 60,
+    "num_vertices": 40,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.006533609396902883
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. The H-frame quadcopter chassis is correctly constructed with all specified features:\n\n1. **Side rails**: Bounding box xlen=182mm confirms 160mm rails + 22mm motor mount diameter overhang (80+11=91 each side). ylen=82mm confirms rails at Y=±30mm with 12mm width (30+11=41 each side, accounting for motor mount radius). Z spans 0 to 3mm as required.\n\n2. **Center plate**: Visible in all three views, bridging the two rails. 50mm×72mm×3mm centered at origin. The 72mm width correctly spans from Y=-36 to Y=+36, overlapping with both rails at Y=±30.\n\n3. **Motor mounts**: Four circular platforms 22mm diameter at positions (±80, ±30) are clearly visible at the ends of the rails in all views.\n\n4. **Motor shaft holes**: Four 5mm diameter holes visible through each motor mount in the center/top-down view.\n\n5. **M3 mounting holes**: Four 3.2mm diameter holes visible in the center plate at (±10, ±10) positions in the top-down view.\n\n6. **Total hole count**: 8 holes (4 motor shaft + 4 M3) confirmed both in code and visually in the rendered views.\n\n7. **Volume**: ~21,448 mm³ is plausible. Expected: 2 rails (160×12×3=5760 each) + center plate (50×72×3=10800) + 4 mounts (π×11²×3≈1140.4 each) - overlaps - holes ≈ ~21,400-21,600 mm³. This matches well.\n\n8. **Geometry validity**: Watertight, no self-intersections, consistent normals. The part is correctly centered at the origin with Z from 0 to 3mm.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

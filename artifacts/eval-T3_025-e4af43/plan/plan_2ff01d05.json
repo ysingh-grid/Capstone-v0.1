@@ -1,0 +1,82 @@
+{
+  "description": "Flanged shaft coupling with two disc flanges and a central hub cylinder, featuring a center bore, keyway, and six bolt holes through the flanges.",
+  "components": [
+    "Bottom flange disc (D=50mm, T=10mm, Z=0 to Z=10)",
+    "Central hub cylinder (D=28mm, L=40mm, Z=10 to Z=50)",
+    "Top flange disc (D=50mm, T=10mm, Z=50 to Z=60)",
+    "Center bore (D=14mm, full length Z=0 to Z=60)",
+    "Keyway slot (5mm wide, 2.5mm deep radial, full length Z=0 to Z=60)",
+    "Six bolt holes (D=6.5mm, on 38mm PCD, full length Z=0 to Z=60)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "bottom_flange_diameter_mm": 50.0,
+      "bottom_flange_thickness_mm": 10.0,
+      "bottom_flange_z_start_mm": 0.0,
+      "bottom_flange_z_end_mm": 10.0,
+      "hub_diameter_mm": 28.0,
+      "hub_length_mm": 40.0,
+      "hub_z_start_mm": 10.0,
+      "hub_z_end_mm": 50.0,
+      "top_flange_diameter_mm": 50.0,
+      "top_flange_thickness_mm": 10.0,
+      "top_flange_z_start_mm": 50.0,
+      "top_flange_z_end_mm": 60.0,
+      "total_length_mm": 60.0,
+      "center_bore_diameter_mm": 14.0,
+      "center_bore_radius_mm": 7.0,
+      "bore_z_start_mm": 0.0,
+      "bore_z_end_mm": 60.0,
+      "keyway_width_mm": 5.0,
+      "keyway_depth_radial_mm": 2.5,
+      "keyway_center_x_mm": 5.75,
+      "keyway_z_start_mm": 0.0,
+      "keyway_z_end_mm": 60.0,
+      "bolt_hole_diameter_mm": 6.5,
+      "bolt_hole_pcd_mm": 38.0,
+      "bolt_hole_pcd_radius_mm": 19.0,
+      "bolt_hole_count": 6.0,
+      "bolt_hole_angular_spacing_deg": 60.0,
+      "bolt_hole_z_start_mm": 0.0,
+      "bolt_hole_z_end_mm": 60.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "7 hole(s) of diameter center bore: 14mm; bolt holes: 6.5mm mm",
+      "dimensions": {
+        "diameter": 14.0
+      },
+      "position": null,
+      "count": 7,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 7,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction approach: (1) Union three cylinders \u2014 bottom flange (R=25, Z=0..10), hub (R=14, Z=10..50), top flange (R=25, Z=50..60) \u2014 all centered at origin X=0, Y=0. (2) Subtract center bore cylinder (R=7, Z=0..60) centered at origin. (3) Subtract keyway box: width 5mm in Y (centered at Y=0), depth 2.5mm in X starting from bore wall at X=7 extending outward to X=9.5 (i.e., X from 7 to 9.5 = bore_radius to bore_radius+keyway_depth), full Z=0..60. The keyway center_x reference of 5.75mm appears to be the centroid of the keyway box in X: (7+9.5)/2 - wait, recompute: bore radius=7, keyway cuts inward from bore wall outward by 2.5mm so X spans 7.0 to 9.5, centroid at X=8.25. Alternatively interpret 5.75 as offset of keyway box center from bore axis: bore_radius - keyway_depth/2 = 7 - 1.25 = 5.75, suggesting keyway box center at X=5.75, spanning X from 5.75-1.25=4.5 to 5.75+1.25=7.0, i.e., the keyway cuts INTO the bore from X=4.5 to X=7. Use this interpretation: keyway is a box centered at (5.75, 0) in XY, 2.5mm wide in X (4.5 to 7.0) and 5mm wide in Y (-2.5 to +2.5), full Z. (4) Subtract 6 bolt hole cylinders (R=3.25, Z=0..60) at positions (19*cos(theta), 19*sin(theta)) for theta = 0,60,120,180,240,300 degrees. Bolt holes only physically cut material where flanges exist (D=50mm) since hub D=28mm is inside PCD R=19mm barely (hub R=14 < bolt PCD R=19, so bolt holes do pass through hub region too \u2014 coder must subtract full length). Verify: hub radius 14mm < bolt PCD radius 19mm, so bolt holes at radius 19mm will intersect hub cylinder. Coder should subtract all 6 bolt holes for full Z=0..60 regardless.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

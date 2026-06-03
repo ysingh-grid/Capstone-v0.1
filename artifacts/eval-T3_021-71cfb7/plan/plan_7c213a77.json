@@ -1,0 +1,59 @@
+{
+  "description": "Pipe flange disc with center bore, six bolt holes, and a concentric gasket groove on the top face.",
+  "components": [
+    "Main disc body",
+    "Center bore",
+    "Six bolt holes",
+    "Concentric gasket groove"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 80.0,
+      "zlen": 16.0
+    },
+    "key_dimensions": {
+      "flange_diameter": 80.0,
+      "flange_thickness": 16.0,
+      "center_bore_diameter": 32.0,
+      "bolt_circle_diameter": 55.0,
+      "bolt_hole_diameter": 9.0,
+      "gasket_groove_inner_diameter": 38.0,
+      "gasket_groove_outer_diameter": 50.0,
+      "gasket_groove_depth": 2.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "7 hole(s) of diameter 9.0 mm",
+      "dimensions": {
+        "diameter": 9.0
+      },
+      "position": null,
+      "count": 7,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 7,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Base cylinder is diameter 80mm, Z from 0 to 16. Center bore is diameter 32mm, subtracted through full thickness. Six bolt holes are diameter 9mm, centered at radius 27.5mm at angles 0, 60, 120, 180, 240, 300 degrees, subtracted through full thickness. Gasket groove is concentric on top face, outer diameter 50mm, inner diameter 38mm, depth 2mm (subtracted from Z=14 to Z=16).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

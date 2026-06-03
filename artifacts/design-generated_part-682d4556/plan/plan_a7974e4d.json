@@ -1,0 +1,56 @@
+{
+  "description": "Industrial power transmission shaft assembly featuring a 1500mm stepped shaft in AISI 1045 steel, dual keyways, shoulder transitions, two pillow block bearing journals, and an overhung mixer hub.",
+  "components": [
+    "Stepped Transmission Shaft",
+    "Drive Section Keyway (Left)",
+    "Mixer Section Keyway (Right)",
+    "Pillow Block Bearings (UCP 211, simplified envelopes)",
+    "Mixer Hub Attachment"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 1500.0,
+      "ylen": 120.0,
+      "zlen": 120.0
+    },
+    "key_dimensions": {
+      "shaft_total_length": 1500.0,
+      "section_1_drive_diameter": 50.0,
+      "section_1_drive_length": 100.0,
+      "section_2_bearing_journal_1_diameter": 55.0,
+      "section_2_bearing_journal_1_length": 80.0,
+      "section_3_center_span_diameter": 65.0,
+      "section_3_center_span_length": 940.0,
+      "section_4_bearing_journal_2_diameter": 55.0,
+      "section_4_bearing_journal_2_length": 80.0,
+      "section_5_mixer_section_diameter": 50.0,
+      "section_5_mixer_section_length": 300.0,
+      "shoulder_fillet_radius": 3.0,
+      "keyway_width": 14.0,
+      "keyway_depth": 5.5,
+      "keyway_length": 80.0,
+      "mixer_hub_outer_diameter": 120.0,
+      "mixer_hub_thickness": 40.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure 3mm fillets are placed at all stepped transitions of the shaft to prevent stress concentration. The left keyway starts near the left face of Section 1, and the right keyway is located at the absolute right end of Section 5 to align with the mixer hub. Bearings can be modeled as simplified cylindrical collars (OD 80mm, length 45mm) on the 55mm journals for CAD layout, or detailed UCP 211 housing envelopes if required.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

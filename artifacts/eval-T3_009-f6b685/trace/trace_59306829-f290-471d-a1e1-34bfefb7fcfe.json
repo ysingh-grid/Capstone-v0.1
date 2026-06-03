@@ -1,0 +1,121 @@
+{
+  "trace_id": "59306829-f290-471d-a1e1-34bfefb7fcfe",
+  "workflow_id": "eval-T3_009-f6b685",
+  "design_name": "A compound gear set standing upright along the Z-axis, consisting of a central hub with an inner bore and two distinct spur gears (large and small) with star-polygon profiles at different heights.",
+  "created_at": "2026-06-02T11:04:38.907103+00:00",
+  "prompt": "A compound gear set (two gears of different sizes on a shared hub), standing upright along the Z axis, centered at the origin in XY. The cylindrical hub is 16mm in diameter and 40mm long (Z=0 to Z=40). A large spur gear with 24 teeth (star-polygon profile: 54mm tip diameter (27mm radius), 44mm root diameter (22mm radius)) is located from Z=3 to Z=13 (10mm face width). A smaller spur gear with 14 teeth (star-polygon profile: 32mm tip diameter (16mm radius), 26mm root diameter (13mm radius)) is located from Z=20 to Z=30 (10mm face width). An 8mm diameter bore runs through the full hub length along Z.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A compound gear set standing upright along the Z-axis, consisting of a central hub with an inner bore and two distinct spur gears (large and small) with star-polygon profiles at different heights.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 83,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 27098.24285799589,
+        "center_of_mass": [
+          8.524443618212243e-16,
+          -2.4382301952505744e-17,
+          13.474839479107033
+        ],
+        "bounding_box": {
+          "xmin": -27.0,
+          "xmax": 27.0,
+          "xlen": 54.0,
+          "ymin": -27.0,
+          "ymax": 27.0,
+          "ylen": 54.0,
+          "zmin": 0.0,
+          "zmax": 40.0,
+          "zlen": 40.0
+        },
+        "is_valid": true,
+        "num_faces": 86,
+        "num_edges": 240,
+        "num_vertices": 160,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.003074146581868901
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_009-f6b685/step/T3_009_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_009-f6b685/stl/T3_009_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 44304.549072265625,
+  "final_step_artifact_uri": "artifact://eval-T3_009-f6b685/step/T3_009_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_009-f6b685/stl/T3_009_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_009-f6b685/forgecad/a_compound_gear_set_standing_upright_alo_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 27098.24285799589,
+    "center_of_mass": [
+      8.524443618212243e-16,
+      -2.4382301952505744e-17,
+      13.474839479107033
+    ],
+    "bounding_box": {
+      "xmin": -27.0,
+      "xmax": 27.0,
+      "xlen": 54.0,
+      "ymin": -27.0,
+      "ymax": 27.0,
+      "ylen": 54.0,
+      "zmin": 0.0,
+      "zmax": 40.0,
+      "zlen": 40.0
+    },
+    "is_valid": true,
+    "num_faces": 86,
+    "num_edges": 240,
+    "num_vertices": 160,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.003074146581868901
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

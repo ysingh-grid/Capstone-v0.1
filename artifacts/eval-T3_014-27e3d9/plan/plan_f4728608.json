@@ -1,0 +1,65 @@
+{
+  "description": "180-degree U-bend (return bend) pipe fitting swept in the XZ plane, with two parallel vertical legs 70mm apart and a semicircular crown of 35mm centerline radius.",
+  "components": [
+    "Annular pipe cross-section (OD=20mm, ID=16mm, wall=2mm)",
+    "Semicircular sweep path arc in XZ plane (radius=35mm, center=(35,0,0))",
+    "Left leg pipe segment at X=0",
+    "Right leg pipe segment at X=70",
+    "Curved crown connecting both legs"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 70.0,
+      "ylen": 20.0,
+      "zlen": 55.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_centerline_radius": 35.0,
+      "leg_separation": 70.0,
+      "apex_height_z": 35.0,
+      "crown_outer_radius": 45.0,
+      "crown_inner_radius": 25.0,
+      "pipe_cross_section_center_y": 0.0,
+      "arc_center_x": 35.0,
+      "arc_center_z": 0.0,
+      "left_leg_start_x": 0.0,
+      "right_leg_end_x": 70.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "2 hole(s) of diameter 16 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 2,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 2,
+    "hole_diameter_mm": null,
+    "symmetry": "mirror",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Sweep an annular profile (OD=20mm, ID=16mm) along a 180-degree arc path in the XZ plane. Arc center is at (35, 0, 0), radius=35mm, starting at (0,0,0) sweeping counterclockwise (through apex at (35,0,35)) to endpoint (70,0,0). The sweep normal/profile plane must remain perpendicular to the arc tangent at each point. In CadQuery use a workplane on the XZ plane, define a radiusArc from (0,0) to (70,0) with sagitta/radius=35, then sweep the annular face. The overall bounding box Z dimension is 35mm (centerline) + 10mm (pipe OD radius) = 45mm total Z height; X span is 70mm + 10mm (half OD each side) = 80mm but centerline legs are exactly at X=0 and X=70. Verify open pipe bore is clear at both leg terminations. No fillets or end caps required unless specified.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

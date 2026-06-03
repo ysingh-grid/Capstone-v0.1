@@ -1,0 +1,59 @@
+{
+  "description": "A rectangular-to-round duct transition adapter centered at the XY origin, featuring a rectangular base flange, a lofted transition section, and a cylindrical top neck.",
+  "components": [
+    "rectangular_mounting_flange",
+    "lofted_transition_section",
+    "cylindrical_neck"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 70.0,
+      "ylen": 50.0,
+      "zlen": 63.0
+    },
+    "key_dimensions": {
+      "flange_width_x": 70.0,
+      "flange_length_y": 50.0,
+      "flange_thickness_z": 3.0,
+      "transition_start_width_x": 60.0,
+      "transition_start_length_y": 40.0,
+      "transition_end_diameter": 30.0,
+      "transition_height": 50.0,
+      "neck_diameter": 30.0,
+      "neck_height": 10.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 26.0 mm",
+      "dimensions": {
+        "diameter": 26.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The adapter is designed as a hollow duct with an assumed nominal wall thickness of 2.0mm. The flange has a 60mm x 40mm rectangular opening matching the transition start to ensure air flow.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

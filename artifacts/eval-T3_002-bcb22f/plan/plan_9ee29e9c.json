@@ -1,0 +1,63 @@
+{
+  "description": "Rounded rectangular electronics enclosure tray, open-top, with 2mm shell walls, four corner mounting holes through the base, centered at origin on XY plane.",
+  "components": [
+    "Outer rounded-rectangle prism (80x50x25mm, 8mm vertical edge fillets)",
+    "Shell operation (2mm wall thickness, top face open)",
+    "Four 3.2mm diameter through-holes in bottom face (64x34mm bolt pattern)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 50.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "outer_length_x": 80.0,
+      "outer_width_y": 50.0,
+      "outer_height_z": 25.0,
+      "vertical_edge_fillet_radius": 8.0,
+      "wall_thickness": 2.0,
+      "floor_thickness": 2.0,
+      "mounting_hole_diameter": 3.2,
+      "mounting_hole_pattern_x": 64.0,
+      "mounting_hole_pattern_y": 34.0,
+      "mounting_hole_inset_from_edge_x": 8.0,
+      "mounting_hole_inset_from_edge_y": 8.0,
+      "mounting_hole_x_offset_from_center": 32.0,
+      "mounting_hole_y_offset_from_center": 17.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 3.2 mm",
+      "dimensions": {
+        "diameter": 3.2
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction approach: (1) Create a 2D rounded rectangle sketch on XY plane with overall dimensions 80x50mm and corner radius 8mm \u2014 note the fillet is on vertical edges only, so the cross-section profile is a rounded rectangle extruded 25mm in Z. (2) Shell the solid inward by 2mm, removing the top (+Z) face to leave it open, preserving the outer envelope exactly. (3) Drill four 3.2mm diameter cylindrical through-holes from top to bottom (full Z depth 25mm) centered at (\u00b132, \u00b117, 0) \u2014 i.e., at X=\u00b132mm and Y=\u00b117mm, which places them exactly 8mm inset from the outer edges on each side. Base is at Z=0. In CadQuery: use cq.Workplane('XY').rect(80,50).extrude(25) with rounded corners via .rect with forConstruction or use .box then fillet vertical edges with .edges('|Z').fillet(8), then .shell(-2, faceSelector for top face), then subtract four cylinders of diameter 3.2 at the four hole positions. Verify that fillet radius (8mm) does not exceed half the shorter side (25mm ok, 50/2=25 > 8 ok). The inner cavity will be (80-4)x(50-4) = 76x46mm footprint with 8mm outer corner radius yielding approximately 6mm inner corner radius.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

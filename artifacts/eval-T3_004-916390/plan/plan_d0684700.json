@@ -1,0 +1,67 @@
+{
+  "description": "V-belt pulley revolved around Z axis with central bore and keyway slot",
+  "components": [
+    "Revolved pulley body (360-degree revolution of XZ profile)",
+    "Central bore (12mm diameter through Z axis)",
+    "Keyway slot (4mm wide, 2.5mm deep, full Z length on +X side)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 60.0,
+      "zlen": 20.0
+    },
+    "key_dimensions": {
+      "pulley_width_z": 20.0,
+      "outer_diameter": 60.0,
+      "outer_radius": 30.0,
+      "bore_diameter": 12.0,
+      "bore_radius": 6.0,
+      "bottom_flange_z_start": 0.0,
+      "bottom_flange_z_top": 5.0,
+      "v_groove_root_x": 20.0,
+      "v_groove_root_z": 10.0,
+      "top_flange_z_start": 15.0,
+      "top_flange_z_top": 20.0,
+      "keyway_width_y": 4.0,
+      "keyway_depth_radial": 2.5,
+      "keyway_x_start": 6.0,
+      "keyway_x_end": 8.5,
+      "keyway_z_start": 0.0,
+      "keyway_z_end": 20.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 12 mm",
+      "dimensions": {
+        "diameter": 12.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Profile vertices in (X, Z) order for revolution: (6,0) -> (30,0) -> (30,5) -> (20,10) -> (30,15) -> (30,20) -> (6,20) -> closed back to (6,0). Revolve this closed polygon 360 degrees around Z axis using CadQuery. The keyway is a rectangular box: X from 6 to 8.5, Y from -2 to +2 (4mm wide centered on XZ plane), Z from 0 to 20. Subtract this box from the pulley solid. Ensure the revolution produces a proper solid by using a closed 2D wire/face before revolving. The bore is implicit in the profile (inner edge at X=6), so no separate bore subtraction is needed if profile is correctly defined from X=6 outward. Double-check that the revolve operation produces a manifold solid before applying the keyway cut.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

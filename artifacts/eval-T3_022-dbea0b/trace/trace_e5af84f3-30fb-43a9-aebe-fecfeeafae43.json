@@ -1,0 +1,121 @@
+{
+  "trace_id": "e5af84f3-30fb-43a9-aebe-fecfeeafae43",
+  "workflow_id": "eval-T3_022-dbea0b",
+  "design_name": "A spoked handwheel lying flat on the XY plane, consisting of a central cylindrical hub with a through-hole, an outer ring rim, and four connecting rectangular spokes aligned along the X and Y axes.",
+  "created_at": "2026-06-02T11:43:51.950025+00:00",
+  "prompt": "A spoked handwheel lying flat on the XY plane, centered at the origin. The hub is a solid cylinder 30mm in diameter and 12mm tall (Z=0 to Z=12). The outer rim is a ring 100mm outer diameter and 88mm inner diameter (6mm radial width), 8mm tall (Z=0 to Z=8). Four rectangular spokes connect the hub to the rim at 0, 90, 180, and 270 degrees from the +X axis. Each spoke is 8mm wide, 8mm tall (same height as rim), and long enough to bridge from the hub outer edge (15mm from center) to the rim inner edge (44mm from center), centered radially at 29.5mm from the origin. The spokes at 0 and 180 degrees are aligned along X; those at 90 and 270 degrees are aligned along Y. A 14mm diameter center bore passes through the full hub height.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A spoked handwheel lying flat on the XY plane, consisting of a central cylindrical hub with a through-hole, an outer ring rim, and four connecting rectangular spokes aligned along the X and Y axes.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 66,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 28264.38463147049,
+        "center_of_mass": [
+          -2.94449890345195e-13,
+          1.2521282111731589e-14,
+          4.469498541779261
+        ],
+        "bounding_box": {
+          "xmin": -50.0,
+          "xmax": 50.0,
+          "xlen": 100.0,
+          "ymin": -50.0,
+          "ymax": 50.0,
+          "ylen": 100.0,
+          "zmin": 0.0,
+          "zmax": 12.0,
+          "zlen": 12.0
+        },
+        "is_valid": true,
+        "num_faces": 18,
+        "num_edges": 57,
+        "num_vertices": 38,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.03490704387211952
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_022-dbea0b/step/T3_022_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_022-dbea0b/stl/T3_022_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 116649.205078125,
+  "final_step_artifact_uri": "artifact://eval-T3_022-dbea0b/step/T3_022_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_022-dbea0b/stl/T3_022_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_022-dbea0b/forgecad/a_spoked_handwheel_lying_flat_on_the_xy__iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 28264.38463147049,
+    "center_of_mass": [
+      -2.94449890345195e-13,
+      1.2521282111731589e-14,
+      4.469498541779261
+    ],
+    "bounding_box": {
+      "xmin": -50.0,
+      "xmax": 50.0,
+      "xlen": 100.0,
+      "ymin": -50.0,
+      "ymax": 50.0,
+      "ylen": 100.0,
+      "zmin": 0.0,
+      "zmax": 12.0,
+      "zlen": 12.0
+    },
+    "is_valid": true,
+    "num_faces": 18,
+    "num_edges": 57,
+    "num_vertices": 38,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.03490704387211952
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

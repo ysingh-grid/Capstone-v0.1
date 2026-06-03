@@ -1,0 +1,66 @@
+{
+  "description": "Flanged pipe section standing upright along Z axis, centered at origin in XY, with bottom and top flanges, central bore, and four bolt holes per flange",
+  "components": [
+    "Bottom flange disc (OD=50mm, Z=0 to Z=5)",
+    "Pipe wall cylinder (OD=30mm, Z=0 to Z=50)",
+    "Top flange disc (OD=50mm, Z=45 to Z=50)",
+    "Central bore (ID=20mm, full length Z=0 to Z=50)",
+    "Four bolt holes (D=6mm, bolt circle D=40mm, at 0/90/180/270 deg, through both flanges)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 50.0
+    },
+    "key_dimensions": {
+      "flange_outer_diameter": 50.0,
+      "flange_thickness": 5.0,
+      "pipe_outer_diameter": 30.0,
+      "pipe_height": 50.0,
+      "bore_diameter": 20.0,
+      "top_flange_z_start": 45.0,
+      "top_flange_z_end": 50.0,
+      "bottom_flange_z_start": 0.0,
+      "bottom_flange_z_end": 5.0,
+      "bolt_hole_diameter": 6.0,
+      "bolt_circle_diameter": 40.0,
+      "bolt_circle_radius": 20.0,
+      "bolt_hole_angles_deg": 0.0,
+      "num_bolt_holes": 4.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "9 hole(s) of diameter 20mm bore + 6mm bolt holes (x8 total, 4 per flange) mm",
+      "dimensions": {
+        "diameter": 20.0
+      },
+      "position": null,
+      "count": 9,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 9,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Build solid by unioning three cylinders first (bottom flange, pipe wall, top flange), then subtract central bore cylinder (D=20mm, full Z height). For bolt holes: use pushPoints with four XY offsets at radius=20mm on 0/90/180/270 degree positions, drill D=6mm cylinders through bottom flange (Z=0 to Z=5) and separately through top flange (Z=45 to Z=50). Ensure all cylinders are centered on Z axis. The bore cut must pass completely through (add small epsilon overcut on Z if needed). CadQuery implementation should use Workplane('XY') at appropriate Z offsets for each feature.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,72 @@
+{
+  "description": "Pipe flange disc lying flat on the XY plane, centered at the origin, with a center bore, six bolt holes on a pitch circle, and a concentric gasket groove on the top face.",
+  "components": [
+    "Main flange disc body",
+    "Center bore (through hole, 32mm diameter)",
+    "Six bolt holes (9mm diameter, on 55mm PCD)",
+    "Gasket groove (ring groove on top face, 38mm ID to 50mm OD, 2mm deep)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 80.0,
+      "zlen": 16.0
+    },
+    "key_dimensions": {
+      "flange_diameter_mm": 80.0,
+      "flange_radius_mm": 40.0,
+      "flange_thickness_mm": 16.0,
+      "flange_z_bottom_mm": 0.0,
+      "flange_z_top_mm": 16.0,
+      "center_bore_diameter_mm": 32.0,
+      "center_bore_radius_mm": 16.0,
+      "bolt_hole_diameter_mm": 9.0,
+      "bolt_hole_radius_mm": 4.5,
+      "bolt_hole_pcd_mm": 55.0,
+      "bolt_hole_pcd_radius_mm": 27.5,
+      "bolt_hole_count": 6.0,
+      "bolt_hole_angular_spacing_deg": 60.0,
+      "bolt_hole_angles_deg": 0.0,
+      "gasket_groove_inner_diameter_mm": 38.0,
+      "gasket_groove_inner_radius_mm": 19.0,
+      "gasket_groove_outer_diameter_mm": 50.0,
+      "gasket_groove_outer_radius_mm": 25.0,
+      "gasket_groove_depth_mm": 2.0,
+      "gasket_groove_z_bottom_mm": 14.0,
+      "gasket_groove_z_top_mm": 16.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "7 hole(s) of diameter 32mm center bore, 9mm bolt holes (x6) mm",
+      "dimensions": {
+        "diameter": 32.0
+      },
+      "position": null,
+      "count": 7,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 7,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. The main body is a cylinder (radius=40mm) from Z=0 to Z=16, centered at origin. 2. Subtract a coaxial cylinder (radius=16mm) through full thickness for the center bore. 3. Subtract six cylinders (radius=4.5mm) centered at (27.5*cos(theta), 27.5*sin(theta), 0) for theta in {0,60,120,180,240,300} degrees, through full thickness. 4. Subtract a ring (annular cylinder, inner radius=19mm, outer radius=25mm) from Z=14 to Z=16 for the gasket groove \u2014 this can be implemented as subtracting an outer cylinder (r=25mm, h=2mm) then adding back an inner cylinder (r=19mm, h=2mm), or by direct annular extrusion. 5. Volume estimate (approximate): Main disc = pi*40^2*16 = 80424 mm^3; minus center bore = pi*16^2*16 = 12868 mm^3; minus 6 bolt holes = 6*pi*4.5^2*16 = 6109 mm^3; minus gasket groove = pi*(25^2-19^2)*2 = pi*(625-361)*2 = 1659 mm^3; Net approx = 80424 - 12868 - 6109 - 1659 = 59788 mm^3 (use ~60000 mm^3 as reference). 6. All booleans should be subtractive from the main disc. 7. Ensure the part is properly centered at XY origin with Z from 0 to 16.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

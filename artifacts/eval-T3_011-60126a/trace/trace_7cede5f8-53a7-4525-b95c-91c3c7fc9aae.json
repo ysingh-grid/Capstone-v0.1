@@ -1,0 +1,121 @@
+{
+  "trace_id": "7cede5f8-53a7-4525-b95c-91c3c7fc9aae",
+  "workflow_id": "eval-T3_011-60126a",
+  "design_name": "Spur gear with extended hub, bore, keyway, and radial set screw hole. Gear body is 10mm thick with 20-tooth star-polygon profile; hub extends 20mm above gear face along Z axis.",
+  "created_at": "2026-06-02T09:22:06.900527+00:00",
+  "prompt": "A spur gear with an extended hub and radial set screw hole, standing upright along the Z axis, centered at the origin in XY. The gear has 20 teeth with a star-polygon tooth profile (48mm tip diameter (24mm radius), 40mm root diameter (20mm radius)) and is 10mm thick (Z=0 to Z=10). A cylindrical hub 16mm in diameter extends from Z=0 to Z=30, protruding 20mm above the gear face. A 10mm diameter bore runs through the full 30mm length along Z. A keyway slot 4mm wide (Y) and 2.5mm deep (radially, from the bore surface at radius 5mm to radius 7.5mm) runs the full 30mm length on the +X side. A 4mm diameter set screw hole is drilled radially through the hub at Z=20mm, oriented along the X axis, passing through both walls of the hub.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Spur gear with extended hub, bore, keyway, and radial set screw hole. Gear body is 10mm thick with 20-tooth star-polygon profile; hub extends 20mm above gear face along Z axis.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 103,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 16578.063773058017,
+        "center_of_mass": [
+          -0.10125754367075328,
+          3.232990917652309e-6,
+          6.995542605177015
+        ],
+        "bounding_box": {
+          "xmin": -23.704520174283306,
+          "xmax": 23.704520174283306,
+          "xlen": 47.40904034856661,
+          "ymin": -23.704520174283306,
+          "ymax": 23.704520174283306,
+          "ylen": 47.40904034856661,
+          "zmin": -1e-7,
+          "zmax": 30.0000001,
+          "zlen": 30.000000200000002
+        },
+        "is_valid": true,
+        "num_faces": 257,
+        "num_edges": 761,
+        "num_vertices": 503,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.004055790499952818
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. Detailed verification:\n\n1. **Gear teeth**: 20 teeth visible in all three views, with star-polygon profile. Bounding box XY is ~47.4mm, which is consistent with a 48mm tip diameter (the slight shortfall is due to the sinusoidal interpolation not perfectly hitting the exact 24mm radius at every tooth tip — acceptable).\n\n2. **Gear thickness**: Z extends from 0 to 30mm total (zlen=30mm), gear portion is 10mm thick (Z=0 to Z=10) — confirmed by the front profile view showing the gear disc and hub proportions.\n\n3. **Hub**: 16mm diameter cylindrical hub extending from Z=0 to Z=30, protruding 20mm above the gear face (Z=10 to Z=30) — visible in isometric and front views.\n\n4. **Bore**: 10mm diameter central bore running full 30mm length — visible in the top-down center view as a circular hole through the hub.\n\n5. **Keyway**: 4mm wide, 2.5mm deep keyway on the +X side running the full 30mm length — visible in the center (top-down) view as a rectangular notch in the bore wall on one side.\n\n6. **Set screw hole**: 4mm diameter radial hole at Z=20mm along X axis through both hub walls — visible in the right (front profile) view as a small circular hole through the hub above the gear face. Also visible in the center view.\n\n7. **Centering**: Part is centered at origin in XY (center of mass X offset of -0.1mm is due to the keyway asymmetry on +X side, which is correct).\n\n8. **Volume**: ~16,578 mm³ is physically plausible for this geometry.\n\n9. **Mesh quality**: Valid, watertight, no self-intersections, consistent normals.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_011-60126a/step/T3_011_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_011-60126a/stl/T3_011_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 60050.14111328125,
+  "final_step_artifact_uri": "artifact://eval-T3_011-60126a/step/T3_011_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_011-60126a/stl/T3_011_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_011-60126a/forgecad/spur_gear_with_extended_hub,_bore,_keywa_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 16578.063773058017,
+    "center_of_mass": [
+      -0.10125754367075328,
+      3.232990917652309e-6,
+      6.995542605177015
+    ],
+    "bounding_box": {
+      "xmin": -23.704520174283306,
+      "xmax": 23.704520174283306,
+      "xlen": 47.40904034856661,
+      "ymin": -23.704520174283306,
+      "ymax": 23.704520174283306,
+      "ylen": 47.40904034856661,
+      "zmin": -1e-7,
+      "zmax": 30.0000001,
+      "zlen": 30.000000200000002
+    },
+    "is_valid": true,
+    "num_faces": 257,
+    "num_edges": 761,
+    "num_vertices": 503,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.004055790499952818
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. Detailed verification:\n\n1. **Gear teeth**: 20 teeth visible in all three views, with star-polygon profile. Bounding box XY is ~47.4mm, which is consistent with a 48mm tip diameter (the slight shortfall is due to the sinusoidal interpolation not perfectly hitting the exact 24mm radius at every tooth tip — acceptable).\n\n2. **Gear thickness**: Z extends from 0 to 30mm total (zlen=30mm), gear portion is 10mm thick (Z=0 to Z=10) — confirmed by the front profile view showing the gear disc and hub proportions.\n\n3. **Hub**: 16mm diameter cylindrical hub extending from Z=0 to Z=30, protruding 20mm above the gear face (Z=10 to Z=30) — visible in isometric and front views.\n\n4. **Bore**: 10mm diameter central bore running full 30mm length — visible in the top-down center view as a circular hole through the hub.\n\n5. **Keyway**: 4mm wide, 2.5mm deep keyway on the +X side running the full 30mm length — visible in the center (top-down) view as a rectangular notch in the bore wall on one side.\n\n6. **Set screw hole**: 4mm diameter radial hole at Z=20mm along X axis through both hub walls — visible in the right (front profile) view as a small circular hole through the hub above the gear face. Also visible in the center view.\n\n7. **Centering**: Part is centered at origin in XY (center of mass X offset of -0.1mm is due to the keyway asymmetry on +X side, which is correct).\n\n8. **Volume**: ~16,578 mm³ is physically plausible for this geometry.\n\n9. **Mesh quality**: Valid, watertight, no self-intersections, consistent normals.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

@@ -1,0 +1,64 @@
+{
+  "description": "Hollow revolved vase/bottle shape, open at top, centered at origin, defined by a piecewise-linear profile revolved 360\u00b0 around Z axis, then shelled to 2mm wall thickness",
+  "components": [
+    "Revolved solid body from piecewise-linear XZ profile",
+    "Shell operation removing top face to create hollow interior with 2mm wall"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 56.0,
+      "ylen": 56.0,
+      "zlen": 65.0
+    },
+    "key_dimensions": {
+      "base_radius": 25.0,
+      "base_z": 0.0,
+      "wall_start_z": 0.0,
+      "wall_end_z": 5.0,
+      "belly_radius": 28.0,
+      "belly_z": 25.0,
+      "shoulder_radius": 22.0,
+      "shoulder_z": 45.0,
+      "neck_base_radius": 10.0,
+      "neck_base_z": 55.0,
+      "neck_top_radius": 10.0,
+      "neck_top_z": 65.0,
+      "total_height": 65.0,
+      "wall_thickness": 2.0,
+      "neck_opening_diameter": 20.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 20 mm",
+      "dimensions": {
+        "diameter": 20.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Profile vertices in order (radius_mm, z_mm): (25,0), (25,5), (28,25), (22,45), (10,55), (10,65). Revolve this closed profile 360\u00b0 around Z axis using CadQuery revolve or equivalent. After revolving the solid, apply a shell operation with 2mm thickness, specifying the top face (at Z=65, the neck opening circle of radius 10mm) as the face to remove/open. The shell should offset all remaining faces inward by 2mm, creating a hollow interior. Ensure the bottom is closed (not open). The part is centered in XY at origin (X=0, Y=0). The bounding box in X and Y is \u00b128mm (belly radius), giving 56mm total in both X and Y. Z runs from 0 to 65mm. The neck opening inner diameter after shelling will be 20mm outer minus 4mm (2\u00d7wall) = 16mm inner, but the open top face remains open. Coder should use CadQuery: build a 2D wire/face from the profile points, revolve, then shell with top face excluded.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

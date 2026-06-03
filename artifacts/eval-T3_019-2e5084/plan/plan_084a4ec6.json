@@ -1,0 +1,81 @@
+{
+  "description": "Quadcopter drone chassis in X configuration, flat on XY plane. Central hub disc with four diagonal arms at 45/135/225/315 degrees, each terminating in a circular motor mount platform with shaft hole. M3 mounting holes in hub.",
+  "components": [
+    "Central hub disc (36mm diameter, 3mm thick)",
+    "Arm NE (45 deg, 55mm long, 10mm wide)",
+    "Arm NW (135 deg, 55mm long, 10mm wide)",
+    "Arm SW (225 deg, 55mm long, 10mm wide)",
+    "Arm SE (315 deg, 55mm long, 10mm wide)",
+    "Motor mount NE (18mm dia, centered at ~(51.6, 51.6, 1.5))",
+    "Motor mount NW (18mm dia, centered at ~(-51.6, 51.6, 1.5))",
+    "Motor mount SW (18mm dia, centered at ~(-51.6, -51.6, 1.5))",
+    "Motor mount SE (18mm dia, centered at ~(51.6, -51.6, 1.5))",
+    "Motor shaft hole NE (5mm dia through mount)",
+    "Motor shaft hole NW (5mm dia through mount)",
+    "Motor shaft hole SW (5mm dia through mount)",
+    "Motor shaft hole SE (5mm dia through mount)",
+    "M3 mounting hole 1 (+10, +10) mm",
+    "M3 mounting hole 2 (-10, +10) mm",
+    "M3 mounting hole 3 (-10, -10) mm",
+    "M3 mounting hole 4 (+10, -10) mm"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 164.0,
+      "ylen": 164.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "hub_diameter_mm": 36.0,
+      "hub_thickness_mm": 3.0,
+      "hub_radius_mm": 18.0,
+      "arm_length_mm": 55.0,
+      "arm_width_mm": 10.0,
+      "arm_thickness_mm": 3.0,
+      "arm_start_from_center_mm": 18.0,
+      "arm_end_from_center_mm": 73.0,
+      "arm_angles_deg": 45.0,
+      "motor_mount_diameter_mm": 18.0,
+      "motor_mount_radius_mm": 9.0,
+      "motor_mount_center_from_origin_mm": 73.0,
+      "motor_mount_center_x_mm": 51.619,
+      "motor_mount_center_y_mm": 51.619,
+      "motor_shaft_hole_diameter_mm": 5.0,
+      "m3_hole_diameter_mm": 3.2,
+      "m3_hole_pattern_half_spacing_mm": 10.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "8 hole(s) of diameter 5.0mm (motor shaft) and 3.2mm (M3 mounting) mm",
+      "dimensions": {
+        "diameter": 5.0
+      },
+      "position": null,
+      "count": 8,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. All geometry lies in Z=0 to Z=3 (flat plate). 2. Arms start at hub edge (r=18mm) and end at r=73mm along each 45-deg diagonal. Each arm rectangle is 55mm x 10mm, aligned along its diagonal direction \u2014 use a rotated workplane or a rotated box primitive for each arm. 3. Motor mount circles (r=9mm) are centered exactly at (\u00b173*cos(45\u00b0), \u00b173*sin(45\u00b0)) = (\u00b151.619, \u00b151.619); verify the mount fully covers the arm tip (arm width 10mm < mount diameter 18mm, so mount overhangs arm slightly on sides \u2014 this is intentional). 4. Boolean union all solid bodies (hub + 4 arms + 4 mounts) before cutting holes to avoid face-on-face artifacts. 5. Motor shaft holes (5mm dia) and M3 holes (3.2mm dia) are through-holes in Z direction (full 3mm depth). 6. The overall bounding box diagonal tip-to-tip is 2 * 73mm * cos(45\u00b0) + 18mm = ~164mm square. 7. Volume estimate: hub ~3054mm\u00b3 + 4 arms ~(55*10*3=1650 each, minus hub overlap ~(18*10*3=540 each overlap area approx)) + 4 mounts ~(\u03c0*9\u00b2*3\u2248763 each) minus holes; approximate net solid ~9800mm\u00b3. Coder should use CadQuery or similar; union then subtract holes.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

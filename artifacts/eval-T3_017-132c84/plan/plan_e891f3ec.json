@@ -1,0 +1,65 @@
+{
+  "description": "A pipe cross fitting (four-way intersection) with two perpendicular hollow cylindrical pipes of equal dimensions crossing at the origin, forming a continuous '+' shaped hollow interior.",
+  "components": [
+    "Horizontal pipe along X axis (outer cylinder)",
+    "Horizontal pipe along X axis (inner bore cutout)",
+    "Vertical pipe along Z axis (outer cylinder)",
+    "Vertical pipe along Z axis (inner bore cutout)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 30.0,
+      "zlen": 100.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 30.0,
+      "inner_diameter": 24.0,
+      "wall_thickness": 3.0,
+      "pipe_length_x": 100.0,
+      "pipe_length_z": 100.0,
+      "outer_radius": 15.0,
+      "inner_radius": 12.0,
+      "x_pipe_extent_negative": -50.0,
+      "x_pipe_extent_positive": 50.0,
+      "z_pipe_extent_negative": -50.0,
+      "z_pipe_extent_positive": 50.0,
+      "center_origin_x": 0.0,
+      "center_origin_y": 0.0,
+      "center_origin_z": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 24 mm",
+      "dimensions": {
+        "diameter": 24.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction approach: (1) Create outer solid cylinder along X axis (radius=15, length=100, axis aligned to X). (2) Create outer solid cylinder along Z axis (radius=15, length=100, axis aligned to Z). (3) Union the two outer cylinders to form the combined outer body. (4) Create inner bore cylinder along X axis (radius=12, length=100, axis aligned to X). (5) Create inner bore cylinder along Z axis (radius=12, length=100, axis aligned to Z). (6) Union the two inner bore cylinders to form the continuous '+' shaped hollow interior. (7) Subtract the unioned inner bore from the unioned outer body to produce the final hollow cross fitting. All cylinders are centered at the origin. The Y axis extent is governed by the pipe outer diameter (\u00b115mm). Ensure boolean union and subtraction operations correctly handle the overlapping intersection region at the origin so that the interior is fully connected and open at all four ends.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

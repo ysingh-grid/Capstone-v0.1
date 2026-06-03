@@ -1,0 +1,57 @@
+{
+  "description": "A 45-degree pipe elbow in the XZ plane with a 20mm outer diameter, 16mm inner diameter, and a 40mm bend radius.",
+  "components": [
+    "Pipe profile (concentric circles of 20mm OD and 16mm ID)",
+    "Sweep path (45-degree arc with 40mm radius on the XZ plane)",
+    "Swept hollow pipe body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 28.79,
+      "ylen": 20.0,
+      "zlen": 35.35
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_radius": 40.0,
+      "bend_angle": 45.0,
+      "endpoint_x": 11.72,
+      "endpoint_z": 28.28
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 16.0 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model this part: 1. Create a sketch on the XZ plane containing a 45-degree arc of radius 40mm, starting at (0,0,0) and ending at (11.72, 0, 28.28) with the center of the arc at (40, 0, 0). 2. Create a sketch on the XY plane containing two concentric circles of diameter 20mm and 16mm, centered at the origin (0,0,0). 3. Sweep the circular profile along the arc path to create the hollow elbow.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,59 @@
+{
+  "description": "An upright, symmetric flanged pipe section with a central bore and four bolt holes on both flanges.",
+  "components": [
+    "bottom_flange_disc",
+    "pipe_wall_cylinder",
+    "top_flange_disc",
+    "central_bore_cutout",
+    "bolt_holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 50.0
+    },
+    "key_dimensions": {
+      "overall_height": 50.0,
+      "flange_outer_diameter": 50.0,
+      "flange_thickness": 5.0,
+      "pipe_outer_diameter": 30.0,
+      "bore_diameter": 20.0,
+      "bolt_circle_diameter": 40.0,
+      "bolt_hole_diameter": 6.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "5 hole(s) of diameter 6.0 mm",
+      "dimensions": {
+        "diameter": 6.0
+      },
+      "position": null,
+      "count": 5,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 5,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure proper union of the three concentric cylinders before performing the subtraction of the central bore and the four bolt holes. The bolt holes should be placed using pushPoints at coordinates: (20, 0), (0, 20), (-20, 0), (0, -20) on the XY plane and extruded/cut through the flanges.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

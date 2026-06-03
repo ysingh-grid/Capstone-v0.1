@@ -1,0 +1,172 @@
+{
+  "trace_id": "154053e3-c02b-421d-b9cf-42c5d079b865",
+  "workflow_id": "eval-T3_021-c53383",
+  "design_name": "Pipe flange disc lying flat on the XY plane, centered at the origin, with a center bore, six bolt holes on a pitch circle, and a concentric gasket groove on the top face.",
+  "created_at": "2026-06-02T09:44:43.756667+00:00",
+  "prompt": "A pipe flange disc lying flat on the XY plane (Z=0 to Z=16), centered at the origin. The flange is a solid disc 80mm in diameter and 16mm thick. A 32mm diameter center bore passes through the full thickness. Six 9mm diameter bolt holes on a 55mm pitch circle diameter (27.5mm radius from center), at 0, 60, 120, 180, 240, and 300 degrees from the +X axis, drilled through the full thickness. On the top face (Z=16), a concentric gasket groove is machined 2mm deep: the groove is a ring between 38mm inner diameter and 50mm outer diameter, cut from Z=14 to Z=16.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Pipe flange disc lying flat on the XY plane, centered at the origin, with a center bore, six bolt holes on a pitch circle, and a concentric gasket groove on the top face.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 75,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 61517.80126077252,
+        "center_of_mass": [
+          -1.7593260372261125e-15,
+          3.742687395206888e-15,
+          8.007765926058841
+        ],
+        "bounding_box": {
+          "xmin": -40.0,
+          "xmax": 40.0,
+          "xlen": 80.0,
+          "ymin": -40.0,
+          "ymax": 40.0,
+          "ylen": 80.0,
+          "zmin": 0.0,
+          "zmax": 16.0,
+          "zlen": 16.0
+        },
+        "is_valid": true,
+        "num_faces": 20,
+        "num_edges": 63,
+        "num_vertices": 42,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.04300901504550481
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The gasket groove construction is flawed. The code subtracts a full cylinder (r=25) from Z=14-16, then unions back a full cylinder (r=19) from Z=14-16. This union fills in the center bore (r=16) from Z=14 to Z=16, partially blocking it. The extra volume (~1,608 mm³) confirms this: expected ~59,790 mm³ vs actual 61,518 mm³. Fix: instead of subtract-outer/union-inner, create the groove as an annular ring directly. Use a workplane at Z=16, sketch two concentric circles (r=19 and r=25), extrude the ring between them downward 2mm, and cut that ring from the result. For example: groove = cq.Workplane('XY').workplane(offset=14).circle(25).circle(19).extrude(2) then result = result.cut(groove). This avoids any union that could fill the bore.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_021-c53383/step/T3_021_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_021-c53383/stl/T3_021_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 62,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 59909.30582213456,
+        "center_of_mass": [
+          4.100819612996458e-15,
+          3.2858782226442262e-15,
+          7.820032543749006
+        ],
+        "bounding_box": {
+          "xmin": -40.0,
+          "xmax": 40.0,
+          "xlen": 80.0,
+          "ymin": -40.0,
+          "ymax": 40.0,
+          "ylen": 80.0,
+          "zmin": 0.0,
+          "zmax": 16.0,
+          "zlen": 16.0
+        },
+        "is_valid": true,
+        "num_faces": 19,
+        "num_edges": 63,
+        "num_vertices": 42,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.043051142376536795
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_021-c53383/step/T3_021_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_021-c53383/stl/T3_021_outer1_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 2,
+  "total_llm_calls": 6,
+  "total_time_ms": 92056.77392578125,
+  "final_step_artifact_uri": "artifact://eval-T3_021-c53383/step/T3_021_outer1_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_021-c53383/stl/T3_021_outer1_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_021-c53383/forgecad/pipe_flange_disc_lying_flat_on_the_xy_pl_iter1.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 59909.30582213456,
+    "center_of_mass": [
+      4.100819612996458e-15,
+      3.2858782226442262e-15,
+      7.820032543749006
+    ],
+    "bounding_box": {
+      "xmin": -40.0,
+      "xmax": 40.0,
+      "xlen": 80.0,
+      "ymin": -40.0,
+      "ymax": 40.0,
+      "ylen": 80.0,
+      "zmin": 0.0,
+      "zmax": 16.0,
+      "zlen": 16.0
+    },
+    "is_valid": true,
+    "num_faces": 19,
+    "num_edges": 63,
+    "num_vertices": 42,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.043051142376536795
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

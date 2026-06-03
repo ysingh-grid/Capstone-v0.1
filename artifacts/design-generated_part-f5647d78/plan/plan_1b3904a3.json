@@ -1,0 +1,70 @@
+{
+  "description": "Precision industrial mechanical power transmission shaft assembly made of AISI 1045 steel, featuring a stepped shaft, two UCP 211 pillow block bearings, and a rigid keyed mixer attachment hub.",
+  "components": [
+    "Stepped Transmission Shaft",
+    "Drive Section Keyway",
+    "Mixer Section Keyway",
+    "UCP 211 Pillow Block Bearing (Left)",
+    "UCP 211 Pillow Block Bearing (Right)",
+    "Rigid Mixer Attachment Hub"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 1500.0,
+      "ylen": 220.0,
+      "zlen": 130.0
+    },
+    "key_dimensions": {
+      "shaft_total_length": 1500.0,
+      "drive_section_diameter": 50.0,
+      "drive_section_length": 100.0,
+      "bearing_journal_1_diameter": 55.0,
+      "bearing_journal_1_length": 80.0,
+      "main_center_span_diameter": 65.0,
+      "main_center_span_length": 940.0,
+      "bearing_journal_2_diameter": 55.0,
+      "bearing_journal_2_length": 80.0,
+      "overhung_mixer_diameter": 50.0,
+      "overhung_mixer_length": 300.0,
+      "shoulder_fillet_radius": 3.0,
+      "keyway_width": 14.0,
+      "keyway_depth": 5.5,
+      "mixer_hub_outer_diameter": 120.0,
+      "mixer_hub_thickness": 40.0,
+      "mixer_hub_bore_diameter": 50.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 20.0 mm",
+      "dimensions": {
+        "diameter": 20.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Note the nominal discrepancy in the prompt: shaft dimensions place the two bearing journal centers at 1020 mm apart (100 + 40 to 1120 + 40), while the text mentions a 1200 mm center spacing. Prioritize mounting the UCP 211 bearings concentrically and centrally on the designated 80 mm long, 55 mm diameter bearing journals. Ensure the standard 3 mm fillet radii are applied at all shaft transitions to avoid stress concentration. The mixer hub should be flush with the right shoulder of the overhung shaft section.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

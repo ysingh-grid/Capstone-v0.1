@@ -1,0 +1,55 @@
+{
+  "description": "A hollow 90-degree pipe elbow in the XZ plane, with a 20mm outer diameter, 16mm inner diameter, and a 40mm bend radius, created by sweeping an annular cross-section along a quarter-circle arc.",
+  "components": [
+    "Sweep profile (annular ring on the XY plane at the origin)",
+    "Sweep path (90-degree arc in the XZ plane from origin to (40,0,40))",
+    "Swept pipe body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 20.0,
+      "zlen": 50.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_radius": 40.0,
+      "sweep_angle": 90.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 16.0 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The profile sketch should be created on the XY plane centered at (0,0,0) with concentric circles of diameters 20mm and 16mm. The sweep path should be sketched on the XZ plane as a 40mm radius arc starting at (0,0) and ending at (40,40) with the arc center at (40,0).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

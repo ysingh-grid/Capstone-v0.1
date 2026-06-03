@@ -1,0 +1,58 @@
+{
+  "description": "A rounded rectangular electronics enclosure body, open on top, with a 2mm wall thickness, 8mm vertical corner fillets, and four 3.2mm mounting holes in the bottom face.",
+  "components": [
+    "outer_solid_boundary",
+    "vertical_corner_fillets",
+    "inner_cavity_shelling",
+    "mounting_holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 50.0,
+      "zlen": 25.0
+    },
+    "key_dimensions": {
+      "wall_thickness": 2.0,
+      "outer_fillet_radius": 8.0,
+      "inner_fillet_radius": 6.0,
+      "hole_diameter": 3.2,
+      "hole_spacing_x": 64.0,
+      "hole_spacing_y": 34.0,
+      "base_thickness": 2.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 3.2 mm",
+      "dimensions": {
+        "diameter": 3.2
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part must be centered at (0,0,12.5) so that the base is at Z=0. The shell operation must remove the top (+Z) face. The 8mm fillet radius applies to the outer vertical corners, which means the inner corner radius should be 6mm to maintain a uniform 2mm wall thickness.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

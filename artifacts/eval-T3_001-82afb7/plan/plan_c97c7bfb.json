@@ -1,0 +1,39 @@
+{
+  "description": "An open-top rectangular container with rounded vertical corners, shelled inward.",
+  "components": [
+    "Outer rectangular solid with filleted vertical edges",
+    "Inner cavity created by shelling"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "fillet_radius": 5.0,
+      "wall_thickness": 2.0,
+      "base_thickness": 2.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Model the outer box centered at (0,0,15) so the base is at Z=0. Fillet the four vertical edges with a radius of 5mm before performing the shell operation. Shell inward with a thickness of 2mm, removing the top face (+Z).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,53 @@
+{
+  "description": "Precision industrial power transmission shaft in AISI 1045 steel with a stepped design, including an input section, transition zone, bearing journal, overhung section with a keyway, and a mounted mixer attachment hub.",
+  "components": [
+    "Left Input Section (60mm dia, 150mm length)",
+    "Transition Section (conical step-down from 60mm to 45mm dia, 150mm length)",
+    "Bearing Journal Section (45mm dia, 900mm length to maintain 1500mm total length)",
+    "Overhung Hub Section (40mm dia, 300mm length)",
+    "Mixer Attachment Hub (80mm OD, 40mm ID, 60mm length, mounted on overhung section)",
+    "Square Keyway (25mm width x 14mm depth, cut into the overhung section/hub)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 1500.0,
+      "ylen": 80.0,
+      "zlen": 80.0
+    },
+    "key_dimensions": {
+      "total_shaft_length": 1500.0,
+      "left_section_diameter": 60.0,
+      "left_section_length": 150.0,
+      "transition_section_length": 150.0,
+      "bearing_journal_diameter": 45.0,
+      "bearing_journal_length": 900.0,
+      "overhung_section_diameter": 40.0,
+      "overhung_section_length": 300.0,
+      "mixer_hub_outer_diameter": 80.0,
+      "mixer_hub_length": 60.0,
+      "keyway_width": 25.0,
+      "keyway_depth": 14.0,
+      "chamfer_size": 2.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": null,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To resolve the physical dimensional contradiction in the prompt (where 150mm left + 150mm transition + 1200mm journal + 300mm overhung equals 1800mm, but the total length is specified as exactly 1500mm), the bearing journal length has been adjusted to 900mm. This preserves the exact total shaft length of 1500mm and the 300mm overhung section. All step transitions should feature a 2mm x 45-degree chamfer.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

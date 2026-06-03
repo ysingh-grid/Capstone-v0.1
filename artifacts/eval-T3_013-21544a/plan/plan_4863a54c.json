@@ -1,0 +1,63 @@
+{
+  "description": "90-degree pipe elbow with annular cross-section swept along a quarter-circle arc in the XZ plane. Outer diameter 20mm, inner diameter 16mm (2mm wall), bend centerline radius 40mm.",
+  "components": [
+    "Annular cross-section (outer circle OD=20mm, inner circle ID=16mm)",
+    "Quarter-circle sweep path arc (radius=40mm) in XZ plane",
+    "Swept solid body forming the elbow"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 20.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_centerline_radius": 40.0,
+      "sweep_arc_angle_deg": 90.0,
+      "arc_start_x": 0.0,
+      "arc_start_z": 0.0,
+      "arc_end_x": 40.0,
+      "arc_end_z": 40.0,
+      "arc_center_x": 0.0,
+      "arc_center_z": 40.0,
+      "pipe_length_along_arc": 62.83,
+      "y_center": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 16 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Sweep an annular profile (outer radius 10mm, inner radius 8mm) along a quarter-circle arc of radius 40mm in the XZ plane. Arc center is at (0, 0, 40) in XYZ space. Arc starts at (0, 0, 0) with tangent in +Z direction and ends at (40, 0, 40) with tangent in +X direction. The cross-section plane must be kept normal to the arc tangent throughout the sweep (Frenet-Serret frame). The bounding box spans X=[0,60], Y=[-10,10], Z=[0,60] accounting for the 10mm outer radius added to both ends of the centerline arc. Ensure the sweep uses a radiusArc (sagitta-based or center-point arc) correctly: the arc is a true circular arc, not a polyline approximation. CadQuery: use the workplane XZ, draw the arc with radiusArc from (0,0) to (40,40) with radius 40, then sweep the annular wire profile along this path with normal='frenet'. Volume estimate: pi*(10^2 - 8^2)*2*pi*40/4 = pi*36*20*pi \u2248 7117 mm^3 (analytic); allow up to 5% deviation.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

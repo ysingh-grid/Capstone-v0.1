@@ -1,0 +1,78 @@
+{
+  "description": "Spur gear on a stepped shaft, standing upright along Z axis, centered at origin in XY. Three-section stepped shaft with integrated 20-tooth spur gear at middle section, through bore, and keyway slot.",
+  "components": [
+    "Lower journal cylinder (D=15mm, Z=0 to Z=20)",
+    "Middle gear seat cylinder (D=20mm, Z=20 to Z=35)",
+    "Upper journal cylinder (D=15mm, Z=35 to Z=55)",
+    "Spur gear teeth (20-tooth star-polygon profile, tip R=22mm, root R=18mm, Z=20 to Z=35)",
+    "Through bore (D=8mm, Z=0 to Z=55)",
+    "Keyway slot (3mm wide, 3mm deep radially, +X side, Z=20 to Z=35)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 44.0,
+      "ylen": 44.0,
+      "zlen": 55.0
+    },
+    "key_dimensions": {
+      "lower_journal_diameter": 15.0,
+      "lower_journal_z_start": 0.0,
+      "lower_journal_z_end": 20.0,
+      "gear_seat_diameter": 20.0,
+      "gear_seat_z_start": 20.0,
+      "gear_seat_z_end": 35.0,
+      "upper_journal_diameter": 15.0,
+      "upper_journal_z_start": 35.0,
+      "upper_journal_z_end": 55.0,
+      "gear_tooth_count": 20.0,
+      "gear_tip_radius": 22.0,
+      "gear_root_radius": 18.0,
+      "gear_face_width": 15.0,
+      "gear_z_start": 20.0,
+      "gear_z_end": 35.0,
+      "bore_diameter": 8.0,
+      "bore_radius": 4.0,
+      "bore_z_start": 0.0,
+      "bore_z_end": 55.0,
+      "keyway_width_y": 3.0,
+      "keyway_depth_radial": 3.0,
+      "keyway_inner_radius": 4.0,
+      "keyway_outer_radius": 7.0,
+      "keyway_z_start": 20.0,
+      "keyway_z_end": 35.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 8 mm",
+      "dimensions": {
+        "diameter": 8.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. The gear tooth profile uses a star-polygon approximation: 40 vertices alternating between tip radius 22mm and root radius 18mm, evenly spaced at 9-degree angular intervals (360/40=9 degrees per vertex), creating 20 tooth tips and 20 root valleys. The polygon is extruded from Z=20 to Z=35. 2. The shaft is built as union of three cylinders; the gear profile is unioned at the middle section. 3. The through bore (cylinder D=8mm, full Z length) is subtracted from the entire assembly. 4. The keyway is a rectangular box slot: width 3mm in Y direction, centered on X axis (Y from -1.5 to +1.5), extending in X from +4mm to +7mm (radial depth 3mm outward from bore wall at R=4), and spanning Z=20 to Z=35. Subtract this box from the assembly. 5. Ensure the star-polygon gear vertices are correctly oriented so tooth tips align symmetrically; first vertex at angle=0 (along +X) at tip radius 22mm recommended. 6. Volume estimate accounts for shaft minus bore minus keyway plus gear tooth material above the gear seat cylinder baseline.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

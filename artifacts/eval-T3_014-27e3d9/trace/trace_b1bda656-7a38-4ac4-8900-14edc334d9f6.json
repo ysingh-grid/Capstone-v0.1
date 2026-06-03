@@ -1,0 +1,121 @@
+{
+  "trace_id": "b1bda656-7a38-4ac4-8900-14edc334d9f6",
+  "workflow_id": "eval-T3_014-27e3d9",
+  "design_name": "180-degree U-bend (return bend) pipe fitting swept in the XZ plane, with two parallel vertical legs 70mm apart and a semicircular crown of 35mm centerline radius.",
+  "created_at": "2026-06-02T09:30:46.676577+00:00",
+  "prompt": "A 180-degree U-bend (return bend) pipe fitting with the bend in the XZ plane. The pipe has a 20mm outer diameter and 16mm inner diameter (2mm wall thickness). The bend centerline follows a semicircular arc of 35mm radius on the XZ plane: starting at the origin heading in the +Z direction, arcing upward through Z=35 at the apex, and returning down to (X=70, Z=0) heading in the -Z direction. The two pipe legs are parallel, 70mm apart in the X direction. The part is centered at Y=0. Created by sweeping the pipe cross-section along the arc path defined by a radiusArc from (0,0) to (70,0) with radius 35 on the XZ workplane.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "180-degree U-bend (return bend) pipe fitting swept in the XZ plane, with two parallel vertical legs 70mm apart and a semicircular crown of 35mm centerline radius.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 40,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 12435.701545372594,
+        "center_of_mass": [
+          35.0,
+          -2.4125096250508444e-15,
+          23.027446623353075
+        ],
+        "bounding_box": {
+          "xmin": -10.0000001,
+          "xmax": 80.0000001,
+          "xlen": 90.00000019999999,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": -1.0000000022482976e-7,
+          "zmax": 45.0000001,
+          "zlen": 45.0000002
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.08285681984070185
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. The U-bend pipe fitting is correctly constructed: (1) The bounding box X-span is 90mm (70mm leg separation + 2×10mm outer radius = 90mm, correct). (2) The Y-span is 20mm matching the 20mm outer diameter. (3) The Z-span is 45mm (35mm bend radius + 10mm outer radius = 45mm, correct). (4) The part is centered at Y=0 (ymin=-10, ymax=+10). (5) The center of mass at X=35 confirms symmetry about the midpoint between the two legs. (6) The volume of ~12,436 mm³ is plausible for a hollow semicircular pipe (theoretical: π × 35 × π × (10²-8²) ≈ 12,425 mm³, matching within 0.08%). (7) The rendered images show a proper U-bend shape with semicircular arc in the XZ plane, two parallel legs, and hollow pipe ends visible. (8) 4 faces (outer surface, inner surface, two annular end faces) and 6 edges are consistent with a hollow swept semicircular tube. The part is valid, watertight, and has no self-intersections.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_014-27e3d9/step/T3_014_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_014-27e3d9/stl/T3_014_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 35321.84716796875,
+  "final_step_artifact_uri": "artifact://eval-T3_014-27e3d9/step/T3_014_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_014-27e3d9/stl/T3_014_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_014-27e3d9/forgecad/180_degree_u_bend_(return_bend)_pipe_fit_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 12435.701545372594,
+    "center_of_mass": [
+      35.0,
+      -2.4125096250508444e-15,
+      23.027446623353075
+    ],
+    "bounding_box": {
+      "xmin": -10.0000001,
+      "xmax": 80.0000001,
+      "xlen": 90.00000019999999,
+      "ymin": -10.0000001,
+      "ymax": 10.0000001,
+      "ylen": 20.0000002,
+      "zmin": -1.0000000022482976e-7,
+      "zmax": 45.0000001,
+      "zlen": 45.0000002
+    },
+    "is_valid": true,
+    "num_faces": 4,
+    "num_edges": 6,
+    "num_vertices": 4,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.08285681984070185
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. The U-bend pipe fitting is correctly constructed: (1) The bounding box X-span is 90mm (70mm leg separation + 2×10mm outer radius = 90mm, correct). (2) The Y-span is 20mm matching the 20mm outer diameter. (3) The Z-span is 45mm (35mm bend radius + 10mm outer radius = 45mm, correct). (4) The part is centered at Y=0 (ymin=-10, ymax=+10). (5) The center of mass at X=35 confirms symmetry about the midpoint between the two legs. (6) The volume of ~12,436 mm³ is plausible for a hollow semicircular pipe (theoretical: π × 35 × π × (10²-8²) ≈ 12,425 mm³, matching within 0.08%). (7) The rendered images show a proper U-bend shape with semicircular arc in the XZ plane, two parallel legs, and hollow pipe ends visible. (8) 4 faces (outer surface, inner surface, two annular end faces) and 6 edges are consistent with a hollow swept semicircular tube. The part is valid, watertight, and has no self-intersections.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

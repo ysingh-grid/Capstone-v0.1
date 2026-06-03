@@ -1,0 +1,66 @@
+{
+  "description": "A compound gear set standing upright along the Z-axis, consisting of a central hub with an inner bore and two distinct spur gears (large and small) with star-polygon profiles at different heights.",
+  "components": [
+    "central_cylindrical_hub",
+    "central_bore_hole",
+    "large_spur_gear_24_teeth",
+    "small_spur_gear_14_teeth"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 54.0,
+      "ylen": 54.0,
+      "zlen": 40.0
+    },
+    "key_dimensions": {
+      "hub_diameter": 16.0,
+      "hub_length": 40.0,
+      "bore_diameter": 8.0,
+      "large_gear_tip_diameter": 54.0,
+      "large_gear_root_diameter": 44.0,
+      "large_gear_thickness": 10.0,
+      "large_gear_z_start": 3.0,
+      "large_gear_z_end": 13.0,
+      "large_gear_teeth": 24.0,
+      "small_gear_tip_diameter": 32.0,
+      "small_gear_root_diameter": 26.0,
+      "small_gear_thickness": 10.0,
+      "small_gear_z_start": 20.0,
+      "small_gear_z_end": 30.0,
+      "small_gear_teeth": 14.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 8.0 mm",
+      "dimensions": {
+        "diameter": 8.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the gears using star polygons (alternating outer/inner radii) extruded along Z. Ensure the central hub and both gears are unioned together before subtracting the central Z-axis bore of 8mm diameter.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

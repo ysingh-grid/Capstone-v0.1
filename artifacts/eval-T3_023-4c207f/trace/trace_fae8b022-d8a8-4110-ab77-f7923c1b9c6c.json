@@ -1,0 +1,172 @@
+{
+  "trace_id": "fae8b022-d8a8-4110-ab77-f7923c1b9c6c",
+  "workflow_id": "eval-T3_023-4c207f",
+  "design_name": "A rectangular mounting plate centered at the origin on the XY plane, featuring a 3x2 array of six cylindrical standoff posts with M3 clearance holes passing through the entire height of the plate and posts.",
+  "created_at": "2026-06-02T11:45:07.214873+00:00",
+  "prompt": "A rectangular mounting plate with six standoff posts, lying on the XY plane (Z=0 to Z=15), centered at the origin. The base plate is 80mm long (X), 50mm wide (Y), and 3mm thick (Z=0 to Z=3). On the top face of the plate, a 3x2 rectangular array of cylindrical standoff posts is arranged with 30mm spacing in X and 30mm spacing in Y, centered on the plate. Each post is 8mm in diameter and 12mm tall (Z=3 to Z=15). A 3.2mm diameter pilot hole (M3 clearance) is drilled through the center of each post and through the plate below it, passing through the full 15mm height.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A rectangular mounting plate centered at the origin on the XY plane, featuring a 3x2 array of six cylindrical standoff posts with M3 clearance holes passing through the entire height of the plate and posts.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 38,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 15594.987305355875,
+        "center_of_mass": [
+          -1.953709349858161e-15,
+          5.831968208531823e-16,
+          3.2405182829288854
+        ],
+        "bounding_box": {
+          "xmin": -40.0,
+          "xmax": 40.0,
+          "xlen": 80.0,
+          "ymin": -25.0,
+          "ymax": 25.0,
+          "ylen": 50.0,
+          "zmin": 0.0,
+          "zmax": 15.0,
+          "zlen": 15.0
+        },
+        "is_valid": true,
+        "num_faces": 19,
+        "num_edges": 33,
+        "num_vertices": 22,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.00955311565693153
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The base plate and standoff posts are correctly dimensioned and positioned. However, the pilot holes are missing from the posts. The rendered images and volume metrics reveal only a single hole drilled through the flat center of the plate, leaving all 6 posts completely solid. This occurred because `result.faces(\">Z\").workplane().hole(hole_diameter)` creates a single workplane positioned at the center of the bounding box of all selected top faces, resulting in one central hole. To fix this, you must generate the grid points again on the top workplane before drilling. For example, call `.rarray(grid_spacing_x, grid_spacing_y, grid_count_x, grid_count_y)` on the Z=15 workplane prior to calling `.hole(hole_diameter)`.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_023-4c207f/step/T3_023_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_023-4c207f/stl/T3_023_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 43,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 14895.291789548355,
+        "center_of_mass": [
+          -2.747664306146683e-16,
+          -2.137072238114087e-16,
+          3.0307134069499577
+        ],
+        "bounding_box": {
+          "xmin": -40.0,
+          "xmax": 40.0,
+          "xlen": 80.0,
+          "ymin": -25.0,
+          "ymax": 25.0,
+          "ylen": 50.0,
+          "zmin": 0.0,
+          "zmax": 15.0,
+          "zlen": 15.0
+        },
+        "is_valid": true,
+        "num_faces": 24,
+        "num_edges": 48,
+        "num_vertices": 32,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.008054833450102576
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_023-4c207f/step/T3_023_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_023-4c207f/stl/T3_023_outer1_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 2,
+  "total_llm_calls": 6,
+  "total_time_ms": 64395.798095703125,
+  "final_step_artifact_uri": "artifact://eval-T3_023-4c207f/step/T3_023_outer1_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_023-4c207f/stl/T3_023_outer1_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_023-4c207f/forgecad/a_rectangular_mounting_plate_centered_at_iter1.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 14895.291789548355,
+    "center_of_mass": [
+      -2.747664306146683e-16,
+      -2.137072238114087e-16,
+      3.0307134069499577
+    ],
+    "bounding_box": {
+      "xmin": -40.0,
+      "xmax": 40.0,
+      "xlen": 80.0,
+      "ymin": -25.0,
+      "ymax": 25.0,
+      "ylen": 50.0,
+      "zmin": 0.0,
+      "zmax": 15.0,
+      "zlen": 15.0
+    },
+    "is_valid": true,
+    "num_faces": 24,
+    "num_edges": 48,
+    "num_vertices": 32,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.008054833450102576
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

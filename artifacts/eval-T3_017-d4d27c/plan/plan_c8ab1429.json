@@ -1,0 +1,54 @@
+{
+  "description": "A hollow four-way pipe cross fitting made of two perpendicular intersecting pipes centered at the origin.",
+  "components": [
+    "X-axis pipe (length 100mm, OD 30mm, ID 24mm)",
+    "Z-axis pipe (length 100mm, OD 30mm, ID 24mm)",
+    "Hollow internal intersection"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 30.0,
+      "zlen": 100.0
+    },
+    "key_dimensions": {
+      "pipe_outer_diameter": 30.0,
+      "pipe_inner_diameter": 24.0,
+      "pipe_wall_thickness": 3.0,
+      "pipe_length": 100.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 24.0 mm",
+      "dimensions": {
+        "diameter": 24.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure that the internal bores are fully subtracted to create a continuous '+' shaped internal passage. Construct the outer shape by unioning the two outer cylinders first, then unioning the two inner cylinders, and finally subtracting the combined inner cylinders from the combined outer cylinders.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

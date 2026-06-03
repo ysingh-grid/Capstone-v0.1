@@ -1,0 +1,63 @@
+{
+  "description": "Flanged shaft coupling aligned with the Z-axis, featuring a bottom flange, central hub, top flange, center bore with a keyway, and six through-bolt holes on the flanges.",
+  "components": [
+    "Bottom flange disc (Z=0 to Z=10, diameter 50mm)",
+    "Central hub cylinder (Z=10 to Z=50, diameter 28mm)",
+    "Top flange disc (Z=50 to Z=60, diameter 50mm)",
+    "Center bore (diameter 14mm, full length Z=0 to Z=60)",
+    "Rectangular keyway (width 5mm, depth 2.5mm on +X side, full length Z=0 to Z=60)",
+    "6x Bolt holes (diameter 6.5mm, on a 38mm PCD, full length Z=0 to Z=60)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 50.0,
+      "ylen": 50.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "flange_diameter": 50.0,
+      "flange_thickness": 10.0,
+      "hub_diameter": 28.0,
+      "hub_length": 40.0,
+      "total_length": 60.0,
+      "bore_diameter": 14.0,
+      "keyway_width": 5.0,
+      "keyway_depth": 2.5,
+      "bolt_hole_diameter": 6.5,
+      "bolt_pitch_circle_diameter": 38.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "7 hole(s) of diameter 6.5 mm",
+      "dimensions": {
+        "diameter": 6.5
+      },
+      "position": null,
+      "count": 7,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 7,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The prompt specifies the keyway is centered at X = (bore radius - half keyway depth) = 5.75mm. Note that a standard keyway cuts *into* the hub wall, which would require the center of the keyway box to be at X = (bore radius + half keyway depth) = 8.25mm (to cut from X=7.0 to X=9.5). Please implement the keyway such that it cuts 2.5mm deep into the bore wall on the +X side (extending to X=9.5mm). The bolt holes only cut the flanges as the hub radius (14mm) is smaller than the bolt circle inner boundary (19 - 3.25 = 15.75mm).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

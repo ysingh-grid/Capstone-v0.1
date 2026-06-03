@@ -1,0 +1,61 @@
+{
+  "description": "Centrifugal compressor impeller featuring a conical hub, a central shaft bore, and 7 uniformly spaced, twisted, aerodynamically curved blades.",
+  "components": [
+    "Conical Hub",
+    "Central Bore Hole",
+    "7 Twisted Blades"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 130.0,
+      "ylen": 130.0,
+      "zlen": 60.0
+    },
+    "key_dimensions": {
+      "hub_base_diameter": 100.0,
+      "hub_top_diameter": 30.0,
+      "hub_height": 60.0,
+      "bore_diameter": 15.0,
+      "blade_count": 7.0,
+      "blade_thickness": 2.0,
+      "blade_base_protrusion": 15.0,
+      "blade_top_protrusion": 5.0,
+      "blade_twist_degrees": 60.0,
+      "blade_base_sagitta": 1.5,
+      "blade_top_sagitta": 0.75
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 15.0 mm",
+      "dimensions": {
+        "diameter": 15.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "To model the twisted blades in CadQuery, define a single blade profile at the base and another at the top (accounting for the 60-degree rotation/twist and the reduction in protrusion height), then perform a loft or sweep operation to generate one blade. Utilize polar rotation/union to distribute all 7 blades around the central conical hub, then cut the central bore last.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

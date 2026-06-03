@@ -1,0 +1,49 @@
+{
+  "description": "Quadcopter drone chassis in an H-frame configuration, lying flat on the XY plane with 3mm thickness, featuring two side rails, a center plate, four circular motor mounts, and eight drilled holes.",
+  "components": [
+    "Left side rail",
+    "Right side rail",
+    "Center plate",
+    "Four circular motor mounts",
+    "Four motor shaft holes (5mm diameter)",
+    "Four M3 mounting holes (3.2mm diameter)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 182.0,
+      "ylen": 82.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "rail_length": 160.0,
+      "rail_width": 12.0,
+      "rail_thickness": 3.0,
+      "rail_y_offset": 30.0,
+      "center_plate_length": 50.0,
+      "center_plate_width": 72.0,
+      "motor_mount_diameter": 22.0,
+      "motor_shaft_hole_diameter": 5.0,
+      "mounting_hole_diameter": 3.2
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the coordinate origin (0,0,0) is at the exact center of the frame on the bottom face (Z=0). The bounding box extends from X = -91 to +91 and Y = -41 to +41 due to the 22mm diameter motor mounts centered at (+/-80, +/-30). Use boolean operations to cleanly merge the rails, center plate, and mounts before subtracting the 8 through-holes.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

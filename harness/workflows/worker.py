@@ -26,11 +26,19 @@ import logging
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
+_LOG_FILE = Path(__file__).resolve().parents[2] / "worker.log"
+_LOG_FMT  = "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+_LOG_DATE = "%H:%M:%S"
+
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-    datefmt="%H:%M:%S",
+    format=_LOG_FMT,
+    datefmt=_LOG_DATE,
 )
+_file_handler = logging.FileHandler(_LOG_FILE, encoding="utf-8")
+_file_handler.setFormatter(logging.Formatter(_LOG_FMT, datefmt=_LOG_DATE))
+logging.getLogger().addHandler(_file_handler)
+
 logger = logging.getLogger(__name__)
 
 import temporalio.worker as tw

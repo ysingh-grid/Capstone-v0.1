@@ -1,0 +1,72 @@
+{
+  "description": "Quadcopter drone chassis in H-frame configuration, lying flat on XY plane. Comprises two parallel longitudinal side rails, a central bridging plate, four circular motor mount platforms at rail ends, with motor shaft holes and M3 mounting holes drilled through.",
+  "components": [
+    "Left side rail (Y=-30mm)",
+    "Right side rail (Y=+30mm)",
+    "Center plate (bridging rails at origin)",
+    "Motor mount - front-right (+80, +30)",
+    "Motor mount - front-left (+80, -30)",
+    "Motor mount - rear-right (-80, +30)",
+    "Motor mount - rear-left (-80, -30)",
+    "Motor shaft hole x4 (5mm dia, through motor mounts)",
+    "M3 mounting hole x4 (3.2mm dia, through center plate)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 160.0,
+      "ylen": 72.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "rail_length_x": 160.0,
+      "rail_width_y": 12.0,
+      "rail_thickness_z": 3.0,
+      "rail_left_center_y": -30.0,
+      "rail_right_center_y": 30.0,
+      "center_plate_length_x": 50.0,
+      "center_plate_width_y": 72.0,
+      "center_plate_thickness_z": 3.0,
+      "motor_mount_diameter": 22.0,
+      "motor_mount_thickness_z": 3.0,
+      "motor_mount_positions_x": 80.0,
+      "motor_mount_positions_y": 30.0,
+      "motor_shaft_hole_diameter": 5.0,
+      "m3_hole_diameter": 3.2,
+      "m3_hole_offset_x": 10.0,
+      "m3_hole_offset_y": 10.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "8 hole(s) of diameter 5.0mm (motor shaft x4), 3.2mm (M3 x4) mm",
+      "dimensions": {
+        "diameter": 5.0
+      },
+      "position": null,
+      "count": 8,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. All geometry is flat: Z ranges from 0 to 3mm throughout \u2014 rails, center plate, and motor mounts are all the same thickness. 2. The center plate (50x72mm) overlaps and merges with both rails in the central region; use boolean union to avoid double-counting volume. 3. Motor mounts are circular discs (cylinder, r=11mm, h=3mm) centered at (\u00b180, \u00b130, 1.5mm); they overlap with the rail ends and should be unioned. 4. Motor shaft holes (5mm dia) are centered at (\u00b180, \u00b130) and drilled fully through Z (0 to 3mm). 5. M3 holes (3.2mm dia) are centered at (\u00b110, \u00b110) and drilled fully through Z (0 to 3mm) in the center plate. 6. Volume estimate accounts for boolean union of overlapping rail/plate/mount regions minus all 8 drilled holes. Approximate breakdown: left rail ~5760mm\u00b3, right rail ~5760mm\u00b3, center plate unique area ~(50*72 - overlap)*3 \u2248 2592mm\u00b3, motor mounts unique area ~4*(pi*11\u00b2*3 - overlap) \u2248 2280mm\u00b3, minus holes ~8*(pi*(hole_r\u00b2)*3). Final net estimate ~11214mm\u00b3. 7. Build using CadQuery: create each solid as a box or cylinder, union all, then subtract hole cylinders.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

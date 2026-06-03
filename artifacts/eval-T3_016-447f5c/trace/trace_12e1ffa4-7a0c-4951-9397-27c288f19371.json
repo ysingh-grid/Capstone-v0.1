@@ -1,0 +1,223 @@
+{
+  "trace_id": "12e1ffa4-7a0c-4951-9397-27c288f19371",
+  "workflow_id": "eval-T3_016-447f5c",
+  "design_name": "A 45-degree pipe elbow in the XZ plane with a 20mm outer diameter, 16mm inner diameter, and a 40mm bend radius.",
+  "created_at": "2026-06-02T11:32:57.029597+00:00",
+  "prompt": "A 45-degree pipe elbow with the bend in the XZ plane. The pipe has a 20mm outer diameter and 16mm inner diameter (2mm wall thickness). The bend centerline follows a 45-degree arc of 40mm radius on the XZ plane: starting at the origin heading in the +Z direction and curving 45 degrees toward the +X direction. The arc endpoint is at approximately (X=11.72, Z=28.28). The part is centered at Y=0. Created by sweeping the pipe cross-section along the arc path defined by a radiusArc on the XZ workplane with a 40mm bend radius.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "A 45-degree pipe elbow in the XZ plane with a 20mm outer diameter, 16mm inner diameter, and a 40mm bend radius.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 33,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 2512.391111869997,
+        "center_of_mass": [
+          9.03345193217589,
+          4.2667849456924e-16,
+          13.907920019108163
+        ],
+        "bounding_box": {
+          "xmin": -10.0000001,
+          "xmax": 19.314945494718657,
+          "xlen": 29.314945594718658,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": -1.0000000010146536e-7,
+          "zmax": 35.355339159327386,
+          "zlen": 35.35533925932739
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.3564238350596261
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The generated pipe elbow is sheared and distorted. In the rendered images, the top end of the pipe is not cut perpendicular to the pipe's centerline, but is instead sheared at an angle. This happens because the `sweep()` function defaults to keeping the profile parallel to its original plane. To fix this, you must pass `isFrenet=True` to the sweep operation (i.e., `sweep(path, isFrenet=True)`) for both the outer pipe and inner void. This ensures the circular cross-section rotates to remain perpendicular to the curved path along the entire bend. The missing parameter also caused the volume to be ~2512 mm³, which is significantly lower than the expected ~3553 mm³ for a pipe of this length and cross-section.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_016-447f5c/step/T3_016_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_016-447f5c/stl/T3_016_outer0_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 1,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 33,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 2512.391111869997,
+        "center_of_mass": [
+          9.03345193217589,
+          4.2667849456924e-16,
+          13.907920019108163
+        ],
+        "bounding_box": {
+          "xmin": -10.0000001,
+          "xmax": 19.314945494718657,
+          "xlen": 29.314945594718658,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": -1.0000000010146536e-7,
+          "zmax": 35.355339159327386,
+          "zlen": 35.35533925932739
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.3564238350596261
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": false,
+        "feedback": "The generated pipe elbow is still heavily sheared and distorted at the ends, as seen in the renders, and the volume (2512 mm³) is far below the expected ~3553 mm³. The `isFrenet=True` parameter failed to fix the sweep operation, which is a known quirk when sweeping arcs in CadQuery. Since prior sweep attempts have failed, you must use a fundamentally different approach: override the prompt's suggested method and abandon `sweep` completely in favor of `revolve`. Create the pipe cross-section on the XY plane using both the outer and inner circles, and then revolve it 45 degrees around an axis parallel to the Y-axis located at the bend center. Example: `cq.Workplane('XY').circle(outer_radius).circle(inner_radius).revolve(bend_angle, (bend_radius, 0, 0), (bend_radius, 1, 0))`.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_016-447f5c/step/T3_016_outer1_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_016-447f5c/stl/T3_016_outer1_attempt0.stl",
+      "passed": false
+    },
+    {
+      "iteration_number": 2,
+      "iteration_type": "outer_geometric_refinement",
+      "cadquery_code_lines": 20,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 3553.057584392176,
+        "center_of_mass": [
+          3.064523129654642,
+          3.2377891962486617e-15,
+          15.2991754524148
+        ],
+        "bounding_box": {
+          "xmin": -10.0,
+          "xmax": 18.786796564403573,
+          "xlen": 28.786796564403573,
+          "ymin": -10.0000001,
+          "ymax": 10.0000001,
+          "ylen": 20.0000002,
+          "zmin": 0.0,
+          "zmax": 35.35533905932737,
+          "zlen": 35.35533905932737
+        },
+        "is_valid": true,
+        "num_faces": 4,
+        "num_edges": 6,
+        "num_vertices": 4,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.08157531921127291
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. The transition to the revolve method successfully eliminated the shearing distortion at the pipe ends. The bounding box dimensions, endpoint coordinates, and exact volume (3553 mm³) perfectly match the mathematical expectations for a 45-degree elbow with a 40mm bend radius. Excellent job.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_016-447f5c/step/T3_016_outer2_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_016-447f5c/stl/T3_016_outer2_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 3,
+  "total_llm_calls": 9,
+  "total_time_ms": 148770.35205078125,
+  "final_step_artifact_uri": "artifact://eval-T3_016-447f5c/step/T3_016_outer2_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_016-447f5c/stl/T3_016_outer2_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_016-447f5c/forgecad/a_45_degree_pipe_elbow_in_the_xz_plane_w_iter2.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 3553.057584392176,
+    "center_of_mass": [
+      3.064523129654642,
+      3.2377891962486617e-15,
+      15.2991754524148
+    ],
+    "bounding_box": {
+      "xmin": -10.0,
+      "xmax": 18.786796564403573,
+      "xlen": 28.786796564403573,
+      "ymin": -10.0000001,
+      "ymax": 10.0000001,
+      "ylen": 20.0000002,
+      "zmin": 0.0,
+      "zmax": 35.35533905932737,
+      "zlen": 35.35533905932737
+    },
+    "is_valid": true,
+    "num_faces": 4,
+    "num_edges": 6,
+    "num_vertices": 4,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.08157531921127291
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. The transition to the revolve method successfully eliminated the shearing distortion at the pipe ends. The bounding box dimensions, endpoint coordinates, and exact volume (3553 mm³) perfectly match the mathematical expectations for a 45-degree elbow with a 40mm bend radius. Excellent job.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": false,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

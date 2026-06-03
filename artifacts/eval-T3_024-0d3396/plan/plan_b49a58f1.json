@@ -1,0 +1,74 @@
+{
+  "description": "Flywheel with six lightening holes and a raised hub boss, centered at the origin on the XY plane. Main disc topped by a hub boss, with a central bore and equally-spaced lightening holes through the disc.",
+  "components": [
+    "Main disc (cylinder)",
+    "Raised hub boss (cylinder)",
+    "Central bore (subtract cylinder)",
+    "Six lightening holes (subtract cylinders, equally spaced on pitch circle)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 120.0,
+      "ylen": 120.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "main_disc_diameter": 120.0,
+      "main_disc_radius": 60.0,
+      "main_disc_thickness": 20.0,
+      "main_disc_z_bottom": 0.0,
+      "main_disc_z_top": 20.0,
+      "hub_boss_diameter": 40.0,
+      "hub_boss_radius": 20.0,
+      "hub_boss_height": 10.0,
+      "hub_boss_z_bottom": 20.0,
+      "hub_boss_z_top": 30.0,
+      "center_bore_diameter": 16.0,
+      "center_bore_radius": 8.0,
+      "center_bore_z_bottom": 0.0,
+      "center_bore_z_top": 30.0,
+      "lightening_hole_diameter": 22.0,
+      "lightening_hole_radius": 11.0,
+      "lightening_hole_pitch_circle_diameter": 70.0,
+      "lightening_hole_pitch_circle_radius": 35.0,
+      "lightening_hole_count": 6.0,
+      "lightening_hole_angular_spacing_deg": 60.0,
+      "lightening_hole_z_bottom": 0.0,
+      "lightening_hole_z_top": 20.0,
+      "lightening_hole_angles_deg": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "7 hole(s) of diameter 16mm center bore; 22mm x6 lightening holes mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 7,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 7,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Volume estimate breakdown: Main disc = \u03c0*(60^2)*20 \u2248 226,195 mm\u00b3; Hub boss = \u03c0*(20^2)*10 \u2248 12,566 mm\u00b3; Subtract center bore = \u03c0*(8^2)*30 \u2248 6,032 mm\u00b3; Subtract 6 lightening holes = 6*\u03c0*(11^2)*20 \u2248 45,617 mm\u00b3; Net \u2248 226,195 + 12,566 - 6,032 - 45,617 \u2248 187,112 mm\u00b3. Coder should use CadQuery or similar: (1) create main disc cylinder radius=60, height=20, centered at origin bottom at Z=0; (2) create hub boss cylinder radius=20, height=10, bottom at Z=20; (3) union disc and hub boss; (4) subtract center bore cylinder radius=8, height=30, Z=0 to Z=30; (5) subtract 6 lightening hole cylinders radius=11, height=20, Z=0 to Z=20, centers at (35*cos(theta), 35*sin(theta), 0) for theta in [0,60,120,180,240,300] degrees. All cylinders should be constructed with their axis along Z. Ensure the lightening holes do not intersect the hub boss (clearance check: hole edge at 35-11=24mm from center, hub boss radius=20mm \u2014 4mm clearance, OK). Ensure lightening holes do not break through the disc outer edge (hole edge at 35+11=46mm < disc radius 60mm \u2014 OK).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

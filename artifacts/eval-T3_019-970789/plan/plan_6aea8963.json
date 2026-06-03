@@ -1,0 +1,47 @@
+{
+  "description": "Quadcopter drone chassis in an X configuration with a central hub, four diagonal arms, motor mounts, and mounting/shaft holes.",
+  "components": [
+    "Central hub disc",
+    "Four diagonal arms (45, 135, 225, 315 degrees)",
+    "Four circular motor mount platforms",
+    "Four motor shaft holes",
+    "Four M3 hub mounting holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 116.0,
+      "ylen": 116.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "hub_diameter": 36.0,
+      "arm_length": 55.0,
+      "arm_width": 10.0,
+      "motor_mount_diameter": 18.0,
+      "motor_shaft_hole_diameter": 5.0,
+      "hub_mounting_hole_diameter": 3.2,
+      "mounting_hole_pitch": 20.0,
+      "thickness": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Create the central hub at the origin. Rotate workplanes by 45, 135, 225, and 315 degrees to construct the arms and motor mounts precisely. The arms should start from radial distance 18mm and end at 73mm. Construct the motor mounts (diameter 18mm) centered at radial distance 73mm. Cut the 5mm shaft holes centered on the mounts. Cut the four 3.2mm mounting holes in a 20x20mm square pattern centered at the origin (at X=\u00b110, Y=\u00b110).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

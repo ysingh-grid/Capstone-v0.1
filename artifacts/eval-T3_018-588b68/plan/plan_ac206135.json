@@ -1,0 +1,47 @@
+{
+  "description": "Quadcopter drone chassis in a plus (+) configuration, 3mm thick, featuring a central square hub, four extending arms, circular motor mounts with shaft holes, and flight controller mounting holes.",
+  "components": [
+    "Central square hub",
+    "Four rectangular arms",
+    "Four circular motor mount platforms",
+    "Four central motor shaft holes",
+    "Four flight controller mounting holes"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 138.0,
+      "ylen": 138.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "hub_size": 30.0,
+      "arm_length": 45.0,
+      "arm_width": 10.0,
+      "motor_mount_diameter": 18.0,
+      "motor_shaft_hole_diameter": 5.0,
+      "fc_hole_pattern_size": 20.0,
+      "fc_hole_diameter": 3.2,
+      "thickness": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure that the four arms are modeled precisely along the X and Y axes, merging seamlessly with the central hub and the motor mount circles at their tips. The flight controller holes must be placed at (+-10, +-10) in the XY plane, and all holes must be aligned and cut entirely through the 3mm thickness (Z=0 to Z=3).",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

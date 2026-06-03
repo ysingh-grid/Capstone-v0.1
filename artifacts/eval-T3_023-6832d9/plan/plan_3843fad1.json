@@ -1,0 +1,65 @@
+{
+  "description": "Rectangular mounting plate with six cylindrical standoff posts arranged in a 3x2 grid, each with a central M3 clearance pilot hole passing through the full height.",
+  "components": [
+    "Base plate (rectangular, 80x50x3mm)",
+    "Standoff posts (6x cylindrical, 8mm dia, 12mm tall)",
+    "Pilot holes (6x through-holes, 3.2mm dia, 15mm deep)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 80.0,
+      "ylen": 50.0,
+      "zlen": 15.0
+    },
+    "key_dimensions": {
+      "plate_length_x": 80.0,
+      "plate_width_y": 50.0,
+      "plate_thickness_z": 3.0,
+      "post_diameter": 8.0,
+      "post_height": 12.0,
+      "post_z_start": 3.0,
+      "post_z_end": 15.0,
+      "pilot_hole_diameter": 3.2,
+      "pilot_hole_depth": 15.0,
+      "array_columns": 3.0,
+      "array_rows": 2.0,
+      "array_spacing_x": 30.0,
+      "array_spacing_y": 30.0,
+      "array_origin_x": 0.0,
+      "array_origin_y": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "6 hole(s) of diameter 3.2 mm",
+      "dimensions": {
+        "diameter": 3.2
+      },
+      "position": null,
+      "count": 6,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 6,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Post array layout: 3 columns in X at x = -30, 0, +30; 2 rows in Y at y = -15, +15 (spacing 30mm in X, 30mm in Y, centered at origin). Each post is a solid cylinder of radius 4mm from Z=3 to Z=15, unioned with the base plate. Each pilot hole is a cylinder of radius 1.6mm subtracted from Z=0 to Z=15 (full height through plate and post). Ensure Boolean union of all posts with plate before subtracting holes to avoid geometry artifacts. Volume estimate breakdown: base plate = 80*50*3 = 12000 mm3; six posts (solid, before holes) = 6 * pi*(4^2)*12 \u2248 3619 mm3; six pilot holes = 6 * pi*(1.6^2)*15 \u2248 724 mm3; estimated net volume \u2248 12000 + 3619 - 724 \u2248 14895 mm3. NOTE: Re-estimating volume_estimate to 14895 to be accurate.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

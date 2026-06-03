@@ -1,0 +1,67 @@
+{
+  "description": "Industrial Power Transmission Shaft Assembly consisting of a 1500 mm long stepped AISI 1045 steel shaft and a press-fit mixer hub on the right-hand overhung end.",
+  "components": [
+    "Stepped Shaft",
+    "Mixer Hub"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 1500.0,
+      "ylen": 120.0,
+      "zlen": 120.0
+    },
+    "key_dimensions": {
+      "total_shaft_length": 1500.0,
+      "drive_section_diameter": 50.0,
+      "drive_section_length": 100.0,
+      "keyway_width": 14.0,
+      "keyway_depth": 5.5,
+      "keyway_length": 80.0,
+      "bearing_journal_1_diameter": 55.0,
+      "bearing_journal_1_length": 80.0,
+      "main_span_diameter": 65.0,
+      "main_span_length": 940.0,
+      "bearing_journal_2_diameter": 55.0,
+      "bearing_journal_2_length": 80.0,
+      "overhung_section_diameter": 50.0,
+      "overhung_section_length": 300.0,
+      "transition_fillet_radius": 3.0,
+      "mixer_hub_outer_diameter": 120.0,
+      "mixer_hub_thickness": 40.0,
+      "mixer_hub_bore_diameter": 50.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 50.0 mm",
+      "dimensions": {
+        "diameter": 50.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Model the assembly along the X-axis. Align the shaft center at Y=0, Z=0. Position the Mixer Hub at the absolute right-hand end of the overhung section (from X=1460 to X=1500). Apply 3mm fillets at all shaft diameter transitions. Note: Prioritize the explicit segment lengths (100, 80, 940, 80, 300 mm) for modeling the shaft; the resulting physical distance between bearing journal centers will be 1020 mm.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

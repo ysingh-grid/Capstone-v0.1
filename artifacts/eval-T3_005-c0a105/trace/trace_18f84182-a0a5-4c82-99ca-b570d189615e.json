@@ -1,0 +1,121 @@
+{
+  "trace_id": "18f84182-a0a5-4c82-99ca-b570d189615e",
+  "workflow_id": "eval-T3_005-c0a105",
+  "design_name": "Flanged pipe section standing upright along Z axis, centered at origin in XY, with bottom and top flanges, central bore, and four bolt holes per flange",
+  "created_at": "2026-06-02T09:11:56.874108+00:00",
+  "prompt": "A flanged pipe section standing upright along the Z axis, centered at the origin in XY. The overall height is 50mm (Z=0 to Z=50). Build the solid body by stacking three concentric cylinders: a bottom flange disc (50mm outer diameter, Z=0 to Z=5), a pipe wall cylinder (30mm outer diameter, Z=0 to Z=50), and a top flange disc (50mm outer diameter, Z=45 to Z=50), then union them. Cut a 20mm diameter bore through the full length along Z. Finally, drill four 6mm diameter bolt holes through both flanges on a 40mm bolt circle at 0, 90, 180, and 270 degrees, using pushPoints.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Flanged pipe section standing upright along Z axis, centered at origin in XY, with bottom and top flanges, central bore, and four bolt holes per flange",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 89,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 31070.351344003062,
+        "center_of_mass": [
+          -4.601666962393178e-15,
+          1.0830680217619566e-15,
+          24.999999999999993
+        ],
+        "bounding_box": {
+          "xmin": -25.0,
+          "xmax": 25.0,
+          "xlen": 50.0,
+          "ymin": -25.0,
+          "ymax": 25.0,
+          "ylen": 50.0,
+          "zmin": 0.0,
+          "zmax": 50.0,
+          "zlen": 50.0
+        },
+        "is_valid": true,
+        "num_faces": 16,
+        "num_edges": 36,
+        "num_vertices": 24,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.041439011155146435
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. The flanged pipe section is correctly constructed: bounding box is 50×50×50mm (flanges at 50mm OD, height 50mm along Z), centered at origin in XY. The three stacked cylinders (bottom flange Z=0–5, pipe wall Z=0–50, top flange Z=45–50) are clearly visible in all three views. The 20mm central bore is visible in the center high-angle view. Four 6mm bolt holes on a 40mm bolt circle at 0°, 90°, 180°, 270° are visible in both flanges (confirmed in all views — 4 holes per flange, 8 total). The volume of ~31,070 mm³ is physically plausible. The model is valid, watertight, and has no self-intersections. The code uses pushPoints as requested.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_005-c0a105/step/T3_005_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_005-c0a105/stl/T3_005_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 38665.14111328125,
+  "final_step_artifact_uri": "artifact://eval-T3_005-c0a105/step/T3_005_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_005-c0a105/stl/T3_005_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_005-c0a105/forgecad/flanged_pipe_section_standing_upright_al_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 31070.351344003062,
+    "center_of_mass": [
+      -4.601666962393178e-15,
+      1.0830680217619566e-15,
+      24.999999999999993
+    ],
+    "bounding_box": {
+      "xmin": -25.0,
+      "xmax": 25.0,
+      "xlen": 50.0,
+      "ymin": -25.0,
+      "ymax": 25.0,
+      "ylen": 50.0,
+      "zmin": 0.0,
+      "zmax": 50.0,
+      "zlen": 50.0
+    },
+    "is_valid": true,
+    "num_faces": 16,
+    "num_edges": 36,
+    "num_vertices": 24,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.041439011155146435
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. The flanged pipe section is correctly constructed: bounding box is 50×50×50mm (flanges at 50mm OD, height 50mm along Z), centered at origin in XY. The three stacked cylinders (bottom flange Z=0–5, pipe wall Z=0–50, top flange Z=45–50) are clearly visible in all three views. The 20mm central bore is visible in the center high-angle view. Four 6mm bolt holes on a 40mm bolt circle at 0°, 90°, 180°, 270° are visible in both flanges (confirmed in all views — 4 holes per flange, 8 total). The volume of ~31,070 mm³ is physically plausible. The model is valid, watertight, and has no self-intersections. The code uses pushPoints as requested.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}

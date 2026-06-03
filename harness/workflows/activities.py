@@ -276,6 +276,11 @@ async def geometry_activity(inp: GeometryInput) -> GeometryOutput:
     else:
         code = solid_generate(plan, inp.prompt)
 
+    def _on_inner_retry(attempt_num: int, err_msg: str, fixed_code: str):
+        activity.logger.info(f"[geometry] Heartbeating inner retry attempt {attempt_num} to Temporal")
+        # Heartbeat sends these details back to Temporal server so they show on the dashboard
+        activity.heartbeat(f"Inner Retry Attempt {attempt_num}", err_msg[:500])
+
     # ── Inner error-fix loop ─────────────────────────────────────────────
     exec_result, repair_actions = execute_with_retries(
         code=code,
@@ -283,6 +288,7 @@ async def geometry_activity(inp: GeometryInput) -> GeometryOutput:
         name=inp.name,
         output_dir=output_dir,
         max_error_retries=inp.max_error_retries,
+        on_retry=_on_inner_retry,
     )
 
     if not exec_result.success:

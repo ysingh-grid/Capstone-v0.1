@@ -15,9 +15,18 @@ worker.log
 app.log
 *.log
 
-# Persistent chat sessions (Phase 2)
-artifacts/.chat_sessions/
-artifacts/*.cache
+# Ignore all local generated artifacts, CAD files, logs, and sessions
+artifacts/
+eval_results/
+forgecad-workspace/
+graphify-out/
+*.step
+*.stl
+
+# Testing and agent states
+.pytest_cache/
+.agents/
+.claude/
 
 # IDE & OS artifacts
 .DS_Store

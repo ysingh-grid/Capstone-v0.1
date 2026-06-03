@@ -1,0 +1,68 @@
+{
+  "description": "Rectangular electronics enclosure body, open-top, with 2mm shell walls, four filleted vertical edges (R4mm), and four internal screw bosses (8mm OD, 3mm through-hole) at symmetric positions.",
+  "components": [
+    "Outer box (70x50x30mm) with 4mm edge fillets on vertical edges",
+    "Shell operation: open top, 2mm wall thickness",
+    "Four cylindrical screw bosses (8mm diameter, standing from Z=2 to Z=30)",
+    "Four 3mm diameter through-holes through each boss and floor"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 70.0,
+      "ylen": 50.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "wall_thickness": 2.0,
+      "fillet_radius_vertical_edges": 4.0,
+      "boss_outer_diameter": 8.0,
+      "boss_inner_hole_diameter": 3.0,
+      "boss_bottom_z": 2.0,
+      "boss_top_z": 30.0,
+      "boss_height": 28.0,
+      "inner_floor_z": 2.0,
+      "box_base_z": 0.0,
+      "box_center_x": 0.0,
+      "box_center_y": 0.0,
+      "boss_position_x_offset": 27.0,
+      "boss_position_y_offset": 17.0,
+      "boss_pos_1": 27.0,
+      "boss_pos_2": -27.0,
+      "boss_pos_3": 27.0,
+      "boss_pos_4": -27.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "4 hole(s) of diameter 3 mm",
+      "dimensions": {
+        "diameter": 3.0
+      },
+      "position": null,
+      "count": 4,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 4,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction order: (1) Create solid box 70x50x30, centered at origin in XY, base at Z=0. (2) Fillet only the four vertical edges (parallel to Z-axis) with R=4mm \u2014 do NOT fillet top or bottom horizontal edges. (3) Shell the solid open on the top face (+Z face) with 2mm inward thickness \u2014 this creates a 2mm floor at Z=0 to Z=2 and 2mm side walls, inner cavity starts at Z=2. (4) For each boss position (\u00b127, \u00b117): create a solid cylinder of diameter 8mm from Z=2 to Z=30 and union it into the shell body. (5) For each boss: cut a 3mm diameter cylinder from Z=0 (bottom exterior) through to Z=30 (top rim) as a through-hole, passing through both the 2mm floor and the full boss height. Ensure bosses do not intersect the side walls (inner clearance check: inner X extents are \u00b1(35-2)=\u00b133mm, inner Y extents are \u00b1(25-2)=\u00b123mm; boss centers at \u00b127, \u00b117 with radius 4mm gives max extents \u00b131 in X and \u00b121 in Y \u2014 both within inner cavity). The fillet on vertical edges is purely on the exterior corners of the box.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

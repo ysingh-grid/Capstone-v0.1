@@ -1,0 +1,63 @@
+{
+  "description": "45-degree pipe elbow with 20mm OD / 16mm ID, bend in XZ plane, centerline arc from +Z toward +X at 40mm bend radius",
+  "components": [
+    "outer_toroidal_shell",
+    "inner_bore_cutout"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 31.72,
+      "ylen": 20.0,
+      "zlen": 48.28
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "pipe_radius_outer": 10.0,
+      "pipe_radius_inner": 8.0,
+      "bend_radius": 40.0,
+      "bend_angle_deg": 45.0,
+      "arc_start_x": 0.0,
+      "arc_start_z": 0.0,
+      "arc_end_x": 11.716,
+      "arc_end_z": 28.284,
+      "arc_center_x": 40.0,
+      "arc_center_z": 0.0,
+      "y_center": 0.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 16.0 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Use CadQuery sweep or torus-subtraction approach. The bend centerline arc lies in the XZ plane with center at (40, 0, 0). Arc starts tangent to +Z axis at origin and sweeps 45 degrees CCW (toward +X). To model: create an outer solid by sweeping a 20mm OD circle along the arc path, then subtract an inner solid swept with 16mm ID circle along the same path to form the hollow bore. Alternatively, use CadQuery Wire.makeHelix or a spline-based sweep. The sweep path can be defined as an arc: center=(40,0,0), start=(0,0,0), end=(40-40*cos(45),0,40*sin(45))=(11.716,0,28.284), normal=(0,-1,0). The cross-section circle must be oriented perpendicular to the arc tangent at each point. The overall bounding box spans X=[0, 11.716+10]=~[0,21.716] but the arc itself plus pipe radius extends X to ~[\u221210, 21.716] and Z to ~[0, 38.284]; recalculate bbox accounting for the 10mm pipe radius around the centerline arc. Corrected bbox: X from (0 - 10) = -10 to (11.716 + 10*sin(45)) = ~18.8, so xlen ~ 28.8; Z from (0 - 10*sin(45)) ~ -7.07 to (28.284 + 10) = 38.284, so zlen ~ 45.35. Use these corrected extents for IoU checks. Ensure path wire is built in XZ plane with Y=0 throughout.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

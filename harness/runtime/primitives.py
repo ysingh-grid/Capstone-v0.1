@@ -115,12 +115,15 @@ def solid_generate(
 # ---------------------------------------------------------------------------
 
 
+from typing import Callable, Optional
+
 def execute_with_retries(
     code: str,
     plan: PrimitivePlan,
     name: str,
     output_dir: str,
     max_error_retries: int = 3,
+    on_retry: Optional[Callable[[int, str, str], None]] = None,
 ) -> tuple[ExecutionResult, list[RepairAction]]:
     """
     Execute CadQuery code with up to ``max_error_retries`` Error Refiner attempts.
@@ -153,6 +156,8 @@ def execute_with_retries(
 
         if attempt < max_error_retries:
             fixed_code = agents.fix_error(current_code, exec_result.error, design_plan_dict)
+            if on_retry:
+                on_retry(attempt + 1, exec_result.error or "", fixed_code)
             repair_actions.append(RepairAction(
                 loop="inner",
                 attempt_number=attempt + 1,

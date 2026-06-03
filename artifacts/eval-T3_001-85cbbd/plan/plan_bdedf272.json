@@ -1,0 +1,49 @@
+{
+  "description": "Open-top rectangular container with rounded vertical corners (filleted edges), 2mm wall thickness, outer dimensions 60x40x30mm, centered at origin on XY plane",
+  "components": [
+    "Outer rounded-rectangle prism (60x40x30mm with 5mm vertical edge fillets)",
+    "Inner void (shell removal from top, 2mm wall thickness on all sides and bottom)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "outer_x": 60.0,
+      "outer_y": 40.0,
+      "outer_z": 30.0,
+      "wall_thickness": 2.0,
+      "fillet_radius": 5.0,
+      "inner_x": 56.0,
+      "inner_y": 36.0,
+      "inner_z_depth": 28.0,
+      "inner_fillet_radius": 3.0,
+      "base_z": 0.0,
+      "top_z": 30.0,
+      "center_x": 0.0,
+      "center_y": 0.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Construction approach: (1) Create a 2D rounded-rectangle profile (60x40mm with 4x corner arcs of radius 5mm) centered at origin; (2) Extrude it 30mm in +Z to form the outer solid; (3) Create a smaller rounded-rectangle profile (56x36mm with corner arcs of radius 3mm = 5mm - 2mm wall) centered at origin; (4) Extrude it 28mm in +Z starting at Z=2 (floor thickness = 2mm) to form the inner void; (5) Subtract inner void from outer solid to produce the shelled open-top container. Alternatively use CadQuery: outer box with fillet on vertical edges, then shell with open_faces=[top_face] and thickness=2mm. Ensure fillets are applied only to the 4 vertical edges (parallel to Z-axis), not the horizontal edges at top or bottom. The top face must remain fully open. Base sits flush on Z=0 plane. Inner fillet radius must equal outer fillet radius minus wall thickness = 3mm to maintain uniform wall thickness at corners.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

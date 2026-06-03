@@ -1,0 +1,63 @@
+{
+  "description": "Spur gear with extended hub, bore, keyway, and radial set screw hole. Gear body is 10mm thick with 20-tooth star-polygon profile; hub extends 20mm above gear face along Z axis.",
+  "components": [
+    "Gear body (toothed disk, Z=0 to Z=10)",
+    "Cylindrical hub (Z=0 to Z=30, 16mm OD)",
+    "Central bore (10mm diameter, full 30mm length)",
+    "Keyway slot (4mm wide, 2.5mm deep radially, +X side, full 30mm length)",
+    "Radial set screw hole (4mm diameter, along X axis, at Z=20mm)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 48.0,
+      "ylen": 48.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "gear_tip_diameter_mm": 48.0,
+      "gear_tip_radius_mm": 24.0,
+      "gear_root_diameter_mm": 40.0,
+      "gear_root_radius_mm": 20.0,
+      "gear_thickness_mm": 10.0,
+      "gear_z_bottom_mm": 0.0,
+      "gear_z_top_mm": 10.0,
+      "num_teeth": 20.0,
+      "hub_outer_diameter_mm": 16.0,
+      "hub_outer_radius_mm": 8.0,
+      "hub_z_bottom_mm": 0.0,
+      "hub_z_top_mm": 30.0,
+      "hub_protrusion_above_gear_mm": 20.0,
+      "bore_diameter_mm": 10.0,
+      "bore_radius_mm": 5.0,
+      "bore_length_mm": 30.0,
+      "keyway_width_mm": 4.0,
+      "keyway_depth_mm": 2.5,
+      "keyway_inner_radius_mm": 5.0,
+      "keyway_outer_radius_mm": 7.5,
+      "keyway_length_mm": 30.0,
+      "set_screw_hole_diameter_mm": 4.0,
+      "set_screw_hole_z_position_mm": 20.0,
+      "set_screw_hole_passes_through_both_walls": 1.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 2,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. Gear tooth profile: use a star-polygon (astroid) interpolation between tip radius 24mm and root radius 20mm for 20 teeth; each tooth spans 18 degrees, with tip at tooth center and root at interdental valley. A sinusoidal or trapezoidal polar profile is acceptable approximation. 2. Hub is a plain cylinder (not tapered) from Z=0 to Z=30, outer diameter 16mm, centered at origin in XY. 3. Bore is a through-cylinder of diameter 10mm (radius 5mm), centered at origin, running Z=0 to Z=30; remove from combined gear+hub solid. 4. Keyway: a rectangular slot cut on the +X side of the bore. It spans the full 30mm in Z, is 4mm wide in Y (centered on Y=0), and extends radially from bore surface (r=5mm) outward to r=7.5mm (2.5mm depth). Implement as box subtraction: X from 5mm to 7.5mm, Y from -2mm to +2mm, Z from 0 to 30. 5. Set screw hole: 4mm diameter cylinder along X axis at Z=20mm, passing fully through the hub (from X=-8mm to X=+8mm), cutting through both hub walls and the keyway region. Center of hole at (0, 0, 20). 6. Construct as: union(gear_body, hub) minus bore minus keyway minus set_screw_hole. 7. Gear body bottom and hub bottom are coplanar at Z=0. Part sits upright with Z as the primary axis.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

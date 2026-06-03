@@ -1,0 +1,53 @@
+{
+  "description": "A 180-degree U-bend (return bend) pipe fitting with a 20mm outer diameter and 16mm inner diameter, curving in the XZ plane with a centerline radius of 35mm.",
+  "components": [
+    "U-bend pipe body"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 90.0,
+      "ylen": 20.0,
+      "zlen": 45.0
+    },
+    "key_dimensions": {
+      "outer_diameter": 20.0,
+      "inner_diameter": 16.0,
+      "wall_thickness": 2.0,
+      "bend_radius": 35.0,
+      "leg_spacing": 70.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 16.0 mm",
+      "dimensions": {
+        "diameter": 16.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "The part should be constructed by sweeping a hollow pipe cross-section (concentric circles of OD 20mm and ID 16mm) along a 180-degree semicircular arc of radius 35mm on the XZ plane. The path starts at (0,0,0) and ends at (70,0,0) with the apex of the curve reaching Z=35.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

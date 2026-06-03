@@ -1,0 +1,58 @@
+{
+  "description": "A hollow T-shaped pipe tee fitting with a main run along the X-axis and a perpendicular branch extending in the +Z direction.",
+  "components": [
+    "Main run outer cylinder",
+    "Branch outer cylinder",
+    "Main run inner cylinder (subtraction)",
+    "Branch inner cylinder (subtraction)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 30.0,
+      "zlen": 65.0
+    },
+    "key_dimensions": {
+      "main_outer_diameter": 30.0,
+      "main_inner_diameter": 24.0,
+      "main_length": 100.0,
+      "branch_outer_diameter": 30.0,
+      "branch_inner_diameter": 24.0,
+      "branch_height_from_center": 50.0,
+      "wall_thickness": 3.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "3 hole(s) of diameter 24.0 mm",
+      "dimensions": {
+        "diameter": 24.0
+      },
+      "position": null,
+      "count": 3,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 3,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 10.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Ensure the hollow interior is fully continuous by unioning the inner cylinders before subtracting them from the union of the outer cylinders. The main run is centered at the origin along the X axis (X from -50 to 50, Y and Z centered at 0). The branch extends from Z=0 to Z=50 in the +Z direction, centered at X=0, Y=0.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

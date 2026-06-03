@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Optional
@@ -88,11 +89,9 @@ def emit_forgecad_code(
     js_source = agents.generate_forgecad_code(design_plan_dict, prompt)
 
     # ── Build project directory ──────────────────────────────────────────
-    safe_name = (
-        plan.description.lower()
-        .replace(" ", "_")
-        .replace("-", "_")[:40]
-    )
+    safe_name = re.sub(r"[^a-z0-9_]", "_",
+        plan.description.lower().replace(" ", "_")
+    )[:40].strip("_")
     project_dir = Path(output_base_dir) / workflow_id / "forgecad" / safe_name
     models_dir = project_dir / "models"
     models_dir.mkdir(parents=True, exist_ok=True)

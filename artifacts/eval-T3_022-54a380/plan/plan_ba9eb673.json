@@ -1,0 +1,73 @@
+{
+  "description": "Spoked handwheel lying flat on the XY plane, centered at origin. Comprises a central hub cylinder with a bore, four rectangular spokes at 90-degree intervals, and an outer rim ring.",
+  "components": [
+    "Hub: solid cylinder, 30mm OD, 12mm tall, Z=0 to Z=12",
+    "Center bore: cylindrical cutout, 14mm diameter, full hub height (12mm), coaxial with hub",
+    "Outer rim: hollow cylinder (ring), 100mm OD, 88mm ID, 6mm radial width, 8mm tall, Z=0 to Z=8",
+    "Spoke 0deg: rectangular box aligned along X-axis, 8mm wide (Y), 29mm long (X), 8mm tall (Z)",
+    "Spoke 90deg: rectangular box aligned along Y-axis, 8mm wide (X), 29mm long (Y), 8mm tall (Z)",
+    "Spoke 180deg: rectangular box aligned along X-axis (negative X direction), 8mm wide (Y), 29mm long (X), 8mm tall (Z)",
+    "Spoke 270deg: rectangular box aligned along Y-axis (negative Y direction), 8mm wide (X), 29mm long (Y), 8mm tall (Z)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 100.0,
+      "ylen": 100.0,
+      "zlen": 12.0
+    },
+    "key_dimensions": {
+      "hub_outer_diameter": 30.0,
+      "hub_height": 12.0,
+      "hub_radius": 15.0,
+      "bore_diameter": 14.0,
+      "bore_radius": 7.0,
+      "rim_outer_diameter": 100.0,
+      "rim_inner_diameter": 88.0,
+      "rim_outer_radius": 50.0,
+      "rim_inner_radius": 44.0,
+      "rim_radial_width": 6.0,
+      "rim_height": 8.0,
+      "spoke_width": 8.0,
+      "spoke_height": 8.0,
+      "spoke_length": 29.0,
+      "spoke_radial_start": 15.0,
+      "spoke_radial_end": 44.0,
+      "spoke_radial_center": 29.5,
+      "num_spokes": 4.0,
+      "spoke_angular_spacing_deg": 90.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "1 hole(s) of diameter 14 mm",
+      "dimensions": {
+        "diameter": 14.0
+      },
+      "position": null,
+      "count": 1,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 1,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. Spoke length is exactly 29mm (from hub outer edge at r=15mm to rim inner edge at r=44mm: 44-15=29mm). Each spoke box should be positioned with its long axis radially, centered at r=29.5mm from origin. For X-aligned spokes (0 and 180 deg): box dimensions are length=29mm along X, width=8mm along Y, height=8mm along Z, centered at (\u00b129.5, 0, 4). For Y-aligned spokes (90 and 270 deg): box dimensions are length=29mm along Y, width=8mm along X, height=8mm along Z, centered at (0, \u00b129.5, 4). 2. Hub cylinder is taller (12mm) than rim and spokes (8mm); final shape is a union of hub+spokes+rim minus the center bore. 3. In CadQuery, construct as: hub cylinder (r=15, h=12) union outer rim (annulus OD=100, ID=88, h=8) union four spoke boxes, then cut center bore (r=7, h=12). 4. Volume estimate breakdown: hub solid ~8482mm3, bore removal ~1847mm3, rim annulus ~3770mm3, four spokes ~4x(29x8x8)=7424mm3, minus spoke-hub and spoke-rim overlaps (approximate). Net estimated volume ~34800mm3 (rough). 5. All geometry centered at origin in XY; Z range is 0 to 12.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

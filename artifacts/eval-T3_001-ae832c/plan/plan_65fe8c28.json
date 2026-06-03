@@ -1,0 +1,42 @@
+{
+  "description": "Open-top rectangular container with rounded vertical corners, 60x40x30mm, shelled with 2mm wall thickness.",
+  "components": [
+    "outer_body",
+    "inner_cavity"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 60.0,
+      "ylen": 40.0,
+      "zlen": 30.0
+    },
+    "key_dimensions": {
+      "outer_length_x": 60.0,
+      "outer_width_y": 40.0,
+      "height_z": 30.0,
+      "corner_radius": 5.0,
+      "wall_thickness": 2.0,
+      "inner_corner_radius": 3.0
+    }
+  },
+  "features": [],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 0,
+    "hole_diameter_mm": null,
+    "symmetry": "bilateral",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.95,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "Position the container centered at (0,0) on the XY plane, with the bottom at Z=0. The inner cavity must have a depth of 28mm (leaving a 2mm thick bottom floor) and wall thickness of 2mm. Manual subtraction of an inner rounded box (radius 3mm) is recommended for stability over a general shell operation.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

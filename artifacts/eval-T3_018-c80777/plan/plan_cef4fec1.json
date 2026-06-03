@@ -1,0 +1,78 @@
+{
+  "description": "Quadcopter drone chassis in plus (+) configuration, flat on XY plane, with central hub, four arms along \u00b1X and \u00b1Y axes, circular motor mount platforms at arm tips with shaft holes, and M3 mounting holes in the central hub.",
+  "components": [
+    "Central hub plate (30mm x 30mm x 3mm)",
+    "Arm +X (45mm long x 10mm wide x 3mm thick)",
+    "Arm -X (45mm long x 10mm wide x 3mm thick)",
+    "Arm +Y (45mm long x 10mm wide x 3mm thick)",
+    "Arm -Y (45mm long x 10mm wide x 3mm thick)",
+    "Motor mount platform +X (18mm diameter disk, 3mm thick, centered at (60,0,0))",
+    "Motor mount platform -X (18mm diameter disk, 3mm thick, centered at (-60,0,0))",
+    "Motor mount platform +Y (18mm diameter disk, 3mm thick, centered at (0,60,0))",
+    "Motor mount platform -Y (18mm diameter disk, 3mm thick, centered at (0,-60,0))",
+    "Motor shaft hole +X (5mm diameter through-hole at (60,0))",
+    "Motor shaft hole -X (5mm diameter through-hole at (-60,0))",
+    "Motor shaft hole +Y (5mm diameter through-hole at (0,60))",
+    "Motor shaft hole -Y (5mm diameter through-hole at (0,-60))",
+    "M3 mounting hole at (+10,+10)",
+    "M3 mounting hole at (+10,-10)",
+    "M3 mounting hole at (-10,+10)",
+    "M3 mounting hole at (-10,-10)"
+  ],
+  "dimensions": {
+    "overall_bbox": {
+      "xlen": 138.0,
+      "ylen": 138.0,
+      "zlen": 3.0
+    },
+    "key_dimensions": {
+      "hub_side_length": 30.0,
+      "hub_thickness": 3.0,
+      "arm_length": 45.0,
+      "arm_width": 10.0,
+      "arm_thickness": 3.0,
+      "arm_start_from_center": 15.0,
+      "arm_end_from_center": 60.0,
+      "motor_mount_diameter": 18.0,
+      "motor_mount_thickness": 3.0,
+      "motor_mount_center_distance_from_origin": 60.0,
+      "motor_shaft_hole_diameter": 5.0,
+      "m3_hole_diameter": 3.2,
+      "m3_hole_pattern_size": 20.0,
+      "m3_hole_offset_from_center": 10.0
+    }
+  },
+  "features": [
+    {
+      "feature_id": "hole_group_1",
+      "feature_type": "hole",
+      "description": "8 hole(s) of diameter 5.0mm (motor shaft holes), 3.2mm (M3 mounting holes) mm",
+      "dimensions": {
+        "diameter": 5.0
+      },
+      "position": null,
+      "count": 8,
+      "pattern": null,
+      "manufacturability_notes": null
+    }
+  ],
+  "constraints": {
+    "volume_estimate_mm3": null,
+    "num_holes": 8,
+    "hole_diameter_mm": null,
+    "symmetry": "rotational",
+    "material": null,
+    "manufacturing_process": null,
+    "additional": {}
+  },
+  "acceptance_criteria": {
+    "volume_error_threshold_pct": 5.0,
+    "bbox_iou_threshold": 0.9,
+    "min_f1_score": 0.95,
+    "max_chamfer_distance_mm": 2.0,
+    "require_watertight": true
+  },
+  "notes": "1. All geometry lies in Z=0 to Z=3mm (flat plate). 2. Arms are rectangular boxes from hub edge to motor mount: from \u00b115mm to \u00b160mm along the respective axis, centered on that axis with 10mm width in the perpendicular direction. 3. Motor mount disks (18mm diameter) are centered exactly at (\u00b160, 0, 0) and (0, \u00b160, 0); they overlap slightly with the arm tips \u2014 use union/boolean to merge. 4. Motor shaft holes (5mm diameter) are full through-holes (Z=0 to Z=3) centered at each motor mount center. 5. M3 holes (3.2mm diameter) are full through-holes at (\u00b110, \u00b110, 0) through the hub. 6. Build the solid as union of hub + 4 arms + 4 motor mount disks, then subtract all 8 holes. 7. Estimate volume breakdown: hub ~2700mm\u00b3, 4 arms ~4\u00d7(45\u00d710\u00d73)=5400mm\u00b3, 4 motor mounts ~4\u00d7(\u03c0\u00d79\u00b2\u00d73)\u22483054mm\u00b3, minus overlaps and holes, net ~10500\u201312000mm\u00b3.",
+  "ambiguous": false,
+  "ambiguity_questions": []
+}

@@ -1,0 +1,121 @@
+{
+  "trace_id": "2dfd7206-50c7-4b6a-8adc-6908ba577106",
+  "workflow_id": "eval-T3_019-970789",
+  "design_name": "Quadcopter drone chassis in an X configuration with a central hub, four diagonal arms, motor mounts, and mounting/shaft holes.",
+  "created_at": "2026-06-02T11:39:02.193918+00:00",
+  "prompt": "A quadcopter drone chassis in an X configuration, lying flat on the XY plane (Z=0 to Z=3), centered at the origin. The central hub is a solid disc 36mm in diameter, 3mm thick. Four rectangular arms extend outward from the hub at 45, 135, 225, and 315 degrees from the +X axis. Each arm is 55mm long and 10mm wide, starting from the hub edge (18mm from center) and reaching 73mm from center. The arms are aligned along their respective diagonal directions using rotated workplanes. A circular motor mount platform 18mm in diameter sits at each arm tip, centered 73mm from the origin along each diagonal (at approximately (±51.6, ±51.6) mm). A 5mm diameter motor shaft hole is drilled through each mount. Four M3 mounting holes (3.2mm diameter) are drilled through the hub in a 20mm x 20mm square pattern centered at the origin.",
+  "project_context": null,
+  "rubric": null,
+  "primitive_plan_summary": "Quadcopter drone chassis in an X configuration with a central hub, four diagonal arms, motor mounts, and mounting/shaft holes.",
+  "plan_ambiguous": false,
+  "plan_ambiguity_questions": [],
+  "iterations": [
+    {
+      "iteration_number": 0,
+      "iteration_type": "initial",
+      "cadquery_code_lines": 81,
+      "execution_time_ms": null,
+      "execution_success": true,
+      "geometry_evidence": {
+        "volume_mm3": 11353.589953777973,
+        "center_of_mass": [
+          -2.0427120399475372e-15,
+          -5.367125752019019e-15,
+          1.5000000000000004
+        ],
+        "bounding_box": {
+          "xmin": -60.61879502661798,
+          "xmax": 60.618795026617974,
+          "xlen": 121.23759005323595,
+          "ymin": -60.61879502661798,
+          "ymax": 60.618795026617974,
+          "ylen": 121.23759005323595,
+          "zmin": 0.0,
+          "zmax": 3.0,
+          "zlen": 3.0
+        },
+        "is_valid": true,
+        "num_faces": 42,
+        "num_edges": 92,
+        "num_vertices": 56,
+        "is_watertight": true,
+        "has_self_intersections": false,
+        "mesh_defect_count": 0,
+        "proximity_clearance_mm": null,
+        "normals_consistent": true,
+        "volume_drift_pct": 0.01853664199432334
+      },
+      "repair_actions": [],
+      "verifier_score": {
+        "passed": true,
+        "feedback": "All constraints met. The generated code perfectly satisfies all prompt requirements, including dimensions, placement of the arms in an X configuration, alignment of the mounting holes, and motor mount locations. The bounding box and volume calculations match the requested parameters exactly.",
+        "chamfer_distance_mean_mm": null,
+        "chamfer_distance_median_mm": null,
+        "f1_score": null,
+        "iou_volumetric": null,
+        "render_artifact_uri": null,
+        "failure_category": null
+      },
+      "render_artifact_uri": null,
+      "step_artifact_uri": "artifact://eval-T3_019-970789/step/T3_019_outer0_attempt0.step",
+      "stl_artifact_uri": "artifact://eval-T3_019-970789/stl/T3_019_outer0_attempt0.stl",
+      "passed": true
+    }
+  ],
+  "converged": true,
+  "total_iterations": 1,
+  "total_llm_calls": 3,
+  "total_time_ms": 197305.22583007812,
+  "final_step_artifact_uri": "artifact://eval-T3_019-970789/step/T3_019_outer0_attempt0.step",
+  "final_stl_artifact_uri": "artifact://eval-T3_019-970789/stl/T3_019_outer0_attempt0.stl",
+  "final_render_artifact_uri": null,
+  "final_forgecad_artifact_uri": "artifact://eval-T3_019-970789/forgecad/quadcopter_drone_chassis_in_an_x_configu_iter0.forge.js",
+  "final_geometry_evidence": {
+    "volume_mm3": 11353.589953777973,
+    "center_of_mass": [
+      -2.0427120399475372e-15,
+      -5.367125752019019e-15,
+      1.5000000000000004
+    ],
+    "bounding_box": {
+      "xmin": -60.61879502661798,
+      "xmax": 60.618795026617974,
+      "xlen": 121.23759005323595,
+      "ymin": -60.61879502661798,
+      "ymax": 60.618795026617974,
+      "ylen": 121.23759005323595,
+      "zmin": 0.0,
+      "zmax": 3.0,
+      "zlen": 3.0
+    },
+    "is_valid": true,
+    "num_faces": 42,
+    "num_edges": 92,
+    "num_vertices": 56,
+    "is_watertight": true,
+    "has_self_intersections": false,
+    "mesh_defect_count": 0,
+    "proximity_clearance_mm": null,
+    "normals_consistent": true,
+    "volume_drift_pct": 0.01853664199432334
+  },
+  "final_verifier_score": {
+    "passed": true,
+    "feedback": "All constraints met. The generated code perfectly satisfies all prompt requirements, including dimensions, placement of the arms in an X configuration, alignment of the mounting holes, and motor mount locations. The bounding box and volume calculations match the requested parameters exactly.",
+    "chamfer_distance_mean_mm": null,
+    "chamfer_distance_median_mm": null,
+    "f1_score": null,
+    "iou_volumetric": null,
+    "render_artifact_uri": null,
+    "failure_category": null
+  },
+  "first_pass_success": true,
+  "inner_loop_total_attempts": 0,
+  "outer_loop_total_iterations": 0,
+  "failure_category": null,
+  "failure_reason": null,
+  "human_approval_decision": "approved",
+  "export_ready": true,
+  "dataset_tier": null,
+  "dataset_entry_id": null
+}
