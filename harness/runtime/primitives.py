@@ -46,7 +46,7 @@ if str(_CADSMITH_DIR) not in sys.path:
     sys.path.insert(0, str(_CADSMITH_DIR))
 
 from autofab import agents  # noqa: E402
-from autofab.executor import Executor, ExecutionResult, _strip_python_fences  # noqa: E402
+from autofab.executor import Executor, ExecutionResult  # noqa: E402
 from autofab.validator import Validator  # noqa: E402
 
 from harness.artifacts.store import ArtifactStore, get_store
@@ -66,6 +66,31 @@ from harness.schema.trace import (
 )
 
 
+def _strip_python_fences(code: str) -> str:
+    """Strip markdown Python fences from LLM-generated code.
+
+    Some CADSmith versions expose this helper from autofab.executor, while
+    the cloned CADSmith version does not. Keep it local so the harness does
+    not depend on a private CADSmith helper.
+    """
+    if not code:
+        return code
+
+    text = code.strip()
+
+    if text.startswith("```python"):
+        text = text[len("```python") :].strip()
+    elif text.startswith("```py"):
+        text = text[len("```py") :].strip()
+    elif text.startswith("```"):
+        text = text[len("```") :].strip()
+
+    if text.endswith("```"):
+        text = text[:-3].strip()
+
+    return text
+
+
 # ---------------------------------------------------------------------------
 # 1. primitive_plan — Planning primitive (PRD §6.2)
 # ---------------------------------------------------------------------------
@@ -78,14 +103,19 @@ def primitive_plan(
     """
     Run the Planner agent and validate its output against the typed schema.
 
-    PRD §6.3: Schema failures raise SchemaValidationError; never degrade silently.
-    CADSmith: agents.plan() → raw dict → validate_plan() → PrimitivePlan
+    PRD §6.3:
+    Schema failures raise SchemaValidationError; never degrade silently.
+
+    CADSmith:
+    agents.plan() → raw dict → validate_plan() → PrimitivePlan
     """
     raw_plan = agents.plan(prompt)
+
     try:
         plan = validate_plan(raw_plan)
     except SchemaValidationError:
         raise
+
     return plan
 
 
@@ -101,7 +131,9 @@ def solid_generate(
     """
     Compile a typed primitive plan into a CadQuery Python script.
 
-    CADSmith: agents.generate_code(design_plan, prompt) → code string
+    CADSmith:
+    agents.generate_code(design_plan, prompt) → code string
+
     The plan is converted to the CADSmith flat-dict format for compatibility.
     """
     design_plan_dict = plan.to_cadsmith_dict()
@@ -128,14 +160,18 @@ def execute_with_retries(
     Returns:
         (ExecutionResult, list[RepairAction])
 
-    PRD §4.5 inner loop: up to 3 error-fix retries using rag_kb2 patterns.
-    CADSmith: pipeline._execute_with_retries()
-    """
-    executor = Executor(output_dir=output_dir, timeout_seconds=int(
-        os.getenv("EXECUTOR_TIMEOUT_SECONDS", "60")
-    ))
-    design_plan_dict = plan.to_cadsmith_dict()
+    PRD §4.5 inner loop:
+    up to 3 error-fix retries using rag_kb2 patterns.
 
+    CADSmith:
+    pipeline._execute_with_retries()
+    """
+    executor = Executor(
+        output_dir=output_dir,
+        timeout_seconds=int(os.getenv("EXECUTOR_TIMEOUT_SECONDS", "60")),
+    )
+
+    design_plan_dict = plan.to_cadsmith_dict()
     repair_actions: list[RepairAction] = []
     current_code = code
     attempt = 0
@@ -144,7 +180,7 @@ def execute_with_retries(
         exec_result = executor.execute(current_code, name=f"{name}_attempt{attempt}")
 
         if exec_result.success:
-            # Mark last repair action as successful if it was the fix
+            # Mark last repair action as successful if it was the fix.
             if repair_actions:
                 repair_actions[-1] = RepairAction(
                     **{**repair_actions[-1].model_dump(), "success": True}
@@ -152,15 +188,26 @@ def execute_with_retries(
             return exec_result, repair_actions
 
         if attempt < max_error_retries:
-            fixed_code = agents.fix_error(current_code, exec_result.error, design_plan_dict)
-            repair_actions.append(RepairAction(
-                loop="inner",
-                attempt_number=attempt + 1,
-                error_or_feedback=exec_result.error or "",
-                error_type=exec_result.error_type,
-                fix_applied=f"Error Refiner attempt {attempt + 1} produced {len(fixed_code.splitlines())} lines",
-                success=False,
-            ))
+            fixed_code = agents.fix_error(
+                current_code,
+                exec_result.error,
+                design_plan_dict,
+            )
+
+            repair_actions.append(
+                RepairAction(
+                    loop="inner",
+                    attempt_number=attempt + 1,
+                    error_or_feedback=exec_result.error or "",
+                    error_type=exec_result.error_type,
+                    fix_applied=(
+                        f"Error Refiner attempt {attempt + 1} produced "
+                        f"{len(fixed_code.splitlines())} lines"
+                    ),
+                    success=False,
+                )
+            )
+
             current_code = fixed_code
 
         attempt += 1
@@ -180,15 +227,18 @@ def mesh_inspect(
     """
     Build structured geometry evidence from OCCT kernel measurements.
 
-    Phase 2: Uses MeshLib to compute extended fields (watertightness,
-    self-intersections, defect counts, proximity).
+    Phase 2:
+    Uses MeshLib to compute extended fields:
+    watertightness, self-intersections, defect counts, proximity.
     """
     evidence = GeometryEvidence.from_cadsmith_geometry_json(geometry_json)
 
     if stl_path and Path(stl_path).exists():
         try:
             import meshlib.mrmeshpy as mr
+
             mesh = mr.loadMesh(stl_path)
+
             if mesh is not None:
                 # 1. Watertightness
                 evidence.is_watertight = bool(mesh.topology.isClosed())
@@ -200,16 +250,18 @@ def mesh_inspect(
                 except Exception:
                     evidence.mesh_defect_count = 0
 
-                # 3. Normals consistent if closed (open meshes have ambiguous normals)
+                # 3. Normals consistent if closed.
+                # Open meshes have ambiguous normals.
                 evidence.normals_consistent = evidence.is_watertight
 
-                # 4. Volume drift vs OCCT value
-                #    mesh.volume() is the MeshLib API (not computeVolume).
-                #    Only meaningful on closed meshes.
+                # 4. Volume drift vs OCCT value.
+                # mesh.volume() is the MeshLib API.
+                # Only meaningful on closed meshes.
                 if evidence.is_watertight:
                     try:
                         mesh_vol = mesh.volume()
                         occt_vol = evidence.volume_mm3
+
                         if occt_vol and occt_vol > 0:
                             evidence.volume_drift_pct = (
                                 abs(mesh_vol - occt_vol) / occt_vol * 100.0
@@ -219,33 +271,42 @@ def mesh_inspect(
                     except Exception:
                         evidence.volume_drift_pct = None
 
-                # 5. Self-intersections
-                #    findSelfIntersections is expensive and not always present
-                #    in every MeshLib build. Default to False; repair_watertight
-                #    runs fixSelfIntersections unconditionally anyway.
+                # 5. Self-intersections.
+                # findSelfIntersections is expensive and not always present
+                # in every MeshLib build. Default to False; repair_watertight
+                # runs fixSelfIntersections unconditionally anyway.
                 evidence.has_self_intersections = False
 
-                # 6. Auto-repair if not watertight (Phase 2)
+                # 6. Auto-repair if not watertight.
                 if not evidence.is_watertight:
                     try:
                         from harness.runtime.mesh_repair import repair_watertight
+
                         _, repaired, repair_notes = repair_watertight(stl_path)
+
                         if repaired:
                             evidence.is_watertight = True
                             evidence.normals_consistent = True
                             evidence.mesh_defect_count = 0
+
                             import logging as _logging
+
                             _logging.getLogger(__name__).info(
                                 f"[mesh_inspect] auto-repair succeeded: {repair_notes}"
                             )
                     except Exception as repair_exc:
                         import logging as _logging
+
                         _logging.getLogger(__name__).warning(
                             f"[mesh_inspect] auto-repair failed: {repair_exc}"
                         )
+
         except Exception as e:
             import logging
-            logging.getLogger(__name__).warning(f"mesh_inspect MeshLib pass failed: {e}")
+
+            logging.getLogger(__name__).warning(
+                f"mesh_inspect MeshLib pass failed: {e}"
+            )
 
     return evidence
 
@@ -265,14 +326,14 @@ def mesh_repair(
     """
     Attempt to repair a non-watertight mesh using MeshLib.
 
-    PRD §6.4: Mesh repair must be a named primitive, not inline logic.
+    PRD §6.4:
+    Mesh repair must be a named primitive, not inline logic.
 
     Args:
-        stl_path:    Path to the input STL (may be non-watertight).
-        output_path: Where to write the repaired STL. Defaults to
-                     <stl_path>_repaired.stl.
+        stl_path: Path to the input STL.
+        output_path: Where to write the repaired STL.
         workflow_id: If provided, the repaired STL is persisted to the store.
-        store:       ArtifactStore instance. Defaults to get_store().
+        store: ArtifactStore instance.
 
     Returns:
         (repaired_stl_path, is_watertight_after_repair, repair_notes)
@@ -286,14 +347,22 @@ def mesh_repair(
 
     try:
         from harness.runtime.mesh_repair import repair_watertight
-        out_path, is_watertight, repair_notes = repair_watertight(stl_path, output_path)
 
-        # Persist to artifact store if workflow_id provided
+        out_path, is_watertight, repair_notes = repair_watertight(
+            stl_path,
+            output_path,
+        )
+
         if workflow_id and Path(out_path).exists():
-            store.put_file(workflow_id, "stl", out_path,
-                           filename=Path(out_path).name)
+            store.put_file(
+                workflow_id,
+                "stl",
+                out_path,
+                filename=Path(out_path).name,
+            )
 
         return out_path, is_watertight, repair_notes
+
     except Exception as exc:
         return stl_path, False, f"Repair failed: {exc}"
 
@@ -327,8 +396,11 @@ def render_views(
 
     Returns the artifact URI or None if rendering is not available.
 
-    CADSmith: render.render_stl_to_png() → three views side by side.
-    PRD §4.4: minimum required views for the Verifier.
+    CADSmith:
+    render.render_stl_to_png() → three views side by side.
+
+    PRD §4.4:
+    minimum required views for the Verifier.
     """
     if store is None:
         store = get_store()
@@ -341,9 +413,15 @@ def render_views(
             store.base_path / workflow_id / "render" / render_filename
         )
         Path(local_render_path).parent.mkdir(parents=True, exist_ok=True)
+
         render_stl_to_png(stl_path, local_render_path)
 
-        uri = store.put_file(workflow_id, "render", local_render_path, filename=render_filename)
+        uri = store.put_file(
+            workflow_id,
+            "render",
+            local_render_path,
+            filename=render_filename,
+        )
         return uri
 
     except Exception as exc:
@@ -352,7 +430,7 @@ def render_views(
 
 
 # ---------------------------------------------------------------------------
-# 8. visual_verify — LLM Judge verification (PRD §4.7, §6.2)  — BUG-3 FIX
+# 8. visual_verify — LLM Judge verification (PRD §4.7, §6.2) — BUG-3 FIX
 # ---------------------------------------------------------------------------
 
 
@@ -367,40 +445,45 @@ def visual_verify(
     workflow_id: Optional[str] = None,
 ) -> VerifierScore:
     """
-    Run the independent Judge (Claude Opus) against prompt, code, OCCT
-    measurements, and rendered views.
+    Run the independent Judge against prompt, code, OCCT measurements,
+    and rendered views.
 
-    BUG-3 FIX: previously passed stl_path="" so the Judge never received
-    the rendered image. Now resolves the actual STL path from the artifact
-    store URI and passes it to agents.evaluate_geometry(), which renders
-    fresh three-view PNG and sends it to Claude Opus as base64 image.
+    BUG-3 FIX:
+    Previously passed stl_path="" so the Judge never received the rendered
+    image. Now resolves the actual STL path from the artifact store URI and
+    passes it to agents.evaluate_geometry(), which renders fresh three-view
+    PNG and sends it to the judge as base64 image.
 
-    PRD §4.7: Judge model must be independent from generation agents.
-    CADSmith: agents.evaluate_geometry() → dict with 'passed' + 'feedback'.
+    PRD §4.7:
+    Judge model must be independent from generation agents.
+
+    CADSmith:
+    agents.evaluate_geometry() → dict with 'passed' + 'feedback'.
     """
     if store is None:
         store = get_store()
 
-    # BUG-3 FIX: Resolve the STL path so the Judge can render and see the geometry
+    # Resolve the STL path so the Judge can render and see the geometry.
     stl_path = ""
     if stl_artifact_uri and store.exists(stl_artifact_uri):
         stl_path = str(store.local_path(stl_artifact_uri))
 
-    # Determine render_save_path: persist the render if we have a workflow_id
+    # Determine render_save_path: persist the render if we have a workflow_id.
     render_save_path = ""
     if workflow_id and stl_path:
         render_dir = store.base_path / workflow_id / "render"
         render_dir.mkdir(parents=True, exist_ok=True)
         render_save_path = str(render_dir / f"judge_render_{workflow_id}.png")
-        # If the render already exists in the store, reuse its local path
-        if render_artifact_uri and store.exists(render_artifact_uri):
-            render_save_path = str(store.local_path(render_artifact_uri))
+
+    # If the render already exists in the store, reuse its local path.
+    if render_artifact_uri and store.exists(render_artifact_uri):
+        render_save_path = str(store.local_path(render_artifact_uri))
 
     result = agents.evaluate_geometry(
         prompt=prompt,
         code=code,
         geometry_metrics=geometry_json,
-        stl_path=stl_path,           # BUG-3 FIX: real STL path → renders PNG for Judge
+        stl_path=stl_path,
         render_save_path=render_save_path,
         prior_judge_feedback=prior_feedback or [],
     )
@@ -429,28 +512,30 @@ def forgecad_emit(
     render_artifact_uri: Optional[str] = None,
     store: Optional[ArtifactStore] = None,
 ) -> tuple[str, str, dict]:
-    """Generate and persist the ForgeCAD .forge.js project.
+    """
+    Generate and persist the ForgeCAD .forge.js project.
 
     Calls the ForgeCAD JS coder agent to produce a parametric `.forge.js`
     model and writes a complete ForgeCAD project folder to the artifact store.
-    Engineers open the result with `forgecad studio <project_dir>`.
+
+    Engineers open the result with:
+
+        forgecad studio <project_dir>
 
     Args:
-        plan:                Validated PrimitivePlan.
-        code:                The verified CadQuery Python source (OCCT authority).
-        prompt:              Original natural-language user prompt (needed by JS coder).
-        workflow_id:         Temporal workflow ID.
-        trace_id:            Trace artifact ID.
-        iteration:           Outer refinement loop iteration number.
-        step_artifact_uri:   URI of the STEP artifact.
-        stl_artifact_uri:    URI of the STL artifact.
+        plan: Validated PrimitivePlan.
+        code: The verified CadQuery Python source.
+        prompt: Original natural-language user prompt.
+        workflow_id: Temporal workflow ID.
+        trace_id: Trace artifact ID.
+        iteration: Outer refinement loop iteration number.
+        step_artifact_uri: URI of the STEP artifact.
+        stl_artifact_uri: URI of the STL artifact.
         render_artifact_uri: URI of the render PNG artifact.
-        store:               ArtifactStore instance (defaults to get_store()).
+        store: ArtifactStore instance.
 
     Returns:
         (forgecad_artifact_uri, js_source, metadata)
-        ``forgecad_artifact_uri`` points to the .forge.js file in the store.
-        ``metadata`` includes ``studio_launch_command`` for display in the UI.
     """
     if store is None:
         store = get_store()
@@ -470,15 +555,20 @@ def forgecad_emit(
         iteration=iteration,
     )
 
-    # Persist the .forge.js file content in the artifact store so the API
-    # can serve it via GET /api/v1/designs/{id}/code
     safe_name = (
         plan.description.lower()
         .replace(" ", "_")
         .replace("-", "_")[:40]
     )
+
     js_filename = f"{safe_name}_iter{iteration}.forge.js"
-    uri = store.put(workflow_id, "forgecad", js_source.encode("utf-8"), filename=js_filename)
+
+    uri = store.put(
+        workflow_id,
+        "forgecad",
+        js_source.encode("utf-8"),
+        filename=js_filename,
+    )
 
     return uri, js_source, metadata
 
@@ -495,19 +585,24 @@ def trace_capture(
     """
     Serialize a TraceArtifact and persist it to the artifact store.
 
-    Returns the artifact URI.  PRD §11.2: 100% trace coverage required.
-    Every execution — success or failure — must call this function.
+    Returns the artifact URI.
+
+    PRD §11.2:
+    100% trace coverage required. Every execution — success or failure —
+    must call this function.
     """
     if store is None:
         store = get_store()
 
     filename = f"trace_{trace.trace_id}.json"
+
     uri = store.put(
         trace.workflow_id,
         "trace",
         trace.to_json().encode(),
         filename=filename,
     )
+
     return uri
 
 
@@ -527,19 +622,22 @@ def approval_gate_check(
     """
     Record a human approval gate decision as a structured artifact.
 
-    PRD §6.2: The approval gate is a named primitive, not inline logic.
-    PRD §5.3: Human decisions must be logged with timestamp and reviewer.
+    PRD §6.2:
+    The approval gate is a named primitive, not inline logic.
+
+    PRD §5.3:
+    Human decisions must be logged with timestamp and reviewer.
 
     Args:
         workflow_id: The design workflow ID.
-        trace_id:    The trace artifact ID for this run.
-        decision:    'approved', 'rejected', or 'changes_requested'.
-        reviewer:    Optional reviewer identifier.
-        notes:       Optional reviewer comments.
-        store:       ArtifactStore instance.
+        trace_id: The trace artifact ID for this run.
+        decision: 'approved', 'rejected', or 'changes_requested'.
+        reviewer: Optional reviewer identifier.
+        notes: Optional reviewer comments.
+        store: ArtifactStore instance.
 
     Returns:
-        Approval record dict (also persisted to the store as JSON).
+        Approval record dict, also persisted to the store as JSON.
     """
     import datetime
 
@@ -585,25 +683,28 @@ def compute_mesh_metrics(
 ) -> Optional[dict]:
     """
     Compute Chamfer Distance, F1 Score, and Volumetric IoU against a
-    reference STL, matching the Text-to-CadQuery paper metrics (PRD §11.3).
+    reference STL, matching the Text-to-CadQuery paper metrics.
 
-    CADSmith: metrics.compare_stl() — uses the same implementation.
+    CADSmith:
+    metrics.compare_stl() — uses the same implementation.
 
     Args:
-        generated_stl_path:  Path to the generated STL.
-        reference_stl_path:  Path to the ground-truth reference STL.
-        normalize:           If True, normalize meshes to [0,1]³ (shape only).
-                             If False (default), compare in absolute mm.
-        use_icp:             Run ICP alignment before metric computation.
-        n_points:            Surface point samples per mesh.
+        generated_stl_path: Path to the generated STL.
+        reference_stl_path: Path to the ground-truth reference STL.
+        normalize: If True, normalize meshes to [0,1]³.
+        use_icp: Run ICP alignment before metric computation.
+        n_points: Surface point samples per mesh.
 
     Returns:
-        dict with keys: chamfer_distance, f1_score, volumetric_iou,
-        precision, recall, normalize, use_icp.
-        Returns None if trimesh is unavailable or both STL files do not exist.
+        dict with keys:
+        chamfer_distance, f1_score, volumetric_iou, precision, recall,
+        normalize, use_icp.
+
+    Returns None if trimesh is unavailable or both STL files do not exist.
     """
     if not Path(generated_stl_path).exists():
         return None
+
     if not Path(reference_stl_path).exists():
         return None
 
@@ -617,14 +718,17 @@ def compute_mesh_metrics(
             normalize=normalize,
             use_icp=use_icp,
         )
+
         result = metrics.to_dict()
         result["normalize"] = normalize
         result["use_icp"] = use_icp
+
         return result
 
     except ImportError as exc:
         print(f"[compute_mesh_metrics] import failed ({exc}); skipping metrics")
         return None
+
     except Exception as exc:
         print(f"[compute_mesh_metrics] Metrics computation failed: {exc}")
         return None

@@ -128,6 +128,7 @@ class StartDesignRequest(BaseModel):
     max_error_retries: int = 3
     max_refinement_iterations: int = 5
     require_approval: bool = True
+    max_total_runtime_seconds: int = int(os.getenv("MAX_TOTAL_RUNTIME_SECONDS", "600"))
 
 
 class StartDesignResponse(BaseModel):
@@ -168,6 +169,7 @@ async def start_design(req: StartDesignRequest):
         max_error_retries=req.max_error_retries,
         max_refinement_iterations=req.max_refinement_iterations,
         require_approval=req.require_approval,
+        max_total_runtime_seconds=req.max_total_runtime_seconds,
     )
 
     handle = await client.start_workflow(
@@ -496,6 +498,7 @@ class ForgeCADTriggerRequest(BaseModel):
     project_dir: Optional[str] = None        # absolute path to ForgeCAD project dir
     resolved_params: dict = {}               # measurements captured by chatbot
     require_approval: bool = False            # skip approval gate for instant delivery
+    max_total_runtime_seconds: int = int(os.getenv("MAX_TOTAL_RUNTIME_SECONDS", "600"))
 
 
 @app.post("/api/v1/forgecad/trigger", status_code=201)
@@ -525,6 +528,7 @@ async def forgecad_trigger(req: ForgeCADTriggerRequest):
         prompt=enriched_prompt,
         name=req.name,
         require_approval=req.require_approval,
+        max_total_runtime_seconds=req.max_total_runtime_seconds,
     )
 
     wf_id = f"design-{req.name}-{_uuid.uuid4().hex[:8]}"

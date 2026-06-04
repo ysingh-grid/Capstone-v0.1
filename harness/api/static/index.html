@@ -467,6 +467,7 @@ input#iterate-text{flex:1;min-width:180px}
         <span class="badge badge-idle" id="stage-badge">IDLE</span>
       </div>
       <div class="stages" id="stages-row"></div>
+      <div id="failure-banner" style="display:none;margin-top:10px;padding:10px 12px;border-radius:8px;background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.35);color:#fca5a5;font-size:13px;line-height:1.4"></div>
     </div>
 
     <!-- Tabs + views -->
@@ -674,6 +675,20 @@ function renderStatus(status){
   badge.textContent = stage;
   badge.className   = 'badge badge-'+stage.toLowerCase().replace(' ','_');
   renderPipeline(stage);
+  renderFailureBanner(stage, status);
+}
+
+function renderFailureBanner(stage, status){
+  const banner = document.getElementById('failure-banner');
+  if(!banner) return;
+  if(stage === 'FAILED' || stage === 'ESCALATED'){
+    const msg = (status && status.user_message) || 'Something went wrong.';
+    banner.textContent = msg;
+    banner.style.display = 'block';
+  } else {
+    banner.style.display = 'none';
+    banner.textContent = '';
+  }
 }
 
 function renderPipeline(cur){
