@@ -1,133 +1,38 @@
 INFO:     Will watch for changes in these directories: ['/Users/ysingh/PycharmProjects/Capstone-v0.1']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [16436] using WatchFiles
-INFO:     Started server process [16439]
+INFO:     Started reloader process [11510] using WatchFiles
+INFO:     Started server process [11515]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     127.0.0.1:50659 - "GET /api/v1/designs/design-generated_part-682d4556/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50659 - "GET /api/v1/designs/design-generated_part-682d4556/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50666 - "GET /forge-assistant.js?v=1780471547894 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50674 - "OPTIONS /api/v1/assistant HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50674 - "POST /api/v1/assistant HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50680 - "POST /api/v1/assistant HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50680 - "POST /api/v1/assistant HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50687 - "POST /api/v1/assistant HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50687 - "OPTIONS /api/v1/assistant/finalize HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50687 - "POST /api/v1/assistant/finalize HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50687 - "OPTIONS /api/v1/forgecad/trigger HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50687 - "POST /api/v1/forgecad/trigger HTTP/1.1" 201 Created
-INFO:     127.0.0.1:50687 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50687 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50695 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50704 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50706 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50718 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50720 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50695 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50722 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-WARNING:  WatchFiles detected changes in 'artifacts/design-generated_part-ac03736e/geometry_work/generated_part_outer0_attempt0_runner.py', 'artifacts/design-generated_part-ac03736e/geometry_work/generated_part_outer0_attempt0_script.py'. Reloading...
+INFO:     127.0.0.1:63025 - "GET /forge-assistant.js?v=1780911465956 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63068 - "OPTIONS /api/v1/assistant HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63068 - "POST /api/v1/assistant HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63078 - "POST /api/v1/assistant HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63082 - "OPTIONS /api/v1/assistant/finalize HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63082 - "POST /api/v1/assistant/finalize HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63082 - "OPTIONS /api/v1/forgecad/trigger HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63082 - "POST /api/v1/forgecad/trigger HTTP/1.1" 201 Created
+INFO:     127.0.0.1:63082 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63082 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'artifacts/design-generated_part-07c0a293/geometry_work/generated_part_outer0_attempt0_runner.py', 'artifacts/design-generated_part-07c0a293/geometry_work/generated_part_outer0_attempt0_script.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for connections to close. (CTRL+C to force quit)
-INFO:     127.0.0.1:50706 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50704 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50718 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50695 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50720 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50722 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63095 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [16439]
-INFO:     Started server process [16776]
+INFO:     Finished server process [11515]
+INFO:     Started server process [12085]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     127.0.0.1:50735 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50743 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50741 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50746 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50737 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50739 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50737 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50741 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50739 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50735 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50743 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50746 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50737 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50735 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50741 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50739 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50743 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50737 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50746 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50735 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50741 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50739 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50743 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50737 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50746 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50741 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50743 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50735 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50737 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50746 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50739 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'artifacts/design-generated_part-ac03736e/geometry_work/generated_part_outer1_attempt0_runner.py', 'artifacts/design-generated_part-ac03736e/geometry_work/generated_part_outer1_attempt0_script.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for connections to close. (CTRL+C to force quit)
-INFO:     127.0.0.1:50743 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50739 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50746 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50741 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50737 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50735 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [16776]
-INFO:     Started server process [17095]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     127.0.0.1:50770 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50774 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50772 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50776 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50788 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50793 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50774 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50770 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50772 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50776 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50788 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50793 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50770 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50776 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50772 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50774 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50788 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50793 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50772 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50776 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50770 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50774 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50788 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50788 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50776 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50770 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50793 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50772 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50774 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50788 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'artifacts/design-generated_part-ac03736e/geometry_work/generated_part_outer2_attempt0_script.py', 'artifacts/design-generated_part-ac03736e/geometry_work/generated_part_outer2_attempt0_runner.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for connections to close. (CTRL+C to force quit)
-INFO:     127.0.0.1:50788 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50772 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50776 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50770 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50793 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50774 - "GET /api/v1/designs/design-generated_part-ac03736e/status HTTP/1.1" 200 OK
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [17095]
-INFO:     Started server process [17369]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
+INFO:     127.0.0.1:63101 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63101 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63109 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63109 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63109 - "OPTIONS /api/v1/forgecad/copy/design-generated_part-07c0a293 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63120 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63109 - "POST /api/v1/forgecad/copy/design-generated_part-07c0a293 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63120 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63109 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63120 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63109 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63120 - "GET /api/v1/designs/design-generated_part-07c0a293/status HTTP/1.1" 200 OK
